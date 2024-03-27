@@ -1,5 +1,5 @@
 package gestorAplicación;
 
 public class Inventario {
-	private String nombre;
+	String nombre;
 }
