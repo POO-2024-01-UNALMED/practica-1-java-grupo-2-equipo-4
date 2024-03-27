@@ -1,9 +1,10 @@
 package gestorAplicación;
 
 public class Caja {
-	private Persona empleado;
+	private Empleado empleado;
 	private String nombre;
 	private int estado;
-	private tipoCaja tipo;
+	private TipoCaja tipo;
 	private Tienda tienda;
+	private String descuento;
 }
