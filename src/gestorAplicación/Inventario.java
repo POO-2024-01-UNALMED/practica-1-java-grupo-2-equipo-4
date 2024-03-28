@@ -6,9 +6,18 @@ public class Inventario {
 	private String nombre;
 	private ArrayList <ArrayList<Producto>> productos=new ArrayList<ArrayList<Producto>>();
 	private Tienda tienda;
+	private Categoria categoria;
 	
 	public String solicitarInventario() {
 		return "Nada por ahora";
+	}
+	
+	public void contactarProvedor() {
+		
+	}
+	
+	public int contarProductosEnIventario() {
+		return 1;
 	}
 	
 	public String getNombre() {
@@ -33,5 +42,13 @@ public class Inventario {
 	
 	public void setTienda(Tienda tienda) {
 		this.tienda=tienda;
+	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	
+	public void setCategoria(Categoria categoria) {
+		this.categoria=categoria;
 	}
 }

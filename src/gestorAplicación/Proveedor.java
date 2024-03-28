@@ -48,4 +48,12 @@ public class Proveedor {
 	public void setInventario(Inventario inventario) {
 		this.inventario=inventario;
 	}
+	
+	public void proveerTienda(Tienda tienda) {
+		
+	}
+	
+	public void informarRebastecimiento(Producto producto) {
+		
+	}
 }

@@ -1,0 +1,4 @@
+
+public enum CategoriaPasillo {
+ ALIMENTO,BEBIDA,LIMPIEZA,PERSONAL,HOGAR,ELECTRONICO
+}

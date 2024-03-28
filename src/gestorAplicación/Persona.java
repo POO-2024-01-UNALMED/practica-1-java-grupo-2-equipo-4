@@ -1,21 +1,12 @@
 package gestorAplicación;
 
 public class Persona {
-	private tipoPersona tipo;
 	private String nombre;
 	private int id;
 	private float dinero;
 	private int edad;
 	private Tienda tienda;
 	private String genero;
-	
-	public tipoPersona getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(tipoPersona tipo) {
-		this.tipo=tipo;
-	}
 	
 	public String getNombre() {
 		return nombre;
