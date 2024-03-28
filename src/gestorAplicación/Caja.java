@@ -2,6 +2,7 @@ package gestorAplicación;
 
 public class Caja {
 	private Empleado empleado;
+	private String numero;
 	private String nombre;
 	private int estado;
 	private TipoCaja tipo;
@@ -16,6 +17,14 @@ public class Caja {
 		this.empleado=empleado;
 	}
 	
+	public String getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(String numero) {
+		this.numero=numero;
+		
+	}
 	public String getNombre() {
 		return nombre;
 	}
