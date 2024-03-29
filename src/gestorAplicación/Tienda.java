@@ -9,8 +9,8 @@ public class Tienda {
 	private String direccion;
 	private float saldo;
 	private String estado;
-	private ArrayList <Empleados> empleados=new ArrayList<Empleados>();
-	private ArrayList <ArrayList<Producto>> pasillos=new ArrayList<ArrayList<Producto>>();
+	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
+	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	
@@ -62,19 +62,19 @@ public class Tienda {
 		this.estado=estado;
 	}
 	
-	public ArrayList<Persona> getEmpleados() {
+	public ArrayList<Empleado> getEmpleados() {
 		return empleados;
 	}
 	
-	public void setEmpleados(ArrayList<Persona> empleados) {
+	public void setEmpleados(ArrayList<Empleado> empleados) {
 		this.empleados=empleados;
 	}
 	
-	public ArrayList<ArrayList<Producto>> getPasillos() {
+	public ArrayList<Pasillo> getPasillos() {
 		return pasillos;
 	}
 	
-	public void setPasillos(ArrayList<ArrayList<Producto>> pasillos) {
+	public void setPasillos(ArrayList<Pasillo> pasillos) {
 		this.pasillos=pasillos;
 	}
 	

@@ -5,15 +5,13 @@ public class Membresia {
 	private Cliente cliente;
 	private TipoEdad tipo;
 	private int puntosMembresia;
-	private Arraylist <Tienda> tiendas = new Arraylist<Tienda>();
-	
-	
+	private ArrayList <Tienda> tiendas = new ArrayList<Tienda>();
 	
 	public  Cliente getCliente() {
 		return cliente;
 	}
 	
-	public void setCliente(Persona cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente=cliente;
 	}
 	
@@ -30,7 +28,7 @@ public class Membresia {
 	}
 	
 	public void setPuntosMembresia(int PuntosMembresia) {
-		this.PuntosMembresia=PuntosMembresia;
+		this.puntosMembresia=PuntosMembresia;
 	}
 	
 	public ArrayList<Tienda> getTiendas() {

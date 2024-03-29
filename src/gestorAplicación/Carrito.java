@@ -7,7 +7,7 @@ public class Carrito {
 	private Cliente cliente;
 	private Tienda tienda;
 	private TipoEdad tipoCarrito;
-	private dooble montoTotal;
+	private double montoTotal;
 	
 	public ArrayList<Producto> getProductos() {
 		return productos;
@@ -21,7 +21,7 @@ public class Carrito {
 		return cliente;
 	}
 	
-	public void setCliente(Persona cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente=cliente;
 	}
 	
@@ -40,11 +40,11 @@ public class Carrito {
 		this.tipoCarrito=tipo;
 	}
 	
-	public dooble getMontoTotal() {
+	public double getMontoTotal() {
 		return montoTotal;
 	}
 	
-	public void  setMontoTotal(dooble monto) {
+	public void  setMontoTotal(double monto) {
 		this.montoTotal= monto;
 	}
 }

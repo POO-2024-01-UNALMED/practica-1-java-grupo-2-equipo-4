@@ -5,7 +5,7 @@ import java.util.*;
 public class Proveedor {
 	private String nombre;
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
-	private categoria tipo;
+	private Categoria tipo;
 	private Tienda tienda;
 	private Inventario inventario;
 	
@@ -25,11 +25,11 @@ public class Proveedor {
 		this.entrega=entrega;
 	}
 	
-	public categoria getTipo() {
+	public Categoria getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(categoria tipo) {
+	public void setTipo(Categoria tipo) {
 		this.tipo=tipo;
 	}
 	

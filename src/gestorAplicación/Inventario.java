@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 public class Inventario {
 	private String nombre;
-	private ArrayList <ArrayList<Producto>> productos=new ArrayList<ArrayList<Producto>>();
+	private ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 	private Tienda tienda;
 	private Categoria categoria;
 	
 	public String solicitarInventario() {
-		return "Nada por ahora";
+		ArrayList <Producto> Inventario=new ArrayList<Producto>();
+		for (Pasillo i:bodegas) {
+			
+		};
 	}
 	
 	public void contactarProvedor() {
@@ -28,12 +31,12 @@ public class Inventario {
 		this.nombre=nombre;
 	}
 	
-	public ArrayList<ArrayList<Producto>> getProductos() {
-		return productos;
+	public ArrayList<Pasillo> getProductos() {
+		return bodegas;
 	}
 	
-	public void setProductos(ArrayList<ArrayList<Producto>> productos) {
-		this.productos=productos;
+	public void setProductos(ArrayList<Pasillo> bodegas) {
+		this.bodegas=bodegas;
 	}
 	
 	public Tienda getTienda() {

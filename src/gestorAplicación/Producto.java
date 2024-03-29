@@ -1,10 +1,9 @@
 package gestorAplicación;
 import java.time.*;
 
-
 public class Producto {
 	private int cantidad;
-	private dooble precio;
+	private double precio;
 	private int id;
 	private Categoria categoria;
 	private String fechaPerecer;
@@ -17,11 +16,11 @@ public class Producto {
 		this.cantidad=cantidad;
 	}
 	
-	public dooble getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 	
-	public void setPrecio(dooble precio) {
+	public void setPrecio(double precio) {
 		this.precio=precio;
 	}
 	
@@ -50,7 +49,7 @@ public class Producto {
 	}
 	
 	public boolean verificarDisponibilidad() {
-		if (catidad>0){
+		if (cantidad>0){
 			return true;
 		}
 		else {
@@ -61,7 +60,7 @@ public class Producto {
 	}
 	
 	public boolean verificarDevolucion() {
-		
+		return true;
 	}
 	
 	
