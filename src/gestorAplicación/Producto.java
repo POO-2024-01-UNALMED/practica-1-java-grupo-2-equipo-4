@@ -2,12 +2,34 @@ package gestorAplicación;
 import java.time.*;
 
 public class Producto {
+	private String nombre;
 	private int cantidad;
 	private double precio;
 	private int id;
 	private Categoria categoria;
 	private String fechaPerecer;
 	
+	
+	
+	public Producto(String nombre,Categoria categoria) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+	}
+	
+	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
 	public int getCantidad() {
 		return cantidad;
 	}
