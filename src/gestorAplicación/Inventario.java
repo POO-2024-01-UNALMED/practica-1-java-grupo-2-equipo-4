@@ -8,11 +8,21 @@ public class Inventario {
 	private Tienda tienda;
 	private Categoria categoria;
 	
-	public String solicitarInventario() {
+	public Inventario(String nombre, ArrayList<Pasillo> bodegas, Tienda tienda, Categoria categoria) {
+		this.nombre = nombre;
+		this.bodegas = bodegas;
+		this.tienda = tienda;
+		this.categoria = categoria;
+	}
+
+	public ArrayList <Producto> solicitarInventario() {
 		ArrayList <Producto> Inventario=new ArrayList<Producto>();
 		for (Pasillo i:bodegas) {
-			
-		};
+			for (Producto p:i.getProductos()) {
+				Inventario.add(p);
+			}
+		}
+		return Inventario;
 	}
 	
 	public void contactarProvedor() {
