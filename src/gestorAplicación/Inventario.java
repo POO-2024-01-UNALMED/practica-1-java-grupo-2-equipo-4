@@ -3,16 +3,18 @@ package gestorAplicación;
 import java.util.ArrayList;
 
 public class Inventario {
-	private String nombre;
 	private ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 	private Tienda tienda;
-	private Categoria categoria;
+	private Proveedor proveedor;
 	
-	public Inventario(String nombre, ArrayList<Pasillo> bodegas, Tienda tienda, Categoria categoria) {
-		this.nombre = nombre;
+	public Inventario(Tienda tienda) {
+		this.tienda = tienda;
+	}
+
+	public Inventario(ArrayList<Pasillo> bodegas, Tienda tienda, Proveedor proveedor) {
 		this.bodegas = bodegas;
 		this.tienda = tienda;
-		this.categoria = categoria;
+		this.proveedor = proveedor;
 	}
 
 	public ArrayList <Producto> solicitarInventario() {
@@ -25,20 +27,28 @@ public class Inventario {
 		return Inventario;
 	}
 	
+	public ArrayList<Pasillo> getBodegas() {
+		return bodegas;
+	}
+
+	public void setBodegas(ArrayList<Pasillo> bodegas) {
+		this.bodegas = bodegas;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
 	public void contactarProvedor() {
 		
 	}
 	
 	public int contarProductosEnIventario() {
 		return 1;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	
-	public void setNombre(String nombre) {
-		this.nombre=nombre;
 	}
 	
 	public ArrayList<Pasillo> getProductos() {
@@ -57,11 +67,4 @@ public class Inventario {
 		this.tienda=tienda;
 	}
 	
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	
-	public void setCategoria(Categoria categoria) {
-		this.categoria=categoria;
-	}
 }
