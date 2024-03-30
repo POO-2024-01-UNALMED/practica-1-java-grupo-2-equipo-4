@@ -1,10 +1,11 @@
 package gestorAplicación;
-
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class main {
 
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		
 		Tienda tienda1= new Tienda();
 		Cliente cliente1 = new Cliente();
@@ -31,9 +32,16 @@ public class main {
 		Inventario inv1= new Inventario(bodegas,tienda1,proveedor1);
 		
 		ArrayList<Producto> x = inv1.solicitarInventario();
+		int n = 1;
 		for (Producto a:x){
-			   System.out.println(a.getNombre());
+			
+			   System.out.println(n+ a.getNombre());
+			   n++;
 			}
+		
+		
+		
+		
 	}
 
 }
