@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 
 
-public class BaseDatos {
+public  class BaseDatos {
 	ArrayList<Tienda>tiendas = new ArrayList<>();
 	
-	public ArrayList<Tienda> buscar(Categoria categoria){
+	public ArrayList<Tienda> buscarTienda(Categoria categoria){
 		ArrayList<Tienda>tiendaDisp = new ArrayList<>();
 		for (Tienda i:tiendas) {			
 			for(Pasillo j:i.getPasillos()) {
@@ -15,5 +15,15 @@ public class BaseDatos {
 				}
 			}
 		}return tiendaDisp;
+	}
+	
+	public void buscarProducto(Tienda tienda,int n) {
+		
+		for (Pasillo i:tienda.getPasillos()) {
+			for ( Producto j:i.getProductos()) {
+				
+				System.out.println(n+"."+j);
+			}
+		}
 	}
 }

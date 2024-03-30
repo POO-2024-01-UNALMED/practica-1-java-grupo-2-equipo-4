@@ -7,6 +7,7 @@ public class main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
+		BaseDatos baseDatos1=new BaseDatos();
 		Tienda tienda1= new Tienda();
 		Cliente cliente1 = new Cliente();
 		Proveedor proveedor1 = new Proveedor();
@@ -38,10 +39,28 @@ public class main {
 			   System.out.println(n+ a.getNombre());
 			   n++;
 			}
+		n=1;
 		
+		//busca tiendas devuelve tiendas disponibles 
+		System.out.println("Buscando tiendas...Categorias disponibles:");
+		for(Categoria cat:Categoria.values()) {
+			System.out.println(n +"."+cat );
+			n++;
+		}
+		n=1;
 		
+		System.out.println("Seleccione una Categoria:" );
+		int x1=scanner.nextInt();
 		
+		System.out.println("tiendas segun su categoria:" );
+		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
 		
+		System.out.println("Seleccione una tienda" );
+		int x2 = scanner.nextInt();
+		ArrayList<Tienda>lista = baseDatos1.buscarTienda(Categoria.values()[x1]);
+		Tienda tiendaSelec=lista.get(x2);
+		
+		System.out.println("productos categoria:"+Categoria.values()[x1]);		
+		baseDatos1.buscarProducto(tiendaSelec, n);
 	}
-
 }
