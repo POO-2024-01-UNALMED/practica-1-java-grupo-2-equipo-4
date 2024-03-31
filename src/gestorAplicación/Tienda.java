@@ -93,4 +93,6 @@ public class Tienda {
 	public void setProveedores(ArrayList<Proveedor> proveedores) {
 		this.proveedores=proveedores;
 	}
+	
+	
 }

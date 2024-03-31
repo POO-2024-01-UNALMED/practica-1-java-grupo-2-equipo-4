@@ -4,8 +4,13 @@ import java.util.ArrayList;
 
 
 public  class BaseDatos {
-	ArrayList<Tienda>tiendas = new ArrayList<>();
+	static private ArrayList<Tienda>tiendas = new ArrayList<>();
 	
+	
+	public static ArrayList<Tienda> getTiendas() {
+		return tiendas;
+	}
+
 	public ArrayList<Tienda> buscarTienda(Categoria categoria){
 		ArrayList<Tienda>tiendaDisp = new ArrayList<>();
 		for (Tienda i:tiendas) {			

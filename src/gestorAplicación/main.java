@@ -8,9 +8,15 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		
 		BaseDatos baseDatos1=new BaseDatos();
+		
 		Tienda tienda1= new Tienda();
+		BaseDatos.getTiendas().add(tienda1);
+		Tienda tienda2= new Tienda();
+		BaseDatos.getTiendas().add(tienda2);
+		
 		Cliente cliente1 = new Cliente();
 		Proveedor proveedor1 = new Proveedor();
+		System.out.println(BaseDatos.getTiendas());
 		
 		Producto chito1 = new Producto("chitos",Categoria.ALIMENTO);
 		Producto chito2 = new Producto("chitos",Categoria.ALIMENTO);
