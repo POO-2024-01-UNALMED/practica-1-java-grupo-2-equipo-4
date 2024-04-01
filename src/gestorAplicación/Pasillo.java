@@ -52,5 +52,4 @@ public class Pasillo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
 }

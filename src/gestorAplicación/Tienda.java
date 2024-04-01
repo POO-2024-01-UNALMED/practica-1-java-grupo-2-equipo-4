@@ -9,6 +9,7 @@ public class Tienda {
 	private String direccion;
 	private float saldo;
 	private String estado;
+	private Inventario inventario;
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
@@ -94,5 +95,22 @@ public class Tienda {
 		this.proveedores=proveedores;
 	}
 	
-	
+	public boolean disponibilidadProductos() {
+		boolean pasillo = false;
+		boolean bodega = false;
+		for (Pasillo i:pasillos) {
+			if (i.getProductos().size()!=0){
+				pasillo=true;
+				break;
+			}
+		}
+		for (Pasillo p:inventario.getBodegas()) {
+			if (p.getProductos().size()!=0) {
+				bodega=true;
+				break;
+			}
+		}
+		boolean resultado=pasillo | bodega;
+		return resultado;
+   }
 }
