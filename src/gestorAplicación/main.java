@@ -68,5 +68,16 @@ public class main {
 		
 		System.out.println("productos categoria:"+Categoria.values()[x1]);		
 		baseDatos1.buscarProducto(tiendaSelec, n);
+		
+		
+		
+		System.out.println("Introduzca su nombre: ");
+		String nombre = scanner.nextLine();
+		System.out.println("Introduzca su ## de identificacion: ");
+		int id =scanner.nextInt();
+		System.out.println("Introduzca su edad: ");
+		int edad = scanner.nextInt();
+		
+		
 	}
 }

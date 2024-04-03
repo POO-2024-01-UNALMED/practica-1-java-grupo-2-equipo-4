@@ -3,11 +3,21 @@ package gestorAplicación;
 public class Persona {
 	private String nombre;
 	private int id;
-	private float dinero;
 	private int edad;
 	private Tienda tienda;
 	private String genero;
 	
+	public Persona() {
+	}
+	
+	public Persona(String nombre, int id, int edad, Tienda tienda, String genero) {
+		this.nombre = nombre;
+		this.id = id;
+		this.edad = edad;
+		this.tienda = tienda;
+		this.genero = genero;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -22,14 +32,6 @@ public class Persona {
 	
 	public void setId(int id) {
 		this.id=id;
-	}
-	
-	public float getDinero() {
-		return dinero;
-	}
-	
-	public void setDinero(float dinero) {
-		this.dinero=dinero;
 	}
 	
 	public int getEdad() {
@@ -55,4 +57,5 @@ public class Persona {
 	public void setGenero(String genero) {
 		this.genero=genero;
 	}
+	
 }
