@@ -3,7 +3,6 @@ import java.time.*;
 
 public class Producto {
 	private String nombre;
-	private int cantidad;
 	private double precio;
 	private int id;
 	private Categoria categoria;
@@ -22,20 +21,8 @@ public class Producto {
 		return nombre;
 	}
 
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-
-
-	public int getCantidad() {
-		return cantidad;
-	}
-	
-	public void setCantidad(int cantidad) {
-		this.cantidad=cantidad;
 	}
 	
 	public double getPrecio() {
@@ -70,8 +57,9 @@ public class Producto {
 		this.fechaPerecer=fecha;
 	}
 	
-	public boolean verificarDisponibilidad() {
-		if (cantidad>0){
+	public boolean verificarDisponibilidad(int cantidadSolicitada) {
+		
+		if (catidadSolicitada<cantidad){
 			return true;
 		}
 		else {

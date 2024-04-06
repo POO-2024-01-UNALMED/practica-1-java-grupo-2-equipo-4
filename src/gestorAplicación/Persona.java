@@ -56,6 +56,14 @@ public class Persona {
 	
 	public void setGenero(String genero) {
 		this.genero=genero;
+	}	
+	public boolean confirmarEdad(int edad) {
+		if(edad >= 18) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 }
