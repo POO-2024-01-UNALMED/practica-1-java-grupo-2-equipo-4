@@ -13,6 +13,10 @@ public class Caja {
 		return empleado;
 	}
 	
+	public void ponerEnCaja(Empleado empleado) {
+		this.setEmpleado(empleado);
+	}
+	
 	public void setEmpleado(Empleado empleado) {
 		this.empleado=empleado;
 	}

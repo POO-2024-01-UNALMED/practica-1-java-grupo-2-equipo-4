@@ -58,7 +58,7 @@ public class main {
 		System.out.println("Seleccione una Categoria:" );
 		int x1=scanner.nextInt();
 		
-		System.out.println("tiendas segun su categoria:" );
+		System.out.println("Tiendas segun su categoria:" );
 		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
 		
 		System.out.println("Seleccione una tienda" );
@@ -70,7 +70,7 @@ public class main {
 		baseDatos1.buscarProducto(tiendaSelec, n);
 		
 		
-		
+		//Creando constructor de persona (WIP)
 		System.out.println("Introduzca su nombre: ");
 		String nombre = scanner.nextLine();
 		System.out.println("Introduzca su ## de identificacion: ");
@@ -78,6 +78,28 @@ public class main {
 		System.out.println("Introduzca su edad: ");
 		int edad = scanner.nextInt();
 		
+		
+		//Creando arraylist de las cajas buenas y agregandolas (WIP)
+		ArrayList<Caja> cajas=new ArrayList<Caja>();
+		tienda1.cajasDisponibles(cajas);
+		if (cajas.size()==0) {
+			int contador=0;
+			int decision=1;
+			while(cajas.size()==0 & decision==1) {
+			System.out.println("Parece que no hay cajas disponibles, ¿que desea hacer?");
+			System.out.println("1. Esperar que haya una caja disponible");
+			System.out.println("2. Dejar los productos e irse de la tienda");
+			decision = scanner.nextInt();
+			if (decision==1) {
+				contador++;
+				//Poner aca que hacer si el cliente espera y con el contador dependiendo de cuanto espera
+			}
+			if (decision==2) {
+				//Necesito metodo para devolver productos
+				break;
+			}
+			}
+		}
 		
 	}
 }

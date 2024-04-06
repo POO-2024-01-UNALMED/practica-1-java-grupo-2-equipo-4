@@ -14,6 +14,7 @@ public class Tienda {
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
+	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	
 	public String getNit() {
 		return nit;
@@ -113,4 +114,11 @@ public class Tienda {
 		boolean resultado=pasillo | bodega;
 		return resultado;
    }
+	public void cajasDisponibles(ArrayList<Caja> cajas) {
+		for(Caja i:this.cajas) {
+			if(i.getEstado()==2 & i.getEmpleado()!=null) {
+				cajas.add(i);
+			}
+		}
+	}
 }
