@@ -1,5 +1,5 @@
 package gestorAplicación;
-
+import java.util.Scanner;
 import java.util.*;
 
 public class Tienda {
@@ -7,15 +7,28 @@ public class Tienda {
 	private Persona dueño;
 	private String nombre;
 	private String direccion;
-	private float saldo;
+	private double saldo;
 	private String estado;
 	private Inventario inventario;
-	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
+	Scanner scanner = new Scanner(System.in);
+	
+	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
-	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
+	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	
+	
+	
+	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
+		this.nit = nit;
+		this.dueño = dueño;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.saldo = saldo;
+		this.estado = estado;
+	}
+
 	public String getNit() {
 		return nit;
 	}
@@ -48,7 +61,7 @@ public class Tienda {
 		this.direccion=direccion;
 	}
 	
-	public float getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 	
@@ -99,6 +112,7 @@ public class Tienda {
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
 		boolean bodega = false;
+		
 		for (Pasillo i:pasillos) {
 			if (i.getProductos().size()!=0){
 				pasillo=true;
@@ -121,4 +135,36 @@ public class Tienda {
 			}
 		}
 	}
+	
+	
+	
+	public void crearPasillos() {
+		ArrayList <Categoria> categorias=new ArrayList<>();
+		System.out.println("cuantos pasillos desea crear?");
+		int x1=scanner.nextInt();
+		
+		for(int i=1;i<x1;i++) {
+			System.out.println("que categorias tendra el pasillo"+i+"?");
+			int n=1;
+			for(Categoria j:Categoria.values()) {
+				System.out.println(n+"."+j);
+			}
+			int x2=scanner.nextInt();
+			categorias.add(Categoria.values()[x2-1]);
+		}
+		
+	}
+	
+	public void llamarProveedor() {
+		System.out.println("llamando a un proveedor");
+		System.out.println("seleccione un proveedor");
+		
+		int n=1;
+		for(Proveedor i:getProveedores()) {
+			System.out.println(n+"."+i);
+			n++;
+		}
+		n=1;	
+	}
+	
 }

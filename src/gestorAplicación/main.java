@@ -8,7 +8,7 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		
 		BaseDatos baseDatos1=new BaseDatos();
-		
+		System.out.println(Categoria.ALIMENTO.ordinal());
 		Tienda tienda1= new Tienda();
 		BaseDatos.getTiendas().add(tienda1);
 		Tienda tienda2= new Tienda();
@@ -47,6 +47,16 @@ public class main {
 			}
 		n=1;
 		
+		Persona persona3=new Persona("pacho",1035,34,"masculino");
+		Tienda tienda3= new Tienda("b101",persona3,"pacho's","cra20",10.000000,"abierto");
+
+		
+		
+		
+		
+		
+		
+		
 		//busca tiendas devuelve tiendas disponibles 
 		System.out.println("Buscando tiendas...Categorias disponibles:");
 		for(Categoria cat:Categoria.values()) {
@@ -68,7 +78,7 @@ public class main {
 		
 		System.out.println("productos categoria:"+Categoria.values()[x1]);		
 		baseDatos1.buscarProducto(tiendaSelec, n);
-		
+		//-----------------------------------------------------------------------------------------------------
 		
 		//Creando constructor de persona (WIP)
 		System.out.println("Introduzca su nombre: ");

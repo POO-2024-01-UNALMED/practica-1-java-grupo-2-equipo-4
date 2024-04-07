@@ -4,17 +4,17 @@ public class Persona {
 	private String nombre;
 	private int id;
 	private int edad;
-	private Tienda tienda;
+//	private Tienda tienda;  decidir que va primero la persona o tienda 
 	private String genero;
 	
 	public Persona() {
 	}
 	
-	public Persona(String nombre, int id, int edad, Tienda tienda, String genero) {
+	public Persona(String nombre, int id, int edad, String genero) {
 		this.nombre = nombre;
 		this.id = id;
 		this.edad = edad;
-		this.tienda = tienda;
+		
 		this.genero = genero;
 	}
 
@@ -42,13 +42,8 @@ public class Persona {
 		this.edad=edad;
 	}
 	
-	public Tienda getTienda() {
-		return tienda;
-	}
 	
-	public void setTienda(Tienda tienda) {
-		this.tienda=tienda;
-	}
+	
 	
 	public String getGenero() {
 		return genero;
