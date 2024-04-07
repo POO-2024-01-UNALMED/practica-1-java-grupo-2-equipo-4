@@ -6,10 +6,10 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int n=1;
+		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
 		
-		
+		//crear pasillos de tiendas
 		Persona persona1=new Persona("pacho",1035,34,"masculino");
 		Tienda tienda1= new Tienda("b101",persona1,"pacho's","cra20",10.000000,"abierto");
 		tienda1.crearPasillos();
