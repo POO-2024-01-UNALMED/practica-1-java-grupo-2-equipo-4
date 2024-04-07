@@ -151,6 +151,7 @@ public class Tienda {
 				n++;
 			}
 			int x2=scanner.nextInt();
+			scanner.nextLine();
 			categorias.add(Categoria.values()[x2-1]);
 		}
 		
@@ -160,14 +161,14 @@ public class Tienda {
 			Categoria cat=k;
 			System.out.println("nombre del pasillo "+n+" :");
 			String x2=scanner.nextLine();
-			
 			Pasillo pasillo=new Pasillo(x2,cat);
 			pasillos.add(pasillo);
 			System.out.println("pasillo creado");
 			n++;
 		}	
-		
 	}
+	
+	
 	
 	public void llamarProveedor() {
 		System.out.println("llamando a un proveedor");
@@ -179,6 +180,18 @@ public class Tienda {
 			n++;
 		}
 		n=1;	
+	}
+	
+	public void mostrarPasillos() {
+		if (pasillos.size()==0) {
+			System.out.println("la tienda "+this.getNombre()+" no tiene pasillos");
+		}
+		else {
+			for(Pasillo i:pasillos) {
+				System.out.println(i.getNombre());
+			}
+		}
+		
 	}
 	
 }

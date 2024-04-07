@@ -13,13 +13,14 @@ public class main {
 		Persona persona1=new Persona("pacho",1035,34,"masculino");
 		Tienda tienda1= new Tienda("b101",persona1,"pacho's","cra20",10.000000,"abierto");
 		tienda1.crearPasillos();
-
+		Tienda tienda2= new Tienda("a201",persona1,"pachos2","cra20",10.000000,"abierto");
 		
+		tienda1.mostrarPasillos();
+		tienda2.mostrarPasillos();
 		
-		
-		
-		
-		
+		System.out.println(tienda1.getPasillos());
+		System.out.println(tienda1.getPasillos().get(0).getCategoria() );
+		System.out.println(tienda1.getPasillos().get(1).getCategoria() );
 		
 		//busca tiendas devuelve tiendas disponibles 
 		System.out.println("Buscando tiendas...Categorias disponibles:");
