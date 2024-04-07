@@ -5,21 +5,21 @@ import java.util.*;
 public class Pasillo {
 	private String nombre;
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
-	private Tienda tienda;
+	
 	private Cliente cliente;
 	private Categoria categoria;
 	
 	
-	public Pasillo(String nombre, Tienda tienda, Categoria categoria) {
+	public Pasillo(String nombre,  Categoria categoria) {
 		this.nombre = nombre;
-		this.tienda = tienda;
+		
 		this.categoria = categoria;
 	}
 	
-	public Pasillo(String nombre, ArrayList<Producto> productos, Tienda tienda, Cliente cliente, Categoria categoria) {
+	public Pasillo(String nombre, ArrayList<Producto> productos,  Cliente cliente, Categoria categoria) {
 		this.nombre = nombre;
 		this.productos = productos;
-		this.tienda = tienda;
+		
 		this.cliente = cliente;
 		this.categoria = categoria;
 	}
@@ -36,12 +36,9 @@ public class Pasillo {
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
-	public Tienda getTienda() {
-		return tienda;
-	}
-	public void setTienda(Tienda tienda) {
-		this.tienda = tienda;
-	}
+	
+	
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -54,5 +51,7 @@ public class Pasillo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public int cantidadProducto(int id) {}
+	
+//	public int cantidadProducto(int id) {}
+//       cuando continues quita el comentario
 }

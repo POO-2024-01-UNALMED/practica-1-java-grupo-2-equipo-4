@@ -6,49 +6,13 @@ public class main {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		
+		int n=1;
 		BaseDatos baseDatos1=new BaseDatos();
-		System.out.println(Categoria.ALIMENTO.ordinal());
-		Tienda tienda1= new Tienda();
-		BaseDatos.getTiendas().add(tienda1);
-		Tienda tienda2= new Tienda();
-		BaseDatos.getTiendas().add(tienda2);
 		
-		Cliente cliente1 = new Cliente();
-		Proveedor proveedor1 = new Proveedor();
-		System.out.println(BaseDatos.getTiendas());
 		
-		Producto chito1 = new Producto("chitos",Categoria.ALIMENTO);
-		Producto chito2 = new Producto("chitos",Categoria.ALIMENTO);
-		Producto palo1 = new Producto("palos",Categoria.ALIMENTO);
-		
-		ArrayList<Producto> productos1 = new ArrayList<>();
-		productos1.add(chito1);
-		productos1.add(chito2);
-		
-		ArrayList<Producto> productos2 = new ArrayList<>();
-		productos2.add(palo1);
-		
-		Pasillo p1 = new Pasillo("pasillo1", productos1,tienda1,cliente1, Categoria.ALIMENTO);
-		Pasillo p2 = new Pasillo("pasillo2", productos2,tienda1,cliente1,Categoria.LIMPIEZA);
-		
-		ArrayList<Pasillo> bodegas = new ArrayList<>();
-		bodegas .add(p1);
-		bodegas .add(p2);
-		
-		Inventario inv1= new Inventario(bodegas,tienda1,proveedor1);
-		
-		ArrayList<Producto> x = inv1.solicitarInventario();
-		int n = 1;
-		for (Producto a:x){
-			
-			   System.out.println(n+ a.getNombre());
-			   n++;
-			}
-		n=1;
-		
-		Persona persona3=new Persona("pacho",1035,34,"masculino");
-		Tienda tienda3= new Tienda("b101",persona3,"pacho's","cra20",10.000000,"abierto");
+		Persona persona1=new Persona("pacho",1035,34,"masculino");
+		Tienda tienda1= new Tienda("b101",persona1,"pacho's","cra20",10.000000,"abierto");
+		tienda1.crearPasillos();
 
 		
 		

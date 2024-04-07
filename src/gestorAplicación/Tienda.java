@@ -153,6 +153,13 @@ public class Tienda {
 			categorias.add(Categoria.values()[x2-1]);
 		}
 		
+		for(Categoria k:categorias) {
+			Categoria cat=k;
+			System.out.println("nombre del pasillo:");
+			String x2=scanner.nextLine();
+			Pasillo pasillo=new Pasillo(x2,cat);
+			pasillos.add(pasillo);
+		}		
 	}
 	
 	public void llamarProveedor() {
