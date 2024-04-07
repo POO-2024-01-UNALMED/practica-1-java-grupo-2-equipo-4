@@ -143,23 +143,30 @@ public class Tienda {
 		System.out.println("cuantos pasillos desea crear?");
 		int x1=scanner.nextInt();
 		
-		for(int i=1;i<x1;i++) {
-			System.out.println("que categorias tendra el pasillo"+i+"?");
+		for(int i=1;i<=x1;i++) {
+			System.out.println("que categorias tendra el pasillo "+i+"?");
 			int n=1;
 			for(Categoria j:Categoria.values()) {
 				System.out.println(n+"."+j);
+				n++;
 			}
 			int x2=scanner.nextInt();
 			categorias.add(Categoria.values()[x2-1]);
 		}
 		
+		int n=1;
 		for(Categoria k:categorias) {
+			
 			Categoria cat=k;
-			System.out.println("nombre del pasillo:");
+			System.out.println("nombre del pasillo "+n+" :");
 			String x2=scanner.nextLine();
+			
 			Pasillo pasillo=new Pasillo(x2,cat);
 			pasillos.add(pasillo);
-		}		
+			System.out.println("pasillo creado");
+			n++;
+		}	
+		
 	}
 	
 	public void llamarProveedor() {
