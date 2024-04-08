@@ -166,6 +166,19 @@ public class Tienda {
 			System.out.println("pasillo creado");
 			n++;
 		}	
+		
+		if (this.disponibilidadProductos()==false) {
+			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
+			int x3=scanner.nextInt();
+			
+			if(x3==1) {
+				this.llamarProveedor();
+			}
+			
+		}
+		
+		
 	}
 	
 	

@@ -14,7 +14,8 @@ public class main {
 		Tienda tienda1= new Tienda("b101",persona1,"pacho's","cra20",10.000000,"abierto");
 		tienda1.crearPasillos();
 		Tienda tienda2= new Tienda("a201",persona1,"pachos2","cra20",10.000000,"abierto");
-		
+		tienda1.disponibilidadProductos();
+		tienda2.disponibilidadProductos();
 		tienda1.mostrarPasillos();
 		tienda2.mostrarPasillos();
 		
