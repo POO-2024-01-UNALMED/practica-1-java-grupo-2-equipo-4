@@ -37,8 +37,6 @@ public class Pasillo {
 		this.productos = productos;
 	}
 	
-	
-	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -52,6 +50,24 @@ public class Pasillo {
 		this.categoria = categoria;
 	}
 	
-//	public int cantidadProducto(int id) {}
-//       cuando continues quita el comentario
+	public static int cantidadProducto(ArrayList<Producto> productos,int id) {
+		int contador = 0;
+        for (Producto producto : productos) {
+            if (producto.getId() == id) {
+                contador++;
+            }
+        }
+
+        return contador;
+	}
+	
+	
+	public static boolean verificarDisponibilidad(ArrayList<Producto> listaProductos, int id, int cantidadSolicitada) {
+        int cantidad = cantidadProducto(listaProductos, id);
+        return cantidadSolicitada <= cantidad;
+    }
+	
+	
+	
 }
+//     

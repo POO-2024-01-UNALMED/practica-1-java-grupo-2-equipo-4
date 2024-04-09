@@ -1,5 +1,7 @@
 package gestorAplicación;
 import java.time.*;
+import java.util.ArrayList;
+
 
 public class Producto {
 	private String nombre;
@@ -7,16 +9,13 @@ public class Producto {
 	private int id;
 	private Categoria categoria;
 	private String fechaPerecer;
-	
-	
+
 	
 	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 	}
 	
-	
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -56,19 +55,7 @@ public class Producto {
 	public void setFechaPerecer(String fecha) {
 		this.fechaPerecer=fecha;
 	}
-	
-	public boolean verificarDisponibilidad(int cantidadSolicitada) {
-		
-		if (catidadSolicitada<cantidad){
-			return true;
-		}
-		else {
-			return false;
-		}
-		
-			
-	}
-	
+
 	public boolean verificarDevolucion() {
 		return true;
 	}
