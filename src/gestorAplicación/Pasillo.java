@@ -49,7 +49,6 @@ public class Pasillo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
 	public static int cantidadProducto(ArrayList<Producto> productos,int id) {
 		int contador = 0;
         for (Producto producto : productos) {
@@ -60,14 +59,9 @@ public class Pasillo {
 
         return contador;
 	}
-	
-	
 	public static boolean verificarDisponibilidad(ArrayList<Producto> listaProductos, int id, int cantidadSolicitada) {
         int cantidad = cantidadProducto(listaProductos, id);
         return cantidadSolicitada <= cantidad;
     }
-	
-	
-	
 }
-//     
+ 
