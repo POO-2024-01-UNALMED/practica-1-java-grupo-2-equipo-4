@@ -10,15 +10,33 @@ public class Tienda {
 	private double saldo;
 	private String estado;
 	private Inventario inventario;
-	Scanner scanner = new Scanner(System.in);
-	
+	private Cliente cliente;
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	Scanner scanner = new Scanner(System.in);
 	
+	public ArrayList<Caja> getCajas() {
+		return cajas;
+	}
+
+	public void setCajas(ArrayList<Caja> cajas) {
+		this.cajas = cajas;
+	}
+
+	public Tienda(){
+	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
 		this.nit = nit;
@@ -128,6 +146,7 @@ public class Tienda {
 		boolean resultado=pasillo | bodega;
 		return resultado;
    }
+	
 	public void cajasDisponibles(ArrayList<Caja> cajas) {
 		for(Caja i:this.cajas) {
 			if(i.getEstado()==2 & i.getEmpleado()!=null) {
@@ -207,4 +226,32 @@ public class Tienda {
 		
 	}
 	
+	public void crearCaja(String tipo) {
+		char letra=65;
+		letra+=(int) cajas.size()/3;
+		int num=1;
+		num+=cajas.size()%3;
+		String nletra=Character.toString(letra);
+		String nom=nletra+num;
+		TipoCaja tipocaja = resolvertipocaja(tipo);
+		cajas.add(new Caja(nom,tipocaja,this));
+	}
+	
+	public TipoCaja resolvertipocaja(String tipo) {
+	    boolean prueba = false;
+	    TipoCaja p = null;
+	    while (!prueba) {
+	        if (tipo.equals("lenta")) {
+	            p = TipoCaja.LENTA;
+	            prueba = true;
+	        } else if (tipo.equals("rapida")) {
+	            p = TipoCaja.RAPIDA;
+	            prueba = true;
+	        } else {
+	            System.out.println("Ese no es un tipo válido de caja, introduzca uno válido");
+	            tipo = scanner.nextLine();
+	        }
+	    }
+	    return p;
+	}
 }

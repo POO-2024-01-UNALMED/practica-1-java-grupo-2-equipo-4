@@ -2,9 +2,9 @@ package gestorAplicación;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class main {
-
-	public static void main(String[] args) {
+public class Main {
+	public static void main(String[] args){
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
@@ -74,6 +74,42 @@ public class main {
 				//Necesito metodo para devolver productos
 				break;
 			}
+			}
+		}
+		
+		for (Caja i:cajas) {
+			System.out.println(i.getNombre()+" Tipo "+i.getTipo());
+		}
+		System.out.println("Recuerde que las cajas rapidas son para 5 productos o menos");
+		boolean comprobacionNom=false;
+		boolean comprobacionPro=false;
+		String eleccion=null;
+		while (!comprobacionNom & !comprobacionPro) {
+		System.out.println("¿Cual caja desea escoger?:");
+		eleccion=scanner.nextLine();
+		for (Caja i:cajas) {
+			if (i.getNombre()==eleccion) {
+				comprobacionNom=true;
+				if (i.getTipo()==TipoCaja.RAPIDA & i.getTienda().getCliente().getCarrito().getProductos().size()<=5) {
+						comprobacionPro=true;
+				}
+				if (i.getTipo()==TipoCaja.LENTA) {
+					comprobacionPro=true;
+				}
+			}	
+		}
+		if (comprobacionNom=false) {
+			System.out.println("Esa caja no existe");
+		}
+		
+		if (comprobacionNom=false) {
+			System.out.println("Esta escogiendo una caja rapida con mas de 5 productos");
+		}
+		}
+		
+		for (Caja p:cajas) {
+			if (p.getNombre()==eleccion) {
+				p.setCliente(p.getTienda().getCliente());
 			}
 		}
 		

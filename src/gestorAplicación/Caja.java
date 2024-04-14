@@ -2,12 +2,33 @@ package gestorAplicación;
 
 public class Caja {
 	private Empleado empleado;
-	private String numero;
 	private String nombre;
-	private int estado;
+	private int estado=2;
 	private TipoCaja tipo;
 	private Tienda tienda;
 	private String descuento;
+	private Cliente cliente;
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Tienda getTienda() {
+		return tienda;
+	}
+
+	public Caja(){
+	}
+	
+	public Caja(String nombre, TipoCaja tipo, Tienda tienda){
+		this.nombre=nombre;
+		this.tipo=tipo;
+		this.tienda=tienda;
+	}
 	
 	public Empleado getEmpleado() {
 		return empleado;
@@ -21,14 +42,6 @@ public class Caja {
 		this.empleado=empleado;
 	}
 	
-	public String getNumero() {
-		return numero;
-	}
-	
-	public void setNumero(String numero) {
-		this.numero=numero;
-		
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -45,8 +58,8 @@ public class Caja {
 		this.estado=estado;
 	}
 	
-	public Empleado getTipo() {
-		return empleado;
+	public TipoCaja getTipo() {
+		return tipo;
 	}
 	
 	public void setTipo(TipoCaja tipo) {

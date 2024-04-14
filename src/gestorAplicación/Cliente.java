@@ -4,6 +4,14 @@ public class Cliente extends Persona {
 	private float dinero;
 	private Carrito carrito;
 	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
 	public Cliente() {
 	}
 	//nota: error porque borre tienda de persona,
@@ -26,7 +34,7 @@ public class Cliente extends Persona {
 	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();
-		if (edadCliente<18 ) {
+		if (edadCliente<18) {
 			return false;
 		} else {
 			return true;
