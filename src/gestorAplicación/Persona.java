@@ -1,23 +1,18 @@
 package gestorAplicación;
 
 public class Persona {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private int id;
 	private int edad;
 //	private Tienda tienda;  decidir que va primero la persona o tienda 
 	private String genero;
-	
-	public Persona() {
-	}
-	
-	public Persona(String nombre, int id, int edad, String genero) {
-		this.nombre = nombre;
-		this.id = id;
-		this.edad = edad;
-		
-		this.genero = genero;
-	}
 
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,7 +43,28 @@ public class Persona {
 	
 	public void setGenero(String genero) {
 		this.genero=genero;
-	}	
+	}
+	
+//-------------------------------------------------------------------------------------------------------------
+
+//Contructores-------------------------------------------------------------------------------------------------
+	
+	public Persona() {
+		
+	}
+	
+	public Persona(String nombre, int id, int edad, String genero) {
+		this.nombre = nombre;
+		this.id = id;
+		this.edad = edad;
+		
+		this.genero = genero;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
+		
 	public boolean confirmarEdad(int edad) {
 		if(edad >= 18) {
 			return true;
@@ -57,5 +73,6 @@ public class Persona {
 		}
 		
 	}
-	
+
+//-------------------------------------------------------------------------------------------------------------
 }

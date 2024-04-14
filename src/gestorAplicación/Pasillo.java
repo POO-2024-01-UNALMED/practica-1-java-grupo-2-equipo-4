@@ -3,26 +3,16 @@ import java.util.*;
 
 
 public class Pasillo {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
-	
 	private Cliente cliente;
 	private Categoria categoria;
 	
-	
-	public Pasillo(String nombre,  Categoria categoria) {
-		this.nombre = nombre;
-		
-		this.categoria = categoria;
-	}
-	
-	public Pasillo(String nombre, ArrayList<Producto> productos,  Cliente cliente, Categoria categoria) {
-		this.nombre = nombre;
-		this.productos = productos;
-		
-		this.cliente = cliente;
-		this.categoria = categoria;
-	}
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public String getNombre() {
 		return nombre;
@@ -49,6 +39,28 @@ public class Pasillo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+//-------------------------------------------------------------------------------------------------------------
+
+//Constructores------------------------------------------------------------------------------------------------
+	
+	public Pasillo(String nombre, Categoria categoria) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+	}
+	
+	public Pasillo(String nombre, ArrayList<Producto> productos,  Cliente cliente, Categoria categoria) {
+		this.nombre = nombre;
+		this.productos = productos;
+		
+		this.cliente = cliente;
+		this.categoria = categoria;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
+	
 	public static int cantidadProducto(ArrayList<Producto> productos,int id) {
 		int contador = 0;
         for (Producto producto : productos) {
@@ -59,9 +71,12 @@ public class Pasillo {
 
         return contador;
 	}
+	
 	public static boolean verificarDisponibilidad(ArrayList<Producto> listaProductos, int id, int cantidadSolicitada) {
         int cantidad = cantidadProducto(listaProductos, id);
         return cantidadSolicitada <= cantidad;
     }
+
+//-------------------------------------------------------------------------------------------------------------
 }
  

@@ -1,8 +1,14 @@
 package gestorAplicación;
 
 public class Cliente extends Persona {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private float dinero;
 	private Carrito carrito;
+	
+//-------------------------------------------------------------------------------------------------------------
+	
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public Carrito getCarrito() {
 		return carrito;
@@ -11,7 +17,19 @@ public class Cliente extends Persona {
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
 	}
-
+	
+	public float getDinero() {
+		return dinero;
+	}
+	
+	public void setDinero(float dinero) {
+		this.dinero=dinero;
+	}
+	
+//-------------------------------------------------------------------------------------------------------------
+	
+//Constructores------------------------------------------------------------------------------------------------
+	
 	public Cliente() {
 	}
 	//nota: error porque borre tienda de persona,
@@ -24,13 +42,9 @@ public class Cliente extends Persona {
 		this.carrito = carrito;
 	}
 
-	public float getDinero() {
-		return dinero;
-	}
-	
-	public void setDinero(float dinero) {
-		this.dinero=dinero;
-	}
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
 	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();
@@ -40,6 +54,6 @@ public class Cliente extends Persona {
 			return true;
 		}
 	}
-
-
+	
+//-------------------------------------------------------------------------------------------------------------
 }

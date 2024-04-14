@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.util.*;
 
 public class Tienda {
+//Atributos---------------------------------------------------------------------------------------------------
+	
 	private String nit;
 	private Persona dueño;
 	private String nombre;
@@ -16,6 +18,10 @@ public class Tienda {
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
+
+//------------------------------------------------------------------------------------------------------------
+	
+//Getters and Setters-----------------------------------------------------------------------------------------
 	
 	public Cliente getCliente() {
 		return cliente;
@@ -24,8 +30,6 @@ public class Tienda {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	Scanner scanner = new Scanner(System.in);
 	
 	public ArrayList<Caja> getCajas() {
 		return cajas;
@@ -34,19 +38,7 @@ public class Tienda {
 	public void setCajas(ArrayList<Caja> cajas) {
 		this.cajas = cajas;
 	}
-
-	public Tienda(){
-	}
 	
-	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
-		this.nit = nit;
-		this.dueño = dueño;
-		this.nombre = nombre;
-		this.direccion = direccion;
-		this.saldo = saldo;
-		this.estado = estado;
-	}
-
 	public String getNit() {
 		return nit;
 	}
@@ -127,6 +119,37 @@ public class Tienda {
 		this.proveedores=proveedores;
 	}
 	
+	public Inventario getInventario() {
+		return inventario;
+	}
+
+	public void setInventario(Inventario inventario) {
+		this.inventario = inventario;
+	}
+
+//------------------------------------------------------------------------------------------------------------
+	
+//Contructores------------------------------------------------------------------------------------------------
+
+	public Tienda(){
+		
+	}
+	
+	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
+		this.nit = nit;
+		this.dueño = dueño;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.saldo = saldo;
+		this.estado = estado;
+	}
+
+//------------------------------------------------------------------------------------------------------------
+	
+//Metodos-----------------------------------------------------------------------------------------------------
+	
+	Scanner scanner = new Scanner(System.in);
+	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
 		boolean bodega = false;
@@ -154,8 +177,6 @@ public class Tienda {
 			}
 		}
 	}
-	
-	
 	
 	public void crearPasillos() {
 		ArrayList <Categoria> categorias=new ArrayList<>();
@@ -199,8 +220,6 @@ public class Tienda {
 		
 		
 	}
-	
-	
 	
 	public void llamarProveedor() {
 		System.out.println("llamando a un proveedor");
@@ -254,4 +273,6 @@ public class Tienda {
 	    }
 	    return p;
 	}
+
+//------------------------------------------------------------------------------------------------------------
 }

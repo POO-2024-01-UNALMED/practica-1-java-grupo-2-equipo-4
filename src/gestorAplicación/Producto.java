@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 
 public class Producto {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private double precio;
 	private int id;
 	private Categoria categoria;
 	private String fechaPerecer;
 
-	
-	public Producto(String nombre,Categoria categoria) {
-		this.categoria = categoria;
-		this.nombre= nombre;
-	}
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public String getNombre() {
 		return nombre;
@@ -55,11 +55,23 @@ public class Producto {
 	public void setFechaPerecer(String fecha) {
 		this.fechaPerecer=fecha;
 	}
+	
+//-------------------------------------------------------------------------------------------------------------
 
+//Constructores------------------------------------------------------------------------------------------------
+	
+	public Producto(String nombre,Categoria categoria) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
+	
 	public boolean verificarDevolucion() {
 		return true;
 	}
 	
-	
-
+//-------------------------------------------------------------------------------------------------------------
 }

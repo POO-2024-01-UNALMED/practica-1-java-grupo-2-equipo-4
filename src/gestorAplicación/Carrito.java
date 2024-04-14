@@ -3,11 +3,16 @@ package gestorAplicación;
 import java.util.*;
 
 public class Carrito {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
 	private Tienda tienda;
 	private TipoEdad tipoCarrito;
 	private double montoTotal;
+//-------------------------------------------------------------------------------------------------------------
+	
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public ArrayList<Producto> getProductos() {
 		return productos;
@@ -36,7 +41,7 @@ public class Carrito {
 		return tipoCarrito;
 	}
 	
-	public void setTipo(TipoEdad tipo) {
+	public void setTipoCarrito(TipoEdad tipo) {
 		this.tipoCarrito=tipo;
 	}
 	
@@ -47,4 +52,12 @@ public class Carrito {
 	public void  setMontoTotal(double monto) {
 		this.montoTotal= monto;
 	}
+	
+//Contructores-------------------------------------------------------------------------------------------------
+	
+//-------------------------------------------------------------------------------------------------------------
+	
+//Metodos------------------------------------------------------------------------------------------------------
+	
+//-------------------------------------------------------------------------------------------------------------
 }
