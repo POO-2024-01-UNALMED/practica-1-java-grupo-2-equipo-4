@@ -102,7 +102,7 @@ public class Main {
 			System.out.println("Esa caja no existe");
 		}
 		
-		if (comprobacionNom=false) {
+		if (comprobacionPro=false) {
 			System.out.println("Esta escogiendo una caja rapida con mas de 5 productos");
 		}
 		}
