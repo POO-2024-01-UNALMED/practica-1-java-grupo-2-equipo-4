@@ -112,6 +112,5 @@ public class Main {
 				p.setCliente(p.getTienda().getCliente());
 			}
 		}
-		
 	}
 }
