@@ -3,9 +3,40 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
+	static Scanner scanner = new Scanner(System.in);
+	static long readLong(){
+		return sc.nextLong();
+	}
+	public void desplegarTiendas(){
+		//funcionalidad 1
+	}
+	public void mostrarProductos(){
+		//funcionalidad 2
+	}
+	public void realizarPago(){
+		//funcionalidad 3
+	}
+	public void asignarDueño(){
+		//funcionalidad 4
+	}
+	public void revisarTienda(){
+		//funcionalidad 5
+	}
+	
 	public static void main(String[] args){
+		do {
+			//*Aquí imprimir opciones al usuario*
+			opcion (int) readLong
+			switch(opcion) {
+				case 1:desplegarTiendas();break;
+				case 2:mostrarProductos();break;
+				case 3:realizarPago();break;
+				case 4:asignarDueño();break;
+				case 5:revisarTienda();break;
+				case 6:break;
+			} while (opcion != 6);
+		}
 		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
 		
