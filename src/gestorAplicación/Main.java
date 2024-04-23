@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
 	static long readLong(){
-		return sc.nextLong();
+		return scanner.nextLong();
 	}
 	public void desplegarTiendas(){
 		//funcionalidad 1
@@ -24,19 +24,30 @@ public class Main {
 	}
 	
 	public static void main(String[] args){
-		do {
+//		do {
 			//*Aquí imprimir opciones al usuario*
-			opcion (int) readLong
-			switch(opcion) {
-				case 1:desplegarTiendas();break;
-				case 2:mostrarProductos();break;
-				case 3:realizarPago();break;
-				case 4:asignarDueño();break;
-				case 5:revisarTienda();break;
-				case 6:break;
-			} while (opcion != 6);
+//			opcion (int) readLong
+//			switch(opcion) {
+//				case 1:desplegarTiendas();break;
+//				case 2:mostrarProductos();break;
+//				case 3:realizarPago();break;
+//				case 4:asignarDueño();break;
+//				case 5:revisarTienda();break;
+//				case 6:break;
+//			} while (opcion != 6);
+//		}
+		//@SuppressWarnings("resource")
+		// -------------------------------------------------------------------------------
+		
+		System.out.println("usar la app como:" + "\n" + "1. ADMINISTRADOR" + "\n" + "2. CLIENTE");
+		int x1=scanner.nextInt();
+		
+		if(x1 == 1) {
+			System.out.println("ingrese su nombre");
+			String x2 = scanner.nextLine();
+			
 		}
-		@SuppressWarnings("resource")
+		
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
 		
@@ -63,7 +74,7 @@ public class Main {
 		n=1;
 		
 		System.out.println("Seleccione una Categoria:" );
-		int x1=scanner.nextInt();
+		 x1=scanner.nextInt();
 		
 		System.out.println("Tiendas segun su categoria:" );
 		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
