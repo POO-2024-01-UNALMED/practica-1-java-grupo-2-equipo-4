@@ -57,6 +57,14 @@ public class Membresia {
 		return this.puntosMembresia-restar;
 	}
 	
+	public Membresia(Cliente cliente, TipoEdad tipo, int puntosMembresia, ArrayList<Tienda> tiendas) {
+		super();
+		this.cliente = cliente;
+		this.tipo = tipo;
+		this.puntosMembresia = puntosMembresia;
+		this.tiendas = tiendas;
+	}
+
 	public void aplicarDescuentos (double descuento ) {
 		
 	}

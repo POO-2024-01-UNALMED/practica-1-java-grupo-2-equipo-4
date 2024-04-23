@@ -59,6 +59,14 @@ public class Proveedor {
 
 //Constructores------------------------------------------------------------------------------------------------
 
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, Inventario inventario) {
+	super();
+	this.nombre = nombre;
+	this.entrega = entrega;
+	this.tipo = tipo;
+	this.tienda = tienda;
+	this.inventario = inventario;
+}
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
@@ -68,6 +76,8 @@ public class Proveedor {
 		return a1;		
 	}
 	
+	
+
 	public void informarRebastecimiento(Producto producto) {
 		
 	}
