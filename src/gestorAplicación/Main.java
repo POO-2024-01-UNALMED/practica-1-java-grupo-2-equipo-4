@@ -39,14 +39,17 @@ public class Main {
 		//@SuppressWarnings("resource")
 		// -------------------------------------------------------------------------------
 		
-		System.out.println("usar la app como:" + "\n" + "1. ADMINISTRADOR" + "\n" + "2. CLIENTE");
+		System.out.println("Cual es tu rol?:" + "\n" + "1. ADMINISTRADOR" + "\n" + "2. CLIENTE");
 		int x1=scanner.nextInt();
+		scanner.nextLine();
 		
+		String x2=null;
 		if(x1 == 1) {
 			System.out.println("ingrese su nombre");
-			String x2 = scanner.nextLine();
-			
+			x2 = scanner.nextLine();	
 		}
+		System.out.println(x2);
+		
 		
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
@@ -80,9 +83,9 @@ public class Main {
 		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
 		
 		System.out.println("Seleccione una tienda" );
-		int x2 = scanner.nextInt();
+		int x3 = scanner.nextInt();
 		ArrayList<Tienda>lista = baseDatos1.buscarTienda(Categoria.values()[x1]);
-		Tienda tiendaSelec=lista.get(x2);
+		Tienda tiendaSelec=lista.get(x3);
 		
 		System.out.println("productos categoria:"+Categoria.values()[x1]);		
 		baseDatos1.buscarProducto(tiendaSelec, n);
