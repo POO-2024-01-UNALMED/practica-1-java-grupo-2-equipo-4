@@ -30,7 +30,8 @@ public class Cliente extends Persona {
 	
 //Constructores------------------------------------------------------------------------------------------------
 	
-	public Cliente() {
+	public Cliente(){
+		
 	}
 	//nota: error porque borre tienda de persona,
 	//esto causaba problemas al crear una tienda con dueño y un dueño con tienda
