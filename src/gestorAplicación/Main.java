@@ -3,9 +3,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-	static Scanner scanner = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
+	
 	static long readLong(){
-		return scanner.nextLong();
+		return sc.nextLong();
 	}
 	public void desplegarTiendas(){
 		//funcionalidad 1
@@ -23,33 +24,65 @@ public class Main {
 		//funcionalidad 5
 	}
 	
+	public static void print(String p) {
+		System.out.println(p);
+	}
+	static int [] numeros = {1,2,3,4,5,6};
+	static int decision;
 	public static void main(String[] args){
-//		do {
-			//*Aquí imprimir opciones al usuario*
-//			opcion (int) readLong
-//			switch(opcion) {
-//				case 1:desplegarTiendas();break;
-//				case 2:mostrarProductos();break;
-//				case 3:realizarPago();break;
-//				case 4:asignarDueño();break;
-//				case 5:revisarTienda();break;
-//				case 6:break;
-//			} while (opcion != 6);
-//		}
-		//@SuppressWarnings("resource")
-		// -------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+	do{
+		boolean boleano=false;
+		print("Bienvenido a My_Tiendita, que desea hacer?");
+		print("1.Mostrar productos disponibles segun cateogria y tienda\n"
+				+ "2.Realizar listas de compras\n"
+				+ "3.Pagar recibos pendientes\n"
+				+ "4. \n"
+				+ "5.Personalizar y modificar tiendas\n"
+				+ "6.Terminar");
+		while (!boleano){
+			try{
+				decision=sc.nextInt();
+			}
+			catch(Exception e) {
+				print("Este no es un numero valido");
+				sc.nextLine();
+			}
+			for (int i:numeros){
+				 if (decision==i){
+				        boleano=true;
+				 }
+			}
+			if (boleano==false){
+				 print("El numero esta fuera del rango");
+				 continue;
+			}
+		}
+		switch(decision){
+		case 1:
+			
+		case 2:
+			
+		case 3:
+		
+		case 4:
+			
+		case 5:
+		
+		}
+	 } while (decision!=6);
+//-----------------------------------------------------------------------------------------------------------
 		
 		System.out.println("Cual es tu rol?:" + "\n" + "1. ADMINISTRADOR" + "\n" + "2. CLIENTE");
-		int x1=scanner.nextInt();
-		scanner.nextLine();
+		int x1=sc.nextInt();
+		sc.nextLine();
 		
 		String x2=null;
 		if(x1 == 1) {
 			System.out.println("ingrese su nombre");
-			x2 = scanner.nextLine();	
+			x2 = sc.nextLine();	
 		}
 		System.out.println(x2);
-		
 		
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
@@ -77,13 +110,13 @@ public class Main {
 		n=1;
 		
 		System.out.println("Seleccione una Categoria:" );
-		 x1=scanner.nextInt();
+		 x1=sc.nextInt();
 		
 		System.out.println("Tiendas segun su categoria:" );
 		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
 		
 		System.out.println("Seleccione una tienda" );
-		int x3 = scanner.nextInt();
+		int x3 = sc.nextInt();
 		ArrayList<Tienda>lista = baseDatos1.buscarTienda(Categoria.values()[x1]);
 		Tienda tiendaSelec=lista.get(x3);
 		
@@ -93,11 +126,11 @@ public class Main {
 		
 		//Creando constructor de persona (WIP)
 		System.out.println("Introduzca su nombre: ");
-		String nombre = scanner.nextLine();
+		String nombre = sc.nextLine();
 		System.out.println("Introduzca su ## de identificacion: ");
-		int id =scanner.nextInt();
+		int id =sc.nextInt();
 		System.out.println("Introduzca su edad: ");
-		int edad = scanner.nextInt();
+		int edad = sc.nextInt();
 		
 		
 		//Creando arraylist de las cajas buenas y agregandolas (WIP)
@@ -110,7 +143,7 @@ public class Main {
 			System.out.println("Parece que no hay cajas disponibles, ¿que desea hacer?");
 			System.out.println("1. Esperar que haya una caja disponible");
 			System.out.println("2. Dejar los productos e irse de la tienda");
-			decision = scanner.nextInt();
+			decision = sc.nextInt();
 			if (decision==1) {
 				contador++;
 				//Poner aca que hacer si el cliente espera y con el contador dependiendo de cuanto espera
@@ -131,7 +164,7 @@ public class Main {
 		String eleccion=null;
 		while (!comprobacionNom & !comprobacionPro) {
 		System.out.println("¿Cual caja desea escoger?:");
-		eleccion=scanner.nextLine();
+		eleccion=sc.nextLine();
 		for (Caja i:cajas) {
 			if (i.getNombre()==eleccion) {
 				comprobacionNom=true;
