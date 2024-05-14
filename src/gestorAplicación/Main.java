@@ -30,7 +30,7 @@ public class Main {
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
 	
-	public void crearPasillos(Tienda tienda) {
+	public static void crearPasillos(Tienda tienda) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
 		System.out.println("cuantos pasillos desea crear?");
 		int x1=sc.nextInt();
@@ -117,16 +117,7 @@ public class Main {
 	 } while (decision!=6);
 //-----------------------------------------------------------------------------------------------------------
 		
-		System.out.println("Cual es tu rol?:" + "\n" + "1. ADMINISTRADOR" + "\n" + "2. CLIENTE");
-		int x1=sc.nextInt();
-		sc.nextLine();
-		
-		String x2=null;
-		if(x1 == 1) {
-			System.out.println("ingrese su nombre");
-			x2 = sc.nextLine();	
-		}
-		System.out.println(x2);
+	
 		
 		int n=1; // este contador lo pueden usar a gusto,reiniciar a pls
 		BaseDatos baseDatos1=new BaseDatos();
@@ -134,7 +125,13 @@ public class Main {
 		//crear pasillos de tiendas
 		Persona persona1=new Persona("pacho",1035,34,"masculino");
 		Tienda tienda1= new Tienda("b101",persona1,"pacho's","cra20",10.000000,"abierto");
-		tienda1.crearPasillos();
+		crearPasillos(tienda1);
+		for(Proveedor i:tienda1.getProveedores()) {
+		System.out.println(n+"."+i);
+		n++;
+		}
+		n=1;	
+		
 		Tienda tienda2= new Tienda("a201",persona1,"pachos2","cra20",10.000000,"abierto");
 		tienda1.disponibilidadProductos();
 		tienda2.disponibilidadProductos();
