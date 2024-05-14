@@ -78,7 +78,7 @@ public class Main {
 	do{
 		boolean boleano=false;
 		print("Bienvenido a My_Tiendita, que desea hacer?");
-		print("1.Mostrar productos disponibles segun cateogria y tienda\n"
+		print("1.Mostrar productos disponibles segun categoria y tienda\n"
 				+ "2.Realizar listas de compras\n"
 				+ "3.Pagar recibos pendientes\n"
 				+ "4. \n"
@@ -151,7 +151,7 @@ public class Main {
 		n=1;
 		
 		System.out.println("Seleccione una Categoria:" );
-		 x1=sc.nextInt();
+		 int x1=sc.nextInt();
 		
 		System.out.println("Tiendas segun su categoria:" );
 		System.out.println(baseDatos1.buscarTienda(Categoria.values()[x1]));
