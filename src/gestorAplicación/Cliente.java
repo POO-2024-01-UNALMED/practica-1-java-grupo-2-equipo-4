@@ -2,7 +2,7 @@ package gestorAplicación;
 
 public class Cliente extends Persona {
 //Atributos----------------------------------------------------------------------------------------------------
-	
+	private TipoEdad membresia;
 	private float dinero;
 	private Carrito carrito;
 	
