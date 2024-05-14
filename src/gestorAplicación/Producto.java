@@ -1,11 +1,12 @@
 package gestorAplicación;
 import java.time.*;
 import java.util.ArrayList;
+import java.io.Serializable; 
 
 
-public class Producto {
+public class Producto implements Serializable {
 //Atributos----------------------------------------------------------------------------------------------------
-	
+	private static final long serialVersionUID = 1L; //<---parte de serializar
 	private String nombre;
 	private double precio;
 	private int id;
