@@ -3,37 +3,30 @@ package gestorAplicación;
 import java.util.ArrayList;
 
 public class Inventario {
-	private String nombre;
-	private ArrayList <ArrayList<Producto>> productos=new ArrayList<ArrayList<Producto>>();
+//Atributos----------------------------------------------------------------------------------------------------
+	
+	private ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 	private Tienda tienda;
-	private Categoria categoria;
+	private Proveedor proveedor;
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
-	public String solicitarInventario() {
-		return "Nada por ahora";
+	public ArrayList<Pasillo> getBodegas() {
+		return bodegas;
 	}
-	
-	public void contactarProvedor() {
-		
+
+	public void setBodegas(ArrayList<Pasillo> bodegas) {
+		this.bodegas = bodegas;
 	}
-	
-	public int contarProductosEnIventario() {
-		return 1;
+
+	public Proveedor getProveedor() {
+		return proveedor;
 	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	
-	public void setNombre(String nombre) {
-		this.nombre=nombre;
-	}
-	
-	public ArrayList<ArrayList<Producto>> getProductos() {
-		return productos;
-	}
-	
-	public void setProductos(ArrayList<ArrayList<Producto>> productos) {
-		this.productos=productos;
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 	public Tienda getTienda() {
@@ -44,11 +37,45 @@ public class Inventario {
 		this.tienda=tienda;
 	}
 	
-	public Categoria getCategoria() {
-		return categoria;
+//-------------------------------------------------------------------------------------------------------------
+
+//Contructores-------------------------------------------------------------------------------------------------
+	
+	public Inventario() {
+
 	}
 	
-	public void setCategoria(Categoria categoria) {
-		this.categoria=categoria;
+	public Inventario(Tienda tienda) {
+		this.tienda = tienda;
 	}
+
+	public Inventario(ArrayList<Pasillo> bodegas, Tienda tienda, Proveedor proveedor) {
+		this.bodegas = bodegas;
+		this.tienda = tienda;
+		this.proveedor = proveedor;
+	}
+	
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos(QUE SON ESOS METODOS DE ABAJO)-----------------------------------------------------------------------
+	
+	public ArrayList <Producto> solicitarInventario() {
+		ArrayList <Producto> Inventario=new ArrayList<Producto>();
+		for (Pasillo i:bodegas) {
+			for (Producto p:i.getProductos()) {
+				Inventario.add(p);
+			}
+		}
+		return Inventario;
+	}
+
+	public void contactarProvedor() {
+		
+	}
+	
+	public int contarProductosEnIventario() {
+		return 1;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
 }

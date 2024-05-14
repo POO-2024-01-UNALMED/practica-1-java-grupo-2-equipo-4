@@ -1,12 +1,17 @@
 package gestorAplicación;
 
 public class Persona {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private int id;
-	private float dinero;
 	private int edad;
-	private Tienda tienda;
+//	private Tienda tienda;  decidir que va primero la persona o tienda 
 	private String genero;
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public String getNombre() {
 		return nombre;
@@ -24,14 +29,6 @@ public class Persona {
 		this.id=id;
 	}
 	
-	public float getDinero() {
-		return dinero;
-	}
-	
-	public void setDinero(float dinero) {
-		this.dinero=dinero;
-	}
-	
 	public int getEdad() {
 		return edad;
 	}
@@ -39,15 +36,7 @@ public class Persona {
 	public void setEdad(int edad) {
 		this.edad=edad;
 	}
-	
-	public Tienda getTienda() {
-		return tienda;
-	}
-	
-	public void setTienda(Tienda tienda) {
-		this.tienda=tienda;
-	}
-	
+
 	public String getGenero() {
 		return genero;
 	}
@@ -55,4 +44,35 @@ public class Persona {
 	public void setGenero(String genero) {
 		this.genero=genero;
 	}
+	
+//-------------------------------------------------------------------------------------------------------------
+
+//Contructores-------------------------------------------------------------------------------------------------
+	
+	public Persona() {
+		
+	}
+	
+	public Persona(String nombre, int id, int edad, String genero) {
+		this.nombre = nombre;
+		this.id = id;
+		this.edad = edad;
+		
+		this.genero = genero;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
+		
+	public boolean confirmarEdad(int edad) {
+		if(edad >= 18) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+//-------------------------------------------------------------------------------------------------------------
 }

@@ -3,11 +3,17 @@ package gestorAplicación;
 import java.util.*;
 
 public class Proveedor {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
-	private categoria tipo;
+	private Categoria tipo;
 	private Tienda tienda;
 	private Inventario inventario;
+
+//-------------------------------------------------------------------------------------------------------------
+	
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public String getNombre() {
 		return nombre;
@@ -25,11 +31,11 @@ public class Proveedor {
 		this.entrega=entrega;
 	}
 	
-	public categoria getTipo() {
+	public Categoria getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(categoria tipo) {
+	public void setTipo(Categoria tipo) {
 		this.tipo=tipo;
 	}
 	
@@ -48,12 +54,33 @@ public class Proveedor {
 	public void setInventario(Inventario inventario) {
 		this.inventario=inventario;
 	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Constructores------------------------------------------------------------------------------------------------
+
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, Inventario inventario) {
+	super();
+	this.nombre = nombre;
+	this.entrega = entrega;
+	this.tipo = tipo;
+	this.tienda = tienda;
+	this.inventario = inventario;
+}
+//-------------------------------------------------------------------------------------------------------------
 	
-	public void proveerTienda(Tienda tienda) {
-		
+//Metodos------------------------------------------------------------------------------------------------------
+	
+	public Producto crearProducto(Tienda tienda,String nombre,Categoria categoria) {	
+		Producto a1= new Producto(nombre,categoria);
+		return a1;		
 	}
 	
+	
+
 	public void informarRebastecimiento(Producto producto) {
 		
 	}
+
+//-------------------------------------------------------------------------------------------------------------
 }

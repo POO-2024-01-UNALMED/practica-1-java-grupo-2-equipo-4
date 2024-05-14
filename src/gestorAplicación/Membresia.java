@@ -2,18 +2,22 @@ package gestorAplicación;
 import java.util.*;
 
 public class Membresia {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private Cliente cliente;
 	private TipoEdad tipo;
 	private int puntosMembresia;
-	private Arraylist <Tienda> tiendas = new Arraylist<Tienda>();
-	
-	
+	private ArrayList <Tienda> tiendas = new ArrayList<Tienda>();
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
 	public  Cliente getCliente() {
 		return cliente;
 	}
 	
-	public void setCliente(Persona cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente=cliente;
 	}
 	
@@ -30,7 +34,7 @@ public class Membresia {
 	}
 	
 	public void setPuntosMembresia(int PuntosMembresia) {
-		this.PuntosMembresia=PuntosMembresia;
+		this.puntosMembresia=PuntosMembresia;
 	}
 	
 	public ArrayList<Tienda> getTiendas() {
@@ -41,13 +45,29 @@ public class Membresia {
 		this.tiendas=tiendas;
 	}
 	
+//-------------------------------------------------------------------------------------------------------------
+	
+//Constructores------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Metodos------------------------------------------------------------------------------------------------------
+	
 	public int restarPuntosFidelidad(int restar){
 		return this.puntosMembresia-restar;
 	}
 	
+	public Membresia(Cliente cliente, TipoEdad tipo, int puntosMembresia, ArrayList<Tienda> tiendas) {
+		super();
+		this.cliente = cliente;
+		this.tipo = tipo;
+		this.puntosMembresia = puntosMembresia;
+		this.tiendas = tiendas;
+	}
+
 	public void aplicarDescuentos (double descuento ) {
 		
 	}
 	
-
+//-------------------------------------------------------------------------------------------------------------
 }

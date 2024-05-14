@@ -1,30 +1,28 @@
 package gestorAplicación;
 
 public class Caja {
+//Atributos----------------------------------------------------------------------------------------------------
+	
 	private Empleado empleado;
-	private String numero;
 	private String nombre;
-	private int estado;
+	private int estado=2;
 	private TipoCaja tipo;
 	private Tienda tienda;
 	private String descuento;
+	private Cliente cliente;
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Getters and Setters------------------------------------------------------------------------------------------
 	
-	public Empleado getEmpleado() {
-		return empleado;
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
-	public void setEmpleado(Empleado empleado) {
-		this.empleado=empleado;
-	}
-	
-	public String getNumero() {
-		return numero;
-	}
-	
-	public void setNumero(String numero) {
-		this.numero=numero;
-		
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -41,15 +39,15 @@ public class Caja {
 		this.estado=estado;
 	}
 	
-	public Empleado getTipo() {
-		return empleado;
+	public TipoCaja getTipo() {
+		return tipo;
 	}
 	
 	public void setTipo(TipoCaja tipo) {
 		this.tipo=tipo;
 	}
 	
-	public Tienda setTienda() {
+	public Tienda getTienda() {
 		return tienda;
 	}
 	
@@ -57,7 +55,7 @@ public class Caja {
 		this.tienda=tienda;
 	}
 	
-	public String setDescuento() {
+	public String getDescuento() {
 		return descuento;
 	}
 	
@@ -65,4 +63,35 @@ public class Caja {
 		this.descuento=descuento;		
 		
 	}
+	
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+	
+	//Transformacion del metodo setEmpleado mas amigable a un llamado real
+	public void ponerEnCaja(Empleado empleado) {
+		this.setEmpleado(empleado);
+	}
+	
+	public void setEmpleado(Empleado empleado) {
+		this.empleado=empleado;
+	}
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Constructores------------------------------------------------------------------------------------------------
+	
+	public Caja(){
+		
+	}
+	
+	public Caja(String nombre, TipoCaja tipo, Tienda tienda){
+		this.nombre=nombre;
+		this.tipo=tipo;
+		this.tienda=tienda;
+	}
+
+//Metodos------------------------------------------------------------------------------------------------------
+	
+//-------------------------------------------------------------------------------------------------------------
 }

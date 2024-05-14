@@ -1,17 +1,15 @@
 package gestorAplicación;
-import java.time.*;
-import java.util.ArrayList;
+import java.util.*;
 
 
-public class Producto {
+public class Pasillo {
 //Atributos----------------------------------------------------------------------------------------------------
 	
 	private String nombre;
-	private double precio;
-	private int id;
+	private ArrayList<Producto> productos=new ArrayList<Producto>();
+	private Cliente cliente;
 	private Categoria categoria;
-	private String fechaPerecer;
-
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -19,59 +17,66 @@ public class Producto {
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public double getPrecio() {
-		return precio;
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
 	}
 	
-	public void setPrecio(double precio) {
-		this.precio=precio;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	
-	public int getId() {
-		return id;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
 	public void setCategoria(Categoria categoria) {
-		this.categoria=categoria;
-	}
-	
-	public String getFechaPerecer() {
-		return fechaPerecer;
-	}
-	
-	public void setFechaPerecer(String fecha) {
-		this.fechaPerecer=fecha;
+		this.categoria = categoria;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
 	
-	public Producto(String nombre,Categoria categoria) {
+	public Pasillo(String nombre, Categoria categoria) {
+		this.nombre = nombre;
 		this.categoria = categoria;
-		this.nombre= nombre;
+	}
+	
+	public Pasillo(String nombre, ArrayList<Producto> productos,  Cliente cliente, Categoria categoria) {
+		this.nombre = nombre;
+		this.productos = productos;
+		
+		this.cliente = cliente;
+		this.categoria = categoria;
 	}
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
-	public boolean verificarDevolucion() {
-		return true;
+	public static int cantidadProducto(ArrayList<Producto> productos,int id) {
+		int contador = 0;
+        for (Producto producto : productos) {
+            if (producto.getId() == id) {
+                contador++;
+            }
+        }
+
+        return contador;
 	}
 	
+	public static boolean verificarDisponibilidad(ArrayList<Producto> listaProductos, int id, int cantidadSolicitada) {
+        int cantidad = cantidadProducto(listaProductos, id);
+        return cantidadSolicitada <= cantidad;
+    }
+
 //-------------------------------------------------------------------------------------------------------------
 }
+ 
