@@ -4,23 +4,45 @@ import java.util.ArrayList;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	
+	Tienda tiendaDefacto;
 	static long readLong(){
 		return sc.nextLong();
 	}
-	public void desplegarTiendas(){
+	public static void mostrarProductos(){
 		//funcionalidad 1
 	}
-	public void mostrarProductos(){
-		//funcionalidad 2
+	public static void realizarListaCompra(){
+		print("Elegir categoria");
+		int index=1;
+		for(Categoria i:Categoria.values()) {
+			print(index+"."+i);
+			index+=1;
+		}
+		int decision =sc.nextInt();
+		switch(decision){
+		case 1:
+			BaseDatos.buscarTienda(Categoria.ALIMENTO);
+		case 2:
+			BaseDatos.buscarTienda(Categoria.BEBIDA);
+		case 3:
+			BaseDatos.buscarTienda(Categoria.LIMPIEZA);
+		case 4:
+			BaseDatos.buscarTienda(Categoria.PERSONAL);
+		case 5:
+			BaseDatos.buscarTienda(Categoria.HOGAR);
+		case 6:
+			BaseDatos.buscarTienda(Categoria.ELECTRONICO);
+		}
+		
+		
 	}
-	public void realizarPago(){
+	public static void pagarRecibo(){
 		//funcionalidad 3
 	}
-	public void asignarDueño(){
+	public static void func4(){
 		//funcionalidad 4
 	}
-	public void revisarTienda(){
+	public static void PersonalizarTienda(){
 		//funcionalidad 5
 	}
 	
@@ -177,7 +199,7 @@ public class Main {
 			break;
 			
 		case 2:
-			
+			realizarListaCompra();
 		case 3:
 		
 		case 4:
