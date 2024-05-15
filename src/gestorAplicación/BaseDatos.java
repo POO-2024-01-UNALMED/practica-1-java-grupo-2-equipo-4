@@ -15,13 +15,15 @@ public  class BaseDatos {
 	public static ArrayList<Tienda> getTiendas() {
 		return tiendas;
 	}
+	
+
 
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
 
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
-	public ArrayList<Tienda> buscarTienda(Categoria categoria){
+	public static ArrayList<Tienda> buscarTienda(Categoria categoria){
 		ArrayList<Tienda>tiendaDisp = new ArrayList<>();
 		for (Tienda i:tiendas) {			
 			for(Pasillo j:i.getPasillos()) {
