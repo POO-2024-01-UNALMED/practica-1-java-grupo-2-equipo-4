@@ -132,7 +132,7 @@ public class Tienda {
 //Contructores------------------------------------------------------------------------------------------------
 
 	public Tienda(){
-		
+		BaseDatos.getTiendas().add(this);
 	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
@@ -142,6 +142,7 @@ public class Tienda {
 		this.direccion = direccion;
 		this.saldo = saldo;
 		this.estado = estado;
+		BaseDatos.getTiendas().add(this);
 	}
 
 //------------------------------------------------------------------------------------------------------------
