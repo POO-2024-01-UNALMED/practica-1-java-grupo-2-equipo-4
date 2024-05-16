@@ -164,35 +164,6 @@ public class Main {
 	}
 	
 	public static void main(String[] args){
-		Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
-		Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
-		Pasillo p3 = new Pasillo("A9",Categoria.LIMPIEZA);
-		Pasillo p4 = new Pasillo("A2",Categoria.PERSONAL);
-		Pasillo p5 = new Pasillo("A7",Categoria.HOGAR);
-		Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
-
-		Tienda t1 = new Tienda();
-		Tienda t2= new Tienda();
-		Tienda t3 = new Tienda();
-		Tienda t4 = new Tienda();
-
-		t1.setNombre("Donde Chucho");
-		t2.setNombre("Los Paisitas");
-		t3.setNombre("La esquina de Luis");
-		t4.setNombre(" D1 ");
-
-		t1.getPasillos().add(p1);
-		t1.getPasillos().add(p2);
-		t2.getPasillos().add(p2);
-		t2.getPasillos().add(p3);
-		t3.getPasillos().add(p3);
-		t3.getPasillos().add(p4);
-		t4.getPasillos().add(p4);
-		t4.getPasillos().add(p5);
-		t1.getPasillos().add(p5);
-		t2.getPasillos().add(p6);
-		t3.getPasillos().add(p1);
-		t4.getPasillos().add(p2);
 //-----------------------------------------------------------------------------------------------------------
 	do{
 		boolean boleano=false;
