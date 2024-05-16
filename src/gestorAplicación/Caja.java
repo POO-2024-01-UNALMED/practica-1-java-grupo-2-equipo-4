@@ -68,11 +68,6 @@ public class Caja {
 		return empleado;
 	}
 	
-	//Transformacion del metodo setEmpleado mas amigable a un llamado real
-	public void ponerEnCaja(Empleado empleado) {
-		this.setEmpleado(empleado);
-	}
-	
 	public void setEmpleado(Empleado empleado) {
 		this.empleado=empleado;
 	}
