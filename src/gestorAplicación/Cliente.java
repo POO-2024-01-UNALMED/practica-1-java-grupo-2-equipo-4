@@ -43,14 +43,6 @@ public class Cliente extends Persona {
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
-	public boolean mayorEdad() {
-		int edadCliente = getEdad();
-		if (edadCliente<18) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
+
 //-------------------------------------------------------------------------------------------------------------
 }

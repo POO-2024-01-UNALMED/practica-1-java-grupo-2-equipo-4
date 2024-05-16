@@ -31,8 +31,8 @@ public class Main {
 		case 2:
 			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
-				print(enumerado+"."+alimento.getNombre());
+			for(Tienda bebida:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
+				print(enumerado+"."+bebida.getNombre());
 				enumerado++;
 			} 
 			
@@ -41,8 +41,8 @@ public class Main {
 		case 3:
 			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
-				print(enumerado+"."+alimento.getNombre());
+			for(Tienda limpieza:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
+				print(enumerado+"."+limpieza.getNombre());
 				enumerado++;
 			} 
 		
@@ -51,8 +51,8 @@ public class Main {
 		case 4:
 			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
-				print(enumerado+"."+alimento.getNombre());
+			for(Tienda personal:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
+				print(enumerado+"."+personal.getNombre());
 				enumerado++;
 			} 
 		
@@ -61,8 +61,8 @@ public class Main {
 		case 5:
 			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.HOGAR)) {
-				print(enumerado+"."+alimento.getNombre());
+			for(Tienda hogar:BaseDatos.buscarTienda(Categoria.HOGAR)) {
+				print(enumerado+"."+hogar.getNombre());
 				enumerado++;
 			} 
 			
@@ -70,8 +70,8 @@ public class Main {
 		case 6:
 			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
-				print(enumerado+"."+alimento.getNombre());
+			for(Tienda electronico:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
+				print(enumerado+"."+electronico.getNombre());
 				enumerado++;
 			} 
 			
