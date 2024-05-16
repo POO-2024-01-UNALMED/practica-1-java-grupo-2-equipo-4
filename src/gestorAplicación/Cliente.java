@@ -36,8 +36,8 @@ public class Cliente extends Persona {
 	//esto causaba problemas al crear una tienda con dueño y un dueño con tienda
 	//en el main uno se debe crear primero como parametro del otro att jordan 
 	
-	public Cliente(String nombre, int id, int edad, Tienda tienda, String genero, float dinero, Carrito carrito) {
-		super(nombre, id, edad, tienda, genero);
+	public Cliente(String nombre, int id, int edad, String genero, float dinero, Carrito carrito) {
+		super(nombre, id, edad,genero);
 		this.dinero = dinero;
 		this.carrito = carrito;
 	}

@@ -9,7 +9,75 @@ public class Main {
 		return sc.nextLong();
 	}
 	public static void mostrarProductos(){
-		//funcionalidad 1
+		print("Elige la categoria que estas buscando ");
+		int enumerado = 1;
+		for(Categoria tipo:Categoria.values()) {
+				print(enumerado +"."+tipo );
+				enumerado++;
+			
+		}
+		int desicionCategoria = sc.nextInt();
+		switch(desicionCategoria){
+		case 1:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ALIMENTO)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+			
+			break;
+		
+		case 2:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+			
+			break;
+			
+		case 3:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+		
+			break;
+			
+		case 4:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+		
+			break;
+			
+		case 5:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.HOGAR)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+			
+			break;
+		case 6:
+			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+			enumerado=1;
+			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
+				print(enumerado+"."+alimento.getNombre());
+				enumerado++;
+			} 
+			
+			break;
+			
+		}
 	}
 	public static void realizarListaCompra(){
 		print("Elegir categoria");
@@ -95,7 +163,36 @@ public class Main {
 		
 	}
 	
-	public static void main(String[] args){		
+	public static void main(String[] args){
+		Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
+		Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
+		Pasillo p3 = new Pasillo("A9",Categoria.LIMPIEZA);
+		Pasillo p4 = new Pasillo("A2",Categoria.PERSONAL);
+		Pasillo p5 = new Pasillo("A7",Categoria.HOGAR);
+		Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
+
+		Tienda t1 = new Tienda();
+		Tienda t2= new Tienda();
+		Tienda t3 = new Tienda();
+		Tienda t4 = new Tienda();
+
+		t1.setNombre("Donde Chucho");
+		t2.setNombre("Los Paisitas");
+		t3.setNombre("La esquina de Luis");
+		t4.setNombre(" D1 ");
+
+		t1.getPasillos().add(p1);
+		t1.getPasillos().add(p2);
+		t2.getPasillos().add(p2);
+		t2.getPasillos().add(p3);
+		t3.getPasillos().add(p3);
+		t3.getPasillos().add(p4);
+		t4.getPasillos().add(p4);
+		t4.getPasillos().add(p5);
+		t1.getPasillos().add(p5);
+		t2.getPasillos().add(p6);
+		t3.getPasillos().add(p1);
+		t4.getPasillos().add(p2);
 //-----------------------------------------------------------------------------------------------------------
 	do{
 		boolean boleano=false;
@@ -126,78 +223,8 @@ public class Main {
 		}
 		switch(decision){
 		case 1:
-			print("Elige la categoria que estas buscando ");
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(enumerado +"."+tipo );
-					enumerado++;
-				
-			}
-			int desicionCategoria = sc.nextInt();
-			switch(desicionCategoria){
-			case 1:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ALIMENTO)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-				
-				break;
-			
-			case 2:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-				
-				break;
-				
-			case 3:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-			
-				break;
-				
-			case 4:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-			
-				break;
-				
-			case 5:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.HOGAR)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-				
-				break;
-			case 6:
-				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				} 
-				
-				break;
-				
-			}
-			
+			mostrarProductos();
 			break;
-			
 		case 2:
 			realizarListaCompra();
 		case 3:
