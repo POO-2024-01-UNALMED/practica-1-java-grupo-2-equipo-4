@@ -29,10 +29,18 @@ public class Main {
 					print(enumerado+"."+alimento.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la categoria ALIMENTO, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+			}
+			else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
+			
 		
 		case 2:
 			if (BaseDatos.buscarTienda(Categoria.BEBIDA).size() > 0) {
@@ -42,10 +50,17 @@ public class Main {
 					print(enumerado+"."+bebida.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la categoria BEBIDA, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+			}
+			else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
 			
 		case 3:
 			if (BaseDatos.buscarTienda(Categoria.LIMPIEZA).size() > 0) {
@@ -55,10 +70,17 @@ public class Main {
 					print(enumerado+"."+limpieza.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la categoria LIMPIEZA, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+			}
+			else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
 			
 		case 4:
 			if (BaseDatos.buscarTienda(Categoria.PERSONAL).size() > 0) {
@@ -68,10 +90,17 @@ public class Main {
 					print(enumerado+"."+personal.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la catgoria PERSONAL, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+			}
+			else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
 			
 		case 5:
 			if (BaseDatos.buscarTienda(Categoria.HOGAR).size() > 0) {
@@ -81,10 +110,16 @@ public class Main {
 					print(enumerado+"."+hogar.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la categoria HOGAR, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+				}else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
 			
 		case 6:
 			if (BaseDatos.buscarTienda(Categoria.ELECTRONICO).size() > 0) {
@@ -94,10 +129,17 @@ public class Main {
 					print(enumerado+"."+electronico.getNombre());
 					enumerado++;
 				} 
-			}else
-				{ print("No hay tiendas disponibles de la categoria ELECTRONICO, pruebe con otra categoria... ");}
-			mostrarProductos();
-			break;
+			}
+			else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
+				print("1.Buscar otra categoria");
+				print("2.Volver");
+				int decision = sc.nextInt();
+				if (decision == 1) {
+				mostrarProductos();
+				break;
+				}else break;
+			}
 			
 		}
 	}
