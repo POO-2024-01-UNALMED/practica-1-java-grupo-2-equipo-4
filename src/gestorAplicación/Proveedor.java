@@ -70,13 +70,6 @@ public class Proveedor {
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
-	
-	public Producto crearProducto(Tienda tienda,String nombre,Categoria categoria) {	
-		Producto a1= new Producto(nombre,categoria);
-		return a1;		
-	}
-	
-	
 
 	public void informarRebastecimiento(Producto producto) {
 		
