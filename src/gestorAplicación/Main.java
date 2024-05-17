@@ -9,8 +9,11 @@ public class Main {
 		return sc.nextLong();
 	}
 	
+	public static void print(String p) {
+		System.out.println(p);
+	}
 	
-	
+	// -------- FUNCIONALIDAD 1 ----------------------------------------------------------------
 	public static void mostrarProductos(){
 		print("Elige la categoria que desea buscar: ");
 		int enumerado = 1;
@@ -143,6 +146,7 @@ public class Main {
 			
 		}
 	}
+	// ----- FUNCIONALIDAD 2 ----------------------------------------------------------------
 	public static void realizarListaCompra(){
 		print("Elegir categoria");
 		int index=1;
@@ -168,19 +172,23 @@ public class Main {
 		
 		
 	}
+	
+	// ------ FUNCINALIDAD 3 ---------------------------------------
 	public static void pagarRecibo(){
 		//funcionalidad 3
 	}
+	
+	// ----- FUNCIONALIDAD 4 ---------------------------------------------------
 	public static void func4(){
 		//funcionalidad 4
 	}
+	
+	//----- FUNCIONALIDAD 5 ----------------------------------------------------
 	public static void PersonalizarTienda(){
 		//funcionalidad 5
 	}
 	
-	public static void print(String p) {
-		System.out.println(p);
-	}
+	
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
 	
