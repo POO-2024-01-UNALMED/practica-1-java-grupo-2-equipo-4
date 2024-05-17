@@ -8,8 +8,11 @@ public class Main {
 	static long readLong(){
 		return sc.nextLong();
 	}
+	
+	
+	
 	public static void mostrarProductos(){
-		print("Elige la categoria que estas buscando ");
+		print("Elige la categoria que desea buscar: ");
 		int enumerado = 1;
 		for(Categoria tipo:Categoria.values()) {
 				print(enumerado +"."+tipo );
@@ -18,63 +21,82 @@ public class Main {
 		}
 		int desicionCategoria = sc.nextInt();
 		switch(desicionCategoria){
-		case 1:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ALIMENTO)) {
-				print(enumerado+"."+alimento.getNombre());
-				enumerado++;
-			} 
-			
+		case 1:			
+			if (BaseDatos.buscarTienda(Categoria.ALIMENTO).size() > 0) {
+				print("Estas tiendas tienen tu categoria, en cual deseas comprar?:");
+				enumerado=1;
+				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ALIMENTO)) {
+					print(enumerado+"."+alimento.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la categoria ALIMENTO, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
 		
 		case 2:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda bebida:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
-				print(enumerado+"."+bebida.getNombre());
-				enumerado++;
-			} 
-			
+			if (BaseDatos.buscarTienda(Categoria.BEBIDA).size() > 0) {
+				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+				enumerado=1;
+				for(Tienda bebida:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
+					print(enumerado+"."+bebida.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la categoria BEBIDA, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
 			
 		case 3:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda limpieza:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
-				print(enumerado+"."+limpieza.getNombre());
-				enumerado++;
-			} 
-		
+			if (BaseDatos.buscarTienda(Categoria.LIMPIEZA).size() > 0) {
+				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+				enumerado=1;
+				for(Tienda limpieza:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
+					print(enumerado+"."+limpieza.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la categoria LIMPIEZA, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
 			
 		case 4:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda personal:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
-				print(enumerado+"."+personal.getNombre());
-				enumerado++;
-			} 
-		
+			if (BaseDatos.buscarTienda(Categoria.PERSONAL).size() > 0) {
+				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+				enumerado=1;
+				for(Tienda personal:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
+					print(enumerado+"."+personal.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la catgoria PERSONAL, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
 			
 		case 5:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda hogar:BaseDatos.buscarTienda(Categoria.HOGAR)) {
-				print(enumerado+"."+hogar.getNombre());
-				enumerado++;
-			} 
-			
+			if (BaseDatos.buscarTienda(Categoria.HOGAR).size() > 0) {
+				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+				enumerado=1;
+				for(Tienda hogar:BaseDatos.buscarTienda(Categoria.HOGAR)) {
+					print(enumerado+"."+hogar.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la categoria HOGAR, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
-		case 6:
-			print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
-			enumerado=1;
-			for(Tienda electronico:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
-				print(enumerado+"."+electronico.getNombre());
-				enumerado++;
-			} 
 			
+		case 6:
+			if (BaseDatos.buscarTienda(Categoria.ELECTRONICO).size() > 0) {
+				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
+				enumerado=1;
+				for(Tienda electronico:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
+					print(enumerado+"."+electronico.getNombre());
+					enumerado++;
+				} 
+			}else
+				{ print("No hay tiendas disponibles de la categoria ELECTRONICO, pruebe con otra categoria... ");}
+			mostrarProductos();
 			break;
 			
 		}

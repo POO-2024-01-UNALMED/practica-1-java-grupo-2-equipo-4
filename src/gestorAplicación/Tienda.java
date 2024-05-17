@@ -171,6 +171,12 @@ public class Tienda {
 		return resultado;
    }
 	
+	public boolean confirmarDisponibilidad(){
+		
+	}
+	
+	
+	
 	public void cajasDisponibles(ArrayList<Caja> cajas) {
 		for(Caja i:this.cajas) {
 			if(i.getEstado()==2 & i.getEmpleado()!=null) {
