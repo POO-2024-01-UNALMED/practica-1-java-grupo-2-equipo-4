@@ -172,7 +172,7 @@ public class Tienda {
    }
 	
 	public boolean confirmarDisponibilidad(){
-		
+		return false; //provisional este false, por el error que tiene
 	}
 	
 	
