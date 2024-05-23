@@ -6,7 +6,6 @@ public class Persona {
 	private String nombre;
 	private int id;
 	private int edad;
-//	private Tienda tienda;  decidir que va primero la persona o tienda 
 	private String genero;
 
 //-------------------------------------------------------------------------------------------------------------
@@ -57,7 +56,6 @@ public class Persona {
 		this.nombre = nombre;
 		this.id = id;
 		this.edad = edad;
-		
 		this.genero = genero;
 	}
 
@@ -65,14 +63,15 @@ public class Persona {
 
 //Metodos------------------------------------------------------------------------------------------------------
 		
-	public boolean confirmarEdad(int edad) {
-		if(edad >= 18) {
-			return true;
-		}else {
+	public boolean mayorEdad() {
+		int edadCliente = getEdad();
+		if (edadCliente<18) {
 			return false;
+		} else {
+			return true;
 		}
-		
 	}
+	
 
 //-------------------------------------------------------------------------------------------------------------
 }
