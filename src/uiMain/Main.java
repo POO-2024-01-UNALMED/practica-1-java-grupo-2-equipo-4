@@ -3,7 +3,7 @@ import gestorAplicación.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//Enrique
+//Enrique 2 la secuela
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
