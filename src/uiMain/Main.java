@@ -1,13 +1,9 @@
-package gestorAplicación;
+package uiMain;
+import gestorAplicación.*;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	Tienda tiendaDefacto;
-	static long readLong(){
-		return sc.nextLong();
-	}
 	
 	public static void print(String p) {
 		System.out.println(p);
@@ -141,7 +137,9 @@ public class Main {
 				if (decision == 1) {
 				mostrarProductos();
 				break;
-				}else break;
+				}else{
+				 break;
+				}
 			}
 			
 		}
@@ -188,52 +186,8 @@ public class Main {
 		//funcionalidad 5
 	}
 	
-	
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
-	
-	public static void crearPasillos(Tienda tienda) {
-		ArrayList <Categoria> categorias=new ArrayList<>();
-		System.out.println("cuantos pasillos desea crear?");
-		int x1=sc.nextInt();
-		
-		for(int i=1;i<=x1;i++) {
-			System.out.println("que categorias tendra el pasillo "+i+"?");
-			int n=1;
-			for(Categoria j:Categoria.values()) {
-				System.out.println(n+"."+j);
-				n++;
-			}
-			int x2=sc.nextInt();
-			sc.nextLine();
-			categorias.add(Categoria.values()[x2-1]);
-		}
-		
-		int n=1;
-		for(Categoria k:categorias) {
-			
-			Categoria cat=k;
-			System.out.println("nombre del pasillo "+n+" :");
-			String x2=sc.nextLine();
-			Pasillo pasillo=new Pasillo(x2,cat);
-			tienda.getPasillos().add(pasillo);
-			System.out.println("pasillo creado");
-			n++;
-		}	
-		
-		if (tienda.disponibilidadProductos()==false) {
-			System.out.println(tienda.getDueño() +"de la tienda"+tienda.getNombre()+ " sus pasillos estan vacios ");
-			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
-			int x3=sc.nextInt();
-			
-			if(x3==1) {
-				tienda.llamarProveedor();
-			}
-			
-		}
-		
-		
-	}
 	
 	public static void main(String[] args){
 //-----------------------------------------------------------------------------------------------------------
