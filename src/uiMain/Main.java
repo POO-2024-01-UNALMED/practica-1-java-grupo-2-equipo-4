@@ -3,10 +3,6 @@ import gestorAplicación.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-//Enrique 300000
-
-
 public class Main {
 	static Scanner sc = new Scanner(System.in);
 	
