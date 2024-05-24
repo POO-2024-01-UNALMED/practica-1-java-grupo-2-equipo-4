@@ -12,6 +12,7 @@ public class Producto implements Serializable {
 	private int id;
 	private Categoria categoria;
 	private String fechaPerecer;
+	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 
 //-------------------------------------------------------------------------------------------------------------
 

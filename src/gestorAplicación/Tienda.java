@@ -1,5 +1,4 @@
 package gestorAplicación;
-import java.util.Scanner;
 import java.util.*;
 
 public class Tienda {
@@ -11,13 +10,15 @@ public class Tienda {
 	private String direccion;
 	private double saldo;
 	private String estado;
-	private Inventario inventario;
 	private Cliente cliente;
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
+	//Antes en BaseDatos e inventario:
+	private static ArrayList<Tienda>tiendas = new ArrayList<>();
+	private static ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 
 //------------------------------------------------------------------------------------------------------------
 	
@@ -119,12 +120,15 @@ public class Tienda {
 		this.proveedores=proveedores;
 	}
 	
-	public Inventario getInventario() {
-		return inventario;
+	public static ArrayList<Tienda> getTiendas() {
+		return tiendas;
+	}
+	public ArrayList<Pasillo> getBodegas() {
+		return bodegas;
 	}
 
-	public void setInventario(Inventario inventario) {
-		this.inventario = inventario;
+	public void setBodegas(ArrayList<Pasillo> bodegas) {
+		this.bodegas = bodegas;
 	}
 
 //------------------------------------------------------------------------------------------------------------
@@ -132,7 +136,7 @@ public class Tienda {
 //Contructores------------------------------------------------------------------------------------------------
 
 	public Tienda(){
-		BaseDatos.getTiendas().add(this);
+		Tienda.getTiendas().add(this);
 	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
@@ -142,7 +146,7 @@ public class Tienda {
 		this.direccion = direccion;
 		this.saldo = saldo;
 		this.estado = estado;
-		BaseDatos.getTiendas().add(this);
+		Tienda.getTiendas().add(this);
 	}
 
 //------------------------------------------------------------------------------------------------------------
@@ -161,7 +165,7 @@ public class Tienda {
 				break;
 			}
 		}
-		for (Pasillo p:inventario.getBodegas()) {
+		for (Pasillo p:Tienda.bodegas) {
 			if (p.getProductos().size()!=0) {
 				bodega=true;
 				break;
@@ -280,6 +284,56 @@ public class Tienda {
 	    }
 	    return p;
 	}
-
+	//ANTES EN BASEDATOS:
+	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
+		public static ArrayList<Tienda> buscarTienda(Categoria categoria){
+			ArrayList<Tienda>tiendaDisp = new ArrayList<>();
+			for (Tienda i:tiendas) {			
+				for(Pasillo j:i.getPasillos()) {
+					if(j.getCategoria()==categoria) {
+						tiendaDisp.add(i);
+					}
+				}
+			}
+			return tiendaDisp;
+		}
+		
+		//Revisa si las tiendas que hay en la lista pasada tienen al menos un empleado o al menos un producto
+		//Su aplicacion se da cuando el cliente escoge su categoria y se da una lista con las tiendas
+		//este metodo asegura que si sean posibles para que el cliente vaya
+		public ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp){
+			for (Tienda i:tiendaDisp) {
+				if (i.getEmpleados().size()==0 | i.disponibilidadProductos()==false) {
+					tiendaDisp.remove(i);
+				}
+			}
+			return tiendaDisp;
+		}
+		
+		//Devuelve los productos disponibles en los pasillos de la tienda, pero parece que
+		//Jordan queria hacerlo segun la categoria, falta arreglar eso y que esto es mejor
+		//que se encuentre en la clase Tienda
+		public void buscarProducto(Tienda tienda,int n) {
+			
+			for (Pasillo i:tienda.getPasillos()) {
+				for (Producto j:i.getProductos()) {
+					
+					System.out.println(n+"."+j);
+				}
+			}
+		}
+	//ANTES EN INVENTARIO
+		public void contactarProvedor() {
+			
+		}
+		public ArrayList <Producto> solicitarInventario() {
+			ArrayList <Producto> Inventario=new ArrayList<Producto>();
+			for (Pasillo i:bodegas) {
+				for (Producto p:i.getProductos()) {
+					Inventario.add(p);
+				}
+			}
+			return Inventario;
+		}
 //------------------------------------------------------------------------------------------------------------
 }

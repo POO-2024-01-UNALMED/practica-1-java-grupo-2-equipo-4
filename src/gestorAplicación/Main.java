@@ -25,10 +25,10 @@ public class Main {
 		int desicionCategoria = sc.nextInt();
 		switch(desicionCategoria){
 		case 1:			
-			if (BaseDatos.buscarTienda(Categoria.ALIMENTO).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.ALIMENTO).size() > 0) {
 				print("Estas tiendas tienen tu categoria, en cual deseas comprar?:");
 				enumerado=1;
-				for(Tienda alimento:BaseDatos.buscarTienda(Categoria.ALIMENTO)) {
+				for(Tienda alimento:Tienda.buscarTienda(Categoria.ALIMENTO)) {
 					print(enumerado+"."+alimento.getNombre());
 					enumerado++;
 				} 
@@ -46,10 +46,10 @@ public class Main {
 			
 		
 		case 2:
-			if (BaseDatos.buscarTienda(Categoria.BEBIDA).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.BEBIDA).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 				enumerado=1;
-				for(Tienda bebida:BaseDatos.buscarTienda(Categoria.BEBIDA)) {
+				for(Tienda bebida:Tienda.buscarTienda(Categoria.BEBIDA)) {
 					print(enumerado+"."+bebida.getNombre());
 					enumerado++;
 				} 
@@ -66,10 +66,10 @@ public class Main {
 			}
 			
 		case 3:
-			if (BaseDatos.buscarTienda(Categoria.LIMPIEZA).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.LIMPIEZA).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 				enumerado=1;
-				for(Tienda limpieza:BaseDatos.buscarTienda(Categoria.LIMPIEZA)) {
+				for(Tienda limpieza:Tienda.buscarTienda(Categoria.LIMPIEZA)) {
 					print(enumerado+"."+limpieza.getNombre());
 					enumerado++;
 				} 
@@ -86,10 +86,10 @@ public class Main {
 			}
 			
 		case 4:
-			if (BaseDatos.buscarTienda(Categoria.PERSONAL).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.PERSONAL).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 				enumerado=1;
-				for(Tienda personal:BaseDatos.buscarTienda(Categoria.PERSONAL)) {
+				for(Tienda personal:Tienda.buscarTienda(Categoria.PERSONAL)) {
 					print(enumerado+"."+personal.getNombre());
 					enumerado++;
 				} 
@@ -106,10 +106,10 @@ public class Main {
 			}
 			
 		case 5:
-			if (BaseDatos.buscarTienda(Categoria.HOGAR).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.HOGAR).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 				enumerado=1;
-				for(Tienda hogar:BaseDatos.buscarTienda(Categoria.HOGAR)) {
+				for(Tienda hogar:Tienda.buscarTienda(Categoria.HOGAR)) {
 					print(enumerado+"."+hogar.getNombre());
 					enumerado++;
 				} 
@@ -125,10 +125,10 @@ public class Main {
 			}
 			
 		case 6:
-			if (BaseDatos.buscarTienda(Categoria.ELECTRONICO).size() > 0) {
+			if (Tienda.buscarTienda(Categoria.ELECTRONICO).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas comprar:");
 				enumerado=1;
-				for(Tienda electronico:BaseDatos.buscarTienda(Categoria.ELECTRONICO)) {
+				for(Tienda electronico:Tienda.buscarTienda(Categoria.ELECTRONICO)) {
 					print(enumerado+"."+electronico.getNombre());
 					enumerado++;
 				} 
@@ -157,17 +157,17 @@ public class Main {
 		int decision =sc.nextInt();
 		switch(decision){
 		case 1:
-			BaseDatos.buscarTienda(Categoria.ALIMENTO);
+			Tienda.buscarTienda(Categoria.ALIMENTO);
 		case 2:
-			BaseDatos.buscarTienda(Categoria.BEBIDA);
+			Tienda.buscarTienda(Categoria.BEBIDA);
 		case 3:
-			BaseDatos.buscarTienda(Categoria.LIMPIEZA);
+			Tienda.buscarTienda(Categoria.LIMPIEZA);
 		case 4:
-			BaseDatos.buscarTienda(Categoria.PERSONAL);
+			Tienda.buscarTienda(Categoria.PERSONAL);
 		case 5:
-			BaseDatos.buscarTienda(Categoria.HOGAR);
+			Tienda.buscarTienda(Categoria.HOGAR);
 		case 6:
-			BaseDatos.buscarTienda(Categoria.ELECTRONICO);
+			Tienda.buscarTienda(Categoria.ELECTRONICO);
 		}
 		
 		
