@@ -9,7 +9,7 @@ public class Proveedor {
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
 	private Categoria tipo;
 	private Tienda tienda;
-	private Inventario inventario;
+	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -47,25 +47,25 @@ public class Proveedor {
 		this.tienda=tienda;
 	}
 	
-	public Inventario getInventario() {
-		return inventario;
+	public ArrayList <Pasillo> getPasillos() {
+		return pasillos;
 	}
 	
-	public void setInventario(Inventario inventario) {
-		this.inventario=inventario;
+	public void setPasillos(ArrayList<Pasillo> pasillos) {
+		this.pasillos=pasillos;
 	}
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
 
-	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, Inventario inventario) {
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
 	super();
 	this.nombre = nombre;
 	this.entrega = entrega;
 	this.tipo = tipo;
 	this.tienda = tienda;
-	this.inventario = inventario;
+	this.pasillos = pasillos;
 }
 //-------------------------------------------------------------------------------------------------------------
 	

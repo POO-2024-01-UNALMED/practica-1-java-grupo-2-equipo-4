@@ -8,6 +8,7 @@ public class Pasillo {
 	private String nombre;
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
 	private Categoria categoria;
+	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	
 //-------------------------------------------------------------------------------------------------------------
 
