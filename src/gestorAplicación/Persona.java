@@ -48,11 +48,11 @@ public class Persona {
 
 //Contructores-------------------------------------------------------------------------------------------------
 	
-	public Persona() {
+	protected Persona() {
 		
 	}
 	
-	public Persona(String nombre, int id, int edad, String genero) {
+	protected Persona(String nombre, int id, int edad, String genero) {
 		this.nombre = nombre;
 		this.id = id;
 		this.edad = edad;

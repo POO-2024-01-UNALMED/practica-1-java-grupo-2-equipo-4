@@ -1,8 +1,13 @@
 package gestorAplicación;
 
-public class Empleado extends Persona {
+public abstract class Empleado extends Persona {
 //Atributos----------------------------------------------------------------------------------------------------
-
+	
+	protected double liquidacion;
+	protected Tienda tienda;
+	protected boolean prestacionSalud;
+	protected boolean prestacionPension;
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -11,13 +16,24 @@ public class Empleado extends Persona {
 
 //Constructores------------------------------------------------------------------------------------------------
 	
+	protected Empleado(){
+		super();
+	}
+	
+	protected Empleado(String nombre, int id, int edad, String genero, double liquidacion, Tienda tienda, 
+			boolean prestacionSalud, boolean prestacionPension) {
+		super(nombre, id, edad, genero);
+		this.liquidacion=liquidacion;
+		this.prestacionSalud=prestacionSalud;
+		this.prestacionPension=prestacionPension;
+	}
+	
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
 	
-	public void buscoChamba() {
-		
-	}
+	protected abstract void buscoChamba();
+	protected abstract double cantidadPago();
 	
 //-------------------------------------------------------------------------------------------------------------
 }
