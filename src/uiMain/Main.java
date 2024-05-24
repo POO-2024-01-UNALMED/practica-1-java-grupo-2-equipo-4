@@ -1,5 +1,6 @@
 package uiMain;
 import gestorAplicación.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +28,7 @@ public class Main {
 				for(Tienda alimento:Tienda.buscarTienda(Categoria.ALIMENTO)) {
 					print(enumerado+"."+alimento.getNombre());
 					enumerado++;
-				} 
+				} 				
 			}
 			else
 				{ print("No hay tiendas disponibles de la categoria ALIMENTO.");
@@ -155,7 +156,9 @@ public class Main {
 		int decision =sc.nextInt();
 		switch(decision){
 		case 1:
-			Tienda.buscarTienda(Categoria.ALIMENTO);
+			ArrayList <Tienda> tiendaDisp = new ArrayList<>();
+			tiendaDisp= Tienda.buscarTienda(Categoria.ALIMENTO);
+			print();
 		case 2:
 			Tienda.buscarTienda(Categoria.BEBIDA);
 		case 3:
@@ -194,8 +197,8 @@ public class Main {
 	do{
 		boolean boleano=false;
 		print("Bienvenido a My_Tiendita, que desea hacer?");
-		print("1.Mostrar productos disponibles segun categoria y tienda\n"
-				+ "2.Realizar listas de compras\n"
+		print("1.Consultar productos\n"
+				+ "2.Realizar compra\n"
 				+ "3.Pagar recibos pendientes\n"
 				+ "4. \n"
 				+ "5.Personalizar y modificar tiendas\n"
