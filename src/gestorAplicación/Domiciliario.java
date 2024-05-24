@@ -1,6 +1,6 @@
 package gestorAplicación;
 
-public class Domicialirio extends Empleado{
+public class Domiciliario extends Empleado{
 	
 	String vehiculo;
 
