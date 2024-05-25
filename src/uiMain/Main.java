@@ -177,8 +177,25 @@ public class Main {
 	
 	// ------ FUNCINALIDAD 3 ---------------------------------------
 	public static void pagarRecibo(){
-		//funcionalidad 3
-	}
+		String nombre= sc.nextLine();
+		nombre = nombre.toLowerCase();
+		int existencia= Cliente.existeCliente(nombre);
+		if (existencia==-1) {
+			System.out.println("Esta persona nunca ha comprado aca");
+			System.out.println("Desea buscar por otro nombre? [Y/N]");
+			String buscar= sc.nextLine();
+			buscar= buscar.toLowerCase();
+			switch(buscar) {
+			case "y":
+				pagarRecibo();
+			case "n":
+				break;
+			}
+		}
+		for (Carrito i:Cliente.getClientes().get(existencia).getFacturas()) {
+			
+		}
+}
 	
 	// ----- FUNCIONALIDAD 4 ---------------------------------------------------
 	public static void func4(){

@@ -10,6 +10,7 @@ public class Carrito {
 	private Tienda tienda;
 	private TipoEdad tipoCarrito;
 	private double montoTotal;
+	
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
