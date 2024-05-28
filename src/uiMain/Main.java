@@ -3,6 +3,8 @@ import gestorAplicación.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// un nuevo cambio
+//patata
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
