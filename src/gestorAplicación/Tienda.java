@@ -17,7 +17,7 @@ public class Tienda {
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	//Antes en BaseDatos e inventario:
-	private static ArrayList<Tienda>tiendas = new ArrayList<>();
+	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private static ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 
 //------------------------------------------------------------------------------------------------------------
@@ -138,6 +138,7 @@ public class Tienda {
 	public Tienda(){
 		Tienda.getTiendas().add(this);
 	}
+
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
 		this.nit = nit;
@@ -292,6 +293,7 @@ public class Tienda {
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
+						break;
 					}
 				}
 			}
