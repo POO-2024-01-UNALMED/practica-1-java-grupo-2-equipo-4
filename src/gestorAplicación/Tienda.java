@@ -1,9 +1,10 @@
 package gestorAplicación;
+import java.io.Serializable;
 import java.util.*;
 
-public class Tienda {
+public class Tienda implements Serializable{
 //Atributos---------------------------------------------------------------------------------------------------
-	
+	private static final long serialVersionUID = 1L; //<---parte de serializar
 	private String nit;
 	private Persona dueño;
 	private String nombre;
@@ -119,7 +120,9 @@ public class Tienda {
 	public void setProveedores(ArrayList<Proveedor> proveedores) {
 		this.proveedores=proveedores;
 	}
-	
+	public static void setTiendas(ArrayList<Tienda> arrayList) {
+			Tienda.tiendas=arrayList;
+	}	
 	public static ArrayList<Tienda> getTiendas() {
 		return tiendas;
 	}
@@ -154,7 +157,7 @@ public class Tienda {
 	
 //Metodos-----------------------------------------------------------------------------------------------------
 	
-	Scanner scanner = new Scanner(System.in);
+	static Scanner scanner = new Scanner(System.in);
 	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
@@ -338,4 +341,6 @@ public class Tienda {
 			return Inventario;
 		}
 //------------------------------------------------------------------------------------------------------------
+
+		
 }
