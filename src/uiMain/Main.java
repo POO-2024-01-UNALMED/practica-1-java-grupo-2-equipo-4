@@ -3,11 +3,71 @@ import gestorAplicación.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
+
 public class Main {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void print(String p) {
 		System.out.println(p);
+	}
+	public static ArrayList<Producto> ser;
+	static int [] numeros = {1,2,3,4,5,6};
+	static int decision;
+	
+	public static void main(String[] args){
+//-----------------------------------------------------------------------------------------------------------
+	do{
+		boolean boleano=false;
+		print("Bienvenido a My_Tiendita, que desea hacer?");
+		print("1.Consultar productos\n"
+				+ "2.Realizar compra\n"
+				+ "3.Pagar recibos pendientes\n"
+				+ "4. \n"
+				+ "5.Personalizar y modificar tiendas\n"
+				+ "6.Terminar");
+		while (!boleano){
+			try{
+				decision=sc.nextInt();
+			}
+			catch(Exception e) {
+				print("Este no es un numero valido");
+				sc.nextLine();
+			}
+			for (int i:numeros){
+				 if (decision==i){
+				        boleano=true;
+				 }
+			}
+			if (boleano==false){
+				 print("El numero esta fuera del rango");
+				 continue;
+			}
+		}
+		switch(decision){
+		case 1:
+			ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
+			Tienda t= new Tienda("pipi");
+			Tienda t1= new Tienda("comeje");
+			tiendas.add(t);
+			tiendas.add(t1);
+			//Serializador.serializar(tiendas);
+			Deserializador.deserealizar();
+			System.out.print(Tienda.getTiendas());
+			mostrarProductos();
+			break;
+		case 2:
+			realizarListaCompra();
+		case 3:
+		
+		case 4:
+			
+		case 5:
+		
+		}
+	 } while (decision!=6);
+
 	}
 	
 	// -------- FUNCIONALIDAD 1 ----------------------------------------------------------------
@@ -158,7 +218,7 @@ public class Main {
 		case 1:
 			ArrayList <Tienda> tiendaDisp = new ArrayList<>();
 			tiendaDisp= Tienda.buscarTienda(Categoria.ALIMENTO);
-			print();
+//	print();
 		case 2:
 			Tienda.buscarTienda(Categoria.BEBIDA);
 		case 3:
@@ -189,52 +249,5 @@ public class Main {
 		//funcionalidad 5
 	}
 	
-	static int [] numeros = {1,2,3,4,5,6};
-	static int decision;
-	
-	public static void main(String[] args){
-//-----------------------------------------------------------------------------------------------------------
-	do{
-		boolean boleano=false;
-		print("Bienvenido a My_Tiendita, que desea hacer?");
-		print("1.Consultar productos\n"
-				+ "2.Realizar compra\n"
-				+ "3.Pagar recibos pendientes\n"
-				+ "4. \n"
-				+ "5.Personalizar y modificar tiendas\n"
-				+ "6.Terminar");
-		while (!boleano){
-			try{
-				decision=sc.nextInt();
-			}
-			catch(Exception e) {
-				print("Este no es un numero valido");
-				sc.nextLine();
-			}
-			for (int i:numeros){
-				 if (decision==i){
-				        boleano=true;
-				 }
-			}
-			if (boleano==false){
-				 print("El numero esta fuera del rango");
-				 continue;
-			}
-		}
-		switch(decision){
-		case 1:
-			mostrarProductos();
-			break;
-		case 2:
-			realizarListaCompra();
-		case 3:
-		
-		case 4:
-			
-		case 5:
-		
-		}
-	 } while (decision!=6);
 
-	}
 }
