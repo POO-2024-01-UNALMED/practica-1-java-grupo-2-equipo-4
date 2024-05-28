@@ -3,6 +3,9 @@ import gestorAplicación.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//banano
+//p
+
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
 
