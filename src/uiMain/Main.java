@@ -52,10 +52,6 @@ public class Main {
 		switch(decision){
 		case 1:
 			ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
-			Tienda t= new Tienda("pipi");
-			Tienda t1= new Tienda("comeje");
-			tiendas.add(t);
-			tiendas.add(t1);
 			//Serializador.serializar(tiendas);
 			Deserializador.deserealizar();
 			System.out.print(Tienda.getTiendas());
