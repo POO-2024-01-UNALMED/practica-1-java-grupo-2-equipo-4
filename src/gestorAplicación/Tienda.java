@@ -18,7 +18,7 @@ public class Tienda implements Serializable{
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	//Antes en BaseDatos e inventario:
-	private static ArrayList<Tienda>tiendas = new ArrayList<>();
+	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private static ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 
 //------------------------------------------------------------------------------------------------------------
@@ -296,6 +296,7 @@ public class Tienda implements Serializable{
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
+						break;
 					}
 				}
 			}
