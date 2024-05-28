@@ -8,25 +8,26 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import gestorAplicación.Producto;
+import gestorAplicación.Tienda;
 
 public class Serializador {
 	private static File archivo = new File(""/*src\\baseDatos\\temp*/);
 	
-	public static void serializar(ArrayList<Producto> p) {
-		for(Producto i:p){
-			
+	public static void serializar(ArrayList<Tienda> tiendas) {
 		 try { 
-		FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+  "\\src\\baseDatos\\temp\\Productos.txt"));
+		FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
 		ObjectOutputStream o = new ObjectOutputStream(f);
-		o.writeObject(i); 
+		//System.out.println(tiendas);
+		o.writeObject(tiendas); 
 		o.close(); f.close();
 		 }
 
 		catch (FileNotFoundException e) { 
 			 System.out.println("No se encuentra archivo");
 		} catch (IOException e) { 
-			 System.out.println("Error flujo de inicialización");
+			// TODO Auto-generated catch block
+						e.printStackTrace();
 		} 
 		}
 	} 
-}
+
