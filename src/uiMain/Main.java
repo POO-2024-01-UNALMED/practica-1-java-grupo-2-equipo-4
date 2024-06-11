@@ -51,10 +51,6 @@ public class Main {
 		}
 		switch(decision){
 		case 1:
-			ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
-			//Serializador.serializar(tiendas);
-			Deserializador.deserealizar();
-			System.out.print(Tienda.getTiendas());
 			mostrarProductos();
 			break;
 		case 2:
@@ -77,20 +73,73 @@ public class Main {
 		int enumerado = 1;
 		for(Categoria tipo:Categoria.values()) {
 				print(enumerado +"."+tipo );
-				enumerado++;
-			
+				enumerado++;			
 		}
+	
 		int desicionCategoria = sc.nextInt();
 		switch(desicionCategoria){
 		case 1:			
 			if (Tienda.buscarTienda(Categoria.ALIMENTO).size() > 0) {
-				print("Estas tiendas tienen tu categoria, en cual deseas visitar?:");
+				print("Estas tiendas tienen tu categoria");
+				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
+				//Serializador.serializar(tiendas);
+				Deserializador.deserealizar();
+				System.out.print(Tienda.getTiendas());
+				print("en cual desea consultar?");
 				enumerado=1;
 				for(Tienda alimento:Tienda.buscarTienda(Categoria.ALIMENTO)) {
 					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-					
+					enumerado++;					
 				} 	
+				
+				int desicionTienda = sc.nextInt();
+				if (desicionTienda==1) {
+					Tienda tiendaDisp =Tienda.buscarTienda(Categoria.ALIMENTO).get(desicionTienda-1);
+					print("Productos disponibles categoria: ALIMENTO");
+					int cont = 1;
+					for(Pasillo j:tiendaDisp.getPasillos()) {
+						if(j.getCategoria()==Categoria.ALIMENTO) {
+							print(cont+ ". " + j);
+							cont++;
+							}
+						} 
+					}
+				else if (desicionTienda==2) {											
+					Tienda tiendaDisp = Tienda.buscarTienda(Categoria.ALIMENTO).get(desicionTienda-1);
+					print("Productos disponibles categoria: ALIMENTO");
+					int cont = 1;
+					for(Pasillo j:tiendaDisp.getPasillos()) {
+						if(j.getCategoria()==Categoria.ALIMENTO) {
+							print(cont+ ". " + j);
+							cont++;
+							}
+						}
+					}
+				
+				else if (desicionTienda==3) {											
+					Tienda tiendaDisp = Tienda.buscarTienda(Categoria.ALIMENTO).get(desicionTienda-1);
+					print("Productos disponibles categoria: ALIMENTO");
+					int cont = 1;
+					for(Pasillo j:tiendaDisp.getPasillos()) {
+						if(j.getCategoria()==Categoria.ALIMENTO) {
+							print(cont+ ". " + j);
+							cont++;
+							}
+						}
+					}
+				
+				else if (desicionTienda==4) {											
+					Tienda tiendaDisp = Tienda.buscarTienda(Categoria.ALIMENTO).get(desicionTienda-1);
+					print("Productos disponibles categoria: ALIMENTO");
+					int cont = 1;
+					for(Pasillo j:tiendaDisp.getPasillos()) {
+						if(j.getCategoria()==Categoria.ALIMENTO) {
+							print(cont+ ". " + j);
+							cont++;
+							}
+						}
+					}
+				
 				break;	
 			}
 			

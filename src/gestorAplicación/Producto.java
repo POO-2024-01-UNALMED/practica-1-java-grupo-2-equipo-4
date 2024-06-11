@@ -8,6 +8,7 @@ public class Producto implements Serializable {
 //Atributos----------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L; //<---parte de serializar
 	private String nombre;
+	private String marca;
 	private double precio;
 	private int id;
 	private Categoria categoria;
@@ -24,8 +25,16 @@ public class Producto implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
+	}		
 	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
 	public double getPrecio() {
 		return precio;
 	}

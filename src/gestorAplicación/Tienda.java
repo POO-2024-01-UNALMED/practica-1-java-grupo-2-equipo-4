@@ -296,7 +296,7 @@ public class Tienda implements Serializable{
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
-						break;
+						break; //potencial error
 					}
 				}
 			}
