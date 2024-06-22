@@ -69,6 +69,8 @@ public class Main {
 	
 	// -------- FUNCIONALIDAD 1 ----------------------------------------------------------------
 	public static void mostrarProductos(){
+		// buscar por nombre o categoria 
+		// arrays
 		print("Elige la categoria que desea buscar: ");
 		int enumerado = 1;
 		for(Categoria tipo:Categoria.values()) {
@@ -114,7 +116,7 @@ public class Main {
 									print("Nombre del producto:"+productos.get(p-1).getNombre());
 									break;
 									}
-								}
+								}// fusionar 
 							} break;
 						}
 					}
