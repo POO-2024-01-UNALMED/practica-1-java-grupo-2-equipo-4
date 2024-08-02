@@ -34,49 +34,7 @@ public class Main {
 	
 	public static void main(String[] args){
 //-----------------------------------------------------------------------------------------------------------
-	do{
-		boolean boleano=false;
-		print("Bienvenido a My_Tiendita, que desea hacer?");
-		print("1.Ecosistema de Consultas Personalizadas\n"
-				+ "2.Realizar compra\n"
-				+ "3.Pagar recibos pendientes\n"
-				+ "4. \n"
-				+ "5.Personalizar y modificar tiendas\n"
-				+ "6.Terminar");
-		while (!boleano){
-			try{
-				decision=sc.nextInt();
-			}
-			catch(Exception e) {
-				print("Este no es un numero valido");
-				sc.nextLine();
-				continue;
-			}
-			for (int i:numeros){
-				 if (decision==i){
-				        boleano=true;
-				 }
-			}
-			if (boleano==false){
-				 print("El numero esta fuera del rango");
-				 continue;
-			}
-		}
-		switch(decision){
-		case 1:
-			elegirTipoBusqueda();
-			break;
-		case 2:
-			realizarListaCompra();
-		case 3:
-		
-		case 4:
-			
-		case 5:
-		
-		}
-	 } while (decision!=6);
-
+	escogerFuncionalidad();
 	}
 	public static void escogerFuncionalidad() {
 		do{
