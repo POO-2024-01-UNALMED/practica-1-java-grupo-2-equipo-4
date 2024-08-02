@@ -159,6 +159,14 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
+	public static void buscarTiendas(Categoria categoria) {
+		
+	}
+	
+	public static void buscarTiendas(String nombre) {
+		
+	}
+	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
 		boolean bodega = false;
