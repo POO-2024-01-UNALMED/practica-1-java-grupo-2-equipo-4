@@ -67,10 +67,9 @@ public class Main {
 			}
 			switch(decision){
 			case 1:
-				elegirTipoBusqueda();
-				break;
+			
 			case 2:
-				realizarListaCompra();
+				elegirTipoBusqueda();
 			case 3:
 			
 			case 4:
@@ -83,47 +82,6 @@ public class Main {
 		}
 	
 	// -------- FUNCIONALIDAD 1 ----------------------------------------------------------------
-	public static void elegirTipoBusqueda() {
-		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
-				+ "\n"+ "una categoria o por nombre del producto:");
-		print("1. Por categoria de un producto");
-		print("2. Por nombre del producto");
-		print("3. Volver");
-		decision=escaner();
-		Categoria categoria = null;
-		switch (decision) {
-		case 1:
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(enumerado +". "+tipo );
-					enumerado++;			
-			}
-			print(enumerado+". Volver");
-			int decisionCategoria = escaner();;
-			switch (decisionCategoria) {
-			case 1:
-				categoria =Categoria.ALIMENTO;
-			case 2:
-				categoria =Categoria.BEBIDA;
-			case 3:
-				categoria =Categoria.LIMPIEZA;
-			case 4:
-				categoria =Categoria.PERSONAL;
-			case 5:
-				categoria =Categoria.HOGAR;
-			case 6:
-				categoria =Categoria.ELECTRONICO;
-			}
-			Tienda.buscarTiendas(categoria);
-		case 2:
-			print("Introduzca el nombre del producto que desea buscar:");
-			sc.nextLine();
-			String nombre=sc.nextLine();
-			Tienda.buscarTiendas(nombre);
-		case 3:
-			escogerFuncionalidad();
-		}
-	}
 	public static void mostrarProductos(){
 		// buscar por nombre o categoria 
 		// arrays
@@ -327,6 +285,37 @@ public class Main {
 		}
 	}
 	// ----- FUNCIONALIDAD 2 ----------------------------------------------------------------
+	public static void elegirTipoBusqueda() {
+		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
+				+ "\n"+ "una categoria o por nombre del producto:");
+		print("1. Por categoria de un producto");
+		print("2. Por nombre del producto");
+		print("3. Volver");
+		decision=escaner();
+		Categoria categoria = null;
+		switch (decision) {
+		case 1:
+			int enumerado = 1;
+			for(Categoria tipo:Categoria.values()) {
+					print(enumerado +". "+tipo );
+					enumerado++;			
+			}
+			print(enumerado+". Volver");
+			int decisionCategoria = escaner();;
+			categoria=Categoria.resolverEnum(decisionCategoria);
+			Tienda.buscarProductos(categoria);
+		case 2:
+			print("Introduzca el nombre del producto que desea buscar:");
+			sc.nextLine();
+			String nombre=sc.nextLine();
+			Tienda.buscarProductos(nombre);
+		case 3:
+			escogerFuncionalidad();
+		}
+	}
+	
+	
+//------------Metodo a revisar donde meterlo-----------------------------------------------------------------------------
 	public static void realizarListaCompra(){
 		print("Elegir categoria");
 		int index=1;

@@ -18,4 +18,13 @@ public enum Categoria{
 	 return identificador;
  }
  
+ public static Categoria resolverEnum(int decision) {
+	 for (Categoria i:Categoria.values()) {
+		 if (decision==i.identificador){
+			 return i;
+		 }
+	 }
+	return null;
+ }
+ 
 }

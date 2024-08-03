@@ -159,11 +159,13 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static void buscarTiendas(Categoria categoria) {
-		
+	public static void buscarProductos(Categoria categoria) {
+		for (Tienda i:tiendas) {
+			
+		}
 	}
 	
-	public static void buscarTiendas(String nombre) {
+	public static void buscarProductos(String nombre) {
 		
 	}
 	
