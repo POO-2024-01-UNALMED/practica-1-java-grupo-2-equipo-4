@@ -7,10 +7,19 @@ public class Persona {
 	private int id;
 	private int edad;
 	private String genero;
+	private Tienda tienda;
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Getters and Setters------------------------------------------------------------------------------------------
+	
+	public Tienda getTienda() {
+		return tienda;
+	}
+	
+	public void setTienda(Tienda tienda) {
+		this.tienda=tienda;
+	}
 	
 	public String getNombre() {
 		return nombre;

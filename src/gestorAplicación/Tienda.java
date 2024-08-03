@@ -142,6 +142,9 @@ public class Tienda implements Serializable{
 		Tienda.getTiendas().add(this);
 	}
 
+	public Tienda(String nombre) {
+		this.nombre=nombre;
+	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
 		this.nit = nit;
@@ -159,10 +162,15 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static void buscarProductos(Categoria categoria) {
-		for (Tienda i:tiendas) {
-			
+	public static ArrayList<Producto> buscarProductos(Categoria categoria, ArrayList<Pasillo> pasillos, ArrayList<Producto> productos) {
+		for (Pasillo i:pasillos) {
+			for (Producto j:i.getProductos()){
+				if (j.getCategoria()==categoria) {
+					productos.add(j);
+				}
+			}
 		}
+		return productos;
 	}
 	
 	public static void buscarProductos(String nombre) {
@@ -306,7 +314,6 @@ public class Tienda implements Serializable{
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
-						break; //potencial error
 					}
 				}
 			}

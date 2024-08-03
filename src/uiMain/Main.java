@@ -32,9 +32,13 @@ public class Main {
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
 	
-	public static void main(String[] args){
+	
 //-----------------------------------------------------------------------------------------------------------
-	escogerFuncionalidad();
+	public static void main(String[] args){
+	Tienda tienda= new Tienda("apilipona");
+	Cliente cliente = new Cliente(); 
+	cliente.setTienda(tienda);
+	escogerFuncionalidad(cliente);
 	}
 	public static void escogerFuncionalidad() {
 		do{
@@ -81,7 +85,16 @@ public class Main {
 
 		}
 	
-	// -------- FUNCIONALIDAD 1 ----------------------------------------------------------------
+// -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
+	
+	
+	
+	
+
+	
+	
+	
+//Lo de abajo es codigo funcionalidad 2----------------------------------------------------------------------
 	public static void mostrarProductos(){
 		// buscar por nombre o categoria 
 		// arrays
@@ -285,9 +298,9 @@ public class Main {
 		}
 	}
 	// ----- FUNCIONALIDAD 2 ----------------------------------------------------------------
-	public static void elegirTipoBusqueda() {
+	public static void elegirTipoBusqueda(Cliente cliente) {
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
-				+ "\n"+ "una categoria o por nombre del producto:");
+				+ "\n"+ "una categoria o por nombre del producto: ");
 		print("1. Por categoria de un producto");
 		print("2. Por nombre del producto");
 		print("3. Volver");
@@ -297,15 +310,20 @@ public class Main {
 		case 1:
 			int enumerado = 1;
 			for(Categoria tipo:Categoria.values()) {
-					print(enumerado +". "+tipo );
+					print(enumerado +". "+tipo);
 					enumerado++;			
 			}
 			print(enumerado+". Volver");
 			int decisionCategoria = escaner();;
 			categoria=Categoria.resolverEnum(decisionCategoria);
-			Tienda.buscarProductos(categoria);
-		case 2:
-			print("Introduzca el nombre del producto que desea buscar:");
+			ArrayList<Pasillo> pasillos= cliente.getTienda().getPasillos();
+			ArrayList<Producto> productos=null;
+			productos= Tienda.buscarProductos(categoria, pasillos, productos);
+			for (Producto p:productos) {
+				System.out.println(p);
+			}		
+			case 2:
+			print("Introduzca el nombre del producto que desea buscar: ");
 			sc.nextLine();
 			String nombre=sc.nextLine();
 			Tienda.buscarProductos(nombre);

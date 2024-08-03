@@ -17,6 +17,10 @@ public class Cliente extends Persona {
 	public Carrito getCarrito() {
 		return carrito;
 	}
+	
+	public void setTienda(Tienda tienda) {
+		super.setTienda(tienda);
+	}
 
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
