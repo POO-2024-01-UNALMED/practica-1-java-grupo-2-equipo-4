@@ -210,11 +210,9 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	
-	public void crearPasillos() {
+	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
+	public void crearPasillos(int x1) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
-		System.out.println("cuantos pasillos desea crear?");
-		int x1=scanner.nextInt();
 		
 		for(int i=1;i<=x1;i++) {
 			System.out.println("que categorias tendra el pasillo "+i+"?");
@@ -253,17 +251,15 @@ public class Tienda implements Serializable{
 		
 		
 	}
-	
-	public void llamarProveedor() {
-		System.out.println("llamando a un proveedor");
-		System.out.println("seleccione un proveedor");
-		
+	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
+	public String llamarProveedor() {
 		int n=1;
+		String s; 
 		for(Proveedor i:getProveedores()) {
-			System.out.println(n+"."+i);
+			s+=n+"."+i+"\n"
 			n++;
 		}
-		n=1;	
+		return s;
 	}
 	
 	public void mostrarPasillos() {
@@ -288,22 +284,26 @@ public class Tienda implements Serializable{
 		TipoCaja tipocaja = resolvertipocaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-	
+	/*main
+	/...
+	boolean prueba;
+	TipoCaja p;
+	while(!prueba){
+	tipo = scanner.nextLine();
+	resolverCaja(tipo);
+	if (tipo==null){
+		print("Ese no es un tipo válido de caja, introduzca uno válido");
+	}
+	}*/
+	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO ARRIBA.
 	public TipoCaja resolvertipocaja(String tipo) {
-	    boolean prueba = false;
-	    TipoCaja p = null;
-	    while (!prueba) {
 	        if (tipo.equals("lenta")) {
 	            p = TipoCaja.LENTA;
 	            prueba = true;
 	        } else if (tipo.equals("rapida")) {
 	            p = TipoCaja.RAPIDA;
 	            prueba = true;
-	        } else {
-	            System.out.println("Ese no es un tipo válido de caja, introduzca uno válido");
-	            tipo = scanner.nextLine();
 	        }
-	    }
 	    return p;
 	}
 	//ANTES EN BASEDATOS:
