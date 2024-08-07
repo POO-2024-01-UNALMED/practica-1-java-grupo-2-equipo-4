@@ -1,8 +1,9 @@
 package gestorAplicación;
 
 import java.util.*;
+import java.io.Serializable;
 
-public class Proveedor {
+public class Proveedor implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
 	private String nombre;
@@ -10,7 +11,7 @@ public class Proveedor {
 	private Categoria tipo;
 	private Tienda tienda;
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-
+	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
