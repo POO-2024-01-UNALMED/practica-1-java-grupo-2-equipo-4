@@ -28,5 +28,8 @@ public class Serializador {
 						e.printStackTrace();
 		} 
 		}
+	public static void main(String[] args){
+		
+	}
 	} 
 
