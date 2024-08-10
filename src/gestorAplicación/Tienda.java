@@ -210,34 +210,53 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
+	/*for(int i=1;i<=5;i++){
+ 	switch(i){
+			case 1:
+			int x1=escaner();
+			crearPasillos(x1,0,0);
+			case 2:
+			System.out.println("nombre del pasillo "+n+" :");
+			crearPasillos(0,x2,0);
+			case 3:
+			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
+			int x3=scanner.nextInt();
+			crearPasillos(0,0,x3);
+			}
+	}*/
 	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-	public void crearPasillos(int x1) {
+	public String crearPasillos(int x1,int x2,int x3) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
-		
+		if(x1!=0){
 		for(int i=1;i<=x1;i++) {
-			System.out.println("que categorias tendra el pasillo "+i+"?");
 			int n=1;
+			System.out.println("que categorias tendra el pasillo "+i+"?");
+			String s=null;;
 			for(Categoria j:Categoria.values()) {
-				System.out.println(n+"."+j);
+				s+=n+"."+j+"\n";
 				n++;
 			}
 			int x2=scanner.nextInt();
 			scanner.nextLine();
 			categorias.add(Categoria.values()[x2-1]);
 		}
-		
+		return s;
+		}
+		if(x2!=0){
 		int n=1;
 		for(Categoria k:categorias) {
 			
 			Categoria cat=k;
-			System.out.println("nombre del pasillo "+n+" :");
 			String x2=scanner.nextLine();
 			Pasillo pasillo=new Pasillo(x2,cat);
 			pasillos.add(pasillo);
 			System.out.println("pasillo creado");
 			n++;
-		}	
-		
+		}
+			return ;
+		}
+		if (x3!=0){
 		if (this.disponibilidadProductos()==false) {
 			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
 			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
@@ -247,6 +266,8 @@ public class Tienda implements Serializable{
 				this.llamarProveedor();
 			}
 			
+		}
+			return;
 		}
 		
 		
@@ -262,14 +283,16 @@ public class Tienda implements Serializable{
 		return s;
 	}
 	
-	public void mostrarPasillos() {
+	public String mostrarPasillos() {
 		if (pasillos.size()==0) {
-			System.out.println("la tienda "+this.getNombre()+" no tiene pasillos");
+			return "la tienda "+this.getNombre()+" no tiene pasillos";
 		}
 		else {
+			String s;
 			for(Pasillo i:pasillos) {
-				System.out.println(i.getNombre());
+				s+=i.getNombre()+"\n";
 			}
+			return s;
 		}
 		
 	}
@@ -290,9 +313,10 @@ public class Tienda implements Serializable{
 	TipoCaja p;
 	while(!prueba){
 	tipo = scanner.nextLine();
-	resolverCaja(tipo);
 	if (tipo==null){
 		print("Ese no es un tipo válido de caja, introduzca uno válido");
+	}else {
+ 	resolverCaja(tipo);
 	}
 	}*/
 	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO ARRIBA.
@@ -333,16 +357,15 @@ public class Tienda implements Serializable{
 		}
 		
 		//Devuelve los productos disponibles en los pasillos de la tienda, pero parece que
-		//Jordan queria hacerlo segun la categoria, falta arreglar eso y que esto es mejor
-		//que se encuentre en la clase Tienda
-		public void buscarProducto(Tienda tienda,int n) {
-			
+		//Jordan queria hacerlo segun la categoria, falta arreglar eso
+		public String buscarProducto(Tienda tienda,int n) {
+			String s;
 			for (Pasillo i:tienda.getPasillos()) {
 				for (Producto j:i.getProductos()) {
-					
-					System.out.println(n+"."+j);
+					s+=n+"."+j+"\n";
 				}
 			}
+			return s;
 		}
 	//ANTES EN INVENTARIO
 		public void contactarProvedor() {
