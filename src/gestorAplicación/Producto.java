@@ -16,8 +16,8 @@ public class Producto implements Serializable {
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 
 //-------------------------------------------------------------------------------------------------------------
-	Tienda del barrio 
-	mango      s 1000    120 und. disp ***
+/*	Tienda del barrio 
+	mango      s 1000    120 und. disp ****/
 	
 	
 	

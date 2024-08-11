@@ -40,7 +40,7 @@ public class Main {
 	cliente.setTienda(tienda);
 	escogerFuncionalidad(cliente);
 	}
-	public static void escogerFuncionalidad() {
+	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
 			print("Bienvenido a My_Tiendita, que desea hacer?");
@@ -71,9 +71,9 @@ public class Main {
 			}
 			switch(decision){
 			case 1:
-				consultasEco();
+				consultasEco(cliente);
 			case 2:
-				elegirTipoBusqueda();
+				elegirTipoBusqueda(cliente);
 			case 3:
 			
 			case 4:
@@ -87,7 +87,7 @@ public class Main {
 	
 // -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
 	//Este método se encarga de presentar las opciones de consulta al usuario
-	public static void consultasEco() {
+	public static void consultasEco(Cliente cliente) {
 		
         int consulta;
 
@@ -377,7 +377,7 @@ public class Main {
 			String nombre=sc.nextLine();
 			Tienda.buscarProductos(nombre);
 		case 3:
-			escogerFuncionalidad();
+			escogerFuncionalidad(cliente);
 		}
 	}
 	

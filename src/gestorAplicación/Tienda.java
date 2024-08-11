@@ -331,7 +331,7 @@ public class Tienda implements Serializable{
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
 	public static boolean buscarTienda() {
-		if(tiendas.size() > 0==true) {
+		if(tiendas.size() > 0 ) {
 			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendas);
 			 return tiendasRevisadas.size()>0;
 		}
