@@ -331,6 +331,13 @@ public class Tienda implements Serializable{
 	    return p;
 	}
 	//ANTES EN BASEDATOS:
+	
+	//Este método se encarga de buscar si existe al menos una tienda 
+	public static boolean buscarTienda() {
+	    return tiendas.size() > 0;
+	}
+	
+	
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
 		public static ArrayList<Tienda> buscarTienda(Categoria categoria){
 			ArrayList<Tienda>tiendaDisp = new ArrayList<>();

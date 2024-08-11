@@ -71,7 +71,7 @@ public class Main {
 			}
 			switch(decision){
 			case 1:
-			
+				consultasEco();
 			case 2:
 				elegirTipoBusqueda();
 			case 3:
@@ -86,7 +86,56 @@ public class Main {
 		}
 	
 // -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
-	
+	//Este método se encarga de presentar las opciones de consulta al usuario
+	public static void consultasEco() {
+		
+        int consulta;
+
+        System.out.println("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
+        System.out.println("1. Consulta general de productos\n"
+        		+ "2. Consulta de productos por categoria\n"
+        		+ "3. Consulta de membresias");
+        try {
+            consulta = sc.nextInt();
+            switch (consulta) {
+                case 1:
+                	
+                   if(Tienda.buscarTienda()==true)
+					print("Lo sentimos, no hay tiendas disponibles en este momento.");
+					print("Lo sentimos, no hay tiendas disponibles en este momento.");
+                    break;
+                case 2:
+                	if(Tienda.buscarTienda()==true) {
+                 	   
+                		 print("Lo sentimos, no hay tiendas disponibles en este momento.");
+                 	   
+                    }else {
+                 	   print("Lo sentimos, no hay tiendas disponibles en este momento.");
+                 	   
+                    }
+
+
+                    break;
+                case 3:
+                	if(Tienda.buscarTienda()==true) {
+                 	   
+                 	   
+                		 print("Lo sentimos, no hay tiendas disponibles en este momento.");
+                    }else {
+                 	   print("Lo sentimos, no hay tiendas disponibles en este momento.");
+                 	   
+                    }
+                    
+        
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+            }
+        } catch (Exception e) {
+            System.out.println("Entrada no válida, por favor ingrese otro número.");
+            sc.nextLine(); 
+        }
+    }
 	
 	
 	
