@@ -19,7 +19,7 @@ public class Tienda implements Serializable{
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
-	private static ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 
 //------------------------------------------------------------------------------------------------------------
 	
@@ -187,7 +187,7 @@ public class Tienda implements Serializable{
 				break;
 			}
 		}
-		for (Pasillo p:Tienda.bodegas) {
+		for (Pasillo p:this.bodegas) {
 			if (p.getProductos().size()!=0) {
 				bodega=true;
 				break;
@@ -226,7 +226,7 @@ public class Tienda implements Serializable{
 			}
 	}*/
 	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-	public String crearPasillos(int x1,int x2,int x3) {
+/*	public String crearPasillos(int x1,int x2,int x3) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
 		if(x1!=0){
 		for(int i=1;i<=x1;i++) {
@@ -271,13 +271,13 @@ public class Tienda implements Serializable{
 		}
 		
 		
-	}
+	}*/
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
 		int n=1;
-		String s; 
+		String s= ""; 
 		for(Proveedor i:getProveedores()) {
-			s+=n+"."+i+"\n"
+			s+=n+"."+i+"\n";
 			n++;
 		}
 		return s;
@@ -288,7 +288,7 @@ public class Tienda implements Serializable{
 			return "la tienda "+this.getNombre()+" no tiene pasillos";
 		}
 		else {
-			String s;
+			String s="";
 			for(Pasillo i:pasillos) {
 				s+=i.getNombre()+"\n";
 			}
@@ -304,7 +304,7 @@ public class Tienda implements Serializable{
 		num+=cajas.size()%3;
 		String nletra=Character.toString(letra);
 		String nom=nletra+num;
-		TipoCaja tipocaja = resolvertipocaja(tipo);
+		TipoCaja tipocaja = resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
       /*TipoCaja p=null;
@@ -318,7 +318,8 @@ public class Tienda implements Serializable{
 	    }
 	}*/
 	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO SE MUESTRA ARRIBA.
-	public static TipoCaja resolverTipoCaja(String tipo,TipoCaja p) {
+	public static TipoCaja resolverTipoCaja(String tipo) {
+		TipoCaja p = null;
 	        if (tipo.equals("normal")) {
 	            p = TipoCaja.NORMAL;
 	        } else if (tipo.equals("rapida")) {
@@ -330,7 +331,14 @@ public class Tienda implements Serializable{
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
 	public static boolean buscarTienda() {
-	    return tiendas.size() > 0;
+		if(tiendas.size() > 0==true) {
+			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendas);
+			 return tiendasRevisadas.size()>0;
+		}
+		else {
+			return false;
+		}
+	    
 	}
 	
 	
@@ -350,7 +358,7 @@ public class Tienda implements Serializable{
 		//Revisa si las tiendas que hay en la lista pasada tienen al menos un empleado o al menos un producto
 		//Su aplicacion se da cuando el cliente escoge su categoria y se da una lista con las tiendas
 		//este metodo asegura que si sean posibles para que el cliente vaya
-		public ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp){
+		public static ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp){
 			for (Tienda i:tiendaDisp) {
 				if (i.getEmpleados().size()==0 | i.disponibilidadProductos()==false) {
 					tiendaDisp.remove(i);
@@ -362,7 +370,7 @@ public class Tienda implements Serializable{
 		//Devuelve los productos disponibles en los pasillos de la tienda, pero parece que
 		//Jordan queria hacerlo segun la categoria, falta arreglar eso
 		public String buscarProducto(Tienda tienda,int n) {
-			String s;
+			String s = "";
 			for (Pasillo i:tienda.getPasillos()) {
 				for (Producto j:i.getProductos()) {
 					s+=n+"."+j+"\n";
