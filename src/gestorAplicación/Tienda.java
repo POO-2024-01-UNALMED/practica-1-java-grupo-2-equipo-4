@@ -307,26 +307,22 @@ public class Tienda implements Serializable{
 		TipoCaja tipocaja = resolvertipocaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-	/*main
-	/...
-	boolean prueba;
-	TipoCaja p;
-	while(!prueba){
-	tipo = scanner.nextLine();
-	if (tipo==null){
-		print("Ese no es un tipo válido de caja, introduzca uno válido");
-	}else {
- 	resolverCaja(tipo);
-	}
+      /*TipoCaja p=null;
+	while(p==null){
+	    String tipo = sc.nextLine();
+	    if (resolverTipoCaja(tipo,p)!=null){
+		p=resolverTipoCaja(tipo,p);
+ 	        print("La caja es de tipo: "+p);
+	    }else {
+	        print("Ese no es un tipo válido de caja, introduzca uno válido");
+	    }
 	}*/
-	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO ARRIBA.
-	public TipoCaja resolvertipocaja(String tipo) {
-	        if (tipo.equals("lenta")) {
-	            p = TipoCaja.LENTA;
-	            prueba = true;
+	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO SE MUESTRA ARRIBA.
+	public static TipoCaja resolverTipoCaja(String tipo,TipoCaja p) {
+	        if (tipo.equals("normal")) {
+	            p = TipoCaja.NORMAL;
 	        } else if (tipo.equals("rapida")) {
 	            p = TipoCaja.RAPIDA;
-	            prueba = true;
 	        }
 	    return p;
 	}
