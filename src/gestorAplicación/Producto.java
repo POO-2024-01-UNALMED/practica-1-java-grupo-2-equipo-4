@@ -104,8 +104,11 @@ public class Producto implements Serializable {
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
-
-		public Producto(String nombre,Enums.Categoria categoria,Tienda tienda) {
+		public Producto(String nombre,Categoria categoria) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+		}
+		public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 		this.tienda=tienda; // referencia a tienda que pertenece el producto

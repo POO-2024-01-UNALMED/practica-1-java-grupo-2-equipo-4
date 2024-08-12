@@ -351,23 +351,37 @@ public class Tienda implements Serializable{
 	
 	
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
-		public static ArrayList<Tienda> buscarTienda(Categoria categoria){
+		public static boolean buscarTienda(Categoria categoria){
+			ArrayList<Tienda> tiendasRevisa = revisionTienda(tiendas);
 			ArrayList<Tienda>tiendaDisp = new ArrayList<>();
-			for (Tienda i:tiendas) {			
+			for (Tienda i:tiendasRevisa) {			
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
 					}
 				}
 			}
-			return tiendaDisp;
+			return tiendaDisp.size()>0;
 		}
 		
+		//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
+				public static ArrayList<Tienda> categoriaTienda(Categoria categoria){
+					ArrayList<Tienda> tiendasRevisa = revisionTienda(tiendas);
+					ArrayList<Tienda>tiendaDisp = new ArrayList<>();
+					for (Tienda i:tiendasRevisa) {			
+						for(Pasillo j:i.getPasillos()) {
+							if(j.getCategoria()==categoria) {
+								tiendaDisp.add(i);
+							}
+						}
+					}
+					return tiendaDisp;
+				}
 		//Revisa si las tiendas que hay en la lista pasada tienen al menos un empleado o al menos un producto
 		//Su aplicacion se da cuando el cliente escoge su categoria y se da una lista con las tiendas
 		//este metodo asegura que si sean posibles para que el cliente vaya
 		public static ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp) {
-		    Iterator<Tienda> iterator = tiendaDisp.iterator(); // Obtener un iterador para la lista
+		    Iterator<Tienda> iterator = tiendaDisp.iterator(); 
 		    while (iterator.hasNext()) {
 		        Tienda tienda = iterator.next();
 		        if (tienda.getEmpleados().size() == 0 || !tienda.disponibilidadProductos()) {
