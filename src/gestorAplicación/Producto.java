@@ -1,6 +1,9 @@
 package gestorAplicación;
 import java.time.*;
 import java.util.ArrayList;
+
+import gestorAplicación.Enums.Categoria;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -114,7 +117,7 @@ public class Producto implements Serializable {
 		this.tienda=tienda; // referencia a tienda que pertenece el producto
 	}
 	
-	public Producto(String nombre,Enums.Categoria categoria,Tienda tienda,String fechaPerecer) {
+	public Producto(String nombre,Categoria categoria,Tienda tienda,String fechaPerecer) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 		this.tienda=tienda; 
