@@ -2,6 +2,8 @@ package gestorAplicación;
 import java.io.Serializable;
 import java.util.*;
 
+import gestorAplicación.Enums.Categoria;
+
 public class Tienda implements Serializable{
 //Atributos---------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L; //<---parte de serializar
@@ -175,10 +177,10 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static ArrayList<Producto> buscarProductos(Categoria categoria, ArrayList<Pasillo> pasillos, ArrayList<Producto> productos) {
-		for (Pasillo i:pasillos) {
+	public static ArrayList<Producto> buscarProductos(Cliente cliente, Enums.Categoria categoria,ArrayList<Producto> productos) {
+		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
-				if (j.getCategoria()==categoria) {
+				if (j.getCategoria()==categoria){
 					productos.add(j);
 				}
 			}
@@ -317,7 +319,7 @@ public class Tienda implements Serializable{
 		num+=cajas.size()%3;
 		String nletra=Character.toString(letra);
 		String nom=nletra+num;
-		TipoCaja tipocaja = resolverTipoCaja(tipo);
+		Enums.TipoCaja tipocaja = Enums.TipoCaja.resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
       /*TipoCaja p=null;
@@ -331,15 +333,6 @@ public class Tienda implements Serializable{
 	    }
 	}*/
 	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO SE MUESTRA ARRIBA.
-	public static TipoCaja resolverTipoCaja(String tipo) {
-		TipoCaja p = null;
-	        if (tipo.equals("normal")) {
-	            p = TipoCaja.NORMAL;
-	        } else if (tipo.equals("rapida")) {
-	            p = TipoCaja.RAPIDA;
-	        }
-	    return p;
-	}
 	//ANTES EN BASEDATOS:
 	
 	//Este método se encarga de buscar si existe al menos una tienda 

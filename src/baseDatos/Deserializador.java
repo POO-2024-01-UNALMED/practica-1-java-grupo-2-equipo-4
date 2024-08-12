@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream; 
 import java.util.ArrayList;
 
-import gestorAplicación.Categoria;
+import gestorAplicación.Enums;
 import gestorAplicación.Producto;
 import gestorAplicación.Tienda;
 import uiMain.Main;

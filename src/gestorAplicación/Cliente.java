@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Cliente extends Persona {
 //Atributos----------------------------------------------------------------------------------------------------
-	private TipoEdad membresia;
+	private Enums.Edades membresia;
 	private float dinero;
 	private Carrito carrito;
 	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();

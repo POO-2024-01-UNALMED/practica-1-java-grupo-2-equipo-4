@@ -1,5 +1,7 @@
 package uiMain;
 import gestorAplicación.*;
+import gestorAplicación.Enums.Categoria;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +11,6 @@ import baseDatos.Serializador;
 
 public class Main {
 	public static void print(String p) {
-		
 		System.out.println(p);
 	}
 	
@@ -35,24 +36,22 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
+		Producto producto = new Producto("cebolla",Categoria.ALIMENTO,tienda,"13/08/2024");
 		cliente.setTienda(tienda);
 		
 		escogerFuncionalidad(cliente);
 	}
 	
-	
-	
-	
 	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
 			print("Bienvenido a My_Tiendita, que desea hacer?");
-			print("1.Ecosistema de Consultas Personalizadas\n"
-					+ "2.Realizar compra\n"
-					+ "3.Pagar recibos pendientes\n"
+			print("1. Ecosistema de Consultas Personalizadas\n"
+					+ "2. Escoger productos\n"
+					+ "3. Pagar recibos pendientes\n"
 					+ "4. \n"
-					+ "5.Personalizar y modificar tiendas\n"
-					+ "6.Terminar");
+					+ "5. Personalizar y modificar tiendas\n"
+					+ "6. Terminar");
 			while (!boleano){
 				try{
 					decision=sc.nextInt();
@@ -384,6 +383,7 @@ public class Main {
 		Categoria categoria = null;
 		switch (decision) {
 		case 1:
+			print("Estas son las categorias de los productos de nuestras tiendas: ");
 			int enumerado = 1;
 			for(Categoria tipo:Categoria.values()) {
 					print(enumerado +". "+tipo);
@@ -392,13 +392,12 @@ public class Main {
 			print(enumerado+". Volver");
 			int decisionCategoria = escaner();;
 			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Pasillo> pasillos= cliente.getTienda().getPasillos();
-			ArrayList<Producto> productos=null;
-			productos= Tienda.buscarProductos(categoria, pasillos, productos);
+			ArrayList<Producto> productos=new ArrayList<Producto>();
+			productos= Tienda.buscarProductos(cliente,categoria,productos);
 			for (Producto p:productos) {
 				System.out.println(p);
 			}		
-			case 2:
+		case 2:
 			print("Introduzca el nombre del producto que desea buscar: ");
 			sc.nextLine();
 			String nombre=sc.nextLine();
@@ -430,7 +429,7 @@ public class Main {
 		case 3:
 			Tienda.buscarTienda(Categoria.LIMPIEZA);
 		case 4:
-			Tienda.buscarTienda(Categoria.PERSONAL);
+			Tienda.buscarTienda(Categoria.ALIMENTO);
 		case 5:
 			Tienda.buscarTienda(Categoria.HOGAR);
 		case 6:
