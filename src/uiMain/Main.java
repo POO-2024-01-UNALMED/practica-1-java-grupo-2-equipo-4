@@ -29,6 +29,24 @@ public class Main {
 		return p;
 	}
 	
+	public static int escaner(int rango) {
+		int p;
+		try{
+			p=sc.nextInt();
+		}
+		catch(Exception e) {
+			print("Este no es un numero valido");
+			sc.nextLine();
+			p=escaner(rango);
+		}
+		if (p<1 || p>rango) {
+			print("Este numero esta fuera del rango");
+			sc.nextLine();
+			p=escaner(rango);
+		}
+		return p;
+	}
+	
 	public static ArrayList<Producto> ser;
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
@@ -75,7 +93,7 @@ public class Main {
 				consultasEco(cliente);
 				break;
 			case 2:
-				elegirTipoBusqueda(cliente);
+				Funcionalidad2.elegirTipoBusqueda(cliente);
 			case 3:
 			
 			case 4:
@@ -437,40 +455,8 @@ public class Main {
 			
 		}
 	}
-	// ----- FUNCIONALIDAD 2 ----------------------------------------------------------------
-	public static void elegirTipoBusqueda(Cliente cliente) {
-		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
-				+ "\n"+ "una categoria o por nombre del producto: ");
-		print("1. Por categoria de un producto");
-		print("2. Por nombre del producto");
-		print("3. Volver");
-		decision=escaner();
-		Categoria categoria = null;
-		switch (decision) {
-		case 1:
-			print("Estas son las categorias de los productos de nuestras tiendas: ");
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(enumerado +". "+tipo);
-					enumerado++;			
-			}
-			print(enumerado+". Volver");
-			int decisionCategoria = escaner();;
-			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Producto> productos=new ArrayList<Producto>();
-			productos= Tienda.buscarProductos(cliente,categoria,productos);
-			for (Producto p:productos) {
-				System.out.println(p);
-			}		
-		case 2:
-			print("Introduzca el nombre del producto que desea buscar: ");
-			sc.nextLine();
-			String nombre=sc.nextLine();
-			Tienda.buscarProductos(nombre);
-		case 3:
-			escogerFuncionalidad(cliente);
-		}
-	}
+// ----- FUNCIONALIDAD 2 ---------------------------------------------------------------------------------
+	
 	
 	
 //------------Metodo a revisar donde meterlo-----------------------------------------------------------------------------
