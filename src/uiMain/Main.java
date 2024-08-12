@@ -36,7 +36,6 @@ public class Main {
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		cliente.setTienda(tienda);
-		
 		escogerFuncionalidad(cliente);
 	}
 	
@@ -134,12 +133,25 @@ public class Main {
 
 	            case 2:
 	               
-	                    print("Consulta de productos por categoría:");
-	                  
-	                
-	              
-	                
-	                break;
+	            	  if (Tienda.buscarTienda()) {
+		                    print("Selecciona una de las categorias disponibles en nuestras tiendas:");
+		                    int contador = 1;
+		            		for(Categoria tipo:Categoria.values()) {
+		            				print(contador +"."+tipo );
+		            				contador++;
+		            		}
+		            		busquedaCategoria(sc.nextInt());
+		            		int opcion = sc.nextInt();
+		                    Tienda tiendaSeleccionada = busquedaCategoria(sc.nextInt()).get(opcion - 1);
+		                    print("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
+		                    listaProductos(tiendaSeleccionada);
+		            		 sc.nextLine(); 
+		                } 
+	            	  	else {
+		                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
+		                }
+		                break;
+	             
 
 	            case 3:
 	                if (Tienda.buscarTienda()) {
@@ -164,9 +176,62 @@ public class Main {
 	}
 
 	
+	public static ArrayList <Tienda> busquedaCategoria(int categoria) {
+		int desicionCategoria = categoria;
+		switch(desicionCategoria){
+		case 1:			
+			if (Tienda.categoriaTienda(Categoria.ALIMENTO).size() > 0) {
+				print("Estas tiendas tienen tu categoria");
+				ArrayList<Tienda> tiendas= Tienda.categoriaTienda(Categoria.ALIMENTO);
+				//Serializador.serializar(tiendas);
+				//Deserializador.deserealizar();
+				print("en cual Tienda desea consultar?");
+				int enumerado=1;
+				for(Tienda alimento:Tienda.categoriaTienda(Categoria.ALIMENTO)) {
+					print(enumerado+"."+alimento.getNombre());
+					enumerado++;
+				return tiendas;
+				}
+				
+				 
+	               
+	                
+				}
+				else {
+					print("No hay tiendas disponibles de la categoria ALIMENTO.");
+					print("1.Buscar otra categoria");
+					print("2.Volver");
+					decision = sc.nextInt();
+					if (decision == 1) {
+					mostrarProductos();
+					break;
+					}
+					else { 
+						break;
+						}
+				}
+		}
+		return null;	
+		
+	}
 	
+	public static void listaProductos(Tienda tienda) {
+	    ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
+	    print("Hola");
+        if (productos.size() > 0) {
+            print("Estos son los productos disponibles en la tienda:");
+            int numProducto = 1;
+            for (Producto producto : productos) {
+                print(numProducto + ". " + producto.getNombre());
+                numProducto++;
+            }
+        }
+		
+		
+		
+		
+	}
 	
-
 	
 	
 	
@@ -183,7 +248,7 @@ public class Main {
 		int desicionCategoria = sc.nextInt();
 		switch(desicionCategoria){
 		case 1:			
-			if (Tienda.buscarTienda(Categoria.ALIMENTO).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.ALIMENTO).size() > 0) {
 				print("Estas tiendas tienen tu categoria");
 				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
 				//Serializador.serializar(tiendas);
@@ -191,15 +256,15 @@ public class Main {
 				System.out.print(Tienda.getTiendas());
 				print("en cual Tienda desea consultar?");
 				enumerado=1;
-				for(Tienda alimento:Tienda.buscarTienda(Categoria.ALIMENTO)) {
+				for(Tienda alimento:Tienda.categoriaTienda(Categoria.ALIMENTO)) {
 					print(enumerado+"."+alimento.getNombre());
 					enumerado++;					
 				} 
 				
 				int desicionTienda = sc.nextInt();				
-				for (int i=1; i<= Tienda.buscarTienda(Categoria.ALIMENTO).size();i++) {
+				for (int i=1; i<= Tienda.categoriaTienda(Categoria.ALIMENTO).size();i++) {
 					if (desicionTienda==i) {
-						Tienda tiendaDisp =Tienda.buscarTienda(Categoria.ALIMENTO).get(desicionTienda-1);
+						Tienda tiendaDisp =Tienda.categoriaTienda(Categoria.ALIMENTO).get(desicionTienda-1);
 						print("Productos disponibles categoria: ALIMENTO");
 						int cont = 1;
 						ArrayList<Producto> productos= new ArrayList<>();
@@ -243,10 +308,10 @@ public class Main {
 				
 			
 		case 2:
-			if (Tienda.buscarTienda(Categoria.BEBIDA).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.BEBIDA).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas visitar:");
 				enumerado=1;
-				for(Tienda bebida:Tienda.buscarTienda(Categoria.BEBIDA)) {
+				for(Tienda bebida:Tienda.categoriaTienda(Categoria.BEBIDA)) {
 					print(enumerado+"."+bebida.getNombre());
 					enumerado++;
 				} 
@@ -269,10 +334,10 @@ public class Main {
 				
 			
 		case 3:
-			if (Tienda.buscarTienda(Categoria.LIMPIEZA).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.LIMPIEZA).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas visitar:");
 				enumerado=1;
-				for(Tienda limpieza:Tienda.buscarTienda(Categoria.LIMPIEZA)) {
+				for(Tienda limpieza:Tienda.categoriaTienda(Categoria.LIMPIEZA)) {
 					print(enumerado+"."+limpieza.getNombre());
 					enumerado++;
 				} 
@@ -295,10 +360,10 @@ public class Main {
 				
 			
 		case 4:
-			if (Tienda.buscarTienda(Categoria.PERSONAL).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.PERSONAL).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas visitar:");
 				enumerado=1;
-				for(Tienda personal:Tienda.buscarTienda(Categoria.PERSONAL)) {
+				for(Tienda personal:Tienda.categoriaTienda(Categoria.PERSONAL)) {
 					print(enumerado+"."+personal.getNombre());
 					enumerado++;
 				} 
@@ -322,10 +387,10 @@ public class Main {
 				
 			
 		case 5:
-			if (Tienda.buscarTienda(Categoria.HOGAR).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.HOGAR).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas visitar:");
 				enumerado=1;
-				for(Tienda hogar:Tienda.buscarTienda(Categoria.HOGAR)) {
+				for(Tienda hogar:Tienda.categoriaTienda(Categoria.HOGAR)) {
 					print(enumerado+"."+hogar.getNombre());
 					enumerado++;
 				} 
@@ -348,10 +413,10 @@ public class Main {
 				
 			
 		case 6:
-			if (Tienda.buscarTienda(Categoria.ELECTRONICO).size() > 0) {
+			if (Tienda.categoriaTienda(Categoria.ELECTRONICO).size() > 0) {
 				print("Estas tiendas tienen tu categoria deseada en cual deseas visitar:");
 				enumerado=1;
-				for(Tienda electronico:Tienda.buscarTienda(Categoria.ELECTRONICO)) {
+				for(Tienda electronico:Tienda.categoriaTienda(Categoria.ELECTRONICO)) {
 					print(enumerado+"."+electronico.getNombre());
 					enumerado++;
 				} 

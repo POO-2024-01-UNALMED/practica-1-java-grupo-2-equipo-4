@@ -103,6 +103,10 @@ public class Producto implements Serializable {
 
 //Constructores------------------------------------------------------------------------------------------------
 
+		public Producto(String nombre,Categoria categoria) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+		}
 		public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
