@@ -249,7 +249,9 @@ public class Tienda implements Serializable{
 			n++;
 		}
 		int x2=escaner();
-		crearPasillos(x2);
+		print("nombre del pasillo "+i+":");
+		String nom
+		crearPasillos(x2,String nom);
 		i++;
 	}
 	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
