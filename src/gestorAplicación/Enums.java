@@ -48,7 +48,7 @@ public static enum Edades{
 	}
 }
 
-public static enum estadoProducto{
+public static enum EstadoProducto{
 	VENCIDO,
 	DEFECTUOSO,
 	ACTIVO;
