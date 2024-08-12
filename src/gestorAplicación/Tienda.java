@@ -2,6 +2,8 @@ package gestorAplicación;
 import java.io.Serializable;
 import java.util.*;
 
+import gestorAplicación.Enums.Categoria;
+
 public class Tienda implements Serializable{
 //Atributos---------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L; //<---parte de serializar
@@ -18,9 +20,10 @@ public class Tienda implements Serializable{
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	//Antes en BaseDatos e inventario:
-	private static ArrayList<Tienda>tiendas = new ArrayList<>();
-	private static ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-
+	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
+	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+	
+	private ArrayList <Producto> ProductosVencidos = new ArrayList <>();
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
@@ -134,14 +137,29 @@ public class Tienda implements Serializable{
 		this.bodegas = bodegas;
 	}
 
+
+	public ArrayList<Producto> getProductosVencidos() {
+		return ProductosVencidos;
+	}
+
+	public void setProductosVencidos(ArrayList<Producto> productosVencidos) {
+		ProductosVencidos = productosVencidos;
+	}
+
+	
+
+	
 //------------------------------------------------------------------------------------------------------------
 	
 //Contructores------------------------------------------------------------------------------------------------
 
 	public Tienda(){
-		Tienda.getTiendas().add(this);
+		tiendas.add(this);
 	}
 
+	public Tienda(String nombre) {
+		this.nombre=nombre;
+	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
 		this.nit = nit;
@@ -159,6 +177,21 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
+	public static ArrayList<Producto> buscarProductos(Cliente cliente, Enums.Categoria categoria,ArrayList<Producto> productos) {
+		for (Pasillo i:cliente.getTienda().getPasillos()) {
+			for (Producto j:i.getProductos()){
+				if (j.getCategoria()==categoria){
+					productos.add(j);
+				}
+			}
+		}
+		return productos;
+	}
+	
+	public static void buscarProductos(String nombre) {
+		
+	}
+	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
 		boolean bodega = false;
@@ -169,13 +202,13 @@ public class Tienda implements Serializable{
 				break;
 			}
 		}
-		for (Pasillo p:Tienda.bodegas) {
+		for (Pasillo p:this.bodegas) {
 			if (p.getProductos().size()!=0) {
 				bodega=true;
 				break;
 			}
 		}
-		boolean resultado=pasillo | bodega;
+		boolean resultado=pasillo || bodega;
 		return resultado;
    }
 	
@@ -192,70 +225,76 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	
-	public void crearPasillos() {
-		ArrayList <Categoria> categorias=new ArrayList<>();
-		System.out.println("cuantos pasillos desea crear?");
-		int x1=scanner.nextInt();
-		
-		for(int i=1;i<=x1;i++) {
-			System.out.println("que categorias tendra el pasillo "+i+"?");
-			int n=1;
-			for(Categoria j:Categoria.values()) {
-				System.out.println(n+"."+j);
-				n++;
-			}
-			int x2=scanner.nextInt();
-			scanner.nextLine();
-			categorias.add(Categoria.values()[x2-1]);
-		}
-		
-		int n=1;
-		for(Categoria k:categorias) {
-			
-			Categoria cat=k;
+	for(int i=1;i<=5;i++){
+ 	switch(i){
+			case 1:
+			int x1=escaner();
+			crearPasillos(x1,0,0);
+			case 2:
 			System.out.println("nombre del pasillo "+n+" :");
-			String x2=scanner.nextLine();
-			Pasillo pasillo=new Pasillo(x2,cat);
-			pasillos.add(pasillo);
-			System.out.println("pasillo creado");
-			n++;
-		}	
-		
-		if (this.disponibilidadProductos()==false) {
+			crearPasillos(0,x2,0);
+			case 3:
 			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
 			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
 			int x3=scanner.nextInt();
-			
-			if(x3==1) {
-				this.llamarProveedor();
+			crearPasillos(0,0,x3);
 			}
-			
-		}
-		
-		
 	}
 	
-	public void llamarProveedor() {
-		System.out.println("llamando a un proveedor");
-		System.out.println("seleccione un proveedor");
-		
+	public void crearPasillos(int x2,String nom) {
+		Categoria cat=Categoria.values()[x2-1];
+		Pasillo pasillo=new Pasillo(x2,cat);
+		pasillos.add(pasillo);
+	//Así irá en el main:
+      /*Tienda tien = Deserializador.deserealizar()[0];
+      	int i=1;
+	while(true){
+		print("que categorias tendra el pasillo "+i+"?");
 		int n=1;
-		for(Proveedor i:getProveedores()) {
-			System.out.println(n+"."+i);
+		for(Categoria j:Categoria.values()) {
+			print(n+"."+j);
 			n++;
 		}
-		n=1;	
+		int x2=escaner();
+		print("nombre del pasillo "+i+":");
+		String nom=sc.nextline();
+		tien.crearPasillos(x2,nom);
+		print("pasillo creado");
+		i++;
+	}
+	if (this.disponibilidadProductos()==false) {
+		print(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+		print("desea llamar a un proveedor?\n1.Si\n2.No");
+		int x3=escaner();
+			
+		if(x3==1) {
+			this.llamarProveedor();
+		}
+			
+	}*/	
+	}
+
+	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
+	public String llamarProveedor() {
+		int n=1;
+		String s= ""; 
+		for(Proveedor i:getProveedores()) {
+			s+=n+"."+i+"\n";
+			n++;
+		}
+		return s;
 	}
 	
-	public void mostrarPasillos() {
+	public String mostrarPasillos() {
 		if (pasillos.size()==0) {
-			System.out.println("la tienda "+this.getNombre()+" no tiene pasillos");
+			return "la tienda "+this.getNombre()+" no tiene pasillos";
 		}
 		else {
+			String s="";
 			for(Pasillo i:pasillos) {
-				System.out.println(i.getNombre());
+				s+=i.getNombre()+"\n";
 			}
+			return s;
 		}
 		
 	}
@@ -267,69 +306,84 @@ public class Tienda implements Serializable{
 		num+=cajas.size()%3;
 		String nletra=Character.toString(letra);
 		String nom=nletra+num;
-		TipoCaja tipocaja = resolvertipocaja(tipo);
+		Enums.TipoCaja tipocaja = Enums.TipoCaja.resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-	
-	public TipoCaja resolvertipocaja(String tipo) {
-	    boolean prueba = false;
-	    TipoCaja p = null;
-	    while (!prueba) {
-	        if (tipo.equals("lenta")) {
-	            p = TipoCaja.LENTA;
-	            prueba = true;
-	        } else if (tipo.equals("rapida")) {
-	            p = TipoCaja.RAPIDA;
-	            prueba = true;
-	        } else {
-	            System.out.println("Ese no es un tipo válido de caja, introduzca uno válido");
-	            tipo = scanner.nextLine();
-	        }
-	    }
-	    return p;
-	}
 	//ANTES EN BASEDATOS:
+	
+	//Este método se encarga de buscar si existe al menos una tienda 
+	public static boolean buscarTienda() {
+		ArrayList<Tienda> tiendasRevisa = tiendas;
+		if(tiendas.size() > 0 ) {
+			
+			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
+			 return tiendasRevisadas.size()>0;
+		}
+		else {
+			return false;
+		}
+	    
+	}
+	
+	
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
-		public static ArrayList<Tienda> buscarTienda(Categoria categoria){
+		public static boolean buscarTienda(Categoria categoria){
+			ArrayList<Tienda> tiendasRevisa = revisionTienda(tiendas);
 			ArrayList<Tienda>tiendaDisp = new ArrayList<>();
-			for (Tienda i:tiendas) {			
+			for (Tienda i:tiendasRevisa) {			
 				for(Pasillo j:i.getPasillos()) {
 					if(j.getCategoria()==categoria) {
 						tiendaDisp.add(i);
 					}
 				}
 			}
-			return tiendaDisp;
+			return tiendaDisp.size()>0;
 		}
 		
+		//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
+				public static ArrayList<Tienda> categoriaTienda(Categoria categoria){
+					ArrayList<Tienda> tiendasRevisa = revisionTienda(tiendas);
+					ArrayList<Tienda>tiendaDisp = new ArrayList<>();
+					for (Tienda i:tiendasRevisa) {			
+						for(Pasillo j:i.getPasillos()) {
+							if(j.getCategoria()==categoria) {
+								tiendaDisp.add(i);
+							}
+						}
+					}
+					return tiendaDisp;
+				}
 		//Revisa si las tiendas que hay en la lista pasada tienen al menos un empleado o al menos un producto
 		//Su aplicacion se da cuando el cliente escoge su categoria y se da una lista con las tiendas
 		//este metodo asegura que si sean posibles para que el cliente vaya
-		public ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp){
-			for (Tienda i:tiendaDisp) {
-				if (i.getEmpleados().size()==0 | i.disponibilidadProductos()==false) {
-					tiendaDisp.remove(i);
-				}
-			}
-			return tiendaDisp;
+		public static ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp) {
+		    Iterator<Tienda> iterator = tiendaDisp.iterator(); 
+		    while (iterator.hasNext()) {
+		        Tienda tienda = iterator.next();
+		        if (tienda.getEmpleados().size() == 0 || !tienda.disponibilidadProductos()) {
+		            iterator.remove(); 
+		        }
+		    }
+		    return tiendaDisp;
 		}
+
 		
 		//Devuelve los productos disponibles en los pasillos de la tienda, pero parece que
-		//Jordan queria hacerlo segun la categoria, falta arreglar eso y que esto es mejor
-		//que se encuentre en la clase Tienda
-		public void buscarProducto(Tienda tienda,int n) {
-			
+		//Jordan queria hacerlo segun la categoria, falta arreglar eso
+		public String buscarProducto(Tienda tienda,int n) {
+			String s = "";
 			for (Pasillo i:tienda.getPasillos()) {
 				for (Producto j:i.getProductos()) {
-					
-					System.out.println(n+"."+j);
+					s+=n+"."+j+"\n";
 				}
 			}
+			return s;
 		}
 	//ANTES EN INVENTARIO
 		public void contactarProvedor() {
 			
 		}
+		
 		public ArrayList <Producto> solicitarInventario() {
 			ArrayList <Producto> Inventario=new ArrayList<Producto>();
 			for (Pasillo i:bodegas) {
@@ -338,6 +392,14 @@ public class Tienda implements Serializable{
 				}
 			}
 			return Inventario;
+		}
+		
+		public ArrayList<Producto> obtenerTodosLosProductos() {
+	        ArrayList<Producto> todosLosProductos = new ArrayList<>();
+	        for (Pasillo pasillo : pasillos) {
+	            todosLosProductos.addAll(pasillo.getProductos());
+	        }
+	        return todosLosProductos;
 		}
 //------------------------------------------------------------------------------------------------------------
 

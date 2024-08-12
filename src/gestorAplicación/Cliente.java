@@ -1,10 +1,14 @@
 package gestorAplicación;
 
+import java.util.ArrayList;
+
 public class Cliente extends Persona {
 //Atributos----------------------------------------------------------------------------------------------------
-	private TipoEdad membresia;
+	private Enums.Edades membresia;
 	private float dinero;
 	private Carrito carrito;
+	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
+	private static ArrayList <Cliente> clientes= new ArrayList<Cliente>();
 	
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -12,6 +16,10 @@ public class Cliente extends Persona {
 	
 	public Carrito getCarrito() {
 		return carrito;
+	}
+	
+	public void setTienda(Tienda tienda) {
+		super.setTienda(tienda);
 	}
 
 	public void setCarrito(Carrito carrito) {
@@ -24,6 +32,22 @@ public class Cliente extends Persona {
 	
 	public void setDinero(float dinero) {
 		this.dinero=dinero;
+	}
+	
+	public ArrayList<Carrito> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(ArrayList<Carrito> facturas) {
+		this.facturas = facturas;
+	}
+
+	public static ArrayList<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public static void setClientes(ArrayList<Cliente> clientes) {
+		Cliente.clientes = clientes;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -43,6 +67,16 @@ public class Cliente extends Persona {
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
+	public static int existeCliente(String nombre) {
+		int contador=0;
+		for (Cliente i:clientes) {
+			if (i.getNombre()==nombre) {
+				return contador;
+			}
+			contador++;
+		}
+		return -1;
+	}
 
 //-------------------------------------------------------------------------------------------------------------
 }

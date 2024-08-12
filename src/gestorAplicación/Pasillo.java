@@ -1,15 +1,17 @@
 package gestorAplicación;
 import java.util.*;
+import gestorAplicación.Enums.Categoria;
+import java.io.Serializable; 
 
-
-public class Pasillo {
+public class Pasillo implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
 	private String nombre;
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
 	private Categoria categoria;
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
-	
+	private Tienda tienda;
+	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
 
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -34,6 +36,13 @@ public class Pasillo {
 		this.categoria = categoria;
 	}
 	
+	public Tienda getTienda() {
+		return tienda;
+	}
+	public void setTienda(Tienda tienda) {
+		this.tienda = tienda;
+	}
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
@@ -43,10 +52,17 @@ public class Pasillo {
 		this.categoria = categoria;
 	}
 	
-	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria) {
+	public Pasillo(String nombre, Categoria categoria,Tienda tienda) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.tienda = tienda;
+	}
+	
+	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria, Tienda tienda) {
 		this.nombre = nombre;
 		this.productos = productos;
 		this.categoria = categoria;
+		this.tienda = tienda;
 	}
 
 //-------------------------------------------------------------------------------------------------------------

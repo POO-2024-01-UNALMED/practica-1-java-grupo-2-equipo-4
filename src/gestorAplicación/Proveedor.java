@@ -1,16 +1,18 @@
 package gestorAplicación;
 
-import java.util.*;
 
-public class Proveedor {
+import java.util.*;
+import java.io.Serializable;
+
+public class Proveedor implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
 	private String nombre;
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
-	private Categoria tipo;
+	private Enums tipo;
 	private Tienda tienda;
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-
+	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -31,11 +33,11 @@ public class Proveedor {
 		this.entrega=entrega;
 	}
 	
-	public Categoria getTipo() {
+	public Enums getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(Categoria tipo) {
+	public void setTipo(Enums tipo) {
 		this.tipo=tipo;
 	}
 	
@@ -59,7 +61,7 @@ public class Proveedor {
 
 //Constructores------------------------------------------------------------------------------------------------
 
-	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Enums tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
 	super();
 	this.nombre = nombre;
 	this.entrega = entrega;
@@ -75,5 +77,10 @@ public class Proveedor {
 		
 	}
 
+// metodo scanner y print -----------------------------------------------------------------------------------------
+
 //-------------------------------------------------------------------------------------------------------------
 }
+
+
+

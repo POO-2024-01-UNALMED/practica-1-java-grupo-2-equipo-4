@@ -6,13 +6,14 @@ public class Caja {
 	private Empleado empleado;
 	private String nombre;
 	private int estado=2;
-	private TipoCaja tipo;
+	private Enums.TipoCaja tipo;
 	private Tienda tienda;
 	private String descuento;
 	private Cliente cliente;
 
 //-------------------------------------------------------------------------------------------------------------
-
+//holi
+	
 //Getters and Setters------------------------------------------------------------------------------------------
 	
 	public Cliente getCliente() {
@@ -39,11 +40,11 @@ public class Caja {
 		this.estado=estado;
 	}
 	
-	public TipoCaja getTipo() {
+	public Enums.TipoCaja getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(TipoCaja tipo) {
+	public void setTipo(Enums.TipoCaja tipo) {
 		this.tipo=tipo;
 	}
 	
@@ -80,7 +81,7 @@ public class Caja {
 		
 	}
 	
-	public Caja(String nombre, TipoCaja tipo, Tienda tienda){
+	public Caja(String nombre, Enums.TipoCaja tipo, Tienda tienda){
 		this.nombre=nombre;
 		this.tipo=tipo;
 		this.tienda=tienda;

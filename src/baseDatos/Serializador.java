@@ -17,7 +17,6 @@ public class Serializador {
 		 try { 
 		FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
 		ObjectOutputStream o = new ObjectOutputStream(f);
-		//System.out.println(tiendas);
 		o.writeObject(tiendas); 
 		o.close(); f.close();
 		 }
@@ -29,5 +28,8 @@ public class Serializador {
 						e.printStackTrace();
 		} 
 		}
+	public static void main(String[] args){
+		
+	}
 	} 
 

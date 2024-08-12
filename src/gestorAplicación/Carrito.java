@@ -1,6 +1,7 @@
 package gestorAplicación;
-
 import java.util.*;
+
+import gestorAplicación.Enums.Edades;
 
 public class Carrito {
 //Atributos----------------------------------------------------------------------------------------------------
@@ -8,8 +9,9 @@ public class Carrito {
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
 	private Tienda tienda;
-	private TipoEdad tipoCarrito;
+	private Edades tipoCarrito;
 	private double montoTotal;
+	
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -37,11 +39,11 @@ public class Carrito {
 	public void setTienda(Tienda tienda) {
 		this.tienda=tienda;
 	}
-	public TipoEdad getTipoCarrito() {
+	public Edades getTipoCarrito() {
 		return tipoCarrito;
 	}
 	
-	public void setTipoCarrito(TipoEdad tipo) {
+	public void setTipoCarrito(Edades tipo) {
 		this.tipoCarrito=tipo;
 	}
 	
