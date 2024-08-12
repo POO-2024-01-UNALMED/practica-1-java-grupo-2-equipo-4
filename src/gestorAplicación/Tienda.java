@@ -225,7 +225,7 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	/*for(int i=1;i<=5;i++){
+	for(int i=1;i<=5;i++){
  	switch(i){
 			case 1:
 			int x1=escaner();
@@ -240,53 +240,40 @@ public class Tienda implements Serializable{
 			crearPasillos(0,0,x3);
 			}
 	}
-	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-	public String crearPasillos(int x1,int x2,int x3) {
-		ArrayList <Categoria> categorias=new ArrayList<>();
-		if(x1!=0){
-		for(int i=1;i<=x1;i++) {
-			int n=1;
-			System.out.println("que categorias tendra el pasillo "+i+"?");
-			String s=null;;
-			for(Categoria j:Categoria.values()) {
-				s+=n+"."+j+"\n";
-				n++;
-			}
-			int x2=scanner.nextInt();
-			scanner.nextLine();
-			categorias.add(Categoria.values()[x2-1]);
-		}
-		return s;
-		}
-		if(x2!=0){
+	
+	public void crearPasillos(int x2,String nom) {
+		Categoria cat=Categoria.values()[x2-1];
+		Pasillo pasillo=new Pasillo(x2,cat);
+		pasillos.add(pasillo);
+	//Así irá en el main:
+      /*Tienda tien = Deserializador.deserealizar()[0];
+      	int i=1;
+	while(true){
+		print("que categorias tendra el pasillo "+i+"?");
 		int n=1;
-		for(Categoria k:categorias) {
-			
-			Categoria cat=k;
-			String x2=scanner.nextLine();
-			Pasillo pasillo=new Pasillo(x2,cat);
-			pasillos.add(pasillo);
-			System.out.println("pasillo creado");
+		for(Categoria j:Categoria.values()) {
+			print(n+"."+j);
 			n++;
 		}
-			return ;
-		}
-		if (x3!=0){
-		if (this.disponibilidadProductos()==false) {
-			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
-			int x3=scanner.nextInt();
+		int x2=escaner();
+		print("nombre del pasillo "+i+":");
+		String nom=sc.nextline();
+		tien.crearPasillos(x2,nom);
+		print("pasillo creado");
+		i++;
+	}
+	if (this.disponibilidadProductos()==false) {
+		print(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+		print("desea llamar a un proveedor?\n1.Si\n2.No");
+		int x3=escaner();
 			
-			if(x3==1) {
-				this.llamarProveedor();
-			}
+		if(x3==1) {
+			this.llamarProveedor();
+		}
 			
-		}
-			return;
-		}
-		
-		
-	}*/
+	}*/	
+	}
+
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
 		int n=1;
