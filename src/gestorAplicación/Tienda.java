@@ -225,7 +225,7 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	/*for(int i=1;i<=5;i++){
+	for(int i=1;i<=5;i++){
  	switch(i){
 			case 1:
 			int x1=escaner();
@@ -240,25 +240,23 @@ public class Tienda implements Serializable{
 			crearPasillos(0,0,x3);
 			}
 	}
+	int i=1;
+	while(true){
+		print("que categorias tendra el pasillo "+i+"?");
+		int n=1;
+		for(Categoria j:Categoria.values()) {
+			print(n+"."+j);
+			n++;
+		}
+		int x2=escaner();
+		crearPasillos(x2);
+		i++;
+	}
 	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-	public String crearPasillos(int x1,int x2,int x3) {
+	public void crearPasillos(int x2) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
-		if(x1!=0){
-		for(int i=1;i<=x1;i++) {
-			int n=1;
-			System.out.println("que categorias tendra el pasillo "+i+"?");
-			String s=null;;
-			for(Categoria j:Categoria.values()) {
-				s+=n+"."+j+"\n";
-				n++;
-			}
-			int x2=scanner.nextInt();
-			scanner.nextLine();
-			categorias.add(Categoria.values()[x2-1]);
-		}
-		return s;
-		}
-		if(x2!=0){
+		categorias.add(Categoria.values()[x2-1]);
+
 		int n=1;
 		for(Categoria k:categorias) {
 			
@@ -270,7 +268,6 @@ public class Tienda implements Serializable{
 			n++;
 		}
 			return ;
-		}
 		if (x3!=0){
 		if (this.disponibilidadProductos()==false) {
 			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
