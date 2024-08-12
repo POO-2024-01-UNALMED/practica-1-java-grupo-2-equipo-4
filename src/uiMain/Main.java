@@ -1,13 +1,13 @@
 package uiMain;
-import gestorAplicación.*;
-import gestorAplicación.Enums.Categoria;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
+import gestorAplicación.servicios.*;
+import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.sujetos.Cliente;
 
 public class Main {
 	public static void print(String p) {

@@ -1,8 +1,11 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.io.Serializable;
 import java.util.*;
 
-import gestorAplicación.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Empleado;
+import gestorAplicación.sujetos.Persona;
 
 public class Tienda implements Serializable{
 //Atributos---------------------------------------------------------------------------------------------------

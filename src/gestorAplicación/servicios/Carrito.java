@@ -1,7 +1,9 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.util.*;
 
-import gestorAplicación.Enums.Edades;
+import gestorAplicación.servicios.Enums.Edades;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Persona;
 
 public class Carrito {
 //Atributos----------------------------------------------------------------------------------------------------

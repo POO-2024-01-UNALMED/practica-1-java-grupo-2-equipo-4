@@ -1,6 +1,11 @@
-package gestorAplicación;
+package gestorAplicación.sujetos;
 
 import java.util.ArrayList;
+
+import gestorAplicación.servicios.Carrito;
+import gestorAplicación.servicios.Enums;
+import gestorAplicación.servicios.Enums.Edades;
+import gestorAplicación.servicios.Tienda;
 
 public class Cliente extends Persona {
 //Atributos----------------------------------------------------------------------------------------------------

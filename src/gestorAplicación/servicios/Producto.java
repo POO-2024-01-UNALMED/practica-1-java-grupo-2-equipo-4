@@ -1,8 +1,8 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.time.*;
 import java.util.ArrayList;
 
-import gestorAplicación.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Categoria;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

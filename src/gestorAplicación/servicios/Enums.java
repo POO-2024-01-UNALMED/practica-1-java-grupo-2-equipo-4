@@ -1,4 +1,4 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.util.ArrayList;
 
 public enum Enums{

@@ -1,6 +1,8 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.util.*;
-import gestorAplicación.Enums.Categoria;
+
+import gestorAplicación.servicios.Enums.Categoria;
+
 import java.io.Serializable; 
 
 public class Pasillo implements Serializable{
