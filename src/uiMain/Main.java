@@ -55,6 +55,97 @@ public class Main {
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Producto producto = new Producto("cebolla",Categoria.ALIMENTO,tienda,"13/08/2024");
+		//Crear Empleados
+				Empleado juan =new Domiciliario();
+				Empleado pepe =new Domiciliario();
+				Empleado maria =new Domiciliario();
+				Empleado pedro =new Domiciliario();
+				ArrayList<Empleado> duo1= new ArrayList<Empleado>();
+				ArrayList<Empleado> duo2= new ArrayList<Empleado>();
+				duo1.add(juan);
+				duo1.add(pepe);
+				duo2.add(maria);
+				duo2.add(pedro);
+				//Crear Pasillos
+				Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
+				Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
+				Pasillo p3 = new Pasillo("A9",Categoria.LIMPIEZA);
+				Pasillo p4 = new Pasillo("A2",Categoria.PERSONAL);
+				Pasillo p5 = new Pasillo("A7",Categoria.HOGAR);
+				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
+				
+				// Crear Productos para cada categoria
+				Producto producto1 = new Producto("Pan", Categoria.ALIMENTO);
+				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
+				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
+				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
+				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
+				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
+				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
+				Producto producto8 = new Producto("Manzana", Categoria.ALIMENTO);
+				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
+				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
+				// Crear listas para cada categoría
+				ArrayList<Producto> alimentos = new ArrayList<Producto>();
+				ArrayList<Producto> bebidas = new ArrayList<Producto>();
+				ArrayList<Producto> limpieza = new ArrayList<Producto>();
+				ArrayList<Producto> personal = new ArrayList<Producto>();
+				ArrayList<Producto> hogar = new ArrayList<Producto>();
+				ArrayList<Producto> electronico = new ArrayList<Producto>();
+
+				// Agregar productos a las listas correspondientes
+				alimentos.add(producto1);
+				alimentos.add(producto8);
+
+				bebidas.add(producto2);
+				bebidas.add(producto7);
+
+				limpieza.add(producto3);
+				limpieza.add(producto10);
+
+				personal.add(producto4);
+				personal.add(producto9);
+
+				hogar.add(producto5);
+
+				electronico.add(producto6);
+				
+				// Asignar las listas de productos a los pasillos correspondientes
+				p1.setProductos(alimentos);      // Pasillo A7 - Alimentos
+				p2.setProductos(bebidas);        // Pasillo A8 - Bebidas
+				p3.setProductos(limpieza);       // Pasillo A9 - Limpieza
+				p4.setProductos(personal);       // Pasillo A2 - Productos de cuidado personal
+				p5.setProductos(hogar);          // Pasillo A7 - Hogar
+				p6.setProductos(electronico);    // Pasillo A7 - Electrónicos
+
+				//Crear Tiendas
+				Tienda t1 = new Tienda();
+				Tienda t2= new Tienda();
+				Tienda t3 = new Tienda();
+				Tienda t4 = new Tienda();
+				
+				//Nombrar Tiendas y agregar pasillos y Empleados
+				t1.setNombre("Donde Chucho");
+				t2.setNombre("Los Paisitas");
+				t3.setNombre("La esquina de Luis");
+				t4.setNombre(" D1 ");
+
+				t1.getPasillos().add(p1);
+				t1.getPasillos().add(p2);
+				t2.getPasillos().add(p2);
+				t2.getPasillos().add(p3);
+				t3.getPasillos().add(p3);
+				t3.getPasillos().add(p4);
+				t4.getPasillos().add(p4);
+				t4.getPasillos().add(p5);
+				t1.getPasillos().add(p5);
+				t2.getPasillos().add(p6);
+				t3.getPasillos().add(p1);
+				t4.getPasillos().add(p2);
+				
+				t1.setEmpleados(duo1);
+				t2.setEmpleados(duo2);
+				t3.setEmpleados(duo1);
 		cliente.setTienda(tienda);
 		escogerFuncionalidad(cliente);
 	}
@@ -90,7 +181,7 @@ public class Main {
 			}
 			switch(decision){
 			case 1:
-				consultasEco(cliente);
+				Funcionalidad1.consultasEco(cliente);
 				break;
 			case 2:
 				Funcionalidad2.elegirTipoBusqueda(cliente);
@@ -105,150 +196,7 @@ public class Main {
 
 		}
 	
-// -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
-	//Este método se encarga de presentar las opciones de consulta al usuario
-	public static void consultasEco(Cliente cliente) {
-	    int consulta = 0;
 
-	    print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
-	    print("1. Consulta general de productos\n" +
-	                   "2. Consulta de productos por categoria\n" +
-	                   "3. Consulta de membresias\n" +
-	                   "4. Volver");
-
-	    while (consulta < 1 || consulta > 4) {
-	        try {
-	            consulta = sc.nextInt();
-	            
-	            if (consulta < 1 || consulta > 4) {
-	                print("Opción no válida. Por favor, ingrese un número entre 1 y 4.");
-	                consulta = 0; 
-	            }
-	            sc.nextLine();
-	        } catch (Exception e) {
-	            print("Entrada no válida, por favor ingrese un número.");
-	            sc.nextLine(); 
-	        }
-	    }
-
-	    try {
-	        print("Opción seleccionada: " + consulta);
-
-	        switch (consulta) {
-	            case 1:
-	                if (Tienda.buscarTienda()) {
-	                    print("Selecciona una de las tiendas disponibles para ti:");
-	                    int contador = 1;
-	                    for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
-	                        System.out.println(contador + ". " + generales.getNombre());
-	                        contador++;
-	                    }
-	                } else {
-	                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-	                }
-	                break;
-
-	            case 2:
-	               
-	            	  if (Tienda.buscarTienda()) {
-		                    print("Selecciona una de las categorias disponibles en nuestras tiendas:");
-		                    int contador = 1;
-		            		for(Categoria tipo:Categoria.values()) {
-		            				print(contador +"."+tipo );
-		            				contador++;
-		            		}
-		            		busquedaCategoria(sc.nextInt());
-		            		int opcion = sc.nextInt();
-		                    Tienda tiendaSeleccionada = busquedaCategoria(sc.nextInt()).get(opcion - 1);
-		                    print("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
-		                    listaProductos(tiendaSeleccionada);
-		            		 sc.nextLine(); 
-		                } 
-	            	  	else {
-		                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-		                }
-		                break;
-	             
-
-	            case 3:
-	                if (Tienda.buscarTienda()) {
-	                    print("Consulta de membresías:");
-	                   
-	                } else {
-	                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-	                }
-	                break;
-
-	            case 4:
-	                escogerFuncionalidad(cliente);
-	                break;
-
-	            default:
-	                print("Opción no válida");
-	        }
-	    } catch (Exception e) {
-	        print("Entrada no válida, por favor ingrese otro número.");
-	        sc.nextLine();
-	    }
-	}
-
-	
-	public static ArrayList <Tienda> busquedaCategoria(int categoria) {
-		int desicionCategoria = categoria;
-		switch(desicionCategoria){
-		case 1:			
-			if (Tienda.categoriaTienda(Categoria.ALIMENTO).size() > 0) {
-				print("Estas tiendas tienen tu categoria");
-				ArrayList<Tienda> tiendas= Tienda.categoriaTienda(Categoria.ALIMENTO);
-				//Serializador.serializar(tiendas);
-				//Deserializador.deserealizar();
-				print("en cual Tienda desea consultar?");
-				int enumerado=1;
-				for(Tienda alimento:Tienda.categoriaTienda(Categoria.ALIMENTO)) {
-					print(enumerado+"."+alimento.getNombre());
-					enumerado++;
-				return tiendas;
-				}
-				
-				 
-	               
-	                
-				}
-				else {
-					print("No hay tiendas disponibles de la categoria ALIMENTO.");
-					print("1.Buscar otra categoria");
-					print("2.Volver");
-					decision = sc.nextInt();
-					if (decision == 1) {
-					mostrarProductos();
-					break;
-					}
-					else { 
-						break;
-						}
-				}
-		}
-		return null;	
-		
-	}
-	
-	public static void listaProductos(Tienda tienda) {
-	    ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-	    print("Hola");
-        if (productos.size() > 0) {
-            print("Estos son los productos disponibles en la tienda:");
-            int numProducto = 1;
-            for (Producto producto : productos) {
-                print(numProducto + ". " + producto.getNombre());
-                numProducto++;
-            }
-        }
-		
-		
-		
-		
-	}
-	
 	
 	
 	
