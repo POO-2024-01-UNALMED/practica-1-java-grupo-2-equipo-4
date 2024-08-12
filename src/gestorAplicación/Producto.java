@@ -2,7 +2,8 @@ package gestorAplicación;
 import java.time.*;
 import java.util.ArrayList;
 import java.io.Serializable; 
-
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Producto implements Serializable {
 //Atributos----------------------------------------------------------------------------------------------------
@@ -12,12 +13,12 @@ public class Producto implements Serializable {
 	private double precio;
 	private int id;
 	private Categoria categoria;
-	private String fechaPerecer;
+	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
-
+	private Categoria.estadoProducto estado=Categoria.estadoProducto.ACTIVO;
+	private LocalDate fechaActual;
 //-------------------------------------------------------------------------------------------------------------
-/*	Tienda del barrio 
-	mango      s 1000    120 und. disp ****/
+	//LocalDate.of(año,mes,dia)//
 	
 	
 	
@@ -63,18 +64,34 @@ public class Producto implements Serializable {
 		this.categoria=categoria;
 	}
 	
-	public String getFechaPerecer() {
+	public LocalDate getFechaPerecer() {
 		return fechaPerecer;
 	}
 	
-	public void setFechaPerecer(String fecha) {
+	public void setFechaPerecer(LocalDate fecha) {
 		this.fechaPerecer=fecha;
 	}
 	
+	public Categoria.estadoProducto getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Categoria.estadoProducto estado) {
+		this.estado = estado;
+	}
+		
+	public LocalDate getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(LocalDate fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
-	
+
 	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
@@ -86,6 +103,13 @@ public class Producto implements Serializable {
 	
 	public boolean verificarDevolucion() {
 		return true;
+	}
+	
+	public void  vencerProducto() {
+		//si esta caducado//
+		 if (getFechaPerecer()==fechaActual){
+			 this.estado= Categoria.estadoProducto.VENCIDO; 
+		 }
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

@@ -21,7 +21,8 @@ public enum Edades{
 
 public enum estadoProducto{
 	VENCIDO,
-	DEFECTUOSO;
+	DEFECTUOSO,
+	ACTIVO;
 }
 
  private final int identificador;
