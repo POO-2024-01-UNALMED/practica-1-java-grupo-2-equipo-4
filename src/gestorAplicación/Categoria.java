@@ -1,6 +1,11 @@
 package gestorAplicación;
 
+import java.util.ArrayList;
+
+
+
 public enum Categoria{
+	
 	 ALIMENTO(1),
 	 BEBIDA(2),
 	 LIMPIEZA(3),
@@ -12,6 +17,11 @@ public enum Edades{
 	MENORES,
 	ADULTOS;
 	
+}
+
+public enum estadoProducto{
+	VENCIDO,
+	DEFECTUOSO;
 }
 
  private final int identificador;
@@ -33,4 +43,6 @@ public enum Edades{
 	return null;
  }
  
+
+
 }

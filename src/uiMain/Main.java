@@ -9,12 +9,11 @@ import baseDatos.Deserializador;
 import baseDatos.Serializador;
 
 public class Main {
-	
-	
 	public static void print(String p) {
 		
 		System.out.println(p);
 	}
+	
 	
 	static Scanner sc = new Scanner(System.in);
 	public static int escaner() {
@@ -29,11 +28,10 @@ public class Main {
 		}
 		return p;
 	}
+	
 	public static ArrayList<Producto> ser;
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
-	
-	
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");

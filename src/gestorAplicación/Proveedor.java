@@ -1,5 +1,6 @@
 package gestorAplicación;
 
+
 import java.util.*;
 import java.io.Serializable;
 
@@ -76,5 +77,10 @@ public class Proveedor implements Serializable{
 		
 	}
 
+// metodo scanner y print -----------------------------------------------------------------------------------------
+
 //-------------------------------------------------------------------------------------------------------------
 }
+
+
+
