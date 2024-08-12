@@ -6,3 +6,4 @@ public enum TipoCaja {
 	private TipoCaja(String s){
 	    this.s=s;
 	}
+}

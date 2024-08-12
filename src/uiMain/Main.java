@@ -464,7 +464,7 @@ public class Main {
 	
 	// ----- FUNCIONALIDAD 4 ---------------------------------------------------
 	public static void func4(){
-		//funcionalidad 4
+		
 	}
 	
 	//----- FUNCIONALIDAD 5 ----------------------------------------------------

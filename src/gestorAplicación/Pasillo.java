@@ -9,6 +9,7 @@ public class Pasillo implements Serializable{
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
 	private Categoria categoria;
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
+	private Tienda tienda;
 	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
 
@@ -34,19 +35,29 @@ public class Pasillo implements Serializable{
 		this.categoria = categoria;
 	}
 	
+	public Tienda getTienda() {
+		return tienda;
+	}
+	public void setTienda(Tienda tienda) {
+		this.tienda = tienda;
+	}
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
 	
-	public Pasillo(String nombre, Categoria categoria) {
+
+	public Pasillo(String nombre, Categoria categoria,Tienda tienda) {
 		this.nombre = nombre;
 		this.categoria = categoria;
+		this.tienda = tienda;
 	}
 	
-	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria) {
+	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria, Tienda tienda) {
 		this.nombre = nombre;
 		this.productos = productos;
 		this.categoria = categoria;
+		this.tienda = tienda;
 	}
 
 //-------------------------------------------------------------------------------------------------------------

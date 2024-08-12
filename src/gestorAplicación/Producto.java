@@ -17,6 +17,8 @@ public class Producto implements Serializable {
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 	private Categoria.estadoProducto estado=Categoria.estadoProducto.ACTIVO;
 	private LocalDate fechaActual;
+	private Tienda tienda;
+	
 //-------------------------------------------------------------------------------------------------------------
 	//LocalDate.of(año,mes,dia)//
 	
@@ -88,13 +90,23 @@ public class Producto implements Serializable {
 		this.fechaActual = fechaActual;
 	}
 
+	public Tienda getTienda() {
+		return tienda;
+	}
+
+	public void setTienda(Tienda tienda) {
+		this.tienda = tienda;
+	}
+
+
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
 
-	public Producto(String nombre,Categoria categoria) {
+		public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
+		this.tienda=tienda; // referencia a tienda que pertenece el producto
 	}
 
 //-------------------------------------------------------------------------------------------------------------
@@ -107,9 +119,14 @@ public class Producto implements Serializable {
 	
 	public void  vencerProducto() {
 		//si esta caducado//
-		 if (getFechaPerecer()==fechaActual){
-			 this.estado= Categoria.estadoProducto.VENCIDO; 
-		 }
+		for (Producto producto: this.tienda.obtenerTodosLosProductos()) {
+			if (producto.getFechaPerecer()==producto.fechaActual){
+			 producto.setEstado(Categoria.estadoProducto.VENCIDO); 
+			 this.tienda.getProductosVencidos().add(producto);
+		    }
+		}
+		
+		 
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

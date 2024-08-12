@@ -20,7 +20,8 @@ public class Tienda implements Serializable{
 	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-
+	
+	private ArrayList <Producto> ProductosVencidos = new ArrayList <>();
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
@@ -134,6 +135,18 @@ public class Tienda implements Serializable{
 		this.bodegas = bodegas;
 	}
 
+
+	public ArrayList<Producto> getProductosVencidos() {
+		return ProductosVencidos;
+	}
+
+	public void setProductosVencidos(ArrayList<Producto> productosVencidos) {
+		ProductosVencidos = productosVencidos;
+	}
+
+	
+
+	
 //------------------------------------------------------------------------------------------------------------
 	
 //Contructores------------------------------------------------------------------------------------------------
@@ -387,6 +400,7 @@ public class Tienda implements Serializable{
 		public void contactarProvedor() {
 			
 		}
+		
 		public ArrayList <Producto> solicitarInventario() {
 			ArrayList <Producto> Inventario=new ArrayList<Producto>();
 			for (Pasillo i:bodegas) {
@@ -395,6 +409,14 @@ public class Tienda implements Serializable{
 				}
 			}
 			return Inventario;
+		}
+		
+		public ArrayList<Producto> obtenerTodosLosProductos() {
+	        ArrayList<Producto> todosLosProductos = new ArrayList<>();
+	        for (Pasillo pasillo : pasillos) {
+	            todosLosProductos.addAll(pasillo.getProductos());
+	        }
+	        return todosLosProductos;
 		}
 //------------------------------------------------------------------------------------------------------------
 
