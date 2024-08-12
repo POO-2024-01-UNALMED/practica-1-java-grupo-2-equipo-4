@@ -225,7 +225,7 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	/*for(int i=1;i<=5;i++){
+	for(int i=1;i<=5;i++){
  	switch(i){
 			case 1:
 			int x1=escaner();
@@ -239,9 +239,9 @@ public class Tienda implements Serializable{
 			int x3=scanner.nextInt();
 			crearPasillos(0,0,x3);
 			}
-	}*/
+	}
 	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-/*	public String crearPasillos(int x1,int x2,int x3) {
+	public String crearPasillos(int x1,int x2,int x3) {
 		ArrayList <Categoria> categorias=new ArrayList<>();
 		if(x1!=0){
 		for(int i=1;i<=x1;i++) {
@@ -322,17 +322,6 @@ public class Tienda implements Serializable{
 		Enums.TipoCaja tipocaja = Enums.TipoCaja.resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-      /*TipoCaja p=null;
-	while(p==null){
-	    String tipo = sc.nextLine();
-	    if (resolverTipoCaja(tipo,p)!=null){
-		p=resolverTipoCaja(tipo,p);
- 	        print("La caja es de tipo: "+p);
-	    }else {
-	        print("Ese no es un tipo válido de caja, introduzca uno válido");
-	    }
-	}*/
-	//SAQUE EL PRINT Y SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO SE MUESTRA ARRIBA.
 	//ANTES EN BASEDATOS:
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
