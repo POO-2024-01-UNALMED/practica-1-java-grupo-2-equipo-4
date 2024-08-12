@@ -35,11 +35,16 @@ public class Main {
 	
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
-	Tienda tienda= new Tienda("apilipona");
-	Cliente cliente = new Cliente(); 
-	cliente.setTienda(tienda);
-	escogerFuncionalidad(cliente);
+		Tienda tienda= new Tienda("apilipona");
+		Cliente cliente = new Cliente(); 
+		cliente.setTienda(tienda);
+		
+		escogerFuncionalidad(cliente);
 	}
+	
+	
+	
+	
 	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
@@ -72,6 +77,7 @@ public class Main {
 			switch(decision){
 			case 1:
 				consultasEco(cliente);
+				break;
 			case 2:
 				elegirTipoBusqueda(cliente);
 			case 3:
@@ -88,54 +94,77 @@ public class Main {
 // -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
 	//Este método se encarga de presentar las opciones de consulta al usuario
 	public static void consultasEco(Cliente cliente) {
-		
-        int consulta;
+	    int consulta = 0;
 
-        System.out.println("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
-        System.out.println("1. Consulta general de productos\n"
-        		+ "2. Consulta de productos por categoria\n"
-        		+ "3. Consulta de membresias");
-        try {
-            consulta = sc.nextInt();
-            switch (consulta) {
-                case 1:
-                	
-                   if(Tienda.buscarTienda()==true)
-					print("Lo sentimos, no hay tiendas disponibles en este momento.");
-					print("Lo sentimos, no hay tiendas disponibles en este momento.");
-                    break;
-                case 2:
-                	if(Tienda.buscarTienda()==true) {
-                 	   
-                		 print("Lo sentimos, no hay tiendas disponibles en este momento.");
-                 	   
-                    }else {
-                 	   print("Lo sentimos, no hay tiendas disponibles en este momento.");
-                 	   
-                    }
+	    print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
+	    print("1. Consulta general de productos\n" +
+	                   "2. Consulta de productos por categoria\n" +
+	                   "3. Consulta de membresias\n" +
+	                   "4. Volver");
 
+	    while (consulta < 1 || consulta > 4) {
+	        try {
+	            consulta = sc.nextInt();
+	            
+	            if (consulta < 1 || consulta > 4) {
+	                print("Opción no válida. Por favor, ingrese un número entre 1 y 4.");
+	                consulta = 0; 
+	            }
+	            sc.nextLine();
+	        } catch (Exception e) {
+	            print("Entrada no válida, por favor ingrese un número.");
+	            sc.nextLine(); 
+	        }
+	    }
 
-                    break;
-                case 3:
-                	if(Tienda.buscarTienda()==true) {
-                 	   
-                 	   
-                		 print("Lo sentimos, no hay tiendas disponibles en este momento.");
-                    }else {
-                 	   print("Lo sentimos, no hay tiendas disponibles en este momento.");
-                 	   
-                    }
-                    
-        
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-            }
-        } catch (Exception e) {
-            System.out.println("Entrada no válida, por favor ingrese otro número.");
-            sc.nextLine(); 
-        }
-    }
+	    try {
+	        print("Opción seleccionada: " + consulta);
+
+	        switch (consulta) {
+	            case 1:
+	                if (Tienda.buscarTienda()) {
+	                    print("Selecciona una de las tiendas disponibles para ti:");
+	                    int contador = 1;
+	                    for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
+	                        System.out.println(contador + ". " + generales.getNombre());
+	                        contador++;
+	                    }
+	                } else {
+	                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
+	                }
+	                break;
+
+	            case 2:
+	               
+	                    print("Consulta de productos por categoría:");
+	                  
+	                
+	              
+	                
+	                break;
+
+	            case 3:
+	                if (Tienda.buscarTienda()) {
+	                    print("Consulta de membresías:");
+	                   
+	                } else {
+	                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
+	                }
+	                break;
+
+	            case 4:
+	                escogerFuncionalidad(cliente);
+	                break;
+
+	            default:
+	                print("Opción no válida");
+	        }
+	    } catch (Exception e) {
+	        print("Entrada no válida, por favor ingrese otro número.");
+	        sc.nextLine();
+	    }
+	}
+
 	
 	
 	

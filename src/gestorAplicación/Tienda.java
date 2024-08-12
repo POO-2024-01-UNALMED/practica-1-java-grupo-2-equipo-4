@@ -139,7 +139,7 @@ public class Tienda implements Serializable{
 //Contructores------------------------------------------------------------------------------------------------
 
 	public Tienda(){
-		Tienda.getTiendas().add(this);
+		tiendas.add(this);
 	}
 
 	public Tienda(String nombre) {
@@ -193,7 +193,7 @@ public class Tienda implements Serializable{
 				break;
 			}
 		}
-		boolean resultado=pasillo | bodega;
+		boolean resultado=pasillo || bodega;
 		return resultado;
    }
 	
@@ -331,8 +331,10 @@ public class Tienda implements Serializable{
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
 	public static boolean buscarTienda() {
+		ArrayList<Tienda> tiendasRevisa = tiendas;
 		if(tiendas.size() > 0 ) {
-			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendas);
+			
+			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
 			 return tiendasRevisadas.size()>0;
 		}
 		else {
@@ -358,14 +360,17 @@ public class Tienda implements Serializable{
 		//Revisa si las tiendas que hay en la lista pasada tienen al menos un empleado o al menos un producto
 		//Su aplicacion se da cuando el cliente escoge su categoria y se da una lista con las tiendas
 		//este metodo asegura que si sean posibles para que el cliente vaya
-		public static ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp){
-			for (Tienda i:tiendaDisp) {
-				if (i.getEmpleados().size()==0 | i.disponibilidadProductos()==false) {
-					tiendaDisp.remove(i);
-				}
-			}
-			return tiendaDisp;
+		public static ArrayList<Tienda> revisionTienda(ArrayList<Tienda> tiendaDisp) {
+		    Iterator<Tienda> iterator = tiendaDisp.iterator(); // Obtener un iterador para la lista
+		    while (iterator.hasNext()) {
+		        Tienda tienda = iterator.next();
+		        if (tienda.getEmpleados().size() == 0 || !tienda.disponibilidadProductos()) {
+		            iterator.remove(); 
+		        }
+		    }
+		    return tiendaDisp;
 		}
+
 		
 		//Devuelve los productos disponibles en los pasillos de la tienda, pero parece que
 		//Jordan queria hacerlo segun la categoria, falta arreglar eso
