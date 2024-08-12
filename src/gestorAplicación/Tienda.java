@@ -240,7 +240,14 @@ public class Tienda implements Serializable{
 			crearPasillos(0,0,x3);
 			}
 	}
-	int i=1;
+	
+	public void crearPasillos(int x2,String nom) {
+		Categoria cat=Categoria.values()[x2-1];
+		Pasillo pasillo=new Pasillo(x2,cat);
+		pasillos.add(pasillo);
+	//Así irá en el main:
+      /*Tienda tien = Deserializador.deserealizar()[0];
+      	int i=1;
 	while(true){
 		print("que categorias tendra el pasillo "+i+"?");
 		int n=1;
@@ -250,42 +257,23 @@ public class Tienda implements Serializable{
 		}
 		int x2=escaner();
 		print("nombre del pasillo "+i+":");
-		String nom
-		crearPasillos(x2,String nom);
+		String nom=sc.nextline();
+		tien.crearPasillos(x2,nom);
+		print("pasillo creado");
 		i++;
 	}
-	//El print "cuantos pasillos desea crear?" hacer en el main y el input() "x1", se puede pasar como parametro a crearPasillos.
-	public void crearPasillos(int x2) {
-		ArrayList <Categoria> categorias=new ArrayList<>();
-		categorias.add(Categoria.values()[x2-1]);
+	if (this.disponibilidadProductos()==false) {
+		print(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+		print("desea llamar a un proveedor?\n1.Si\n2.No");
+		int x3=escaner();
+			
+		if(x3==1) {
+			this.llamarProveedor();
+		}
+			
+	}*/	
+	}
 
-		int n=1;
-		for(Categoria k:categorias) {
-			
-			Categoria cat=k;
-			String x2=scanner.nextLine();
-			Pasillo pasillo=new Pasillo(x2,cat);
-			pasillos.add(pasillo);
-			System.out.println("pasillo creado");
-			n++;
-		}
-			return ;
-		if (x3!=0){
-		if (this.disponibilidadProductos()==false) {
-			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
-			int x3=scanner.nextInt();
-			
-			if(x3==1) {
-				this.llamarProveedor();
-			}
-			
-		}
-			return;
-		}
-		
-		
-	}*/
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
 		int n=1;
