@@ -3,12 +3,14 @@ import java.time.*;
 import java.util.ArrayList;
 
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.EstadoProducto;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+
 
 public class Producto implements Serializable {
 //Atributos----------------------------------------------------------------------------------------------------
@@ -20,7 +22,7 @@ public class Producto implements Serializable {
 	private Enums.Categoria categoria;
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
-	private Enums.estadoProducto estado=Enums.estadoProducto.ACTIVO;
+	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private LocalDate fechaActual;
 	private Tienda tienda;
 	
@@ -79,11 +81,11 @@ public class Producto implements Serializable {
 		this.fechaPerecer=fecha;
 	}
 	
-	public Enums.estadoProducto getEstado() {
+	public EstadoProducto getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Enums.estadoProducto estado) {
+	public void setEstado(EstadoProducto estado) {
 		this.estado = estado;
 	}
 		
@@ -137,7 +139,7 @@ public class Producto implements Serializable {
 		//si esta caducado//
 		for (Producto producto: this.tienda.obtenerTodosLosProductos()) {
 			if (producto.getFechaPerecer()==producto.fechaActual){
-			 producto.setEstado(Enums.estadoProducto.VENCIDO); 
+			 producto.setEstado(EstadoProducto.VENCIDO); 
 			 this.tienda.getProductosVencidos().add(producto);
 		    }
 		}

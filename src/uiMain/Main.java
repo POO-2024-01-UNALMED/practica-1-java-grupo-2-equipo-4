@@ -8,6 +8,7 @@ import baseDatos.Serializador;
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.*;
 
 public class Main {
 	public static void print(String p) {
