@@ -225,7 +225,7 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	for(int i=1;i<=5;i++){
+	/*for(int i=1;i<=5;i++){
  	switch(i){
 			case 1:
 			int x1=escaner();
