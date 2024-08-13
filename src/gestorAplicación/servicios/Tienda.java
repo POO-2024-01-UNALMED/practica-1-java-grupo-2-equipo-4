@@ -180,7 +180,7 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static ArrayList<Producto> buscarProductos(Cliente cliente, Enums.Categoria categoria,ArrayList<Producto> productos) {
+	public static ArrayList<Producto> buscarProductos(Cliente cliente, Categoria categoria,ArrayList<Producto> productos) {
 		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
 				if (j.getCategoria()==categoria){
@@ -229,7 +229,7 @@ public class Tienda implements Serializable{
 		}
 	}
 	
-	public void crearPasillos(int x2,String nom) {
+	/*public void crearPasillos(int x2,String nom) {
 		Categoria cat=Categoria.values()[x2-1];
 		Pasillo pasillo=new Pasillo(x2,cat);
 		pasillos.add(pasillo);
@@ -261,7 +261,7 @@ public class Tienda implements Serializable{
 		}
 			
 	}*/
-	}
+
 
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
@@ -389,6 +389,35 @@ public class Tienda implements Serializable{
 	            todosLosProductos.addAll(pasillo.getProductos());
 	        }
 	        return todosLosProductos;
+		}
+	
+		public static StringBuilder imprimirProducto(int largo,Producto producto) {
+			StringBuilder texto=new StringBuilder();
+			texto.append(" ");
+			texto.append(" ");
+			texto.append(producto.getNombre());
+			largo=(largo-texto.length())+4;
+			for(int i=0;i<largo;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append(" ");
+			texto.append(" ");
+			texto.append(producto.getMarca());
+			largo=(largo-texto.length())+4;
+			for(int i=0;i<largo;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			return texto;
+		}
+		
+		public void agregarProducto(Producto p,String pasillo) {
+			for (Pasillo i:pasillos) {
+				if (i.getNombre()==pasillo) {
+					i.getProductos().add(p);
+				}
+			}
 		}
 //------------------------------------------------------------------------------------------------------------
 

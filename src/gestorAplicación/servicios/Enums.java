@@ -5,17 +5,23 @@ public enum Enums{
 	SOLO_EXISTO_PARA_QUE_ESTO_NO_ESTALLE_NO_ME_BORRES;
 
 public static enum Categoria{
-	 ALIMENTO(1),
-	 BEBIDA(2),
-	 LIMPIEZA(3),
-	 PERSONAL(4),
-	 HOGAR(5),
-	 ELECTRONICO(6);
+	 ALIMENTO(1,"Alimento"),
+	 BEBIDA(2,"Bebida"),
+	 LIMPIEZA(3,"Limpieza"),
+	 PERSONAL(4,"Personal"),
+	 HOGAR(5,"Hogar"),
+	 ELECTRONICO(6,"Electronico");
 	
 	 private final int identificador;
+	 private final String texto;
 	 
-	 private Categoria(int identificador) {
+	 private Categoria(int identificador,String texto) {
 		 this.identificador=identificador;
+		 this.texto=texto;
+	 }
+	 
+	 public String getTexto() {
+		 return texto;
 	 }
 	 
 	 public int getIdentificador() {

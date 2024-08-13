@@ -25,17 +25,23 @@ public class Funcionalidad2 {
 			print("Estas son las categorias de los productos de nuestras tiendas: ");
 			int enumerado = 1;
 			for(Categoria tipo:Categoria.values()) {
-					print(enumerado +". "+tipo);
+					print(enumerado +". "+tipo.getTexto());
 					enumerado++;			
 			}
 			print(enumerado+". Volver");
-			int decisionCategoria = escaner();;
+			int decisionCategoria = escaner(enumerado);
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			ArrayList<Producto> productos=new ArrayList<Producto>();
 			productos= Tienda.buscarProductos(cliente,categoria,productos);
+			int mayor=0;
 			for (Producto p:productos) {
-				System.out.println(p);
-			}		
+				if (mayor<p.getNombre().length()) {
+					mayor=p.getNombre().length();
+				}
+			}
+			for (Producto p:productos) {
+				System.out.println(Tienda.imprimirProducto(mayor,p));
+			}
 		case 2:
 			print("Introduzca el nombre del producto que desea buscar: ");
 			sc.nextLine();

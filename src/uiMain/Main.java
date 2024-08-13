@@ -55,7 +55,7 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
-		Producto producto = new Producto("cebolla",Categoria.ALIMENTO,tienda,"13/08/2024");
+		Producto producto = new Producto("ceboll",Categoria.ALIMENTO,tienda,"13/08/2024");
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -148,6 +148,8 @@ public class Main {
 				t2.setEmpleados(duo2);
 				t3.setEmpleados(duo1);
 		cliente.setTienda(tienda);
+		tienda.getPasillos().add(p1);
+		tienda.agregarProducto(producto, "A7");
 		escogerFuncionalidad(cliente);
 	}
 	
