@@ -205,6 +205,9 @@ public class Main {
 	public static void mostrarProductos(){
 		// buscar por nombre o categoria 
 		// arrays
+		//En esta parte del metodo se hace la impresion de las categorias
+		//Luego el usuario escogera una de las categorias para luego 
+		//buscar si existen productos con esa categoria
 		int enumerado = 1;
 		for(Categoria tipo:Categoria.values()) {
 				print(enumerado +"."+tipo );
