@@ -1,13 +1,14 @@
 package uiMain;
-import gestorAplicación.*;
-import gestorAplicación.Enums.Categoria;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
+import gestorAplicación.servicios.*;
+import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.*;
 
 public class Main {
 	public static void print(String p) {
@@ -462,7 +463,7 @@ public class Main {
 	
 	// ----- FUNCIONALIDAD 4 ---------------------------------------------------
 	public static void func4(){
-		
+		// prueba
 	}
 	
 	//----- FUNCIONALIDAD 5 ----------------------------------------------------

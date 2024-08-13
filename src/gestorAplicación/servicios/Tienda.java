@@ -1,8 +1,11 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 import java.io.Serializable;
 import java.util.*;
 
-import gestorAplicación.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Empleado;
+import gestorAplicación.sujetos.Persona;
 
 public class Tienda implements Serializable{
 //Atributos---------------------------------------------------------------------------------------------------
@@ -225,26 +228,26 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	for(int i=1;i<=5;i++){
- 	switch(i){
-			case 1:
-			int x1=escaner();
-			crearPasillos(x1,0,0);
-			case 2:
-			System.out.println("nombre del pasillo "+n+" :");
-			crearPasillos(0,x2,0);
-			case 3:
-			System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-			System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
-			int x3=scanner.nextInt();
-			crearPasillos(0,0,x3);
-			}
-	}
+	//for(int i=1;i<=5;i++){
+ 	//switch(i){
+			//case 1:
+			//int x1=escaner();
+			//crearPasillos(x1,0,0);
+			//case 2:
+			//System.out.println("nombre del pasillo "+n+" :");
+			//crearPasillos(0,x2,0);
+			//case 3:
+			//System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
+			//System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
+			//int x3=scanner.nextInt();
+			//crearPasillos(0,0,x3);
+			//}
+	//}
 	
-	public void crearPasillos(int x2,String nom) {
-		Categoria cat=Categoria.values()[x2-1];
-		Pasillo pasillo=new Pasillo(x2,cat);
-		pasillos.add(pasillo);
+	//public void crearPasillos(int x2,String nom) {
+		//Categoria cat=Categoria.values()[x2-1];
+		//Pasillo pasillo=new Pasillo(x2,cat);
+		//pasillos.add(pasillo);
 	//Así irá en el main:
       /*Tienda tien = Deserializador.deserealizar()[0];
       	int i=1;
@@ -272,7 +275,7 @@ public class Tienda implements Serializable{
 		}
 			
 	}*/	
-	}
+
 
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {

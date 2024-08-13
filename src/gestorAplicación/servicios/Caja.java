@@ -1,4 +1,8 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
+
+import gestorAplicación.servicios.Enums.TipoCaja;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Empleado;
 
 public class Caja {
 //Atributos----------------------------------------------------------------------------------------------------

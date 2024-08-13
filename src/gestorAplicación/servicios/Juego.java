@@ -1,4 +1,4 @@
-package gestorAplicación;
+package gestorAplicación.servicios;
 
 public interface Juego{
 	void tresEnRaya();

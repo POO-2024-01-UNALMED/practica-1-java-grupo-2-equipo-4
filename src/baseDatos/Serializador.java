@@ -4,11 +4,12 @@ import java.io.File;
 import java.io.FileOutputStream;  
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Tienda;
+
 import java.io.IOException; 
 import java.io.FileNotFoundException;
-
-import gestorAplicación.Producto;
-import gestorAplicación.Tienda;
 
 public class Serializador {
 	private static File archivo = new File(""/*src\\baseDatos\\temp*/);

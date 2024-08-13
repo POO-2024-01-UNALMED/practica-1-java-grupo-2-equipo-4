@@ -1,4 +1,6 @@
-package gestorAplicación;
+package gestorAplicación.sujetos;
+
+import gestorAplicación.servicios.Tienda;
 
 public class Persona {
 //Atributos----------------------------------------------------------------------------------------------------

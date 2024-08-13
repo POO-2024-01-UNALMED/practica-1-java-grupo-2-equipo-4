@@ -1,16 +1,15 @@
-package gestorAplicación;
+package gestorAplicación.sujetos;
+import gestorAplicación.servicios.Tienda;
 
-public class Domiciliario extends Empleado{
-	
-	String vehiculo;
+public class Cajero extends Empleado {
 	//Contructores------------------------------------------------------------------------------------------------
 
-	public Domiciliario() {
+	public Cajero() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Domiciliario(String nombre, int id, int edad, String genero, double liquidacion, Tienda tienda,
+	public Cajero(String nombre, int id, int edad, String genero, double liquidacion, Tienda tienda,
 			boolean prestacionSalud, boolean prestacionPension) {
 		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension);
 		// TODO Auto-generated constructor stub

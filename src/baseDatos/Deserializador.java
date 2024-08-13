@@ -5,9 +5,9 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream; 
 import java.util.ArrayList;
 
-import gestorAplicación.Enums;
-import gestorAplicación.Producto;
-import gestorAplicación.Tienda;
+import gestorAplicación.servicios.Enums;
+import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Tienda;
 import uiMain.Main;
 
 import java.io.IOException; 

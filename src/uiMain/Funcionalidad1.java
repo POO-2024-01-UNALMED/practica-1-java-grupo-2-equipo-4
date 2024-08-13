@@ -3,10 +3,10 @@ package uiMain;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import gestorAplicación.Cliente;
-import gestorAplicación.Producto;
-import gestorAplicación.Tienda;
-import gestorAplicación.Enums.Categoria;
+import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Tienda;
+import gestorAplicación.servicios.Enums.Categoria;
 
 public class Funcionalidad1 {
 	public static void print(String p) {
