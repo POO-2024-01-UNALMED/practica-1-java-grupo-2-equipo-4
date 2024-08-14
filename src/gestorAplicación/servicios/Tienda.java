@@ -244,41 +244,14 @@ public class Tienda implements Serializable{
 		Categoria cat=Categoria.values()[x2-1];
 		Pasillo pasillo=new Pasillo(nom,cat);
 		pasillos.add(pasillo);
-		//Así irá en el main:
-		
-	/*Tienda tien = Deserializador.deserealizar()[0];
-      	int i=1;
-	while(true){
-		print("que categorias tendra el pasillo "+i+"?");
-		int n=1;
-		for(Categoria j:Categoria.values()) {
-			print(n+"."+j);
-			n++;
-		}
-		int x2=escaner();
-		print("nombre del pasillo "+i+":");
-		String nom=sc.nextline();
-		tien.crearPasillos(x2,nom);
-		print("pasillo creado");
-		i++;
-	}
-	if (this.disponibilidadProductos()==false) {
-		print(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-		print("desea llamar a un proveedor?\n1.Si\n2.No");
-		int x3=escaner();
-			
-		if(x3==1) {
-			this.llamarProveedor();
-		}
-	*/		
 	}
 	
 
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
 		int n=1;
-		String s= ""; 
-		for(Proveedor i:getProveedores()) {
+		String s= "";
+		for(Proveedor i:this.getProveedores()) {
 			s+=n+"."+i+"\n";
 			n++;
 		}
@@ -454,6 +427,11 @@ public class Tienda implements Serializable{
 				 getProductosVencidos().add(producto);
 			    }			
 			}
+		}
+		
+		public float calcularValor() {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 		public final String toString() {
 			return this.getNombre(); 

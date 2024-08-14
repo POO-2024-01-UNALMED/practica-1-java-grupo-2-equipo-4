@@ -2,6 +2,9 @@ package gestorAplicación.servicios;
 
 
 import java.util.*;
+
+import gestorAplicación.servicios.Enums.Categoria;
+
 import java.io.Serializable;
 
 public class Proveedor implements Serializable{
@@ -9,7 +12,7 @@ public class Proveedor implements Serializable{
 	
 	private String nombre;
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
-	private Enums tipo;
+	private Enums.Categoria tipo;
 	private Tienda tienda;
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private static final long serialVersionUID = 1L;
@@ -33,11 +36,11 @@ public class Proveedor implements Serializable{
 		this.entrega=entrega;
 	}
 	
-	public Enums getTipo() {
+	public Enums.Categoria getTipo() {
 		return tipo;
 	}
 	
-	public void setTipo(Enums tipo) {
+	public void setTipo(Enums.Categoria tipo) {
 		this.tipo=tipo;
 	}
 	
@@ -61,12 +64,13 @@ public class Proveedor implements Serializable{
 
 //Constructores------------------------------------------------------------------------------------------------
 
-	public Proveedor(String nombre, ArrayList<Producto> entrega, Enums tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
 	super();
 	this.nombre = nombre;
 	this.entrega = entrega;
 	this.tipo = tipo;
 	this.tienda = tienda;
+	tienda.getProveedores().add(this);
 	this.pasillos = pasillos;
 }
 //-------------------------------------------------------------------------------------------------------------
@@ -75,6 +79,10 @@ public class Proveedor implements Serializable{
 
 	public void informarRebastecimiento(Producto producto) {
 		
+	}
+	
+	public String toString(){
+		return this.nombre+"con categoria"+this.tipo;
 	}
 
 // metodo scanner y print -----------------------------------------------------------------------------------------

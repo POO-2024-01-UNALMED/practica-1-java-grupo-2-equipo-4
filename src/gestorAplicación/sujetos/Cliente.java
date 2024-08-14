@@ -1,5 +1,6 @@
 package gestorAplicación.sujetos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicación.servicios.Carrito;
@@ -7,7 +8,11 @@ import gestorAplicación.servicios.Enums;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Tienda;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6750540194444988134L;
 //Atributos----------------------------------------------------------------------------------------------------
 	private Enums.Edades membresia;
 	private float dinero;
