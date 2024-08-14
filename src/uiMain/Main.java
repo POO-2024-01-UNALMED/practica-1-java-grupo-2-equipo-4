@@ -16,7 +16,7 @@ public class Main {
 	}
 	
 	
-	static Scanner sc = new Scanner(System.in);
+	public static Scanner sc = new Scanner(System.in);
 	public static int escaner() {
 		int p;
 		try{

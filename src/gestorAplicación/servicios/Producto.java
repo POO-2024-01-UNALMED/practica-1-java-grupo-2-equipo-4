@@ -23,7 +23,7 @@ public class Producto implements Serializable {
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
-	private LocalDate fechaActual;
+	private static LocalDate fechaActual=LocalDate.now();
 	private Tienda tienda;
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ public class Producto implements Serializable {
 			if (producto.getFechaPerecer()==producto.fechaActual){
 			 producto.setEstado(EstadoProducto.VENCIDO); 
 			 this.tienda.getProductosVencidos().add(producto);
-		    }
+		    }			
 		}
 		
 		 
