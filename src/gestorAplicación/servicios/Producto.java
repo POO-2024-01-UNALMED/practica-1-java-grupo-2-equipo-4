@@ -109,19 +109,28 @@ public class Producto implements Serializable {
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
-		public Producto(String nombre,Categoria categoria) {
+	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
-		}
-		public Producto(String nombre,Categoria categoria,Tienda tienda) {
+	}
+	
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id) {
+		this(nombre,categoria);
+		this.precio=precio;
+		this.marca=marca;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+	}
+	
+	public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 		this.tienda=tienda; // referencia a tienda que pertenece el producto
 	}
 	
-	public Producto(String nombre,Categoria categoria,Tienda tienda,String fechaPerecer) {
-		this.categoria = categoria;
-		this.nombre= nombre;
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id) {
+		this(nombre, marca, precio, categoria,id);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 

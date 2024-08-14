@@ -1,4 +1,6 @@
 package uiMain;
+import static uiMain.Main.print;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,6 +26,7 @@ public class Main {
 		}
 		catch(Exception e) {
 			print("Este no es un numero valido");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner();
 		}
@@ -37,11 +40,13 @@ public class Main {
 		}
 		catch(Exception e) {
 			print("Este no es un numero valido");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner(rango);
 		}
 		if (p<1 || p>rango) {
 			print("Este numero esta fuera del rango");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner(rango);
 		}
@@ -55,7 +60,8 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
-		Producto producto = new Producto("ceboll",Categoria.ALIMENTO,tienda,"13/08/2024");
+		Producto producto = new Producto("Cebolla",null,0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
+		Producto producto12 = new Producto("Cebolla",null,0,Categoria.ALIMENTO,tienda,"13/08/2024",5);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -76,14 +82,14 @@ public class Main {
 				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
 				
 				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan", Categoria.ALIMENTO);
+				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2);
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
 				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana", Categoria.ALIMENTO);
+				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3);
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 				// Crear listas para cada categoría
@@ -150,25 +156,44 @@ public class Main {
 		cliente.setTienda(tienda);
 		tienda.getPasillos().add(p1);
 		tienda.agregarProducto(producto, "A7");
+		tienda.agregarProducto(producto12, "A7");
 		escogerFuncionalidad(cliente);
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
-			print("Bienvenido a My_Tiendita, que desea hacer?");
-			print("1. Ecosistema de Consultas Personalizadas\n"
-					+ "2. Escoger productos\n"
-					+ "3. Pagar recibos pendientes\n"
-					+ "4. \n"
-					+ "5. Personalizar y modificar tiendas\n"
-					+ "6. Terminar");
+			print("""
+				    ________________________
+				   /                        \\
+				  /                          \\
+				 /____________________________\\
+				 |  ______   ______   ______  |
+				 | |      | |      | |      | |
+				 | |  []  | |  []  | |  []  | |   My_Tiendita
+				 | |______| |______| |______| |
+				 |                            |
+				 |            ____            |
+				 |           |    |           |
+				 |___________|____|___________|
+				    """);
+			print("Bienvenido a My_Tiendita, ¿que desea hacer?");
+			print("");
+			print(" 1. Ecosistema de Consultas Personalizadas\n"
+					+ " 2. Escoger productos\n"
+					+ " 3. Pagar recibos pendientes\n"
+					+ " 4. \n"
+					+ " 5. Personalizar y modificar tiendas\n"
+					+ " 6. Terminar");
+			print("");
+			System.out.print("Escoja un numero: ");
 			while (!boleano){
 				try{
 					decision=sc.nextInt();
 				}
 				catch(Exception e) {
-					print("Este no es un numero valido");
+					print(" Este no es un numero valido");
+					System.out.print(" Introduzca otro numero: ");
 					sc.nextLine();
 					continue;
 				}
@@ -178,10 +203,12 @@ public class Main {
 					 }
 				}
 				if (boleano==false){
-					 print("El numero esta fuera del rango");
+					 print(" El numero esta fuera del rango");
+					 System.out.print(" Introduzca otro numero: ");
 					 continue;
 				}
 			}
+			print("");
 			switch(decision){
 			case 1:
 				Funcionalidad1.consultasEco(cliente);
