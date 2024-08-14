@@ -17,7 +17,7 @@ public class Deserializador {
 	private static File rutaTemp = new File("");
 	
 	@SuppressWarnings("unchecked")
-	public static void deserealizar() {
+	public static void deserializar() {
 		try {
 			FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
 			ObjectInputStream o = new ObjectInputStream(f);
@@ -40,7 +40,7 @@ public class Deserializador {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }

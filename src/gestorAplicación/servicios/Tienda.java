@@ -240,9 +240,9 @@ public class Tienda implements Serializable{
 		}
 	}
 	
-	/*public void crearPasillos(int x2,String nom) {
+	public void crearPasillos(int x2,String nom) {
 		Categoria cat=Categoria.values()[x2-1];
-		Pasillo pasillo=new Pasillo(x2,cat);
+		Pasillo pasillo=new Pasillo(nom,cat);
 		pasillos.add(pasillo);
 		//Así irá en el main:
 		
@@ -270,9 +270,9 @@ public class Tienda implements Serializable{
 		if(x3==1) {
 			this.llamarProveedor();
 		}
-			
-	}*/
-
+	*/		
+	}
+	
 
 	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
@@ -454,8 +454,9 @@ public class Tienda implements Serializable{
 				 getProductosVencidos().add(producto);
 			    }			
 			}
-			
-			 
+		}
+		public final String toString() {
+			return this.getNombre(); 
 		}
 //------------------------------------------------------------------------------------------------------------
 
