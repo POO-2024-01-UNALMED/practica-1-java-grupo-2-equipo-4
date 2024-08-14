@@ -157,7 +157,14 @@ public class Main {
 		tienda.getPasillos().add(p1);
 		tienda.agregarProducto(producto, "A7");
 		tienda.agregarProducto(producto12, "A7");
+		ArrayList<Tienda> tiendas=new ArrayList<>();
+		tiendas.add(t1);
+		tiendas.add(t2);
+		tiendas.add(t3);
+		tiendas.add(t4);
+		Serializador.serializar(tiendas);
 		escogerFuncionalidad(cliente);
+		
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {

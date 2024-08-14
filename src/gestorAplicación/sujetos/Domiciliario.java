@@ -1,9 +1,10 @@
 package gestorAplicación.sujetos;
 
+import java.io.Serializable;
+
 import gestorAplicación.servicios.Tienda;
 
-public class Domiciliario extends Empleado{
-	
+public class Domiciliario extends Empleado implements Serializable{
 	String vehiculo;
 	//Contructores------------------------------------------------------------------------------------------------
 
