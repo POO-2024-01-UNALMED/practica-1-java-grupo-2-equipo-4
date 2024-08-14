@@ -1,9 +1,15 @@
 package gestorAplicación.sujetos;
 
+import java.io.Serializable;
+
 import gestorAplicación.servicios.Tienda;
 
-public class Domiciliario extends Empleado{
+public class Domiciliario extends Empleado implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1708181192964755820L;
 	String vehiculo;
 	//Contructores------------------------------------------------------------------------------------------------
 
