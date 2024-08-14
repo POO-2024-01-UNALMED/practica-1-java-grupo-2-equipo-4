@@ -181,10 +181,20 @@ public class Tienda implements Serializable{
 	static Scanner scanner = new Scanner(System.in);
 	
 	public static ArrayList<Producto> buscarProductos(Cliente cliente, Categoria categoria,ArrayList<Producto> productos) {
+		ArrayList<Integer> ids=new ArrayList<>();
 		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
 				if (j.getCategoria()==categoria){
+					boolean confirmacion=true;
+					for(int p:ids) {
+						if(j.getId()==p) {
+							confirmacion=false;
+						}
+					}
+					ids.add(j.getId());
+					if(confirmacion) {
 					productos.add(j);
+					}
 				}
 			}
 		}
@@ -391,21 +401,36 @@ public class Tienda implements Serializable{
 	        return todosLosProductos;
 		}
 	
-		public static StringBuilder imprimirProducto(int largo,Producto producto) {
+		public static StringBuilder imprimirProducto(int mayorN,int mayorM,int mayorP,Producto producto) {
 			StringBuilder texto=new StringBuilder();
-			texto.append(" ");
-			texto.append(" ");
+			texto.append("  ");
 			texto.append(producto.getNombre());
-			largo=(largo-texto.length())+4;
-			for(int i=0;i<largo;i++) {
+			if(producto.getNombre()!=null) {
+			mayorN=(mayorN-texto.length())+4;
+			}
+			else {
+			mayorN=mayorN-2;
+			}
+			for(int i=0;i<mayorN;i++) {
 				texto.append(" ");
 			}
 			texto.append("|");
-			texto.append(" ");
-			texto.append(" ");
+			texto.append("  ");
 			texto.append(producto.getMarca());
-			largo=(largo-texto.length())+4;
-			for(int i=0;i<largo;i++) {
+			if(producto.getMarca()!=null) {
+			mayorM=mayorM+2-producto.getMarca().length();
+			}
+			else {
+			mayorM=mayorM-2;
+			}
+			for(int i=0;i<mayorM;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append("  ");
+			texto.append(producto.getPrecio());
+			mayorP=mayorP+2-(""+producto.getPrecio()).length();
+			for(int i=0;i<mayorP;i++) {
 				texto.append(" ");
 			}
 			texto.append("|");
