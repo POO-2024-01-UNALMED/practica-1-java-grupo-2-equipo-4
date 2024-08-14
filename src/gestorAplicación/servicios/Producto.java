@@ -144,17 +144,7 @@ public class Producto implements Serializable {
 		return true;
 	}
 	
-	public void  vencerProducto() {
-		//si esta caducado//
-		for (Producto producto: this.tienda.obtenerTodosLosProductos()) {
-			if (producto.getFechaPerecer()==producto.fechaActual){
-			 producto.setEstado(EstadoProducto.VENCIDO); 
-			 this.tienda.getProductosVencidos().add(producto);
-		    }			
-		}
-		
-		 
-	}
+
 	
 	@Override
 	public String toString() {

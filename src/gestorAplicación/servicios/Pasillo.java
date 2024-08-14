@@ -90,9 +90,7 @@ public class Pasillo implements Serializable{
 	public void agregarProductos(ArrayList <Producto> producto) {
 		getProductos().addAll(producto);
 	}
-	public ArrayList<Producto> totalProductos(){
-		
-	}
+	
 //-------------------------------------------------------------------------------------------------------------
 }
  

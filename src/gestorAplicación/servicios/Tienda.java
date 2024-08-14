@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.sujetos.Persona;
@@ -443,6 +444,18 @@ public class Tienda implements Serializable{
 					i.getProductos().add(p);
 				}
 			}
+		}
+		
+		public void  vencerProducto() {
+			//si esta caducado//
+			for (Producto producto: obtenerTodosLosProductos()) {
+				if (producto.getFechaPerecer()==producto.getFechaActual()){
+				 producto.setEstado(EstadoProducto.VENCIDO); 
+				 getProductosVencidos().add(producto);
+			    }			
+			}
+			
+			 
 		}
 //------------------------------------------------------------------------------------------------------------
 
