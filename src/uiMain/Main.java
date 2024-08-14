@@ -157,6 +157,12 @@ public class Main {
 		tienda.getPasillos().add(p1);
 		tienda.agregarProducto(producto, "A7");
 		tienda.agregarProducto(producto12, "A7");
+		ArrayList<Tienda> tiendas=new ArrayList<>();
+		tiendas.add(t1);
+		tiendas.add(t2);
+		tiendas.add(t3);
+		tiendas.add(t4);
+		Serializador.serializar(tiendas);
 		escogerFuncionalidad(cliente);
 		Proveedor pro=new Proveedor("Colanta", electronico, Categoria.ALIMENTO, t3, null);
 		Proveedor pro2=new Proveedor("Alqueria", bebidas, Categoria.BEBIDA, t3, null);
@@ -227,7 +233,7 @@ public class Main {
 			case 4:
 				
 			case 5:
-				Funcionalidad5.personalizarTienda(cliente);
+				Funcionalidad5.personalizarTienda();
 				decision=6;
 			}
 		 } while (decision!=6);
