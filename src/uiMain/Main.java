@@ -220,7 +220,8 @@ public class Main {
 			case 4:
 				
 			case 5:
-			
+				Funcionalidad5.personalizarTienda();
+				decision=6;
 			}
 		 } while (decision!=6);
 
@@ -250,7 +251,7 @@ public class Main {
 				print("Estas tiendas tienen tu categoria");
 				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
 				//Serializador.serializar(tiendas);
-				Deserializador.deserealizar();
+				Deserializador.deserializar();
 				System.out.print(Tienda.getTiendas());
 				print("en cual Tienda desea consultar?");
 				enumerado=1;
