@@ -139,7 +139,7 @@ public class Producto implements Serializable {
 	public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
-		this.tienda=tienda; // referencia a tienda que pertenece el producto
+		this.tienda=tienda;// referencia a tienda que pertenece el producto
 	}
 	
 	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id) {

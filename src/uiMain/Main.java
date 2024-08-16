@@ -68,7 +68,9 @@ public class Main {
 		Cliente cliente = new Cliente(); 
 		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
 		producto.setTamaño(Tamaño.GRANDE);
-		Producto producto12 = new Producto("Cebolla","marquita",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
+		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
+		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1);
+		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -164,6 +166,8 @@ public class Main {
 		tienda.getPasillos().add(p1);
 		tienda.agregarProducto(producto, "A7");
 		tienda.agregarProducto(producto12, "A7");
+		tienda.agregarProducto(producto13, "A7");
+		tienda.agregarProducto(producto14, "A7");
 		ArrayList<Tienda> tiendas=new ArrayList<>();
 		tiendas.add(t1);
 		tiendas.add(t2);
@@ -198,6 +202,7 @@ public class Main {
 				 |           |    |           |
 				 |___________|____|___________|
 				    """);
+			lineas();
 			print("Bienvenido a My_Tiendita, ¿que desea hacer?");
 			print("");
 			print(" 1. Ecosistema de Consultas Personalizadas\n"
