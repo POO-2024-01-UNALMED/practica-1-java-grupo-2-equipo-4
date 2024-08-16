@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.Tamaño;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -18,8 +19,9 @@ public class Producto implements Serializable {
 	private String nombre;
 	private String marca;
 	private double precio;
+	private Tamaño tamaño;
 	private int id;
-	private Enums.Categoria categoria;
+	private Categoria categoria;
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
@@ -33,9 +35,20 @@ public class Producto implements Serializable {
 	
 //Getters and Setters------------------------------------------------------------------------------------------
 	
+	
 	public String getNombre() {
 		return nombre;
 	}
+
+	public Tamaño getTamaño() {
+		return tamaño;
+	}
+
+
+	public void setTamaño(Tamaño tamaño) {
+		this.tamaño = tamaño;
+	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

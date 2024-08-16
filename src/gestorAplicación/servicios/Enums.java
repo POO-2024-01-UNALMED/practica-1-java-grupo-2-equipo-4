@@ -87,6 +87,21 @@ public static enum TipoCaja {
 		return null;
     }
   }
+
+public static enum Tamaño{
+	GRANDE("Grande"),MEDIANO("Mediano"),PEQUEÑO("Pequeño");
+	
+	private String tamaño;
+	
+	private Tamaño(String tamaño) {
+		this.tamaño=tamaño;
+	}
+
+	public String getTamaño() {
+		return tamaño;
+	}
+
+}
 }
 
 

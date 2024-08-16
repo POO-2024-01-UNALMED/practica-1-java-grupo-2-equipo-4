@@ -9,6 +9,7 @@ import baseDatos.Deserializador;
 import baseDatos.Serializador;
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Tamaño;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.*;
 
@@ -17,7 +18,12 @@ public class Main {
 		System.out.println(p);
 	}
 	
-	
+	public static void lineas() {
+		for (int i=0;i<160;i++) {
+			System.out.print("-");
+		}
+		print("");
+	}
 	public static Scanner sc = new Scanner(System.in);
 	public static int escaner() {
 		int p;
@@ -60,8 +66,9 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
-		Producto producto = new Producto("Cebolla",null,0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
-		Producto producto12 = new Producto("Cebolla",null,0,Categoria.ALIMENTO,tienda,"13/08/2024",5);
+		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
+		producto.setTamaño(Tamaño.GRANDE);
+		Producto producto12 = new Producto("Cebolla","marquita",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -166,16 +173,17 @@ public class Main {
 		escogerFuncionalidad(cliente);
 		Proveedor pro=new Proveedor("Colanta", electronico, Categoria.ALIMENTO, t3, null);
 		Proveedor pro2=new Proveedor("Alqueria", bebidas, Categoria.BEBIDA, t3, null);
-		ArrayList<Tienda> tiendas=new ArrayList<>();
-		tiendas.add(t1);
-		tiendas.add(t2);
-		tiendas.add(t3);
-		Serializador.serializar(tiendas);
+		ArrayList<Tienda> tiendas1=new ArrayList<>();
+		tiendas1.add(t1);
+		tiendas1.add(t2);
+		tiendas1.add(t3);
+		Serializador.serializar(tiendas1);
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
+			lineas();
 			print("""
 				    ________________________
 				   /                        \\
@@ -221,7 +229,6 @@ public class Main {
 					 continue;
 				}
 			}
-			print("");
 			switch(decision){
 			case 1:
 				Funcionalidad1.consultasEco(cliente);
@@ -233,7 +240,7 @@ public class Main {
 			case 4:
 				
 			case 5:
-				Funcionalidad5.personalizarTienda();
+				Funcionalidad5.personalizarTienda(cliente);
 				decision=6;
 			}
 		 } while (decision!=6);

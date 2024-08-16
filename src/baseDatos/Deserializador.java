@@ -24,7 +24,6 @@ public class Deserializador {
 			//System.out.println(new Producto("",Categoria.ALIMENTO) );
 			//System.out.println(o.readObject());
 			ArrayList<Tienda> l=(ArrayList<Tienda>) o.readObject();
-			System.out.println(l);
 			Tienda.setTiendas(l);
 			//System.out.println(A);
 			//Producto.pro=A;

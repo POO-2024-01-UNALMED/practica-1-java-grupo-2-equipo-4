@@ -375,7 +375,7 @@ public class Tienda implements Serializable{
 	        return todosLosProductos;
 		}
 	
-		public static StringBuilder imprimirProducto(int mayorN,int mayorM,int mayorP,Producto producto) {
+		public static StringBuilder imprimirProducto(int mayorN,int mayorM,int mayorP, int mayorC, int cantidad,Producto producto) {
 			StringBuilder texto=new StringBuilder();
 			texto.append("  ");
 			texto.append(producto.getNombre());
@@ -391,8 +391,19 @@ public class Tienda implements Serializable{
 			texto.append("|");
 			texto.append("  ");
 			texto.append(producto.getMarca());
-			if(producto.getMarca()!=null) {
-			mayorM=mayorM+2-producto.getMarca().length();
+			if (producto.getTamaño()!=null) {
+				texto.append("/");
+				texto.append(producto.getTamaño().getTamaño());
+			}
+			boolean hacersintamaño=false;
+			if(producto.getMarca()!=null || producto.getTamaño()!=null) {
+				if(producto.getTamaño()!=null) {
+					mayorM=mayorM+2-((""+producto.getMarca()).length())-producto.getTamaño().getTamaño().length()-1;
+					hacersintamaño=true;
+				}
+				if(!hacersintamaño) {
+				mayorM=mayorM+2-(producto.getMarca().length());
+				}
 			}
 			else {
 			mayorM=mayorM-2;
@@ -405,6 +416,13 @@ public class Tienda implements Serializable{
 			texto.append(producto.getPrecio());
 			mayorP=mayorP+2-(""+producto.getPrecio()).length();
 			for(int i=0;i<mayorP;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append("  ");
+			texto.append(""+cantidad);
+			mayorC=mayorC+2-(""+cantidad).length();
+			for(int i=0;i<mayorC;i++) {
 				texto.append(" ");
 			}
 			texto.append("|");
@@ -435,6 +453,18 @@ public class Tienda implements Serializable{
 		}
 		public final String toString() {
 			return this.getNombre(); 
+		}
+		
+		public int cantidadProducto(Producto p) {
+			int cantidad=0;
+			for (Pasillo i:this.pasillos) {
+				for (Producto j:i.getProductos()) {
+					if(p.getId()==j.getId()) {
+						cantidad++;
+					}
+				}
+			}
+			return cantidad;
 		}
 //------------------------------------------------------------------------------------------------------------
 
