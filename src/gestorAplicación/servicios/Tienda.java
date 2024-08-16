@@ -26,6 +26,7 @@ public class Tienda implements Serializable{
 	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+	private static ArrayList<Empleado> desempleados=new ArrayList<>();
 	
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <>();
 //------------------------------------------------------------------------------------------------------------
@@ -141,7 +142,13 @@ public class Tienda implements Serializable{
 		this.bodegas = bodegas;
 	}
 
+	public static ArrayList<Empleado> getDesempleados() {
+		return desempleados;
+	}
 
+	public static void setDesempleados(ArrayList<Empleado> des) {
+		desempleados = des;
+	}
 	public ArrayList<Producto> getProductosVencidos() {
 		return ProductosVencidos;
 	}
@@ -458,10 +465,13 @@ public class Tienda implements Serializable{
 				}
 			}
 			return cantidad;
-		}public final String toString() {
+		}
+		
+		public final String toString() {
 			return this.getNombre(); 
 		}
 //------------------------------------------------------------------------------------------------------------
+
 
 		
 }

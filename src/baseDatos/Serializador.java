@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.sujetos.Domiciliario;
 import gestorAplicación.sujetos.Empleado;
 
 import java.io.IOException; 
@@ -46,7 +47,8 @@ public class Serializador {
 			} 
 		}
 	public static void main(String[] args){
-		
+		//Tienda.setDesempleados((Tienda.getDesempleados().add(new Domiciliario())));
+		serializarEmpleados(Tienda.getDesempleados());
 	}
 	
 	} 
