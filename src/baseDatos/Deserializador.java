@@ -21,12 +21,8 @@ public class Deserializador {
 		try {
 			FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
 			ObjectInputStream o = new ObjectInputStream(f);
-			//System.out.println(new Producto("",Categoria.ALIMENTO) );
-			//System.out.println(o.readObject());
 			ArrayList<Tienda> l=(ArrayList<Tienda>) o.readObject();
 			Tienda.setTiendas(l);
-			//System.out.println(A);
-			//Producto.pro=A;
 			o.close();
 			f.close();
 
@@ -41,7 +37,7 @@ public class Deserializador {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 }
