@@ -76,73 +76,100 @@ public class Funcionalidad2 {
 		System.out.print("Cantidad  ");
 		
 		print("|");
+		for(int i=0;i<mayorM+mayorN+mayorP+30;i++) {
+			System.out.print("-");
+		}
+		print("");
+		int contador=1;
 		for (Producto p:productos.subList(inferior, superior)) {
 			int cantidad=cliente.getTienda().cantidadProducto(p);
+			System.out.print(""+contador+".");
 			System.out.println(Tienda.imprimirProducto(mayorN,mayorM,mayorP,mayorC,cantidad,p));
+			contador++;
 		}
 		
 		for(int i=0;i<mayorM+mayorN+mayorP+30;i++) {
 			System.out.print("-");
 		}
 		print("");
+		print("");
+		print(" 1/2/3/4/Texto. ¿Desea alguno de estos productos?, si es asi escojalo");
+		System.out.println(" 5. Si desea volver escriba 5");
+		if (superior>4) {
+			print(" [A] pag. Si desea imprimir los 4 productos anteriores, escriba A");
+		}
+		if (productos.size()-superior>0) {
+			System.out.println(" [S] pag. Si desea imprimir los 4 proximos productos, escriba S");
+		}
+		print("");
+		System.out.print("¿Que desea realizar?: ");
 		
-		Funcionalidad2.impresionSeleccion(cliente,productos);
+		//Funcionalidad2.impresionSeleccion(cliente,productos);
 	}
 	
-	public static void impresionSeleccion(Cliente cliente,ArrayList<Producto> productos) {
-		int contador=1;
-		int tamañoLista=productos.size();
-		
-		for (Producto p:productos) {
-			int cantidad=cliente.getTienda().cantidadProducto(p);
-			System.out.print(""+contador+".");
-			contador++;
-			if (contador%5==0) {
-				for(int i=0;i<mayorM+mayorN+mayorP+30;i++) {
-					System.out.print("-");
-				}
-				print("");
-				print(" 1/2/3/4/Texto. ¿Desea alguno de estos productos?, si es asi escojalo");
-				System.out.println(" 5. Si desea volver escriba 5");
-				System.out.println(" Y. Si desea imprimir los 4 proximos productos, escriba Y");
-				print("");
-				System.out.print("¿Que desea realizar?: ");
-				String seleccion=sc.nextLine();
-				boolean texto=false;
-				int numero=0;
-				Producto seleccionado;
-				try{
-					numero = Integer.parseInt(seleccion);
-				}
-				catch(Exception e) {
-					texto=true;
-				}
-				
-				if(texto) {
-					if (seleccion.toLowerCase()=="y") {
-						contador=1;	
-						continue;
-					}
-					for(Producto k:productos) {
-						if (k.getNombre().toLowerCase()==seleccion.toLowerCase()) {
-							seleccionado=k;
-						}
-					}
-				}
-				else switch(numero) {
-				case 1:
-					seleccionado=productos.get(numero);
-				case 2:
-					seleccionado=productos.get(numero);
-				case 3:
-					seleccionado=productos.get(numero);
-				case 4:
-					seleccionado=productos.get(numero);
-				case 5:
-					elegirTipoBusqueda(cliente);
-				}
-				
+	public static Producto impresionSeleccion(Cliente cliente,ArrayList<Producto> productos) {
+		int inferior=0;
+		int superior=4;
+		Producto seleccionado = null;
+		boolean malSeleccionado=false;
+		while(true) {
+			if ((productos.size()-superior)<0) {
+				superior=superior-(superior-productos.size());
 			}
+			if (!malSeleccionado) {
+			cuadriculaProductos(cliente,productos,inferior,superior);
+			}
+			malSeleccionado=false;
+			String seleccion=sc.nextLine();
+			boolean texto=false;
+			int numero=0;
+			try{
+				numero = Integer.parseInt(seleccion);
+			}
+			catch(Exception e) {
+				texto=true;
+			}
+			if(texto) {
+				for(Producto k:productos) {
+					if (k.getNombre().toLowerCase().equals(seleccion.toLowerCase())) {
+						seleccionado=k;
+					}
+				}
+				if (seleccion.toLowerCase().equals("s")) {	
+					inferior=superior;
+					superior+=4;
+					continue;
+				}
+				if (seleccion.toLowerCase().equals("a")) {	
+					superior=inferior;
+					inferior=superior-4;
+					continue;
+				}
+				if (seleccionado==null) {
+					print("");
+					System.out.print("Este producto no se encuentra, escriba otro o selecione otra opcion: ");
+					malSeleccionado=true;
+					continue;
+				}
+			}
+			else switch(numero) {
+			case 1:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 2:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 3:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 4:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 5:
+				elegirTipoBusqueda(cliente);
+				break;
+			}	
+			return seleccionado;
 		}
 	}
 	public static void elegirTipoBusqueda(Cliente cliente) {
@@ -162,7 +189,6 @@ public class Funcionalidad2 {
 		lineas();
 		switch (decision) {
 		case 1:
-			
 			//Impresion de categorias para luego ser escogidas por el cliente con escaner
 			//Esta hace que se cree una lista con los productos de la tienda con esa categoria
 			print("Estas son las categorias de los productos de nuestras tiendas: ");
@@ -182,7 +208,8 @@ public class Funcionalidad2 {
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			ArrayList<Producto> productos=new ArrayList<Producto>();
 			productos= Tienda.buscarProductos(cliente,categoria,productos);
-			impresionSeleccion(cliente,productos);
+			Producto seleccionado = impresionSeleccion(cliente,productos);
+			lineas();
 			
 		case 2:
 			print("");
@@ -190,8 +217,21 @@ public class Funcionalidad2 {
 			sc.nextLine();
 			String nombre=sc.nextLine();
 			Tienda.buscarProductos(nombre);
+			//Impresion de categorias para luego ser escogidas por el cliente con escaner
+			//Esta hace que se cree una lista con los productos de la tienda con esa categoria
+			System.out.print("Escoja un numero: ");
+			int decisionCategoria = escaner(enumerado);
+			if(decisionCategoria==enumerado) {
+				elegirTipoBusqueda(cliente);
+			}
+			categoria=Categoria.resolverEnum(decisionCategoria);
+			ArrayList<Producto> productos=new ArrayList<Producto>();
+			productos= Tienda.buscarProductos(cliente,categoria,productos);
+			Producto seleccionado = impresionSeleccion(cliente,productos);
+			lineas();
 		case 3:
 			Main.escogerFuncionalidad(cliente);
+			break;
 		}
 	}
 }
