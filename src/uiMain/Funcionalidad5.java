@@ -26,7 +26,7 @@ public class Funcionalidad5 {
 		}
 		int h =escaner();
 		Tienda tien =Tienda.getTiendas().get(h-1);
-		float diferencia=clien.getDinero()-tien.calcularValor();
+		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
 			tien.setDueño(clien);
 			clien.setDinero(diferencia);
@@ -39,28 +39,49 @@ public class Funcionalidad5 {
       			print(n+"."+j);
       			n++;
       		}
-      	int x2=escaner();
-  		print("nombre del pasillo "+i+":");
-  		String nom=sc.nextLine();
-  		tien.crearPasillos(x2,nom);
-  		print("pasillo creado");
-  		i++;
-  		print("1.Continuar\n2.Terminar");
-  		int x3=escaner();
-  		if(x3!=1) {
-  			break;
-  		}
+      		int x2=escaner();
+      		print("nombre del pasillo "+i+":");
+      		String nom=sc.nextLine();
+      		tien.añadirPasillo(x2,nom);
+      		print("pasillo creado");
+      		i++;
+	  		print("1.Continuar\n2.Terminar");
+	  		int x3=escaner();
+	  		if(x3!=1) {
+	  			break;
+	  		}
       	}
       	
       	if ((tien.disponibilidadProductos()==false)) {
-  		print(tien.getDueño().getNombre() +"de la tienda"+tien.getNombre()+ ", sus pasillos estan vacios ");
-  		print("desea llamar a un proveedor?\n1.Si\n2.No");
-  		sc.nextLine();
+      		print(tien.getDueño().getNombre() +"de la tienda"+tien.getNombre()+ ", sus pasillos estan vacios ");
+      		print("desea llamar a un proveedor?\n1.Si\n2.No");
+      	}
   		int x3=escaner();
-		
   		if(x3==1) {
   			System.out.println(tien.getProveedores());
   			print(tien.llamarProveedor());
+  		}
+  		print("desea contratar empleados?\n1.Si\n2.No");
+  		int x4=escaner();
+  		if(x4==1) {
+  			int j=1;
+  	      	while(true){
+  	      		print("qué tipo de empleado será el empleado"+j+"?");
+  	      		String[] ems={"Domiciliario","Concerje","Cajero"};
+  	      		int n=1;
+  	      		for(String e:ems) {
+  	      			print(n+"."+e);
+  	      			n++;
+  	      		}
+  	      		int x5=escaner();
+  	      		tien.contratarEmpleados();
+  	      		print("pasillo creado");
+  	      		i++;
+  	      		print("1.Continuar\n2.Terminar");
+  	      		int x6=escaner();
+  	      		if(x6!=1) {
+  	      			break;
+  	      		}
   		}
   		
   		

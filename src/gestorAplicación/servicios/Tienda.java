@@ -240,14 +240,12 @@ public class Tienda implements Serializable{
 		}
 	}
 	
-	public void crearPasillos(int x2,String nom) {
+	public void añadirPasillo(int x2,String nom) {
 		Categoria cat=Categoria.values()[x2-1];
 		Pasillo pasillo=new Pasillo(nom,cat);
 		pasillos.add(pasillo);
 	}
 	
-
-	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
 	public String llamarProveedor() {
 		int n=1;
 		String s= "";
@@ -282,7 +280,6 @@ public class Tienda implements Serializable{
 		Enums.TipoCaja tipocaja = Enums.TipoCaja.resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-	//ANTES EN BASEDATOS:
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
 	public static boolean buscarTienda() {
@@ -447,12 +444,8 @@ public class Tienda implements Serializable{
 			}
 		}
 		
-		public float calcularValor() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		public final String toString() {
-			return this.getNombre(); 
+		public void contratarEmpleados() {
+			
 		}
 		
 		public int cantidadProducto(Producto p) {
@@ -465,6 +458,8 @@ public class Tienda implements Serializable{
 				}
 			}
 			return cantidad;
+		}public final String toString() {
+			return this.getNombre(); 
 		}
 //------------------------------------------------------------------------------------------------------------
 
