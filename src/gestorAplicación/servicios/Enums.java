@@ -102,6 +102,10 @@ public static enum Tamaño{
 	}
 
 }
+public static enum Genero{
+	M,
+	H;
+}
 }
 
 

@@ -3,6 +3,7 @@ package gestorAplicación.sujetos;
 import java.util.ArrayList;
 
 import gestorAplicación.servicios.Tienda;
+import static gestorAplicación.servicios.Enums.Genero;
 
 public class Persona {
 //Atributos----------------------------------------------------------------------------------------------------
@@ -10,9 +11,9 @@ public class Persona {
 	private String nombre;
 	private int id;
 	private int edad;
-	private String genero;
+	private Genero genero;
 	private Tienda tienda;
-	private static ArrayList <Persona > personas;
+	private static ArrayList <Persona > personas=new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -72,17 +73,18 @@ public class Persona {
 
 //Contructores-------------------------------------------------------------------------------------------------
 	
-	protected Persona() {
+	public Persona() {
 		
 	}
 	
-	protected Persona(String nombre, int id, int edad, String genero) {
+	public Persona(String nombre, int id, int edad, Genero genero) {
 		this.nombre = nombre;
 		this.id = id;
 		this.edad = edad;
 		this.genero = genero;
+		Persona.getPersonas().add(this);
 	}
-
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------

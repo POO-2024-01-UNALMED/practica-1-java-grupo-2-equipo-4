@@ -18,7 +18,7 @@ public class Cliente extends Persona implements Serializable {
 	private float dinero;
 	private Carrito carrito;
 	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
-	private static ArrayList <Cliente> clientes= new ArrayList<Cliente>();
+
 	
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -52,13 +52,7 @@ public class Cliente extends Persona implements Serializable {
 		this.facturas = facturas;
 	}
 
-	public static ArrayList<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public static void setClientes(ArrayList<Cliente> clientes) {
-		Cliente.clientes = clientes;
-	}
+	
 	
 //-------------------------------------------------------------------------------------------------------------
 	

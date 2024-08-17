@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Persona;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 
-public class Funcionalidad1 {
+public class Funcionalidad1 extends Identidad{
 	
 	//Simplemente para imprimir más fácil （￣︶￣）↗　
     public static void print(String p) {
@@ -49,6 +50,7 @@ public class Funcionalidad1 {
     }
 
     public static void consultasEco(Cliente cliente) {
+    	Persona identidad=identificarPersona();
         print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
         print("1. Consulta general de productos\n" +
               "2. Consulta de productos por categoría\n" +
