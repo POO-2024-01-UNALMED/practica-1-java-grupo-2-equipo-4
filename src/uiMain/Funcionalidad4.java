@@ -41,7 +41,26 @@ public class Funcionalidad4 {
 		                }
 	            	 
 	            	break;
-	            	
+	            case 3:
+	            	System.out.println("marcar producto como defectuoso");
+	            	break;
+	            case 4: 
+	            	System.out.println("reabastecimiento");
+	            	System.out.println("seleccione un proveedor");
+	            	Proveedor.imprimirProveedores();
+	            	int opcionProveedor = sc.nextInt();
+	            	if (opcionProveedor== 1) {
+	            		
+	            	}
+	            	else {
+	            		
+	            	}
+	            	else {
+	            		
+	            	}
+	            	else {
+	            		
+	            	}
 	            default:
 	                System.out.println("Opción no válida");
 	                break;
