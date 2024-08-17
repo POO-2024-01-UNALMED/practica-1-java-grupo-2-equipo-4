@@ -27,4 +27,9 @@ public class Cajero extends Empleado {
 		return 0;
 	}
 
+	@Override
+	public boolean validarCriterios() {
+		return false;
+	}
+
 }
