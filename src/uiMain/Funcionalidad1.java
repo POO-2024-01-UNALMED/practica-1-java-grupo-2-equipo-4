@@ -9,185 +9,180 @@ import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 
 public class Funcionalidad1 {
-	public static void print(String p) {
-		System.out.println(p);
-	}
 	
-	
-	static Scanner sc = new Scanner(System.in);
-	public static int escaner() {
-		int p;
-		try{
-			p=sc.nextInt();
-		}
-		catch(Exception e) {
-			print("Este no es un numero valido");
-			sc.nextLine();
-			p=escaner();
-		}
-		return p;
-	}
-	
-	public static int escaner(int rango) {
-		int p;
-		try{
-			p=sc.nextInt();
-		}
-		catch(Exception e) {
-			print("Este no es un numero valido");
-			sc.nextLine();
-			p=escaner(rango);
-		}
-		if (p<1 || p>rango) {
-			print("Este numero esta fuera del rango");
-			sc.nextLine();
-			p=escaner(rango);
-		}
-		return p;
-	}
-	// -------- FUNCIONALIDAD 1 ---------------------------------------------------------------------------------
-		//Este método se encarga de presentar las opciones de consulta al usuario
-		public static void consultasEco(Cliente cliente) {
-		    int consulta = 0;
+	//Simplemente para imprimir más fácil （￣︶￣）↗　
+    public static void print(String p) {
+        System.out.println(p);
+    }
+    
+    //Implementación de scanner para hacer el proceso más fácil y verificar las entradas
 
-		    print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
-		    print("1. Consulta general de productos\n" +
-		                   "2. Consulta de productos por categoria\n" +
-		                   "3. Consulta de membresias\n" +
-		                   "4. Volver");
+    static Scanner sc = new Scanner(System.in);
 
-		    while (consulta < 1 || consulta > 4) {
-		        try {
-		            consulta = sc.nextInt();
-		            
-		            if (consulta < 1 || consulta > 4) {
-		                print("Opción no válida. Por favor, ingrese un número entre 1 y 4.");
-		                consulta = 0; 
-		            }
-		            sc.nextLine();
-		        } catch (Exception e) {
-		            print("Entrada no válida, por favor ingrese un número.");
-		            sc.nextLine(); 
-		        }
-		    }
+    public static int escaner() {
+        int p;
+        try {
+            p = sc.nextInt();
+        } catch (Exception e) {
+            print("Este no es un número válido");
+            sc.nextLine();
+            p = escaner();
+        }
+        return p;
+    }
 
-		    try {
-		        print("Opción seleccionada: " + consulta);
+    public static int escaner(int rango) {
+        int p;
+        try {
+            p = sc.nextInt();
+        } catch (Exception e) {
+            print("Este no es un número válido");
+            sc.nextLine();
+            p = escaner(rango);
+        }
+        if (p < 1 || p > rango) {
+            print("Este número está fuera del rango");
+            sc.nextLine();
+            p = escaner(rango);
+        }
+        return p;
+    }
 
-		        switch (consulta) {
-		            case 1:
-		                if (Tienda.buscarTienda()) {
-		                    print("Selecciona una de las tiendas disponibles para ti:");
-		                    int contador = 1;
-		                    for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
-		                        System.out.println(contador + ". " + generales.getNombre());
-		                        contador++;
-		                    }
-		                } else {
-		                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-		                }
-		                break;
+    public static void consultasEco(Cliente cliente) {
+        print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
+        print("1. Consulta general de productos\n" +
+              "2. Consulta de productos por categoría\n" +
+              "3. Consulta de membresías\n" +
+              "4. Volver");
+        print("");
+        print("Escoja un número: ");
 
-		            case 2:
-		               
-		            	  if (Tienda.buscarTienda()) {
-			                    print("Selecciona una de las categorias disponibles en nuestras tiendas:");
-			                    int contador = 1;
-			            		for(Categoria tipo:Categoria.values()) {
-			            				print(contador +"."+tipo );
-			            				contador++;
-			            		}
-			            		busquedaCategoria(sc.nextInt());
-			            		int opcion = sc.nextInt();
-			                    Tienda tiendaSeleccionada = busquedaCategoria(sc.nextInt()).get(opcion - 1);
-			                    print("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
-			                    listaProductos(tiendaSeleccionada);
-			            		 sc.nextLine(); 
-			                } 
-		            	  	else {
-			                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-			                }
-			                break;
-		             
+        int consulta = escaner(4); // Usando escaner con rango para asegurar la entrada correcta.
 
-		            case 3:
-		                if (Tienda.buscarTienda()) {
-		                    print("Consulta de membresías:");
-		                   
-		                } else {
-		                    print("Lo sentimos, no hay tiendas disponibles en este momento.");
-		                }
-		                break;
+        print("Opción seleccionada: " + consulta);
 
-		            case 4:
-		                Main.escogerFuncionalidad(cliente);
-		                break;
+        switch (consulta) {
+            case 1:
+                consultaGeneralProductos();
+                break;
+            case 2:
+                consultaPorCategoria();
+                break;
+            case 3:
+                consultaMembresias();
+                break;
+            case 4:
+                Main.escogerFuncionalidad(cliente);
+                break;
+            default:
+                print("Opción no válida");
+        }
+    }
 
-		            default:
-		                print("Opción no válida");
-		        }
-		    } catch (Exception e) {
-		        print("Entrada no válida, por favor ingrese otro número.");
-		        sc.nextLine();
-		    }
-		}
+    public static void consultaGeneralProductos() {
+        if (Tienda.buscarTienda()) {
+            ArrayList<Tienda> tiendas = Tienda.revisionTienda(Tienda.getTiendas());
+            printTablaTiendas(tiendas);
+        } else {
+            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+        }
+    }
 
-		
-		public static ArrayList <Tienda> busquedaCategoria(int categoria) {
-			int desicionCategoria = categoria;
-			switch(desicionCategoria){
-			case 1:			
-				if (Tienda.categoriaTienda(Categoria.ALIMENTO).size() > 0) {
-					print("Estas tiendas tienen tu categoria");
-					ArrayList<Tienda> tiendas= Tienda.categoriaTienda(Categoria.ALIMENTO);
-					//Serializador.serializar(tiendas);
-					//Deserializador.deserealizar();
-					print("en cual Tienda desea consultar?");
-					int enumerado=1;
-					for(Tienda alimento:Tienda.categoriaTienda(Categoria.ALIMENTO)) {
-						print(enumerado+"."+alimento.getNombre());
-						enumerado++;
-					return tiendas;
-					}
-					
-					 
-		               
-		                
-					}
-					else {
-						print("No hay tiendas disponibles de la categoria ALIMENTO.");
-						print("1.Buscar otra categoria");
-						print("2.Volver");
-						int decision = 0;
-						decision = sc.nextInt();
-						if (decision == 1) {
-						
-						break;
-						}
-						else { 
-							break;
-							}
-					}
-			}
-			return null;	
-			
-		}
-		
-		public static void listaProductos(Tienda tienda) {
-		    ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-		    print("Hola");
-	        if (productos.size() > 0) {
-	            print("Estos son los productos disponibles en la tienda:");
-	            int numProducto = 1;
-	            for (Producto producto : productos) {
-	                print(numProducto + ". " + producto.getNombre());
-	                numProducto++;
-	            }
-	        }
-			
-			
-			
-			
-		}
-		
+    public static void consultaPorCategoria() {
+        if (Tienda.buscarTienda()) {
+            print("Selecciona una de las categorías disponibles en nuestras tiendas:");
+            int contador = 1;
+
+            for (Categoria tipo : Categoria.values()) {
+                print(contador + "." + tipo);
+                contador++;
+            }
+
+            int categoriaSeleccionada = escaner(Categoria.values().length);
+
+            ArrayList<Tienda> tiendas = busquedaCategoria(categoriaSeleccionada);
+            if (tiendas != null && !tiendas.isEmpty()) {
+                printTablaTiendas(tiendas);
+                
+                print("Selecciona una tienda:");
+                int tiendaSeleccionada = escaner(tiendas.size());
+                Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
+                print("Has seleccionado la tienda: " + tienda.getNombre());
+                listaProductos(tienda);
+            } else {
+                print("No hay tiendas disponibles para la categoría seleccionada.");
+            }
+        } else {
+            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+        }
+    }
+
+    public static void consultaMembresias() {
+        if (Tienda.buscarTienda()) {
+            print("Consulta de membresías:");
+            // Aquí puedes agregar la lógica para manejar la consulta de membresías.
+        } else {
+            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+        }
+    }
+
+    public static ArrayList<Tienda> busquedaCategoria(int categoria) {
+        Categoria cat = Categoria.values()[categoria - 1];
+        ArrayList<Tienda> tiendas = Tienda.categoriaTienda(cat);
+
+        if (tiendas.size() > 0) {
+            print("Estas tiendas tienen tu categoría");
+        } else {
+            print("No hay tiendas disponibles de la categoría " + cat + ".");
+        }
+        return tiendas;
+    }
+
+    public static void listaProductos(Tienda tienda) {
+        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
+        if (productos.size() > 0) {
+            printTablaProductos(productos);
+        } else {
+            print("No hay productos disponibles en esta tienda.");
+        }
+    }
+
+    // Método para imprimir las tiendas en formato tabla ASCII
+    public static void printTablaTiendas(ArrayList<Tienda> tiendas) {
+        print("+------------------------------------+");
+        print("| No. |          Nombre de Tienda    |");
+        print("+------------------------------------+");
+        for (int i = 0; i < tiendas.size(); i++) {
+            String numero = String.format("| %-3d", i + 1);
+            String nombre = String.format("| %-28s |", tiendas.get(i).getNombre());
+            print(numero + nombre);
+        }
+        print("+------------------------------------+");
+    }
+
+    // Método para imprimir los productos en formato tabla ASCII
+    public static void printTablaProductos(ArrayList<Producto> productos) {
+        print("+------------------------------------+");
+        print("| No. |         Nombre de Producto   |");
+        print("+------------------------------------+");
+        for (int i = 0; i < productos.size(); i++) {
+            String numero = String.format("| %-3d", i + 1);
+            String nombre = String.format("| %-28s |", productos.get(i).getNombre());
+            print(numero + nombre);
+        }
+        print("+------------------------------------+");
+    }
+    
+    // Método para imprimir las categorias en formato tabla ASCII
+    public static void printTablaCategorias() {
+        print("+--------------------------+");
+        print("| No. |    Categoría        |");
+        print("+--------------------------+");
+        int contador = 1;
+        for (Categoria categoria : Categoria.values()) {
+            print(String.format("| %-3d | %-20s |", contador, categoria.toString()));
+            contador++;
+        }
+        print("+--------------------------+");
+    }
 }
