@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import gestorAplicación.servicios.Pasillo;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.sujetos.Domiciliario;
@@ -48,7 +49,20 @@ public class Serializador {
 		}
 	public static void main(String[] args){
 		//Tienda.setDesempleados((Tienda.getDesempleados().add(new Domiciliario())));
-		serializarEmpleados(Tienda.getDesempleados());
+		//serializarEmpleados(Tienda.getDesempleados());
+		Deserializador.deserializar(2);
+		
+//		ArrayList<Producto> pas1 = new ArrayList<>();
+//		pas1.add(new Producto("papa", null));
+//		pas1.add(new Producto("salsa", null));
+//		
+//		Pasillo pas = new Pasillo(null, pas1, null);
+//		
+//		ArrayList<Pasillo> pasillos = new ArrayList<>();
+//		pasillos.add(pas);
+//		
+//		ArrayList<Tienda> tiendas = new ArrayList<>();
+//		serializar(tiendas);
 	}
 	
 	} 
