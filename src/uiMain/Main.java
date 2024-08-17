@@ -240,13 +240,18 @@ public class Main {
 				break;
 			case 2:
 				Funcionalidad2.elegirTipoBusqueda(cliente);
+				break;
 			case 3:
-			
+				break;
 			case 4:
-				
+				break;
 			case 5:
 				Funcionalidad5.personalizarTienda(cliente);
-				decision=6;
+				break;
+			case 6:
+//				Serializador.serializar();
+				print("Ha salido del programa");
+				break;
 			}
 		 } while (decision!=6);
 
