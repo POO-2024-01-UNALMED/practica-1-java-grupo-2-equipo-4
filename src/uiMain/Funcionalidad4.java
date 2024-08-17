@@ -14,7 +14,7 @@ import static uiMain.Main.escaner;
 public class Funcionalidad4 {	
 	static Scanner sc = new Scanner(System.in);
 	Persona persona =
-	    public static void main(Cliente cliente) {
+	    public static void mai(Cliente cliente) {
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
 	    	System.out.println("seleccione una opcion");
 	    	System.out.println("1.Total de productos en el inventario\n"

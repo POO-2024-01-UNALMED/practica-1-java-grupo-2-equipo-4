@@ -1,5 +1,7 @@
 package gestorAplicación.sujetos;
 
+import java.util.ArrayList;
+
 import gestorAplicación.servicios.Tienda;
 
 public class Persona {
@@ -10,16 +12,27 @@ public class Persona {
 	private int edad;
 	private String genero;
 	private Tienda tienda;
+	private static ArrayList <Persona > personas;
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Getters and Setters------------------------------------------------------------------------------------------
 	
-	public Tienda getTienda() {
-		return tienda;
+	
+
+	public static ArrayList<Persona> getPersonas() {
+		return personas;
+	}
+
+	public static void setPersonas(ArrayList<Persona> persona) {
+		personas = persona;
 	}
 	
-	public void setTienda(Tienda tienda) {
+	public Tienda getTienda() {
+			return tienda;
+		}
+	
+	public  void setTienda(Tienda tienda) {
 		this.tienda=tienda;
 	}
 	

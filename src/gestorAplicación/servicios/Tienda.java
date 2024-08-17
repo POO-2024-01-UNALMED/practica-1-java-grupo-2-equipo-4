@@ -17,7 +17,7 @@ public class Tienda implements Serializable{
 	private String direccion;
 	private double saldo;
 	private String estado;
-	private Cliente cliente;
+	private ArrayList <Persona> cliente;
 	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
@@ -33,11 +33,11 @@ public class Tienda implements Serializable{
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
 	
-	public Cliente getCliente() {
+	public ArrayList <Persona> getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(ArrayList <Persona> cliente) {
 		this.cliente = cliente;
 	}
 	
