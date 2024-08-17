@@ -209,8 +209,16 @@ public class Tienda implements Serializable{
 		return productos;
 	}
 	
-	public static void buscarProductos(String nombre) {
-		
+	public ArrayList<Producto> buscarProductos(Cliente cliente,String nombre) {
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		for (Pasillo i:cliente.getTienda().getPasillos()) {
+			for (Producto j:i.getProductos()){
+				if (j.getNombre().toLowerCase().equals(nombre)){
+					productos.add(j);
+				}
+			}
+		}
+		return productos;
 	}
 	
 	public boolean disponibilidadProductos() {

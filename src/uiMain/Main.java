@@ -181,7 +181,8 @@ public class Main {
 		tiendas1.add(t1);
 		tiendas1.add(t2);
 		tiendas1.add(t3);
-//		Serializador.serializar(tiendas1);
+		//Serializador.serializar(tiendas1);
+
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {
@@ -281,7 +282,7 @@ public class Main {
 				print("Estas tiendas tienen tu categoria");
 				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
 				//Serializador.serializar(tiendas);
-				Deserializador.deserializar();
+				//Deserializador.deserializar();
 				System.out.print(Tienda.getTiendas());
 				print("en cual Tienda desea consultar?");
 				enumerado=1;

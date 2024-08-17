@@ -103,11 +103,9 @@ public class Funcionalidad2 {
 		}
 		print("");
 		System.out.print("¿Que desea realizar?: ");
-		
-		//Funcionalidad2.impresionSeleccion(cliente,productos);
 	}
 	
-	public static Producto impresionSeleccion(Cliente cliente,ArrayList<Producto> productos) {
+	public static Producto impresionSeleccionCategoria(Cliente cliente,ArrayList<Producto> productos,Categoria categoria) {
 		int inferior=0;
 		int superior=4;
 		Producto seleccionado = null;
@@ -166,12 +164,153 @@ public class Funcionalidad2 {
 				seleccionado=productos.get(numero+inferior-1);
 				break;
 			case 5:
-				elegirTipoBusqueda(cliente);
+				busquedaCategoria(cliente, categoria, productos, seleccionado);
+				break;
+			default:
+				print("hola");
+			}	
+			return seleccionado;
+		}
+	}
+	
+	public static Producto impresionSeleccionNombre(Cliente cliente,ArrayList<Producto> productos,Producto seleccionado) {
+		int inferior=0;
+		int superior=4;
+		boolean malSeleccionado=false;
+		while(true) {
+			if ((productos.size()-superior)<0) {
+				superior=superior-(superior-productos.size());
+			}
+			if (!malSeleccionado) {
+			cuadriculaProductos(cliente,productos,inferior,superior);
+			}
+			malSeleccionado=false;
+			String seleccion=sc.nextLine();
+			boolean texto=false;
+			int numero=0;
+			try{
+				numero = Integer.parseInt(seleccion);
+			}
+			catch(Exception e) {
+				texto=true;
+			}
+			if(texto) {
+				for(Producto k:productos) {
+					if (k.getNombre().toLowerCase().equals(seleccion.toLowerCase())) {
+						seleccionado=k;
+					}
+				}
+				if (seleccion.toLowerCase().equals("s")) {	
+					inferior=superior;
+					superior+=4;
+					continue;
+				}
+				if (seleccion.toLowerCase().equals("a")) {	
+					superior=inferior;
+					inferior=superior-4;
+					continue;
+				}
+				if (seleccionado==null) {
+					print("");
+					System.out.print("Este producto no se encuentra, escriba otro o selecione otra opcion: ");
+					malSeleccionado=true;
+					continue;
+				}
+			}
+			else switch(numero) {
+			case 1:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 2:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 3:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 4:
+				seleccionado=productos.get(numero+inferior-1);
+				break;
+			case 5:
+				busquedaNombre(cliente, productos, seleccionado);
 				break;
 			}	
 			return seleccionado;
 		}
 	}
+	
+	
+	
+	
+	public static void busquedaCategoria(Cliente cliente, Categoria categoria, ArrayList<Producto> productos, Producto seleccionado) {
+		//Impresion de categorias para luego ser escogidas por el cliente con escaner
+		//Esta hace que se cree una lista con los productos de la tienda con esa categoria
+		lineas();
+		print("Estas son las categorias de los productos de nuestras tiendas: ");
+		print("");
+		int enumerado = 1;
+		for(Categoria tipo:Categoria.values()) {
+				print(" "+enumerado +". "+tipo.getTexto());
+				enumerado++;			
+		}
+		print(" "+enumerado+". Volver");
+		print("");
+		System.out.print("Escoja un numero: ");
+		int decisionCategoria = escaner(enumerado);
+		if(decisionCategoria==enumerado) {
+			elegirTipoBusqueda(cliente);
+		}
+		categoria=Categoria.resolverEnum(decisionCategoria);
+		productos=new ArrayList<Producto>();
+		productos= Tienda.buscarProductos(cliente,categoria,productos);
+		while (productos.size()==0) {
+			print("No hay productos disponibles de esa categoria, escoja otro por favor");
+			System.out.print("Escoja un numero nuevamente: ");
+			decisionCategoria=escaner(enumerado);
+			if(decisionCategoria==enumerado) {
+				elegirTipoBusqueda(cliente);
+			}
+			categoria=Categoria.resolverEnum(decisionCategoria);
+			productos=new ArrayList<Producto>();
+			productos= Tienda.buscarProductos(cliente,categoria,productos);
+			}
+		seleccionado = impresionSeleccionCategoria(cliente,productos,categoria);
+		lineas();
+		cliente.getCarrito().getProductos().add(seleccionado);
+	}
+	
+	
+	
+
+	public static void busquedaNombre(Cliente cliente, ArrayList<Producto> productos, Producto seleccionado) {
+		lineas();
+		System.out.print("Introduzca el nombre del producto que desea buscar\n"
+				+ "O escoja [3]. [Volver] para regresar: ");
+		String nombre=sc.nextLine();
+		int number;
+		boolean string=true;
+		try{
+			number = Integer.parseInt(nombre);
+		}
+		catch(Exception e) {
+			string=false;
+		}
+		if (string) {
+			if (Integer.parseInt(nombre)==3) {
+				elegirTipoBusqueda(cliente);
+			}
+		}
+		if (nombre.toLowerCase().equals("volver")) {
+			elegirTipoBusqueda(cliente);
+		}
+		productos=cliente.getTienda().buscarProductos(cliente,nombre);
+		seleccionado = impresionSeleccionNombre(cliente,productos, seleccionado);
+		lineas();
+		cliente.getCarrito().getProductos().add(seleccionado);
+		lineas();
+	}
+
+
+	
 	public static void elegirTipoBusqueda(Cliente cliente) {
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
@@ -186,49 +325,14 @@ public class Funcionalidad2 {
 		
 		int decision=escaner(3);
 		Categoria categoria = null;
-		lineas();
+		ArrayList<Producto> productos=new ArrayList<Producto>();
+		Producto seleccionado = null;
 		switch (decision) {
 		case 1:
-			//Impresion de categorias para luego ser escogidas por el cliente con escaner
-			//Esta hace que se cree una lista con los productos de la tienda con esa categoria
-			print("Estas son las categorias de los productos de nuestras tiendas: ");
-			print("");
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(" "+enumerado +". "+tipo.getTexto());
-					enumerado++;			
-			}
-			print(" "+enumerado+". Volver");
-			print("");
-			System.out.print("Escoja un numero: ");
-			int decisionCategoria = escaner(enumerado);
-			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda(cliente);
-			}
-			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Producto> productos=new ArrayList<Producto>();
-			productos= Tienda.buscarProductos(cliente,categoria,productos);
-			Producto seleccionado = impresionSeleccion(cliente,productos);
-			lineas();
-			
+			busquedaCategoria(cliente, categoria, productos, seleccionado);
 		case 2:
-			print("");
-			print("Introduzca el nombre del producto que desea buscar: ");
-			sc.nextLine();
-			String nombre=sc.nextLine();
-			Tienda.buscarProductos(nombre);
-			//Impresion de categorias para luego ser escogidas por el cliente con escaner
-			//Esta hace que se cree una lista con los productos de la tienda con esa categoria
-			System.out.print("Escoja un numero: ");
-			decisionCategoria = escaner(enumerado);
-			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda(cliente);
-			}
-			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Producto> productos=new ArrayList<Producto>();
-			productos= Tienda.buscarProductos(cliente,categoria,productos);
-			Producto seleccionado = impresionSeleccion(cliente,productos);
-			lineas();
+			busquedaNombre(cliente, productos,seleccionado);
+
 		case 3:
 			Main.escogerFuncionalidad(cliente);
 			break;
