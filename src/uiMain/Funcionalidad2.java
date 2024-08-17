@@ -220,7 +220,7 @@ public class Funcionalidad2 {
 			//Impresion de categorias para luego ser escogidas por el cliente con escaner
 			//Esta hace que se cree una lista con los productos de la tienda con esa categoria
 			System.out.print("Escoja un numero: ");
-			int decisionCategoria = escaner(enumerado);
+			decisionCategoria = escaner(enumerado);
 			if(decisionCategoria==enumerado) {
 				elegirTipoBusqueda(cliente);
 			}

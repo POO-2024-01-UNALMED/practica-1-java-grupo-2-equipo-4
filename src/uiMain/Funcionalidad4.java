@@ -4,6 +4,7 @@ import uiMain.Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.sujetos.Cliente;
@@ -12,6 +13,7 @@ import static uiMain.Main.escaner;
 
 public class Funcionalidad4 {	
 	static Scanner sc = new Scanner(System.in);
+	Persona persona =
 	    public static void main(Cliente cliente) {
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
 	    	System.out.println("seleccione una opcion");

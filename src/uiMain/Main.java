@@ -173,7 +173,7 @@ public class Main {
 		tiendas.add(t2);
 		tiendas.add(t3);
 		tiendas.add(t4);
-		Serializador.serializar(tiendas);
+//		Serializador.serializar(tiendas);
 		escogerFuncionalidad(cliente);
 		Proveedor pro=new Proveedor("Colanta", electronico, Categoria.ALIMENTO, t3, null);
 		Proveedor pro2=new Proveedor("Alqueria", bebidas, Categoria.BEBIDA, t3, null);
@@ -181,7 +181,7 @@ public class Main {
 		tiendas1.add(t1);
 		tiendas1.add(t2);
 		tiendas1.add(t3);
-		Serializador.serializar(tiendas1);
+//		Serializador.serializar(tiendas1);
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {
