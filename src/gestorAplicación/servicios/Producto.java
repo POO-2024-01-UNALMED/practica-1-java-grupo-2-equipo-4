@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.Tamaño;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -18,12 +19,13 @@ public class Producto implements Serializable {
 	private String nombre;
 	private String marca;
 	private double precio;
+	private Tamaño tamaño;
 	private int id;
-	private Enums.Categoria categoria;
+	private Categoria categoria;
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
-	private LocalDate fechaActual;
+	private static LocalDate fechaActual=LocalDate.now();
 	private Tienda tienda;
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -33,9 +35,20 @@ public class Producto implements Serializable {
 	
 //Getters and Setters------------------------------------------------------------------------------------------
 	
+	
 	public String getNombre() {
 		return nombre;
 	}
+
+	public Tamaño getTamaño() {
+		return tamaño;
+	}
+
+
+	public void setTamaño(Tamaño tamaño) {
+		this.tamaño = tamaño;
+	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -109,19 +122,28 @@ public class Producto implements Serializable {
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
-		public Producto(String nombre,Categoria categoria) {
+	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
-		}
-		public Producto(String nombre,Categoria categoria,Tienda tienda) {
-		this.categoria = categoria;
-		this.nombre= nombre;
-		this.tienda=tienda; // referencia a tienda que pertenece el producto
 	}
 	
-	public Producto(String nombre,Categoria categoria,Tienda tienda,String fechaPerecer) {
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id) {
+		this(nombre,categoria);
+		this.precio=precio;
+		this.marca=marca;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+	}
+	
+	public Producto(String nombre,Categoria categoria,Tienda tienda) {
 		this.categoria = categoria;
 		this.nombre= nombre;
+		this.tienda=tienda;// referencia a tienda que pertenece el producto
+	}
+	
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id) {
+		this(nombre, marca, precio, categoria,id);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
@@ -135,21 +157,11 @@ public class Producto implements Serializable {
 		return true;
 	}
 	
-	public void  vencerProducto() {
-		//si esta caducado//
-		for (Producto producto: this.tienda.obtenerTodosLosProductos()) {
-			if (producto.getFechaPerecer()==producto.fechaActual){
-			 producto.setEstado(EstadoProducto.VENCIDO); 
-			 this.tienda.getProductosVencidos().add(producto);
-		    }
-		}
-		
-		 
-	}
+
 	
 	@Override
 	public String toString() {
-		return nombre+" de la marca "+marca+" con un costo por unidad de "+precio;
+		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

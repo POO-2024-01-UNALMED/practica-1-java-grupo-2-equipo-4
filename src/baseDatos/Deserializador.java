@@ -17,15 +17,12 @@ public class Deserializador {
 	private static File rutaTemp = new File("");
 	
 	@SuppressWarnings("unchecked")
-	public static void deserealizar() {
+	public static void deserializar() {
 		try {
 			FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
 			ObjectInputStream o = new ObjectInputStream(f);
-			//System.out.println(new Producto("",Categoria.ALIMENTO) );
-			//System.out.println(o.readObject());
-			Tienda.setTiendas((ArrayList<Tienda>) o.readObject());
-			//System.out.println(A);
-			//Producto.pro=A;
+			ArrayList<Tienda> l=(ArrayList<Tienda>) o.readObject();
+			Tienda.setTiendas(l);
 			o.close();
 			f.close();
 

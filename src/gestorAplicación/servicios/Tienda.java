@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.sujetos.Persona;
@@ -25,6 +26,7 @@ public class Tienda implements Serializable{
 	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+	private static ArrayList<Empleado> desempleados=new ArrayList<>();
 	
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <>();
 //------------------------------------------------------------------------------------------------------------
@@ -140,7 +142,13 @@ public class Tienda implements Serializable{
 		this.bodegas = bodegas;
 	}
 
+	public static ArrayList<Empleado> getDesempleados() {
+		return desempleados;
+	}
 
+	public static void setDesempleados(ArrayList<Empleado> des) {
+		desempleados = des;
+	}
 	public ArrayList<Producto> getProductosVencidos() {
 		return ProductosVencidos;
 	}
@@ -180,11 +188,21 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static ArrayList<Producto> buscarProductos(Cliente cliente, Enums.Categoria categoria,ArrayList<Producto> productos) {
+	public static ArrayList<Producto> buscarProductos(Cliente cliente, Categoria categoria,ArrayList<Producto> productos) {
+		ArrayList<Integer> ids=new ArrayList<>();
 		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
 				if (j.getCategoria()==categoria){
+					boolean confirmacion=true;
+					for(int p:ids) {
+						if(j.getId()==p) {
+							confirmacion=false;
+						}
+					}
+					ids.add(j.getId());
+					if(confirmacion) {
 					productos.add(j);
+					}
 				}
 			}
 		}
@@ -228,60 +246,17 @@ public class Tienda implements Serializable{
 			}
 		}
 	}
-	//for(int i=1;i<=5;i++){
- 	//switch(i){
-			//case 1:
-			//int x1=escaner();
-			//crearPasillos(x1,0,0);
-			//case 2:
-			//System.out.println("nombre del pasillo "+n+" :");
-			//crearPasillos(0,x2,0);
-			//case 3:
-			//System.out.println(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-			//System.out.println("desea llamar a un proveedor?\n1.Si\n2.No");
-			//int x3=scanner.nextInt();
-			//crearPasillos(0,0,x3);
-			//}
-	//}
 	
-	//public void crearPasillos(int x2,String nom) {
-		//Categoria cat=Categoria.values()[x2-1];
-		//Pasillo pasillo=new Pasillo(x2,cat);
-		//pasillos.add(pasillo);
-	//Así irá en el main:
-      /*Tienda tien = Deserializador.deserealizar()[0];
-      	int i=1;
-	while(true){
-		print("que categorias tendra el pasillo "+i+"?");
-		int n=1;
-		for(Categoria j:Categoria.values()) {
-			print(n+"."+j);
-			n++;
-		}
-		int x2=escaner();
-		print("nombre del pasillo "+i+":");
-		String nom=sc.nextline();
-		tien.crearPasillos(x2,nom);
-		print("pasillo creado");
-		i++;
+	public void añadirPasillo(int x2,String nom) {
+		Categoria cat=Categoria.values()[x2-1];
+		Pasillo pasillo=new Pasillo(nom,cat);
+		pasillos.add(pasillo);
 	}
-	if (this.disponibilidadProductos()==false) {
-		print(dueño +"de la tienda"+nombre+ " sus pasillos estan vacios ");
-		print("desea llamar a un proveedor?\n1.Si\n2.No");
-		int x3=escaner();
-			
-		if(x3==1) {
-			this.llamarProveedor();
-		}
-			
-	}*/	
-
-
-	//Hacer prints: "seleccione un proveedor" y "llamando a un proveedor" en el main
+	
 	public String llamarProveedor() {
 		int n=1;
-		String s= ""; 
-		for(Proveedor i:getProveedores()) {
+		String s= "";
+		for(Proveedor i:this.getProveedores()) {
 			s+=n+"."+i+"\n";
 			n++;
 		}
@@ -312,7 +287,6 @@ public class Tienda implements Serializable{
 		Enums.TipoCaja tipocaja = Enums.TipoCaja.resolverTipoCaja(tipo);
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
-	//ANTES EN BASEDATOS:
 	
 	//Este método se encarga de buscar si existe al menos una tienda 
 	public static boolean buscarTienda() {
@@ -404,7 +378,100 @@ public class Tienda implements Serializable{
 	        }
 	        return todosLosProductos;
 		}
+	
+		public static StringBuilder imprimirProducto(int mayorN,int mayorM,int mayorP, int mayorC, int cantidad,Producto producto) {
+			StringBuilder texto=new StringBuilder();
+			texto.append("  ");
+			texto.append(producto.getNombre());
+			if(producto.getNombre()!=null) {
+			mayorN=(mayorN-texto.length())+4;
+			}
+			else {
+			mayorN=mayorN-2;
+			}
+			for(int i=0;i<mayorN;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append("  ");
+			texto.append(producto.getMarca());
+			if (producto.getTamaño()!=null) {
+				texto.append("/");
+				texto.append(producto.getTamaño().getTamaño());
+			}
+			boolean hacersintamaño=false;
+			if(producto.getMarca()!=null || producto.getTamaño()!=null) {
+				if(producto.getTamaño()!=null) {
+					mayorM=mayorM+2-((""+producto.getMarca()).length())-producto.getTamaño().getTamaño().length()-1;
+					hacersintamaño=true;
+				}
+				if(!hacersintamaño) {
+				mayorM=mayorM+2-(producto.getMarca().length());
+				}
+			}
+			else {
+			mayorM=mayorM-2;
+			}
+			for(int i=0;i<mayorM;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append("  ");
+			texto.append(producto.getPrecio());
+			mayorP=mayorP+2-(""+producto.getPrecio()).length();
+			for(int i=0;i<mayorP;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			texto.append("  ");
+			texto.append(""+cantidad);
+			mayorC=mayorC+2-(""+cantidad).length();
+			for(int i=0;i<mayorC;i++) {
+				texto.append(" ");
+			}
+			texto.append("|");
+			return texto;
+		}
+		
+		public void agregarProducto(Producto p,String pasillo) {
+			for (Pasillo i:pasillos) {
+				if (i.getNombre()==pasillo) {
+					i.getProductos().add(p);
+				}
+			}
+		}
+		
+		public void  vencerProducto() {
+			//si esta caducado//
+			for (Producto producto: obtenerTodosLosProductos()) {
+				if (producto.getFechaPerecer()==producto.getFechaActual()){
+				 producto.setEstado(EstadoProducto.VENCIDO); 
+				 getProductosVencidos().add(producto);
+			    }			
+			}
+		}
+		
+		public void contratarEmpleados() {
+			
+		}
+		
+		public int cantidadProducto(Producto p) {
+			int cantidad=0;
+			for (Pasillo i:this.pasillos) {
+				for (Producto j:i.getProductos()) {
+					if(p.getId()==j.getId()) {
+						cantidad++;
+					}
+				}
+			}
+			return cantidad;
+		}
+		
+		public final String toString() {
+			return this.getNombre(); 
+		}
 //------------------------------------------------------------------------------------------------------------
+
 
 		
 }

@@ -1,4 +1,6 @@
 package uiMain;
+import static uiMain.Main.print;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,6 +9,7 @@ import baseDatos.Deserializador;
 import baseDatos.Serializador;
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Tamaño;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.*;
 
@@ -15,8 +18,13 @@ public class Main {
 		System.out.println(p);
 	}
 	
-	
-	static Scanner sc = new Scanner(System.in);
+	public static void lineas() {
+		for (int i=0;i<160;i++) {
+			System.out.print("-");
+		}
+		print("");
+	}
+	public static Scanner sc = new Scanner(System.in);
 	public static int escaner() {
 		int p;
 		try{
@@ -24,6 +32,7 @@ public class Main {
 		}
 		catch(Exception e) {
 			print("Este no es un numero valido");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner();
 		}
@@ -37,11 +46,13 @@ public class Main {
 		}
 		catch(Exception e) {
 			print("Este no es un numero valido");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner(rango);
 		}
 		if (p<1 || p>rango) {
 			print("Este numero esta fuera del rango");
+			System.out.print(" Introduzca otro numero: ");
 			sc.nextLine();
 			p=escaner(rango);
 		}
@@ -55,7 +66,11 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
-		Producto producto = new Producto("cebolla",Categoria.ALIMENTO,tienda,"13/08/2024");
+		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
+		producto.setTamaño(Tamaño.GRANDE);
+		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
+		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1);
+		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -76,14 +91,14 @@ public class Main {
 				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
 				
 				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan", Categoria.ALIMENTO);
+				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2);
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
 				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana", Categoria.ALIMENTO);
+				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3);
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 				// Crear listas para cada categoría
@@ -148,25 +163,63 @@ public class Main {
 				t2.setEmpleados(duo2);
 				t3.setEmpleados(duo1);
 		cliente.setTienda(tienda);
+		tienda.getPasillos().add(p1);
+		tienda.agregarProducto(producto, "A7");
+		tienda.agregarProducto(producto12, "A7");
+		tienda.agregarProducto(producto13, "A7");
+		tienda.agregarProducto(producto14, "A7");
+		ArrayList<Tienda> tiendas=new ArrayList<>();
+		tiendas.add(t1);
+		tiendas.add(t2);
+		tiendas.add(t3);
+		tiendas.add(t4);
+		Serializador.serializar(tiendas);
 		escogerFuncionalidad(cliente);
+		Proveedor pro=new Proveedor("Colanta", electronico, Categoria.ALIMENTO, t3, null);
+		Proveedor pro2=new Proveedor("Alqueria", bebidas, Categoria.BEBIDA, t3, null);
+		ArrayList<Tienda> tiendas1=new ArrayList<>();
+		tiendas1.add(t1);
+		tiendas1.add(t2);
+		tiendas1.add(t3);
+		Serializador.serializar(tiendas1);
 	}
 	
 	public static void escogerFuncionalidad(Cliente cliente) {
 		do{
 			boolean boleano=false;
-			print("Bienvenido a My_Tiendita, que desea hacer?");
-			print("1. Ecosistema de Consultas Personalizadas\n"
-					+ "2. Escoger productos\n"
-					+ "3. Pagar recibos pendientes\n"
-					+ "4. \n"
-					+ "5. Personalizar y modificar tiendas\n"
-					+ "6. Terminar");
+			lineas();
+			print("""
+				    ________________________
+				   /                        \\
+				  /                          \\
+				 /____________________________\\
+				 |  ______   ______   ______  |
+				 | |      | |      | |      | |
+				 | |  []  | |  []  | |  []  | |   My_Tiendita
+				 | |______| |______| |______| |
+				 |                            |
+				 |            ____            |
+				 |           |    |           |
+				 |___________|____|___________|
+				    """);
+			lineas();
+			print("Bienvenido a My_Tiendita, ¿que desea hacer?");
+			print("");
+			print(" 1. Ecosistema de Consultas Personalizadas\n"
+					+ " 2. Escoger productos\n"
+					+ " 3. Pagar recibos pendientes\n"
+					+ " 4. \n"
+					+ " 5. Personalizar y modificar tiendas\n"
+					+ " 6. Terminar");
+			print("");
+			System.out.print("Escoja un numero: ");
 			while (!boleano){
 				try{
 					decision=sc.nextInt();
 				}
 				catch(Exception e) {
-					print("Este no es un numero valido");
+					print(" Este no es un numero valido");
+					System.out.print(" Introduzca otro numero: ");
 					sc.nextLine();
 					continue;
 				}
@@ -176,7 +229,8 @@ public class Main {
 					 }
 				}
 				if (boleano==false){
-					 print("El numero esta fuera del rango");
+					 print(" El numero esta fuera del rango");
+					 System.out.print(" Introduzca otro numero: ");
 					 continue;
 				}
 			}
@@ -191,7 +245,8 @@ public class Main {
 			case 4:
 				
 			case 5:
-			
+				Funcionalidad5.personalizarTienda(cliente);
+				decision=6;
 			}
 		 } while (decision!=6);
 
@@ -205,6 +260,9 @@ public class Main {
 	public static void mostrarProductos(){
 		// buscar por nombre o categoria 
 		// arrays
+		//En esta parte del metodo se hace la impresion de las categorias
+		//Luego el usuario escogera una de las categorias para luego 
+		//buscar si existen productos con esa categoria
 		int enumerado = 1;
 		for(Categoria tipo:Categoria.values()) {
 				print(enumerado +"."+tipo );
@@ -218,7 +276,7 @@ public class Main {
 				print("Estas tiendas tienen tu categoria");
 				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
 				//Serializador.serializar(tiendas);
-				Deserializador.deserealizar();
+				Deserializador.deserializar();
 				System.out.print(Tienda.getTiendas());
 				print("en cual Tienda desea consultar?");
 				enumerado=1;
