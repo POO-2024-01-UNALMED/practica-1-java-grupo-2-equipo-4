@@ -1,8 +1,10 @@
 package gestorAplicación.sujetos;
 
+import java.io.Serializable;
+
 import gestorAplicación.servicios.Tienda;
 
-public abstract class Empleado extends Persona {
+public abstract class Empleado extends Persona implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
 	protected double liquidacion;
@@ -36,6 +38,8 @@ public abstract class Empleado extends Persona {
 	
 	protected abstract void buscoChamba();
 	protected abstract double cantidadPago();
+
+	public abstract boolean validarCriterios();
 	
 //-------------------------------------------------------------------------------------------------------------
 }

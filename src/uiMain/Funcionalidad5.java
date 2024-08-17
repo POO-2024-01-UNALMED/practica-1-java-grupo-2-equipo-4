@@ -15,7 +15,7 @@ public class Funcionalidad5 {
 	
 	public static void personalizarTienda(Cliente clien) {
 		print("Ha seleccionado Personalizar y modificar tiendas.");
-		Deserializador.deserializar();
+		Deserializador.deserializar(0);
 		if (Tienda.buscarTienda()) {
             print("Selecciona una de las tiendas disponibles para ti:");
             int contador = 1;
@@ -66,7 +66,7 @@ public class Funcionalidad5 {
   		if(x4==1) {
   			int j=1;
   	      	while(true){
-  	      		print("qué tipo de empleado será el empleado"+j+"?");
+  	      		print("qué tipo de empleado necesita que sea el 1empleado"+j+"?");
   	      		String[] ems={"Domiciliario","Concerje","Cajero"};
   	      		int n=1;
   	      		for(String e:ems) {
@@ -74,8 +74,8 @@ public class Funcionalidad5 {
   	      			n++;
   	      		}
   	      		int x5=escaner();
-  	      		tien.contratarEmpleados();
-  	      		print("pasillo creado");
+  	      		tien.contratarEmpleados(x5);
+  	      		System.out.print(tien.getEmpleados());
   	      		i++;
   	      		print("1.Continuar\n2.Terminar");
   	      		int x6=escaner();

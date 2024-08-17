@@ -11,6 +11,7 @@ public class Domiciliario extends Empleado implements Serializable{
 	 */
 	private static final long serialVersionUID = 1708181192964755820L;
 	String vehiculo;
+	boolean licencia;
 	//Contructores------------------------------------------------------------------------------------------------
 
 	public Domiciliario() {
@@ -35,5 +36,13 @@ public class Domiciliario extends Empleado implements Serializable{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	@Override
+	public boolean validarCriterios() {
+		if(this.licencia!=false) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
