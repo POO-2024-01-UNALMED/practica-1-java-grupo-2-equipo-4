@@ -332,7 +332,6 @@ public class Funcionalidad2 {
 			busquedaCategoria(cliente, categoria, productos, seleccionado);
 		case 2:
 			busquedaNombre(cliente, productos,seleccionado);
-
 		case 3:
 			Main.escogerFuncionalidad(cliente);
 			break;
