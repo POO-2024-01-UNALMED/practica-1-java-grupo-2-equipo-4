@@ -18,28 +18,13 @@ public class Deserializador {
 	private static File rutaTemp = new File("");
 	
 	@SuppressWarnings("unchecked")
-	public static void deserializar(int x) {
+	public static <T> void deserializar(ArrayList<T> list, String nombre) {
 		try {
-			if(x==1) {
-			FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\tiendas.txt"));
+			FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\"+nombre+".txt"));
 			ObjectInputStream o = new ObjectInputStream(f);
-				ArrayList<Tienda> l=(ArrayList<Tienda>) o.readObject();
-				Tienda.setTiendas(l);
-				o.close();
-				f.close();
-			} else {
-				FileInputStream f= new FileInputStream(new File(rutaTemp.getAbsolutePath()+  "\\src\\baseDatos\\temp\\empleados.txt"));
-				ObjectInputStream o = new ObjectInputStream(f);
-				ArrayList<Empleado> l=(ArrayList<Empleado>) o.readObject();
-				Tienda.setDesempleados(null);
-				Tienda.setDesempleados(l);
-				
-				o.close();
-				f.close();
-				System.out.println(Tienda.getDesempleados());
-			}
-			
-
+			list.addAll((ArrayList<T>) o.readObject());
+			o.close();
+			f.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,4 +39,9 @@ public class Deserializador {
 			e.printStackTrace();
 		}
 	}
+	public static void deserializarListas() {
+		deserializar(Tienda.getTiendas(),"tiendas");
+		deserializar(Tienda.getDesempleados(),"empleados");
+		deserializar(Tienda.getProveedores(),"proovedores");
+		}
 }

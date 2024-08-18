@@ -1,13 +1,18 @@
 package gestorAplicación.sujetos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Tienda;
 import static gestorAplicación.servicios.Enums.Genero;
 
-public class Persona {
+public class Persona implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9139003303968753009L;
 //Atributos----------------------------------------------------------------------------------------------------
-	
 	private String nombre;
 	private int id;
 	private int edad;
@@ -61,11 +66,11 @@ public class Persona {
 		this.edad=edad;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 	
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero=genero;
 	}
 	

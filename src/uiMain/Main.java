@@ -64,6 +64,9 @@ public class Main {
 	static int decision;
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
+		Deserializador.deserializarListas();
+		System.out.println(Tienda.getTiendas().getLast());
+		Tienda.getTiendas().addLast(new Tienda("apilipona"));
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
@@ -173,15 +176,7 @@ public class Main {
 		tiendas.add(t2);
 		tiendas.add(t3);
 		tiendas.add(t4);
-//		Serializador.serializar(tiendas);
 		escogerFuncionalidad(cliente);
-		Proveedor pro=new Proveedor("Colanta", electronico, Categoria.ALIMENTO, t3, null);
-		Proveedor pro2=new Proveedor("Alqueria", bebidas, Categoria.BEBIDA, t3, null);
-		ArrayList<Tienda> tiendas1=new ArrayList<>();
-		tiendas1.add(t1);
-		tiendas1.add(t2);
-		tiendas1.add(t3);
-		//Serializador.serializar(tiendas1);
 
 	}
 	
@@ -250,7 +245,7 @@ public class Main {
 				Funcionalidad5.personalizarTienda(cliente);
 				break;
 			case 6:
-//				Serializador.serializar();
+				Serializador.serializarTodo();
 				print("Ha salido del programa");
 				break;
 			}
@@ -520,9 +515,10 @@ public class Main {
 				break;
 			}
 		}
-		for (Carrito i:Cliente.getClientes().get(existencia).getFacturas()) {
-			
-		}
+//		Error
+//		for (Carrito i:Cliente.getClientes().get(existencia).getFacturas()) {
+//			
+//		}
 }
 	
 	// ----- FUNCIONALIDAD 4 ---------------------------------------------------

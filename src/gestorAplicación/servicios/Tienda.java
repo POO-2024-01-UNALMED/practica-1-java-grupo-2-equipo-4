@@ -18,7 +18,7 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado;
 	private ArrayList <Persona> cliente;
-	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
+	private static ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
@@ -121,7 +121,7 @@ public class Tienda implements Serializable{
 		this.candidatos=candidatos;
 	}
 	
-	public ArrayList<Proveedor> getProveedores() {
+	public static ArrayList<Proveedor> getProveedores() {
 		return proveedores;
 	}
 	
@@ -462,7 +462,6 @@ public class Tienda implements Serializable{
 		public void contratarEmpleados(int x5) {
 			if (x5==1) {
 				this.reclutarDomiciliario();
-				
 			}
 			
 		}

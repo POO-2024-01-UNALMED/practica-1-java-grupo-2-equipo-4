@@ -15,7 +15,6 @@ public class Funcionalidad5 {
 	
 	public static void personalizarTienda(Cliente clien) {
 		print("Ha seleccionado Personalizar y modificar tiendas.");
-		Deserializador.deserializar(0);
 		if (Tienda.buscarTienda()) {
             print("Selecciona una de las tiendas disponibles para ti:");
             int contador = 1;
@@ -42,11 +41,12 @@ public class Funcionalidad5 {
       		int x2=escaner();
       		print("nombre del pasillo "+i+":");
       		String nom=sc.nextLine();
+      		System.out.println(3);
       		tien.añadirPasillo(x2,nom);
       		print("pasillo creado");
       		i++;
 	  		print("1.Continuar\n2.Terminar");
-	  		int x3=escaner();
+	  		int x3=sc.nextInt();
 	  		if(x3!=1) {
 	  			break;
 	  		}
@@ -58,7 +58,6 @@ public class Funcionalidad5 {
       	}
   		int x3=escaner();
   		if(x3==1) {
-  			System.out.println(tien.getProveedores());
   			print(tien.llamarProveedor());
   		}
   		print("desea contratar empleados?\n1.Si\n2.No");
@@ -75,10 +74,10 @@ public class Funcionalidad5 {
   	      		}
   	      		int x5=escaner();
   	      		tien.contratarEmpleados(x5);
-  	      		System.out.print(tien.getEmpleados());
+  	      		System.out.println(tien.getEmpleados());
   	      		i++;
   	      		print("1.Continuar\n2.Terminar");
-  	      		int x6=escaner();
+  	      		int x6 = escaner();
   	      		if(x6!=1) {
   	      			break;
   	      		}

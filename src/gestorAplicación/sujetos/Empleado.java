@@ -2,11 +2,16 @@ package gestorAplicación.sujetos;
 
 import java.io.Serializable;
 
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Tienda;
 
 public abstract class Empleado extends Persona implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1006554030509380019L;
 	protected double liquidacion;
 	protected Tienda tienda;
 	protected boolean prestacionSalud;
@@ -24,7 +29,7 @@ public abstract class Empleado extends Persona implements Serializable{
 		super();
 	}
 	
-	protected Empleado(String nombre, int id, int edad, String genero, double liquidacion, Tienda tienda, 
+	protected Empleado(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda, 
 			boolean prestacionSalud, boolean prestacionPension) {
 		super(nombre, id, edad, genero);
 		this.liquidacion=liquidacion;
