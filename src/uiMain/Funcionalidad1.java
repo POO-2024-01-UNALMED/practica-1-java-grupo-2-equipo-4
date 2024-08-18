@@ -8,6 +8,7 @@ import gestorAplicación.sujetos.Persona;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Edades;
 
 public class Funcionalidad1 extends Identidad{
 	
@@ -48,9 +49,11 @@ public class Funcionalidad1 extends Identidad{
         }
         return p;
     }
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static void consultasEco(Cliente cliente) {
-    	Persona identidad=identificarPersona();
+    //Este método se encarga de direccionar al cliente hacia la consulta que desea realizar 
+    public static void consultasEco() {
+    	Cliente cliente= (Cliente)Identidad.identificarPersona();
         print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
         print("1. Consulta general de productos\n" +
               "2. Consulta de productos por categoría\n" +
@@ -68,7 +71,7 @@ public class Funcionalidad1 extends Identidad{
                 consultaGeneralProductos();
                 break;
             case 2:
-                consultaPorCategoria();
+                consultaPorCategoria(cliente);
                 break;
             case 3:
                 consultaMembresias();
@@ -80,6 +83,8 @@ public class Funcionalidad1 extends Identidad{
                 print("Opción no válida");
         }
     }
+    
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static void consultaGeneralProductos() {
         if (Tienda.buscarTienda()) {
@@ -89,16 +94,14 @@ public class Funcionalidad1 extends Identidad{
             print("Lo sentimos, no hay tiendas disponibles en este momento.");
         }
     }
+    
+    
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static void consultaPorCategoria() {
+    public static void consultaPorCategoria(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Selecciona una de las categorías disponibles en nuestras tiendas:");
-            int contador = 1;
-
-            for (Categoria tipo : Categoria.values()) {
-                print(contador + "." + tipo);
-                contador++;
-            }
+            printTablaCategorias();
 
             int categoriaSeleccionada = escaner(Categoria.values().length);
 
@@ -107,17 +110,25 @@ public class Funcionalidad1 extends Identidad{
                 printTablaTiendas(tiendas);
                 
                 print("Selecciona una tienda:");
-                int tiendaSeleccionada = escaner(tiendas.size());
-                Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
-                print("Has seleccionado la tienda: " + tienda.getNombre());
-                listaProductos(tienda);
+                int tiendaSeleccionada = escaner(tiendas.size() + 1); 
+
+                if (tiendaSeleccionada == tiendas.size() + 1) { // Verificar si la opción seleccionada es "Volver"
+                    consultasEco();
+                } else {
+                    Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
+                    print("Has seleccionado la tienda: " + tienda.getNombre());
+                    mostrarProductosPorEdad(tienda,cliente);
+                }
             } else {
                 print("No hay tiendas disponibles para la categoría seleccionada.");
             }
         } else {
-            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+        	print("Lo sentimos, no hay tiendas disponibles en este momento.");
         }
+              
     }
+
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static void consultaMembresias() {
         if (Tienda.buscarTienda()) {
@@ -128,6 +139,9 @@ public class Funcionalidad1 extends Identidad{
         }
     }
 
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    //Este método se encarga de revisar si hay tiendas para la categoría seleccionada para esto llama a un método en tienda 
+    //que te entrega la lista de las tiendas que pertenecen a la categoría a buscar.
     public static ArrayList<Tienda> busquedaCategoria(int categoria) {
         Categoria cat = Categoria.values()[categoria - 1];
         ArrayList<Tienda> tiendas = Tienda.categoriaTienda(cat);
@@ -140,6 +154,8 @@ public class Funcionalidad1 extends Identidad{
         return tiendas;
     }
 
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+
     public static void listaProductos(Tienda tienda) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         if (productos.size() > 0) {
@@ -148,43 +164,122 @@ public class Funcionalidad1 extends Identidad{
             print("No hay productos disponibles en esta tienda.");
         }
     }
-
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    public static void mostrarProductosPorEdad(Tienda tienda, Cliente cliente) {
+    	
+        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
+        ArrayList<Producto> productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
+        
+        // Verificar si hay productos disponibles para la edad del cliente
+        if (productosAdecuados.size()==0) {
+            print("No hay productos disponibles para " + (cliente.mayorEdad() ? "adultos" : "menores de edad") + " en esta tienda.");
+            print("¿Desea volver a elegir otra tienda?");
+            print("1. Sí");
+            print("2. No");
+            print("");
+            
+            int seleccion = escaner(2);
+            if (seleccion == 1) {
+                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
+            } else {
+                consultasEco(); // Regresar al menú de opciones
+            }
+        } else {
+            printTablaProductos(productosAdecuados);
+            print("¿Desea volver a elegir otra tienda?");
+            print("1. Sí");
+            print("2. No");
+            print("");
+            
+            int seleccion = escaner(2);
+            if (seleccion == 1) {
+                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
+            } else {
+                consultasEco(); // Regresar al menú de opciones
+            }
+        }
+    }
+    
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // Método para imprimir las tiendas en formato tabla ASCII
     public static void printTablaTiendas(ArrayList<Tienda> tiendas) {
         print("+------------------------------------+");
-        print("| No. |          Nombre de Tienda    |");
+        print("| No. |       Nombre de Tienda       |");
         print("+------------------------------------+");
+
+        int anchoCelda = 28; // Ancho de la celda para el nombre de la tienda
+
         for (int i = 0; i < tiendas.size(); i++) {
-            String numero = String.format("| %-3d", i + 1);
-            String nombre = String.format("| %-28s |", tiendas.get(i).getNombre());
-            print(numero + nombre);
+            String nombreTienda = tiendas.get(i).getNombre();
+            int espacios = (anchoCelda - nombreTienda.length()) / 2;
+
+            // Relleno a izquierda y derecha para centrar el nombre de la tienda
+            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreTienda.length()) % 2));
+
+            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreTienda, paddingDerecho));
         }
+        int numeroVolver = tiendas.size() + 1;
+        String opcionVolver = "Volver";
+        int espaciosVolver = (anchoCelda - opcionVolver.length()) / 2;
+        String paddingIzquierdoVolver = " ".repeat(Math.max(0, espaciosVolver));
+        String paddingDerechoVolver = " ".repeat(Math.max(0, espaciosVolver + (anchoCelda - opcionVolver.length()) % 2));
+
+        print(String.format("| %-3d |%s%s%s|", numeroVolver, paddingIzquierdoVolver, opcionVolver, paddingDerechoVolver));
         print("+------------------------------------+");
     }
+
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Método para imprimir los productos en formato tabla ASCII
     public static void printTablaProductos(ArrayList<Producto> productos) {
         print("+------------------------------------+");
-        print("| No. |         Nombre de Producto   |");
+        print("| No. |      Nombre de Producto      |");
         print("+------------------------------------+");
+
+        int anchoCelda = 28; // Ancho de la celda para el nombre del producto
         for (int i = 0; i < productos.size(); i++) {
-            String numero = String.format("| %-3d", i + 1);
-            String nombre = String.format("| %-28s |", productos.get(i).getNombre());
-            print(numero + nombre);
+            String nombreProducto = productos.get(i).getNombre();
+            int espacios = (anchoCelda - nombreProducto.length()) / 2;
+
+            // Relleno a izquierda y derecha para centrar el nombre del producto
+            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreProducto.length()) % 2));
+
+            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreProducto, paddingDerecho));
+        
         }
+        int numeroVolver = productos.size() + 1;
+        String opcionVolver = "Volver";
+        int espaciosVolver = (anchoCelda - opcionVolver.length()) / 2;
+        String paddingIzquierdoVolver = " ".repeat(Math.max(0, espaciosVolver));
+        String paddingDerechoVolver = " ".repeat(Math.max(0, espaciosVolver + (anchoCelda - opcionVolver.length()) % 2));
+
+        print(String.format("| %-3d |%s%s%s|", numeroVolver, paddingIzquierdoVolver, opcionVolver, paddingDerechoVolver));
         print("+------------------------------------+");
     }
-    
+
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+   
     // Método para imprimir las categorias en formato tabla ASCII
     public static void printTablaCategorias() {
         print("+--------------------------+");
-        print("| No. |    Categoría        |");
+        print("| No. |      Categoría     |");
         print("+--------------------------+");
+        int anchoCelda = 20; // Ancho de la celda para la categoría
         int contador = 1;
         for (Categoria categoria : Categoria.values()) {
-            print(String.format("| %-3d | %-20s |", contador, categoria.toString()));
+            String categoriaTexto = categoria.toString();
+            int espacios = (anchoCelda - categoriaTexto.length()) / 2;
+            
+            // Si la longitud es impar, añade un espacio adicional al final
+            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - categoriaTexto.length()) % 2));
+            
+            print(String.format("| %-3d |%s%s%s|", contador, paddingIzquierdo, categoriaTexto, paddingDerecho));
             contador++;
         }
         print("+--------------------------+");
     }
+    
 }

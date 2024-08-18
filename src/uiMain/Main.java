@@ -9,8 +9,8 @@ import baseDatos.Deserializador;
 import baseDatos.Serializador;
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Tamaño;
-import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.*;
 
 public class Main {
@@ -71,11 +71,11 @@ public class Main {
 		Cliente cliente = new Cliente(); 
 		Carrito carrito = new Carrito();
 		cliente.setCarrito(carrito);
-		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
+		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES);
 		producto.setTamaño(Tamaño.GRANDE);
-		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
-		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1);
-		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2);
+		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0,Edades.MENORES);
+		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1,Edades.MENORES);
+		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2,Edades.MENORES);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -96,16 +96,18 @@ public class Main {
 				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
 				
 				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2);
+				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2,Edades.MENORES);
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
 				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3);
+				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3,Edades.MENORES);
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
+				
+				// Crear  Productos por edades
 				// Crear listas para cada categoría
 				ArrayList<Producto> alimentos = new ArrayList<Producto>();
 				ArrayList<Producto> bebidas = new ArrayList<Producto>();
@@ -234,7 +236,7 @@ public class Main {
 			}
 			switch(decision){
 			case 1:
-				Funcionalidad1.consultasEco(cliente);
+				Funcionalidad1.consultasEco();
 				break;
 			case 2:
 				Funcionalidad2.elegirTipoBusqueda(cliente);

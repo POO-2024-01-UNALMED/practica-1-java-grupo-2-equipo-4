@@ -85,9 +85,11 @@ public class Cliente extends Persona implements Serializable {
 		super(nombre, p, edad, genero1);
 	}
 
+	
+	
 	public static int existeCliente(String nombre) {
 		int contador=0;
-		for (Cliente i:clientes) {
+		for (Persona i:getPersonas()) {
 			if (i.getNombre()==nombre) {
 				return contador;
 			}
