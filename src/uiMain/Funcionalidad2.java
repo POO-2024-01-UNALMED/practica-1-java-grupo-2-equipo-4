@@ -105,11 +105,10 @@ public class Funcionalidad2 {
 		System.out.print("¿Que desea realizar?: ");
 	}
 	
-	public static Producto impresionSeleccionCategoria(Cliente cliente,ArrayList<Producto> productos,Categoria categoria) {
+	public static Producto impresionSeleccionCategoria(Cliente cliente,ArrayList<Producto> productos,Categoria categoria, boolean malSeleccionado) {
 		int inferior=0;
 		int superior=4;
 		Producto seleccionado = null;
-		boolean malSeleccionado=false;
 		while(true) {
 			if ((productos.size()-superior)<0) {
 				superior=superior-(superior-productos.size());
@@ -117,8 +116,8 @@ public class Funcionalidad2 {
 			if (!malSeleccionado) {
 			cuadriculaProductos(cliente,productos,inferior,superior);
 			}
-			malSeleccionado=false;
 			String seleccion=sc.nextLine();
+			malSeleccionado=false;
 			boolean texto=false;
 			int numero=0;
 			try{
@@ -167,7 +166,11 @@ public class Funcionalidad2 {
 				busquedaCategoria(cliente, categoria, productos, seleccionado);
 				break;
 			default:
-				print("hola");
+				print("Ese numero esta fuera del rango");
+				System.out.print("Introduzca otro numero: ");
+				malSeleccionado=true;
+				impresionSeleccionCategoria(cliente,productos,categoria,malSeleccionado);
+				break;
 			}	
 			return seleccionado;
 		}
@@ -272,8 +275,9 @@ public class Funcionalidad2 {
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			productos=new ArrayList<Producto>();
 			productos= Tienda.buscarProductos(cliente,categoria,productos);
-			}
-		seleccionado = impresionSeleccionCategoria(cliente,productos,categoria);
+		}
+		boolean malSeleccionado=false;
+		seleccionado = impresionSeleccionCategoria(cliente,productos,categoria,malSeleccionado);
 		lineas();
 		cliente.getCarrito().getProductos().add(seleccionado);
 	}
@@ -302,11 +306,33 @@ public class Funcionalidad2 {
 		if (nombre.toLowerCase().equals("volver")) {
 			elegirTipoBusqueda(cliente);
 		}
+		productos=new ArrayList<Producto>();
 		productos=cliente.getTienda().buscarProductos(cliente,nombre);
+		while (productos.size()==0) {
+			print("No hay productos disponibles con ese nombre, escoja otro por favor");
+			System.out.print("Introduzca otro nombre: ");
+			nombre=sc.nextLine();
+			number=0;
+			string=true;
+			try{
+				number = Integer.parseInt(nombre);
+			}
+			catch(Exception e) {
+				string=false;
+			}
+			if (string) {
+				if (Integer.parseInt(nombre)==3) {
+					elegirTipoBusqueda(cliente);
+				}
+			}
+			if (nombre.toLowerCase().equals("volver")) {
+				elegirTipoBusqueda(cliente);
+			}
+			productos=new ArrayList<Producto>();
+			productos=cliente.getTienda().buscarProductos(cliente,nombre);
+		}
 		seleccionado = impresionSeleccionNombre(cliente,productos, seleccionado);
-		lineas();
 		cliente.getCarrito().getProductos().add(seleccionado);
-		lineas();
 	}
 
 

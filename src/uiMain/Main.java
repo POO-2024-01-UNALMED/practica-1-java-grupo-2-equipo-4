@@ -66,6 +66,8 @@ public class Main {
 	public static void main(String[] args){
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
+		Carrito carrito = new Carrito();
+		cliente.setCarrito(carrito);
 		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);
 		producto.setTamaño(Tamaño.GRANDE);
 		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0);
