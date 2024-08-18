@@ -3,10 +3,10 @@ package gestorAplicación.servicios;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Empleado;
+import java.io.Serializable;
 
-public class Caja {
+public class Caja implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
-	
 	private Empleado empleado;
 	private String nombre;
 	private int estado=2;
@@ -14,7 +14,8 @@ public class Caja {
 	private Tienda tienda;
 	private String descuento;
 	private Cliente cliente;
-
+	
+	private static final long serialVersionUID = 5268347727015736706L;
 //-------------------------------------------------------------------------------------------------------------
 //holi
 	

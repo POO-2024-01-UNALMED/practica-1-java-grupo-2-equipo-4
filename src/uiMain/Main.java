@@ -59,53 +59,51 @@ public class Main {
 		return p;
 	}
 	
-	public static ArrayList<Producto> ser;
 	static int [] numeros = {1,2,3,4,5,6};
 	static int decision;
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Deserializador.deserializarListas();
-//		System.out.println(Tienda.getTiendas().getLast());
-//		Tienda.getTiendas().addLast(new Tienda("apilipona"));
+		System.out.println(Tienda.getTiendas());
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
-		Carrito carrito = new Carrito();
-		cliente.setCarrito(carrito);
-		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES);
-		producto.setTamaño(Tamaño.GRANDE);
-		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0,Edades.MENORES);
-		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1,Edades.MENORES);
-		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2,Edades.MENORES);
-		//Crear Empleados
-				Empleado juan =new Domiciliario();
-				Empleado pepe =new Domiciliario();
-				Empleado maria =new Domiciliario();
-				Empleado pedro =new Domiciliario();
-				ArrayList<Empleado> duo1= new ArrayList<Empleado>();
-				ArrayList<Empleado> duo2= new ArrayList<Empleado>();
-				duo1.add(juan);
-				duo1.add(pepe);
-				duo2.add(maria);
-				duo2.add(pedro);
-				//Crear Pasillos
-				Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
-				Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
-				Pasillo p3 = new Pasillo("A9",Categoria.LIMPIEZA);
-				Pasillo p4 = new Pasillo("A2",Categoria.PERSONAL);
-				Pasillo p5 = new Pasillo("A7",Categoria.HOGAR);
-				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
-				
-				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2,Edades.MENORES);
-				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
-				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
-				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
-				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
-				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
-				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3,Edades.MENORES);
-				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
-				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
+//		Carrito carrito = new Carrito();
+//		cliente.setCarrito(carrito);
+//		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES);
+//		producto.setTamaño(Tamaño.GRANDE);
+//		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0,Edades.MENORES);
+//		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1,Edades.MENORES);
+//		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2,Edades.MENORES);
+//		//Crear Empleados
+//				Empleado juan =new Domiciliario();
+//				Empleado pepe =new Domiciliario();
+//				Empleado maria =new Domiciliario();
+//				Empleado pedro =new Domiciliario();
+//				ArrayList<Empleado> duo1= new ArrayList<Empleado>();
+//				ArrayList<Empleado> duo2= new ArrayList<Empleado>();
+//				duo1.add(juan);
+//				duo1.add(pepe);
+//				duo2.add(maria);
+//				duo2.add(pedro);
+//				//Crear Pasillos
+//				Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
+//				Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
+//				Pasillo p3 = new Pasillo("A9",Categoria.LIMPIEZA);
+//				Pasillo p4 = new Pasillo("A2",Categoria.PERSONAL);
+//				Pasillo p5 = new Pasillo("A7",Categoria.HOGAR);
+//				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
+//				
+//				// Crear Productos para cada categoria
+//				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2,Edades.MENORES);
+//				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
+//				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
+//				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
+//				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
+//				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
+//				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
+//				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3,Edades.MENORES);
+//				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
+//				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 				
 				// Crear  Productos por edades
 				// Crear listas para cada categoría
@@ -117,29 +115,29 @@ public class Main {
 				ArrayList<Producto> electronico = new ArrayList<Producto>();
 
 				// Agregar productos a las listas correspondientes
-				alimentos.add(producto1);
-				alimentos.add(producto8);
-
-				bebidas.add(producto2);
-				bebidas.add(producto7);
-
-				limpieza.add(producto3);
-				limpieza.add(producto10);
-
-				personal.add(producto4);
-				personal.add(producto9);
-
-				hogar.add(producto5);
-
-				electronico.add(producto6);
-				
-				// Asignar las listas de productos a los pasillos correspondientes
-				p1.setProductos(alimentos);      // Pasillo A7 - Alimentos
-				p2.setProductos(bebidas);        // Pasillo A8 - Bebidas
-				p3.setProductos(limpieza);       // Pasillo A9 - Limpieza
-				p4.setProductos(personal);       // Pasillo A2 - Productos de cuidado personal
-				p5.setProductos(hogar);          // Pasillo A7 - Hogar
-				p6.setProductos(electronico);    // Pasillo A7 - Electrónicos
+//				alimentos.add(producto1);
+//				alimentos.add(producto8);
+//
+//				bebidas.add(producto2);
+//				bebidas.add(producto7);
+//
+//				limpieza.add(producto3);
+//				limpieza.add(producto10);
+//
+//				personal.add(producto4);
+//				personal.add(producto9);
+//
+//				hogar.add(producto5);
+//
+//				electronico.add(producto6);
+//				
+//				// Asignar las listas de productos a los pasillos correspondientes
+//				p1.setProductos(alimentos);      // Pasillo A7 - Alimentos
+//				p2.setProductos(bebidas);        // Pasillo A8 - Bebidas
+//				p3.setProductos(limpieza);       // Pasillo A9 - Limpieza
+//				p4.setProductos(personal);       // Pasillo A2 - Productos de cuidado personal
+//				p5.setProductos(hogar);          // Pasillo A7 - Hogar
+//				p6.setProductos(electronico);    // Pasillo A7 - Electrónicos
 
 				//Crear Tiendas
 				Tienda t1 = new Tienda();
@@ -153,28 +151,28 @@ public class Main {
 				t3.setNombre("La esquina de Luis");
 				t4.setNombre(" D1 ");
 
-				t1.getPasillos().add(p1);
-				t1.getPasillos().add(p2);
-				t2.getPasillos().add(p2);
-				t2.getPasillos().add(p3);
-				t3.getPasillos().add(p3);
-				t3.getPasillos().add(p4);
-				t4.getPasillos().add(p4);
-				t4.getPasillos().add(p5);
-				t1.getPasillos().add(p5);
-				t2.getPasillos().add(p6);
-				t3.getPasillos().add(p1);
-				t4.getPasillos().add(p2);
-				
-				t1.setEmpleados(duo1);
-				t2.setEmpleados(duo2);
-				t3.setEmpleados(duo1);
-		cliente.setTienda(tienda);
-		tienda.getPasillos().add(p1);
-		tienda.agregarProducto(producto, "A7");
-		tienda.agregarProducto(producto12, "A7");
-		tienda.agregarProducto(producto13, "A7");
-		tienda.agregarProducto(producto14, "A7");
+//				t1.getPasillos().add(p1);
+//				t1.getPasillos().add(p2);
+//				t2.getPasillos().add(p2);
+//				t2.getPasillos().add(p3);
+//				t3.getPasillos().add(p3);
+//				t3.getPasillos().add(p4);
+//				t4.getPasillos().add(p4);
+//				t4.getPasillos().add(p5);
+//				t1.getPasillos().add(p5);
+//				t2.getPasillos().add(p6);
+//				t3.getPasillos().add(p1);
+//				t4.getPasillos().add(p2);
+//				
+//				t1.setEmpleados(duo1);
+//				t2.setEmpleados(duo2);
+//				t3.setEmpleados(duo1);
+//		cliente.setTienda(tienda);
+//		tienda.getPasillos().add(p1);
+//		tienda.agregarProducto(producto, "A7");
+//		tienda.agregarProducto(producto12, "A7");
+//		tienda.agregarProducto(producto13, "A7");
+//		tienda.agregarProducto(producto14, "A7");
 		ArrayList<Tienda> tiendas=new ArrayList<>();
 		tiendas.add(t1);
 		tiendas.add(t2);
@@ -208,7 +206,7 @@ public class Main {
 			print(" 1. Ecosistema de Consultas Personalizadas\n"
 					+ " 2. Escoger productos\n"
 					+ " 3. Pagar recibos pendientes\n"
-					+ " 4. \n"
+					+ " 4. Revisar tienda\n"
 					+ " 5. Personalizar y modificar tiendas\n"
 					+ " 6. Terminar");
 			print("");
@@ -245,6 +243,7 @@ public class Main {
 				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
+				Funcionalidad4.RevisarTienda();
 				break;
 			case 5:
 				Funcionalidad5.personalizarTienda(cliente);
@@ -281,9 +280,6 @@ public class Main {
 		case 1:			
 			if (Tienda.categoriaTienda(Categoria.ALIMENTO).size() > 0) {
 				print("Estas tiendas tienen tu categoria");
-				ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
-				//Serializador.serializar(tiendas);
-				//Deserializador.deserializar();
 				System.out.print(Tienda.getTiendas());
 				print("en cual Tienda desea consultar?");
 				enumerado=1;

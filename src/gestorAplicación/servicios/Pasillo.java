@@ -49,10 +49,10 @@ public class Pasillo implements Serializable{
 
 //Constructores------------------------------------------------------------------------------------------------
 	
-	public Pasillo(String nombre, Categoria categoria) {
-		this.nombre = nombre;
-		this.categoria = categoria;
-	}
+//	public Pasillo(String nombre, Categoria categoria) {
+//		this.nombre = nombre;
+//		this.categoria = categoria;
+//	}
 	
 	public Pasillo(String nombre, Categoria categoria,Tienda tienda) {
 		this.nombre = nombre;

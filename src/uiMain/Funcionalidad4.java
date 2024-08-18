@@ -20,9 +20,7 @@ import gestorAplicación.servicios.Enums.Categoria;
 public class Funcionalidad4 extends Identidad {	
 	static Scanner sc = new Scanner(System.in);
 	Persona usuario = identificarPersona();
-	
-	
-	    public  void mai() {
+	    public static void RevisarTienda() {
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
 	    	
 	    	print("Tus tiendas ");
@@ -62,7 +60,7 @@ public class Funcionalidad4 extends Identidad {
 	                for (Producto i:productos) {
 	                	System.out.println(i.getNombre());
 	                }
-	                
+	                break;
 	            case 2:
 	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
 	            	
@@ -72,10 +70,11 @@ public class Funcionalidad4 extends Identidad {
 	            	 for (Producto i:productosVencidos) {
 		                	System.out.println(i.getNombre());
 		                }
-	            	 
+	            	 break;
 	            	
 	            case 3:
 	            	System.out.println("Marcar producto como defectuoso");
+	            	break;
 	            	
 	            case 4: 
 	            	System.out.println("reabastecimiento");
@@ -94,7 +93,7 @@ public class Funcionalidad4 extends Identidad {
 	            	else {
 	            		
 	            	}
-	            	
+	            	break;
 	            case 5:
 	            	Main.escogerFuncionalidad(usuario);
 	    			break;
