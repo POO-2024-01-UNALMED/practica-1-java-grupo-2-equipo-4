@@ -61,6 +61,8 @@ public class Pasillo implements Serializable{
 		tienda.getPasillos().add(this);
 	}
 	
+	
+	
 	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria, Tienda tienda) {
 		this.nombre = nombre;
 		this.productos = productos;

@@ -69,9 +69,12 @@ public class Proveedor implements Serializable{
 	this.nombre = nombre;
 	this.entrega = entrega;
 	this.tipo = tipo;
-	this.tiendas = tiendas;
-	Tienda.getProveedores().add(this);
 	this.pasillos = pasillos;
+	this.tiendas = tiendas;
+	for(Tienda t:tiendas){
+		t.getProveedores().add(this);
+	}
+	
 }
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -81,18 +84,8 @@ public class Proveedor implements Serializable{
 		
 	}
 	
-	public void imprimirProveedores(ArrayList<Proveedor> proveedores) {
-        System.out.println("Lista de Proveedores:");
-        int contador = 1;
-        for (Proveedor proveedor : proveedores) {
-            System.out.println(contador + ". " + proveedor);
-            contador++;
-        }
-    }
-	
-	
 	public String toString(){
-		return this.nombre+"con categoria"+this.tipo;
+		return this.nombre+" con categoria: "+(this.tipo+"").toLowerCase();
 	}
 
 // metodo scanner y print -----------------------------------------------------------------------------------------

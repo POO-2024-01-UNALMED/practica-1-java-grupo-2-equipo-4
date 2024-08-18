@@ -82,6 +82,11 @@ public class Carrito implements Serializable{
 	public Carrito() {
 		
 	}
+	
+	public Carrito(Tienda tienda) {
+		tienda.getCarritos().add(this);
+
+	}
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------

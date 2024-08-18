@@ -29,6 +29,7 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
+	private Pasillo pasillo;
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
 	private Tienda tienda;
@@ -65,6 +66,14 @@ public class Producto implements Serializable {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public Pasillo getPasillo() {
+		return pasillo;
+	}
+
+	public void setPasillo(Pasillo pasillo) {
+		this.pasillo = pasillo;
 	}
 
 	public double getPrecio() {
@@ -112,7 +121,7 @@ public class Producto implements Serializable {
 	}
 
 	public void setFechaActual(LocalDate fechaActual) {
-		this.fechaActual = fechaActual;
+		Producto.fechaActual = fechaActual;
 	}
 
 	public Tienda getTienda() {
@@ -130,17 +139,44 @@ public class Producto implements Serializable {
     public void setEdades(Edades edades) {
         this.edadValida = edades;
     }
+    
+    public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 
-//-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
+	public Producto(String nombre,Categoria categoria,Pasillo pasillo) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+		this.pasillo=pasillo;
+		pasillo.getProductos().add(this);
+	}
+	
 	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
+		pasillo.getProductos().add(this);
+	}
+
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
+		this(nombre,categoria,pasillo);
+		this.precio=precio;
+		this.marca=marca;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+		this.edadValida=edades;
+		this.descripcion=descripcion;
+		this.pasillo=pasillo;
 	}
 	
-	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Edades edades) {
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion) {
 		this(nombre,categoria);
 		this.precio=precio;
 		this.marca=marca;
@@ -148,21 +184,31 @@ public class Producto implements Serializable {
 		this.categoria=categoria;
 		this.id=id;
 		this.edadValida=edades;
+		this.descripcion=descripcion;
 	}
 	
-	public Producto(String nombre,Categoria categoria,Tienda tienda) {
+	public Producto(String nombre,Categoria categoria,Tienda tienda,Pasillo pasillo) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 		this.tienda=tienda;// referencia a tienda que pertenece el producto
+		this.pasillo=pasillo;
+		pasillo.getProductos().add(this);
 	}
 	
-	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades) {
-		this(nombre, marca, precio, categoria,id,edades);
+
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
+		this(nombre, marca, precio, categoria,id,edades,descripcion,pasillo);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
 	}
 
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion) {
+		this(nombre, marca, precio, categoria,id,edades,descripcion);
+		this.tienda=tienda; 
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
+	}
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
@@ -181,7 +227,7 @@ public class Producto implements Serializable {
 
         return productosAdecuados;
     }
-    
+
     public int cantidadProducto() {
     	int cantidad=0;
     	for (Pasillo i:getTienda().getPasillos()) {
@@ -192,6 +238,22 @@ public class Producto implements Serializable {
 			}
 		}
     	return cantidad;
+    }
+    // Método para filtrar productos por edad y categoría
+    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria) {
+        ArrayList<Producto> productosAdecuados = new ArrayList<>();
+
+        for (Producto producto : productos) {
+            if (producto.getCategoria() == categoria) {
+                if (cliente.mayorEdad() && producto.getEdades() == Edades.ADULTOS) {
+                    productosAdecuados.add(producto);
+                } else if (!cliente.mayorEdad() && producto.getEdades() == Edades.MENORES) {
+                    productosAdecuados.add(producto);
+                }
+            }
+        }
+
+        return productosAdecuados;
     }
 
 	@Override

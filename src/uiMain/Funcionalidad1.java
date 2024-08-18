@@ -117,7 +117,7 @@ public class Funcionalidad1 extends Identidad{
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
                     print("Has seleccionado la tienda: " + tienda.getNombre());
-                    mostrarProductosPorEdad(tienda,cliente);
+                    listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]);
                 }
             } else {
                 print("No hay tiendas disponibles para la categoría seleccionada.");
@@ -156,16 +156,16 @@ public class Funcionalidad1 extends Identidad{
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static void listaProductos(Tienda tienda) {
+ /*   public static void listaProductos(Tienda tienda) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         if (productos.size() > 0) {
             printTablaProductos(productos);
         } else {
             print("No hay productos disponibles en esta tienda.");
         }
-    }
+    }*/
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    public static void mostrarProductosPorEdad(Tienda tienda, Cliente cliente) {
+    /*public static void mostrarProductosPorEdad(Tienda tienda, Cliente cliente) {
     	
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
@@ -198,7 +198,40 @@ public class Funcionalidad1 extends Identidad{
                 consultasEco(); // Regresar al menú de opciones
             }
         }
+    }*/
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    public static void listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
+        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
+        ArrayList<Producto> productosAdecuados;
+
+        if (categoria == null) {
+            // Si no se proporciona una categoría, filtrar solo por edad
+            productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
+        } else {
+            // Si se proporciona una categoría, filtrar por edad y categoría
+            productosAdecuados = Producto.filtrarPorEdadYCategoria(productos, cliente, categoria);
+        }
+
+        if (productosAdecuados.size() > 0) {
+            printTablaProductos(productosAdecuados);
+        } else {
+            print("No hay productos disponibles para su grupo de edad" +
+                  (categoria != null ? " en esta categoría." : "."));
+        }
+
+        print("");
+        print("Desea elegir otra tienda?");
+        print("1. Sí");
+        print("2. No");
+        int opcion = escaner(2);
+
+        if (opcion == 1) {
+            consultaPorCategoria(cliente);
+        } else {
+            consultasEco();
+        }
     }
+
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // Método para imprimir las tiendas en formato tabla ASCII
