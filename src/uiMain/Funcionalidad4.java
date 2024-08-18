@@ -50,7 +50,7 @@ public class Funcionalidad4 extends Identidad {
 	            	 
 	            	
 	            case 3:
-	            	System.out.println("marcar producto como defectuoso");
+	            	System.out.println("Marcar producto como defectuoso");
 	            	
 	            case 4: 
 	            	System.out.println("reabastecimiento");

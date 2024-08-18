@@ -13,12 +13,13 @@ public class Persona implements Serializable{
 	 */
 	private static final long serialVersionUID = -9139003303968753009L;
 //Atributos----------------------------------------------------------------------------------------------------
+	
 	private String nombre;
 	private int id;
 	private int edad;
 	private Genero genero;
-	private Tienda tienda;
-	private static ArrayList <Persona > personas=new ArrayList<>();
+	private ArrayList<Tienda> tiendas;
+	private static ArrayList <Persona> personas=new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -34,12 +35,12 @@ public class Persona implements Serializable{
 		personas = persona;
 	}
 	
-	public Tienda getTienda() {
-			return tienda;
+	public ArrayList<Tienda> getTiendas() {
+			return tiendas;
 		}
 	
-	public  void setTienda(Tienda tienda) {
-		this.tienda=tienda;
+	public  void setTiendas(ArrayList<Tienda> tienda) {
+		this.tiendas=tienda;
 	}
 	
 	public String getNombre() {
@@ -90,10 +91,12 @@ public class Persona implements Serializable{
 		Persona.getPersonas().add(this);
 	}
 	
+	
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
 		
+
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();
 		if (edadCliente<18) {

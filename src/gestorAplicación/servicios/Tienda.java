@@ -188,7 +188,7 @@ public class Tienda implements Serializable{
 	
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static ArrayList<Producto> buscarProductos(Cliente cliente, Categoria categoria,ArrayList<Producto> productos) {
+	public ArrayList<Producto> buscarProductos(Cliente cliente, Categoria categoria,ArrayList<Producto> productos) {
 		ArrayList<Integer> ids=new ArrayList<>();
 		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
@@ -213,7 +213,7 @@ public class Tienda implements Serializable{
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		for (Pasillo i:cliente.getTienda().getPasillos()) {
 			for (Producto j:i.getProductos()){
-				if (j.getNombre().toLowerCase().equals(nombre)){
+				if (new StringBuilder(j.getNombre().toLowerCase()).indexOf(nombre.toLowerCase())!=-1){
 					productos.add(j);
 				}
 			}

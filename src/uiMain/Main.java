@@ -249,6 +249,7 @@ public class Main {
 			case 6:
 				Serializador.serializarTodo();
 				print("Ha salido del programa");
+				System.exit(0);
 				break;
 			}
 		 } while (decision!=6);

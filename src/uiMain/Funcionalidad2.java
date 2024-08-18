@@ -11,7 +11,7 @@ import static uiMain.Main.print;
 import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
-public class Funcionalidad2 {
+public class Funcionalidad2 extends Identidad{
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void cuadriculaProductos(Cliente cliente,ArrayList<Producto> productos, int inferior, int superior) {
@@ -144,7 +144,10 @@ public class Funcionalidad2 {
 				}
 				if (seleccionado==null) {
 					print("");
-					System.out.print("Este producto no se encuentra, escriba otro o selecione otra opcion: ");
+					System.out.println("Este producto no se encuentra: ");
+					print(" 1. Desea copiar otra opcion");
+					print(" 2. Desea mirar si puede pedir reabastecer el producto");
+					System.out.print("Escoja una opcion: ");
 					malSeleccionado=true;
 					continue;
 				}
@@ -264,7 +267,7 @@ public class Funcionalidad2 {
 		}
 		categoria=Categoria.resolverEnum(decisionCategoria);
 		productos=new ArrayList<Producto>();
-		productos= Tienda.buscarProductos(cliente,categoria,productos);
+		productos= cliente.getTienda().buscarProductos(cliente,categoria,productos);
 		while (productos.size()==0) {
 			print("No hay productos disponibles de esa categoria, escoja otro por favor");
 			System.out.print("Escoja un numero nuevamente: ");
@@ -274,15 +277,13 @@ public class Funcionalidad2 {
 			}
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			productos=new ArrayList<Producto>();
-			productos= Tienda.buscarProductos(cliente,categoria,productos);
+			productos= cliente.getTienda().buscarProductos(cliente,categoria,productos);
 		}
 		boolean malSeleccionado=false;
 		seleccionado = impresionSeleccionCategoria(cliente,productos,categoria,malSeleccionado);
 		lineas();
 		cliente.getCarrito().getProductos().add(seleccionado);
 	}
-	
-	
 	
 
 	public static void busquedaNombre(Cliente cliente, ArrayList<Producto> productos, Producto seleccionado) {
@@ -338,13 +339,15 @@ public class Funcionalidad2 {
 
 	
 	public static void elegirTipoBusqueda(Cliente cliente) {
+		//Cliente cliente = (Cliente)identificarPersona();
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
 				+ "\n"+ "una categoria o por nombre del producto: ");
 		print("");
 		print(" 1. Por categoria de un producto");
 		print(" 2. Por nombre del producto");
-		print(" 3. Volver");
+		print(" 3. Pedir productos no actuales");
+		print(" 4. Volver");
 		print("");
 		
 		System.out.print("Escoja un numero: ");
@@ -359,6 +362,8 @@ public class Funcionalidad2 {
 		case 2:
 			busquedaNombre(cliente, productos,seleccionado);
 		case 3:
+			//productosNoActuales();
+		case 4:
 			Main.escogerFuncionalidad(cliente);
 			break;
 		}
