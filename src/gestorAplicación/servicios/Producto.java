@@ -139,9 +139,16 @@ public class Producto implements Serializable {
     public void setEdades( Enums.Edades edades) {
         this.edades = edades;
     }
+    
+    public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 
-//-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
 	public Producto(String nombre,Categoria categoria,Pasillo pasillo) {
@@ -151,7 +158,14 @@ public class Producto implements Serializable {
 		pasillo.getProductos().add(this);
 	}
 	
-	public Producto(String nombre,String marca,double precio,Categoria categoria,int id,Pasillo pasillo) {
+	public Producto(String nombre,Categoria categoria) {
+		this.categoria = categoria;
+		this.nombre= nombre;
+		pasillo.getProductos().add(this);
+	}
+	
+
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
 		this(nombre,categoria,pasillo);
 		this.precio=precio;
 		this.marca=marca;
@@ -159,6 +173,19 @@ public class Producto implements Serializable {
 		this.categoria=categoria;
 		this.id=id;
 		this.edades=edades;
+		this.descripcion=descripcion;
+		this.pasillo=pasillo;
+	}
+	
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion) {
+		this(nombre,categoria);
+		this.precio=precio;
+		this.marca=marca;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+		this.edades=edades;
+		this.descripcion=descripcion;
 	}
 	
 	public Producto(String nombre,Categoria categoria,Tienda tienda,Pasillo pasillo) {
@@ -169,13 +196,20 @@ public class Producto implements Serializable {
 		pasillo.getProductos().add(this);
 	}
 	
-	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id,Pasillo pasillo) {
-		this(nombre, marca, precio, categoria,id,pasillo);
+
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
+		this(nombre, marca, precio, categoria,id,edades,descripcion,pasillo);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
 	}
 
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion) {
+		this(nombre, marca, precio, categoria,id,edades,descripcion);
+		this.tienda=tienda; 
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
+	}
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
@@ -194,6 +228,23 @@ public class Producto implements Serializable {
                 productosAdecuados.add(producto);
             } else if (!cliente.mayorEdad() && producto.getEdades() == Edades.MENORES) {
                 productosAdecuados.add(producto);
+            }
+        }
+
+        return productosAdecuados;
+    }
+    
+    // Método para filtrar productos por edad y categoría
+    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria) {
+        ArrayList<Producto> productosAdecuados = new ArrayList<>();
+
+        for (Producto producto : productos) {
+            if (producto.getCategoria() == categoria) {
+                if (cliente.mayorEdad() && producto.getEdades() == Edades.ADULTOS) {
+                    productosAdecuados.add(producto);
+                } else if (!cliente.mayorEdad() && producto.getEdades() == Edades.MENORES) {
+                    productosAdecuados.add(producto);
+                }
             }
         }
 
