@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Pasillo;
 import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.sujetos.Cajero;
 import gestorAplicación.sujetos.Domiciliario;
@@ -39,6 +40,7 @@ public class Serializador {
 		serializar(Tienda.getProveedores(),"proovedores");
 		}
 	public static void main(String[] args){
+		new Proveedor(null, null, null, null, null);
 //		Tienda.getDesempleados().add(new Domiciliario());
 //		Tienda.getDesempleados().add(new Cajero());
 //		Tienda.setDesempleados((Tienda.getDesempleados()));
@@ -54,7 +56,7 @@ public class Serializador {
 //		pasillos.add(pas);
 //		
 //		ArrayList<Tienda> tiendas = new ArrayList<>();
-//		serializar(tiendas);
+		serializarTodo();
 	}
 	
 	} 

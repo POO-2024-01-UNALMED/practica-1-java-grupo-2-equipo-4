@@ -41,31 +41,32 @@ public class Funcionalidad5 {
       		int x2=escaner();
       		print("nombre del pasillo "+i+":");
       		String nom=sc.nextLine();
-      		System.out.println(3);
       		tien.añadirPasillo(x2,nom);
+      		System.out.println(tien.getPasillos().getLast());
       		print("pasillo creado");
       		i++;
 	  		print("1.Continuar\n2.Terminar");
-	  		int x3=sc.nextInt();
+	  		int x3=escaner();
 	  		if(x3!=1) {
 	  			break;
 	  		}
       	}
       	
-      	if ((tien.disponibilidadProductos()==false)) {
+      	if (tien.disponibilidadProductos()==true) {
       		print(tien.getDueño().getNombre() +"de la tienda"+tien.getNombre()+ ", sus pasillos estan vacios ");
       		print("desea llamar a un proveedor?\n1.Si\n2.No");
-      	}
-  		int x3=escaner();
-  		if(x3==1) {
+      		int x3=escaner();
+      		if(x3==1) {
   			print(tien.llamarProveedor());
+  			}
+  		
   		}
   		print("desea contratar empleados?\n1.Si\n2.No");
   		int x4=escaner();
   		if(x4==1) {
   			int j=1;
   	      	while(true){
-  	      		print("qué tipo de empleado necesita que sea el 1empleado"+j+"?");
+  	      		print("qué tipo de empleado necesita que sea el empleado numero: "+j+"?");
   	      		String[] ems={"Domiciliario","Concerje","Cajero"};
   	      		int n=1;
   	      		for(String e:ems) {

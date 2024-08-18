@@ -87,7 +87,7 @@ public class Persona implements Serializable{
 		this.id = id;
 		this.edad = edad;
 		this.genero = genero;
-		Persona.getPersonas().add(this);
+		personas.add(this);
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

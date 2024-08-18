@@ -170,6 +170,7 @@ public class Tienda implements Serializable{
 
 	public Tienda(String nombre) {
 		this.nombre=nombre;
+		tiendas.add(this);
 	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
@@ -179,7 +180,7 @@ public class Tienda implements Serializable{
 		this.direccion = direccion;
 		this.saldo = saldo;
 		this.estado = estado;
-		Tienda.getTiendas().add(this);
+		tiendas.add(this);
 	}
 
 //------------------------------------------------------------------------------------------------------------
@@ -257,14 +258,13 @@ public class Tienda implements Serializable{
 	
 	public void añadirPasillo(int x2,String nom) {
 		Categoria cat=Categoria.values()[x2-1];
-		Pasillo pasillo=new Pasillo(nom,cat);
-		pasillos.add(pasillo);
+		new Pasillo(nom,cat);
 	}
 	
 	public String llamarProveedor() {
 		int n=1;
 		String s= "";
-		for(Proveedor i:this.getProveedores()) {
+		for(Proveedor i:proveedores) {
 			s+=n+"."+i+"\n";
 			n++;
 		}
@@ -461,17 +461,13 @@ public class Tienda implements Serializable{
 		
 		public void contratarEmpleados(int x5) {
 			if (x5==1) {
-				this.reclutarDomiciliario();
-			}
-			
-		}
-		
-		private void reclutarDomiciliario() {
-			for(Empleado e:getDesempleados()) {
-				if(e.validarCriterios()!=false) {
-					this.getEmpleados().add(e);
+				for(Empleado e:getDesempleados()) {
+					if(e.validarCriterios()!=false) {
+						this.getEmpleados().add(e);
+					}
 				}
 			}
+			
 		}
 
 		public int cantidadProducto(Producto p) {

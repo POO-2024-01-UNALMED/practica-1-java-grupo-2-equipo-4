@@ -33,7 +33,7 @@ public class Main {
 		catch(Exception e) {
 			print("Este no es un numero valido");
 			System.out.print(" Introduzca otro numero: ");
-			sc.nextLine();
+			//sc.nextLine();
 			p=escaner();
 		}
 		return p;
@@ -65,8 +65,8 @@ public class Main {
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Deserializador.deserializarListas();
-		System.out.println(Tienda.getTiendas().getLast());
-		Tienda.getTiendas().addLast(new Tienda("apilipona"));
+//		System.out.println(Tienda.getTiendas().getLast());
+//		Tienda.getTiendas().addLast(new Tienda("apilipona"));
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1);

@@ -89,6 +89,7 @@ public class Caja {
 		this.nombre=nombre;
 		this.tipo=tipo;
 		this.tienda=tienda;
+		tienda.getCajas().add(this);
 	}
 
 //Metodos------------------------------------------------------------------------------------------------------
