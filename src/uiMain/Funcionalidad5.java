@@ -2,34 +2,42 @@ package uiMain;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import baseDatos.Deserializador;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.servicios.Enums.Categoria;
 
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
+import static uiMain.Main.lineas;
 
 public class Funcionalidad5 {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void personalizarTienda(Cliente clien) {
+		lineas();
 		print("Ha seleccionado Personalizar y modificar tiendas.");
 		if (Tienda.buscarTienda()) {
             print("Selecciona una de las tiendas disponibles para ti:");
             int contador = 1;
+            lineas();
+            System.out.print("   Nombre");
+    		System.out.print("    ");
+    		System.out.print("|     ");
+    		System.out.println("Precio");
             for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
-                System.out.println(contador + ". " + generales.getNombre());
+                System.out.println(contador + ". " + generales.getNombre()+" "+generales.getSaldo());
                 contador++;
             }
 		}
+		
 		int h =escaner();
-		Tienda tien =Tienda.getTiendas().get(h-1);
+		Tienda tien=Tienda.getTiendas().get(h-1);
 		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
 			tien.setDueño(clien);
 			clien.setDinero(diferencia);
 		}
+		System.out.println(tien.getDueño());
       	int i=1;
       	while(true){
       		print("que categorias tendra el pasillo "+i+"?");
@@ -41,7 +49,7 @@ public class Funcionalidad5 {
       		int x2=escaner();
       		print("nombre del pasillo "+i+":");
       		String nom=sc.nextLine();
-      		System.out.println(3);
+      		
       		tien.añadirPasillo(x2,nom);
       		print("pasillo creado");
       		i++;

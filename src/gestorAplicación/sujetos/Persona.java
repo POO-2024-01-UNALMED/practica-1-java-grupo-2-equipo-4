@@ -17,7 +17,7 @@ public class Persona implements Serializable{
 	private int id;
 	private int edad;
 	private Genero genero;
-	private ArrayList<Tienda> tienda;
+	private Tienda tienda;
 	private static ArrayList <Persona > personas=new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------

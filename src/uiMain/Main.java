@@ -65,8 +65,8 @@ public class Main {
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Deserializador.deserializarListas();
-		System.out.println(Tienda.getTiendas().getLast());
-		Tienda.getTiendas().addLast(new Tienda("apilipona"));
+//		System.out.println(Tienda.getTiendas().getLast());
+//		Tienda.getTiendas().addLast(new Tienda("apilipona"));
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Carrito carrito = new Carrito();

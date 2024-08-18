@@ -1,13 +1,14 @@
 package gestorAplicación.servicios;
+import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
 
-public class Carrito {
+public class Carrito implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
-	
+	private static final long serialVersionUID = 834939881526017922L;
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
 	private Tienda tienda;
