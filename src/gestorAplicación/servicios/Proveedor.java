@@ -81,16 +81,6 @@ public class Proveedor implements Serializable{
 		
 	}
 	
-	public void imprimirProveedores(ArrayList<Proveedor> proveedores) {
-        System.out.println("Lista de Proveedores:");
-        int contador = 1;
-        for (Proveedor proveedor : proveedores) {
-            System.out.println(contador + ". " + proveedor);
-            contador++;
-        }
-    }
-	
-	
 	public String toString(){
 		return this.nombre+"con categoria"+this.tipo;
 	}

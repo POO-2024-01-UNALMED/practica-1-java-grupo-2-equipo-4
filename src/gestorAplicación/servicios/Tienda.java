@@ -502,6 +502,15 @@ public class Tienda implements Serializable{
 			return cantidad;
 		}
 		
+		public void imprimirProveedores() {
+	        System.out.println("Lista de Proveedores:");
+	        int contador = 1;
+	        for (Proveedor proveedor : proveedores) {
+	            System.out.println(contador + ". " + proveedor);
+	            contador++;
+	        }
+	    }
+		
 		public final String toString() {
 			return this.getNombre(); 
 		}
