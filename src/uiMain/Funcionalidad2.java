@@ -339,7 +339,6 @@ public class Funcionalidad2 extends Identidad{
 
 	
 	public static void elegirTipoBusqueda(Cliente cliente) {
-		//Cliente cliente = (Cliente)identificarPersona();
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
 				+ "\n"+ "una categoria o por nombre del producto: ");

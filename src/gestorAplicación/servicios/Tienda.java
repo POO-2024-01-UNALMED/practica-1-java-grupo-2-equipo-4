@@ -26,9 +26,12 @@ public class Tienda implements Serializable{
 	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-	private static ArrayList<Empleado> desempleados=new ArrayList<>();
+	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
 	
-	private ArrayList <Producto> ProductosVencidos = new ArrayList <>();
+	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
+	
+	private ArrayList <Producto> productosComprados = new ArrayList <Producto>();
+	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------

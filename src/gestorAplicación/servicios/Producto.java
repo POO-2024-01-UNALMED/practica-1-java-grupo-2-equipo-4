@@ -161,7 +161,7 @@ public class Producto implements Serializable {
 	
 	@Override
 	public String toString() {
-		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio;
+		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio+" y de tamaño "+tamaño.getTamaño();
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

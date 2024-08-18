@@ -7,7 +7,7 @@ import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Tienda;
 import static gestorAplicación.servicios.Enums.Genero;
 
-public class Persona implements Serializable{
+public abstract class Persona implements Serializable{
 /**
 	 * 
 	 */
@@ -96,7 +96,10 @@ public class Persona implements Serializable{
 
 //Metodos------------------------------------------------------------------------------------------------------
 		
-
+	abstract public StringBuilder imprimirFacturas(Persona cliente);
+	
+	abstract public StringBuilder imprimirFacturas(Cliente cliente);
+	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();
 		if (edadCliente<18) {

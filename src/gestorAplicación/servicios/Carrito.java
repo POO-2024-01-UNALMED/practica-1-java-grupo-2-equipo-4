@@ -14,6 +14,7 @@ public class Carrito implements Serializable{
 	private Tienda tienda;
 	private Edades tipoCarrito;
 	private double montoTotal;
+	private boolean pagado;
 	
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -23,6 +24,14 @@ public class Carrito implements Serializable{
 		return productos;
 	}
 	
+	public boolean isPagado() {
+		return pagado;
+	}
+
+	public void setPagado(boolean pagado) {
+		this.pagado = pagado;
+	}
+
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos=productos;
 	}

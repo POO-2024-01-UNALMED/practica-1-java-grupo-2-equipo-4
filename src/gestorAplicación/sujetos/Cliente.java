@@ -94,6 +94,23 @@ public class Cliente extends Persona implements Serializable {
 		}
 		return -1;
 	}
+	
+	public StringBuilder imprimirFacturas(Persona cliente) {
+		StringBuilder texto=new StringBuilder();
+		
+	}
+	
+	public StringBuilder imprimirFacturas(Cliente cliente) {
+		StringBuilder texto=new StringBuilder();
+		int contador=1;
+		for(Carrito i:cliente.getFacturas()) {
+			if(!i.isPagado()) {
+				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
+			}
+			contador++;
+		}
+		return texto;
+	}
 
 //-------------------------------------------------------------------------------------------------------------
 }
