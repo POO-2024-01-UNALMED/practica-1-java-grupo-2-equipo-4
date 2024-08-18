@@ -33,16 +33,16 @@ public class Serializador {
 				e.printStackTrace();
 			} 
 		}
-	public static void serializaTodo(ArrayList<Empleado> empleados) {
+	public static void serializarTodo() {
 		serializar(Tienda.getTiendas(),"tiendas");
 		serializar(Tienda.getDesempleados(),"empleados");
+		serializar(Tienda.getProveedores(),"proovedores");
 		}
 	public static void main(String[] args){
 //		Tienda.getDesempleados().add(new Domiciliario());
 //		Tienda.getDesempleados().add(new Cajero());
 //		Tienda.setDesempleados((Tienda.getDesempleados()));
 //		serializarEmpleados(Tienda.getDesempleados());
-		Deserializador.deserializar(2);
 		
 //		ArrayList<Producto> pas1 = new ArrayList<>();
 //		pas1.add(new Producto("papa", null));
