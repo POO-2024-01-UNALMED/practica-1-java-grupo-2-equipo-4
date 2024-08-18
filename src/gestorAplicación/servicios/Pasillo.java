@@ -58,6 +58,7 @@ public class Pasillo implements Serializable{
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.tienda = tienda;
+		tienda.getPasillos().add(this);
 	}
 	
 	public Pasillo(String nombre, ArrayList<Producto> productos, Categoria categoria, Tienda tienda) {
@@ -65,6 +66,7 @@ public class Pasillo implements Serializable{
 		this.productos = productos;
 		this.categoria = categoria;
 		this.tienda = tienda;
+		tienda.getPasillos().add(this);
 	}
 
 //-------------------------------------------------------------------------------------------------------------

@@ -125,8 +125,8 @@ public class Tienda implements Serializable{
 		return proveedores;
 	}
 	
-	public void setProveedores(ArrayList<Proveedor> proveedores) {
-		this.proveedores=proveedores;
+	public void setProveedores(ArrayList<Proveedor> provs) {
+		 	proveedores=provs;
 	}
 	public static void setTiendas(ArrayList<Tienda> arrayList) {
 			Tienda.tiendas=arrayList;
@@ -461,18 +461,14 @@ public class Tienda implements Serializable{
 		
 		public void contratarEmpleados(int x5) {
 			if (x5==1) {
-				this.reclutarDomiciliario();
-			}
-			
-		}
-		
-		private void reclutarDomiciliario() {
-			for(Empleado e:getDesempleados()) {
-				if(e.validarCriterios()!=false) {
-					this.getEmpleados().add(e);
+				for(Empleado e:getDesempleados()) {
+					if(e.validarCriterios()!=false) {
+						this.getEmpleados().add(e);
+					}
 				}
 			}
 		}
+
 
 		public int cantidadProducto(Producto p) {
 			int cantidad=0;

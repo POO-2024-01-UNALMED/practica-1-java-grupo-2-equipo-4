@@ -70,7 +70,7 @@ public class Proveedor implements Serializable{
 	this.entrega = entrega;
 	this.tipo = tipo;
 	this.tienda = tienda;
-	tienda.getProveedores().add(this);
+	Tienda.getProveedores().add(this);
 	this.pasillos = pasillos;
 }
 //-------------------------------------------------------------------------------------------------------------

@@ -46,7 +46,7 @@ public class Funcionalidad5 {
       		print("pasillo creado");
       		i++;
 	  		print("1.Continuar\n2.Terminar");
-	  		int x3=sc.nextInt();
+	  		int x3=escaner();
 	  		if(x3!=1) {
 	  			break;
 	  		}
@@ -65,7 +65,7 @@ public class Funcionalidad5 {
   		if(x4==1) {
   			int j=1;
   	      	while(true){
-  	      		print("qué tipo de empleado necesita que sea el 1empleado"+j+"?");
+  	      		print("qué tipo de empleado necesita que sea el empleado numero: "+j+"?");
   	      		String[] ems={"Domiciliario","Concerje","Cajero"};
   	      		int n=1;
   	      		for(String e:ems) {

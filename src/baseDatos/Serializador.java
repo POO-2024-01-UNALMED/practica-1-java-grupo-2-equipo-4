@@ -5,18 +5,13 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import gestorAplicación.servicios.Pasillo;
-import gestorAplicación.servicios.Producto;
-import gestorAplicación.servicios.Tienda;
-import gestorAplicación.sujetos.Cajero;
-import gestorAplicación.sujetos.Domiciliario;
-import gestorAplicación.sujetos.Empleado;
+import gestorAplicación.servicios.*;
 
 import java.io.IOException; 
 import java.io.FileNotFoundException;
 
 public class Serializador {
-	private static File archivo = new File(""/*src\\baseDatos\\temp*/);
+	private static File archivo = new File("");
 	
 	public static void serializar(ArrayList<? extends Object> lista, String nombre) {
 		 try { 
@@ -24,14 +19,13 @@ public class Serializador {
 			 ObjectOutputStream o = new ObjectOutputStream(f);
 			 o.writeObject(lista); 
 			 o.close(); f.close();
-		 }
-
-		catch (FileNotFoundException e) { 
-			 System.out.println("No se encuentra archivo");
-			} catch (IOException e) { 
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+		 } catch (FileNotFoundException e) { 
+			 e.printStackTrace();
+			 
+		 } catch (IOException e) { 
+			 e.printStackTrace();
+			 
+		 	} 
 		}
 	public static void serializarTodo() {
 		serializar(Tienda.getTiendas(),"tiendas");
@@ -41,20 +35,7 @@ public class Serializador {
 	public static void main(String[] args){
 //		Tienda.getDesempleados().add(new Domiciliario());
 //		Tienda.getDesempleados().add(new Cajero());
-//		Tienda.setDesempleados((Tienda.getDesempleados()));
-//		serializarEmpleados(Tienda.getDesempleados());
-		
-//		ArrayList<Producto> pas1 = new ArrayList<>();
-//		pas1.add(new Producto("papa", null));
-//		pas1.add(new Producto("salsa", null));
-//		
-//		Pasillo pas = new Pasillo(null, pas1, null);
-//		
-//		ArrayList<Pasillo> pasillos = new ArrayList<>();
-//		pasillos.add(pas);
-//		
-//		ArrayList<Tienda> tiendas = new ArrayList<>();
-//		serializar(tiendas);
+		serializarTodo();
 	}
 	
 	} 
