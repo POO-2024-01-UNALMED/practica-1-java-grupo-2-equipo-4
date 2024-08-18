@@ -29,6 +29,7 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private LocalDate fechaPerecer;
 	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
+	private Pasillo pasillo;
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
 	private Tienda tienda;
@@ -65,6 +66,14 @@ public class Producto implements Serializable {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public Pasillo getPasillo() {
+		return pasillo;
+	}
+
+	public void setPasillo(Pasillo pasillo) {
+		this.pasillo = pasillo;
 	}
 
 	public double getPrecio() {
@@ -112,7 +121,7 @@ public class Producto implements Serializable {
 	}
 
 	public void setFechaActual(LocalDate fechaActual) {
-		this.fechaActual = fechaActual;
+		Producto.fechaActual = fechaActual;
 	}
 
 	public Tienda getTienda() {
@@ -135,13 +144,15 @@ public class Producto implements Serializable {
 //-------------------------------------------------------------------------------------------------------------
 
 //Constructores------------------------------------------------------------------------------------------------
-	public Producto(String nombre,Categoria categoria) {
+	public Producto(String nombre,Categoria categoria,Pasillo pasillo) {
 		this.categoria = categoria;
 		this.nombre= nombre;
+		this.pasillo=pasillo;
+		pasillo.getProductos().add(this);
 	}
 	
-	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades) {
-		this(nombre,categoria);
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id,Pasillo pasillo) {
+		this(nombre,categoria,pasillo);
 		this.precio=precio;
 		this.marca=marca;
 		this.precio=precio;
@@ -150,14 +161,16 @@ public class Producto implements Serializable {
 		this.edades=edades;
 	}
 	
-	public Producto(String nombre,Categoria categoria,Tienda tienda) {
+	public Producto(String nombre,Categoria categoria,Tienda tienda,Pasillo pasillo) {
 		this.categoria = categoria;
 		this.nombre= nombre;
 		this.tienda=tienda;// referencia a tienda que pertenece el producto
+		this.pasillo=pasillo;
+		pasillo.getProductos().add(this);
 	}
 	
-	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades) {
-		this(nombre, marca, precio, categoria,id,edades);
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id,Pasillo pasillo) {
+		this(nombre, marca, precio, categoria,id,pasillo);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 

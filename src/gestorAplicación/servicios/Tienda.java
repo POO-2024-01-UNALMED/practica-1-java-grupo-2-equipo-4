@@ -18,12 +18,13 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado;
 	private ArrayList <Persona> cliente;
-	private static ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
+	private static ArrayList <Proveedor> sieteProveedores=new ArrayList<Proveedor>();
+	private ArrayList<Proveedor> proveedor=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
+	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
-	//Antes en BaseDatos e inventario:
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
@@ -140,12 +141,20 @@ public class Tienda implements Serializable{
 		this.candidatos=candidatos;
 	}
 	
-	public static ArrayList<Proveedor> getProveedores() {
-		return proveedores;
+	public ArrayList<Proveedor> getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(ArrayList<Proveedor> proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public static ArrayList<Proveedor> getSieteProveedores() {
+		return sieteProveedores;
 	}
 	
-	public void setProveedores(ArrayList<Proveedor> provs) {
-		 	proveedores=provs;
+	public void setSieteProveedores(ArrayList<Proveedor> provs) {
+		 	sieteProveedores=provs;
 	}
 	public static void setTiendas(ArrayList<Tienda> arrayList) {
 			Tienda.tiendas=arrayList;
@@ -175,6 +184,14 @@ public class Tienda implements Serializable{
 	public void setProductosVencidos(ArrayList<Producto> productosVencidos) {
 		ProductosVencidos = productosVencidos;
 	}
+	
+	public ArrayList <Carrito> getCarritos() {
+		return carritos;
+	}
+
+	public void setCarritos(ArrayList <Carrito> carritos) {
+		this.carritos = carritos;
+	}
 
 	
 
@@ -189,6 +206,7 @@ public class Tienda implements Serializable{
 
 	public Tienda(String nombre) {
 		this.nombre=nombre;
+		tiendas.add(this);
 	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
@@ -280,10 +298,11 @@ public class Tienda implements Serializable{
 	
 	public String llamarProveedor() {
 		int n=1;
-		String s= "";
-		for(Proveedor i:this.getProveedores()) {
-			s+=n+"."+i+"\n";
-			n++;
+		String s= "  Proveedor  |  Categoria \n";
+		for(Proveedor i:proveedores) {
+			s+=n+"."+i.getNombre();
+			s+="     ";
+			s+=i.getTipo();
 		}
 		return s;
 	}

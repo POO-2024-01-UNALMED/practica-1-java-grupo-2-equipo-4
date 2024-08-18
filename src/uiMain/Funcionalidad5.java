@@ -77,7 +77,7 @@ public class Funcionalidad5 {
       	
       	if ((tien.disponibilidadProductos()==true)) {
       		lineas();
-      		print(tien.getDueño().getNombre() +"de la tienda"+tien.getNombre()+ ", sus pasillos estan vacios ");
+      		print(tien.getDueño().getNombre() +" de la tienda: \""+tien.getNombre()+ "\", sus pasillos estan vacios ");
       		print("¿Desea llamar a un proveedor?\n1.Si\n2.No");
       		int x3=escaner();
       		if(x3==1) {
