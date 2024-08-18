@@ -13,7 +13,7 @@ public class Proveedor implements Serializable{
 	private String nombre;
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
 	private Enums.Categoria tipo;
-	private Tienda tienda;
+	private ArrayList<Tienda> tiendas;
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
@@ -44,12 +44,12 @@ public class Proveedor implements Serializable{
 		this.tipo=tipo;
 	}
 	
-	public Tienda getTienda() {
-		return tienda;
+	public ArrayList<Tienda> getTienda() {
+		return this.tiendas;
 	}
 	
-	public void setTienda(Tienda tienda) {
-		this.tienda=tienda;
+	public void setTienda(ArrayList<Tienda> tiendas) {
+		this.tiendas=tiendas;
 	}
 	
 	public ArrayList <Pasillo> getPasillos() {
@@ -64,12 +64,12 @@ public class Proveedor implements Serializable{
 
 //Constructores------------------------------------------------------------------------------------------------
 
-	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, Tienda tienda, ArrayList <Pasillo> pasillos) {
+	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, ArrayList<Tienda> tiendas, ArrayList <Pasillo> pasillos) {
 	super();
 	this.nombre = nombre;
 	this.entrega = entrega;
 	this.tipo = tipo;
-	this.tienda = tienda;
+	this.tiendas = tiendas;
 	Tienda.getProveedores().add(this);
 	this.pasillos = pasillos;
 }

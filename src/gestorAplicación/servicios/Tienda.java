@@ -256,9 +256,7 @@ public class Tienda implements Serializable{
 	}
 	
 	public void añadirPasillo(int x2,String nom) {
-		Categoria cat=Categoria.values()[x2-1];
-		Pasillo pasillo=new Pasillo(nom,cat);
-		pasillos.add(pasillo);
+		new Pasillo(nom,Categoria.values()[x2-1],this);
 	}
 	
 	public String llamarProveedor() {
@@ -276,9 +274,12 @@ public class Tienda implements Serializable{
 			return "la tienda "+this.getNombre()+" no tiene pasillos";
 		}
 		else {
-			String s="";
+			String s="  Pasillo     Categoria \n";
 			for(Pasillo i:pasillos) {
-				s+=i.getNombre()+"\n";
+				s+="    ";
+				s+=i.getNombre();
+				s+="        ";
+				s+=i.getCategoria()+"\n";
 			}
 			return s;
 		}
