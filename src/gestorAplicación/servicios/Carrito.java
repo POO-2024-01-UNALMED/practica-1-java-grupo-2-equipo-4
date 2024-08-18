@@ -11,6 +11,7 @@ public class Carrito implements Serializable{
 	private static final long serialVersionUID = 834939881526017922L;
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
+	private Proveedor proveedor;
 	private Tienda tienda;
 	private Edades tipoCarrito;
 	private double montoTotal;
@@ -19,11 +20,20 @@ public class Carrito implements Serializable{
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
+
 	
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
 	
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
 	public boolean isPagado() {
 		return pagado;
 	}

@@ -7,6 +7,7 @@ import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
+import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 
 public class Cliente extends Persona implements Serializable {
@@ -97,13 +98,55 @@ public class Cliente extends Persona implements Serializable {
 	
 	public StringBuilder imprimirFacturas(Persona cliente) {
 		StringBuilder texto=new StringBuilder();
-		
+		int contador=1;
+		if(cliente.getTiendas().size()==0) {
+			texto.append("Usted no tiene ninguna tienda a la que revisarle facturas");
+			return texto;
+		}
+		for(Tienda i: cliente.getTiendas()) {
+			texto.append("Estos son los productos que ha vendido su tienda\n");
+			if(i.getProductosVendidos().size()==0) {
+				texto.append("Su tienda no ha vendido ningun producto");
+			}
+			else {
+			for(Producto p:i.getProductosVendidos()) {
+				texto.append(p.toString()+"\n");
+			}
+			}
+			texto.append("Estas son las facturas que ha pagado usted a los proveedores\n");
+			if(i.getProductosComprados().size()==0) {
+				texto.append("Su tienda no ha pedido ningun producto del proveedor");
+			}
+			else {
+			for(Carrito c:i.getProductosComprados()) {
+				if(c.isPagado()) {
+				texto.append("Factura del proveedor "+c.getProveedor().getNombre()+" con "+c.getProductos().size()+" productos PAGADA\n");
+				}
+			}
+			for(Carrito c:i.getProductosComprados()) {
+				if(!c.isPagado()) {
+				texto.append(contador+". Factura del proveedor "+c.getProveedor().getNombre()+" con "+c.getProductos().size()+" productos NO PAGADA\n");
+				}
+				contador++;
+			}
+			}
+		}
+		return texto;
 	}
 	
 	public StringBuilder imprimirFacturas(Cliente cliente) {
 		StringBuilder texto=new StringBuilder();
 		int contador=1;
 		for(Carrito i:cliente.getFacturas()) {
+			texto.append("Estas son las facturas que ha pagado usted\n");
+			if(i.isPagado()) {
+				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
+			}
+			contador++;
+		}
+		contador=1;
+		for(Carrito i:cliente.getFacturas()) {
+			texto.append("Estas son las facturas sin pagar\n");
 			if(!i.isPagado()) {
 				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
 			}

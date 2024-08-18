@@ -18,8 +18,8 @@ public abstract class Persona implements Serializable{
 	private int id;
 	private int edad;
 	private Genero genero;
-	private ArrayList<Tienda> tiendas;
-	private static ArrayList <Persona> personas=new ArrayList<>();
+	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
+	private static ArrayList <Persona> personas=new ArrayList<Persona>();
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -36,8 +36,8 @@ public abstract class Persona implements Serializable{
 	}
 	
 	public ArrayList<Tienda> getTiendas() {
-			return tiendas;
-		}
+		return tiendas;
+	}
 	
 	public  void setTiendas(ArrayList<Tienda> tienda) {
 		this.tiendas=tienda;

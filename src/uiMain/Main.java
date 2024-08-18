@@ -240,6 +240,7 @@ public class Main {
 				Funcionalidad2.elegirTipoBusqueda(cliente);
 				break;
 			case 3:
+				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
 				break;

@@ -30,7 +30,7 @@ public class Tienda implements Serializable{
 	
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
 	
-	private ArrayList <Producto> productosComprados = new ArrayList <Producto>();
+	private ArrayList <Carrito> productosComprados = new ArrayList <Carrito>();
 	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
@@ -38,6 +38,22 @@ public class Tienda implements Serializable{
 	
 	public ArrayList <Persona> getCliente() {
 		return cliente;
+	}
+
+	public ArrayList<Carrito> getProductosComprados() {
+		return productosComprados;
+	}
+
+	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
+		this.productosComprados = productosComprados;
+	}
+
+	public ArrayList<Producto> getProductosVendidos() {
+		return productosVendidos;
+	}
+
+	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
+		this.productosVendidos = productosVendidos;
 	}
 
 	public void setCliente(ArrayList <Persona> cliente) {
