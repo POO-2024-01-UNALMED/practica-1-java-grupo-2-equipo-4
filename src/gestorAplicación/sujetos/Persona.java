@@ -12,7 +12,7 @@ public class Persona {
 	private int id;
 	private int edad;
 	private Genero genero;
-	private Tienda tienda;
+	private ArrayList<Tienda> tienda;
 	private static ArrayList <Persona > personas=new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------
