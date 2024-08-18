@@ -20,9 +20,34 @@ import gestorAplicación.servicios.Enums.Categoria;
 public class Funcionalidad4 extends Identidad {	
 	static Scanner sc = new Scanner(System.in);
 	Persona usuario = identificarPersona();
+	
+	
 	    public  void mai() {
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
-	    	System.out.println("seleccione una opcion");
+	    	
+	    	print("Tus tiendas ");
+	    	
+	    	Tienda tienda=null;
+	    	int contT = 1;
+
+	    	for(Tienda i: usuario.getTiendas()) {
+	    		print(contT+ ". "+i.getNombre());
+	    		contT++;
+	    	}
+	    	
+	    	contT--;
+	    	
+	    	print("Seleccione una tienda para administrar");
+	    	int decs = escaner(contT);
+	    		    	
+	    	for (int i = 0; i < contT; i++) {
+	           if(i+1 == decs ) {
+	        	   tienda = usuario.getTiendas().get(i);
+	        	   break;
+	           }
+	        }	    		    	
+	    	
+	    	System.out.println("que deasea ver?");
 	    	System.out.println("1.Total de productos en el inventario\n"
 					+ "2.Productos para vencer\n"
 					+ "3.Marcar producto como defectuoso\n"
@@ -33,7 +58,7 @@ public class Funcionalidad4 extends Identidad {
 	        switch (opcion) {
 	            case 1:
 	                System.out.println("Todos los productos se mostraran a continuacion...");
-	                ArrayList<Producto> productos = usuario.getTienda().obtenerTodosLosProductos();
+	                ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
 	                for (Producto i:productos) {
 	                	System.out.println(i.getNombre());
 	                }
@@ -41,7 +66,7 @@ public class Funcionalidad4 extends Identidad {
 	            case 2:
 	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
 	            	
-	            	cliente.getTienda().vencerProducto();
+	            	usuario.getTienda().vencerProducto();
 	            	ArrayList<Producto> productosVencidos = cliente.getTienda().getProductosVencidos();
 	         
 	            	 for (Producto i:productosVencidos) {
