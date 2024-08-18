@@ -79,9 +79,46 @@ public class Carrito implements Serializable{
 	
 //Contructores-------------------------------------------------------------------------------------------------
 	
+	public Carrito() {
+		
+	}
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
+	
+	public StringBuilder agregarAlCarrito(Producto seleccionado, int cantidad) {
+		int tamañoMaximo;
+		if (tipoCarrito==Edades.ADULTOS) {
+			tamañoMaximo=15;
+		}
+		else {
+			tamañoMaximo=5;
+		}
+		if (!cliente.mayorEdad() && seleccionado.getEdades()==Edades.ADULTOS) {
+			return new StringBuilder("Producto no agregado, no tienes la edad valida para este producto");
+		}
+		if (productos.size()>=tamañoMaximo) {
+			return new StringBuilder("Producto no agregado, ya no tienes espacio en el carrito");
+		}
+		if (cliente.getDinero()-(seleccionado.getPrecio())*cantidad<0) {
+			if (cantidad==1){
+				return new StringBuilder("Producto no agregado, ya no tienes dinero para agregar este producto");
+			}
+			return new StringBuilder("Productos no agregados, ya no tienes dinero para agregar estos productos");
+		}
+		
+		if (seleccionado.cantidadProducto()<cantidad) {
+			return new StringBuilder("Productos no agregados, no hay cantidad de productos suficientes, le podemos ofrecer"
+					+"\n"+seleccionado.cantidadProducto()+" productos de ese tipo solamente");
+		}
+		for(int i=0;i<cantidad;i++) {
+				productos.add(seleccionado);
+				for(Pasillo k:cliente.getTienda().getPasillos()) {
+					k.getProductos().remove(seleccionado);
+				}
+		}
+		return new StringBuilder("Producto "+seleccionado.getNombre()+" agregado con exito a su carrito");
+	}
 	
 //-------------------------------------------------------------------------------------------------------------
 }

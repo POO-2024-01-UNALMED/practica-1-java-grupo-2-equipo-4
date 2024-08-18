@@ -70,6 +70,8 @@ public class Main {
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Carrito carrito = new Carrito();
+		cliente.setEdad(18);
+		carrito.setCliente(cliente);
 		cliente.setCarrito(carrito);
 		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES);
 		producto.setTamaño(Tamaño.GRANDE);
@@ -153,18 +155,18 @@ public class Main {
 				t3.setNombre("La esquina de Luis");
 				t4.setNombre(" D1 ");
 
-				t1.getPasillos().add(p1);
-				t1.getPasillos().add(p2);
-				t2.getPasillos().add(p2);
-				t2.getPasillos().add(p3);
-				t3.getPasillos().add(p3);
-				t3.getPasillos().add(p4);
-				t4.getPasillos().add(p4);
-				t4.getPasillos().add(p5);
-				t1.getPasillos().add(p5);
-				t2.getPasillos().add(p6);
-				t3.getPasillos().add(p1);
-				t4.getPasillos().add(p2);
+				t1.agregarPasillo(p1);
+				t1.agregarPasillo(p2);
+				t2.agregarPasillo(p2);
+				t2.agregarPasillo(p3);
+				t3.agregarPasillo(p3);
+				t3.agregarPasillo(p4);
+				t4.agregarPasillo(p4);
+				t4.agregarPasillo(p5);
+				t1.agregarPasillo(p5);
+				t2.agregarPasillo(p6);
+				t3.agregarPasillo(p1);
+				t4.agregarPasillo(p2);
 				
 				t1.setEmpleados(duo1);
 				t2.setEmpleados(duo2);

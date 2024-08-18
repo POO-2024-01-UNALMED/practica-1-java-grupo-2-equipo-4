@@ -23,7 +23,7 @@ public class Producto implements Serializable {
 	private String marca;
 	private double precio;
 	private Tamaño tamaño;
-	private Enums.Edades edades;
+	private Edades edadValida;
 	private int id;
 	private Categoria categoria;
 	private String descripcion;
@@ -123,12 +123,12 @@ public class Producto implements Serializable {
 		this.tienda = tienda;
 	}
 	
-	public  Enums.Edades getEdades() {
-        return edades;
+	public  Edades getEdades() {
+        return edadValida;
     }
 
-    public void setEdades( Enums.Edades edades) {
-        this.edades = edades;
+    public void setEdades(Edades edades) {
+        this.edadValida = edades;
     }
 
 
@@ -140,14 +140,14 @@ public class Producto implements Serializable {
 		this.nombre= nombre;
 	}
 	
-	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades) {
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Edades edades) {
 		this(nombre,categoria);
 		this.precio=precio;
 		this.marca=marca;
 		this.precio=precio;
 		this.categoria=categoria;
 		this.id=id;
-		this.edades=edades;
+		this.edadValida=edades;
 	}
 	
 	public Producto(String nombre,Categoria categoria,Tienda tienda) {
@@ -166,11 +166,6 @@ public class Producto implements Serializable {
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
-	
-	public boolean verificarDevolucion() {
-		return true;
-	}
-	
 
 	// Método para filtrar productos según la edad del cliente
     public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente) {
@@ -185,6 +180,18 @@ public class Producto implements Serializable {
         }
 
         return productosAdecuados;
+    }
+    
+    public int cantidadProducto() {
+    	int cantidad=0;
+    	for (Pasillo i:getTienda().getPasillos()) {
+			for (Producto j:i.getProductos()){
+				if (j.equals(this)) {
+					cantidad++;
+				}
+			}
+		}
+    	return cantidad;
     }
 
 	@Override

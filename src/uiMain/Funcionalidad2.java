@@ -282,7 +282,7 @@ public class Funcionalidad2 extends Identidad{
 		boolean malSeleccionado=false;
 		seleccionado = impresionSeleccionCategoria(cliente,productos,categoria,malSeleccionado);
 		lineas();
-		cliente.getCarrito().getProductos().add(seleccionado);
+		dondeSeAgreganProductos(cliente, seleccionado);
 	}
 	
 
@@ -333,11 +333,34 @@ public class Funcionalidad2 extends Identidad{
 			productos=cliente.getTienda().buscarProductos(cliente,nombre);
 		}
 		seleccionado = impresionSeleccionNombre(cliente,productos, seleccionado);
-		cliente.getCarrito().getProductos().add(seleccionado);
+		dondeSeAgreganProductos(cliente, seleccionado);
 	}
-
-
 	
+	public static void dondeSeAgreganProductos(Cliente cliente, Producto seleccionado) {
+		print("¿Cuantos productos de este quiere usted?");
+		print("");
+		System.out.print("Introduzca una cantidad de productos: ");
+		int cantidad=escaner();
+		StringBuilder resultado= cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
+		print("");
+		System.out.println(resultado);
+		boolean contieneProductosNoAgregados = resultado.indexOf("Productos no agregados") != -1;
+        boolean contieneProductosSuficientes = resultado.indexOf("productos suficientes") != -1;
+        if (contieneProductosNoAgregados && contieneProductosSuficientes) {
+            print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
+            print("1. Recibir la cantidad que tienen");
+            print("2. Escojer otro producto nuevamente");
+            int decision=escaner(2);
+            switch(decision) {
+            case 1:
+            	cliente.getCarrito().agregarAlCarrito(seleccionado,seleccionado.cantidadProducto());
+            	break;
+            case 2:
+            	elegirTipoBusqueda(cliente);
+            	break;
+            }
+        }
+	}
 	public static void elegirTipoBusqueda(Cliente cliente) {
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"

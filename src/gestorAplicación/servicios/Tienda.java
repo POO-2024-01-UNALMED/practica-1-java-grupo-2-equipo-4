@@ -274,6 +274,14 @@ public class Tienda implements Serializable{
 		}
 	}
 	
+	public void agregarPasillo(Pasillo pasillo) {
+		for(Producto p:pasillo.getProductos()) {
+			p.setTienda(this);
+		}
+		pasillo.setTienda(this);
+		this.pasillos.add(pasillo);
+	}
+	
 	public void añadirPasillo(int x2,String nom) {
 		new Pasillo(nom,Categoria.values()[x2-1],this);
 	}
@@ -465,6 +473,7 @@ public class Tienda implements Serializable{
 			for (Pasillo i:pasillos) {
 				if (i.getNombre()==pasillo) {
 					i.getProductos().add(p);
+					p.setTienda(this);
 				}
 			}
 		}
