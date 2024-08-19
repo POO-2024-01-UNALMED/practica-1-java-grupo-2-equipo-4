@@ -281,17 +281,25 @@ public class Tienda implements Serializable{
 		return productos;
 	}
 	
-	public ArrayList<Producto> buscarProductos(Cliente cliente,String nombre) {
-		ArrayList<Producto> productos = new ArrayList<Producto>();
-		for (Pasillo i:cliente.getTienda().getPasillos()) {
-			for (Producto j:i.getProductos()){
-				if (new StringBuilder(j.getNombre().toLowerCase()).indexOf(nombre.toLowerCase())!=-1){
-					productos.add(j);
-				}
-			}
-		}
-		return productos;
+	public ArrayList<Producto> buscarProductos(Cliente cliente, String nombre) {
+	    ArrayList<Producto> productos = new ArrayList<Producto>();
+	    for (Pasillo i : cliente.getTienda().getPasillos()) {
+	        for (Producto j : i.getProductos()) {
+	            boolean exists = false;
+	            for (Producto prod : productos) {
+	                if (prod.getId() == j.getId()) {
+	                    exists = true;
+	                    break;
+	                }
+	            }
+	            if (!exists && new StringBuilder(j.getNombre().toLowerCase()).indexOf(nombre.toLowerCase()) != -1) {
+	                productos.add(j);
+	            }
+	        }
+	    }
+	    return productos;
 	}
+
 	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
@@ -650,7 +658,7 @@ public class Tienda implements Serializable{
 	        for (Pasillo pasillo : pasillos) {
 	            for (Producto producto : pasillo.getProductos()) {
 	                // Verificar si el producto es más barato que el original y se ajusta al presupuesto del cliente
-	                if (producto.getPrecio() < precioOriginal && producto.getPrecio() <= montoActual) {
+	                if (producto.getPrecio() < precioOriginal && producto.getPrecio() <= cliente.getDinero()-montoActual) {
 	                    // Buscar coincidencia de nombres parciales
 	                    if (producto.getNombre().toLowerCase().contains(productoOriginal.getNombre().toLowerCase())) {
 	                        productosRecomendados.add(producto);
