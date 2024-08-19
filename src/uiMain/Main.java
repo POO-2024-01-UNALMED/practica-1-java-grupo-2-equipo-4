@@ -2,6 +2,7 @@ package uiMain;
 import static uiMain.Main.print;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -204,18 +205,68 @@ public class Main {
 		tiendas.add(t3);
 		tiendas.add(t4);
 		
-		clienteMayor.getTiendas().add(t1);*/
-		System.out.println();
-		ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
-		tiendas.add(Tienda.getTiendas().get(1));
-		ArrayList<Producto> productos= Tienda.getTiendas().get(1).getPasillos().get(0).getProductos();
-		//Producto producto = new Producto("tomate","Cebollando",0,Categoria.ALIMENTO,"13/08/2024",50,Edades.MENORES,"",Tamaño.GRANDE);
-		//productos.add(producto);
-		Proveedor proveedor= new Proveedor("proveo", productos, Categoria.ALIMENTO, tiendas, null);
-		ArrayList<Proveedor> proveedores= new ArrayList<Proveedor>();
-		proveedores.add(proveedor);
-		Proveedor.setSeisProveedores(proveedores);
-		Tienda.getTiendas().get(1).setProveedores(proveedores);
+		clienteMayor.getTiendas().add(t1);*/	
+		
+		 Tienda tienda = new Tienda("Supermercado Central");
+
+	        // Crear pasillo
+	        Pasillo pasillo1 = new Pasillo("Pasillo 1", Categoria.ALIMENTO);
+
+	        // Asignar el pasillo a la tienda
+	        pasillo1.asignarTienda(tienda);
+
+	        // Formato de fecha
+	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+	        // Crear productos
+	        Producto producto1 = new Producto(
+	            "Leche Entera", "La Vaquita", 1.50, Tamaño.GRANDE, Edades.MENORES, Categoria.ALIMENTO,
+	            "Leche entera de vaca, fortificada con vitaminas A y D.", "15/10/2024", 101
+	        );
+
+	        Producto producto2 = new Producto(
+	            "Pan Integral", "PanRico", 2.00, Tamaño.MEDIANO, Edades.MENORES, Categoria.ALIMENTO,
+	            "Pan integral alto en fibra, ideal para una dieta saludable.", "22/08/2024", 102
+	        );
+
+	        Producto producto3 = new Producto(
+	            "Yogur Natural", "BioLácteos", 3.25, Tamaño.MEDIANO, Edades.ADULTOS, Categoria.ALIMENTO,
+	            "Yogur natural sin azúcar añadido, fuente de probióticos.", "10/09/2024", 103
+	        );
+
+	        Producto producto4 = new Producto(
+	            "Queso Cheddar", "La Gran Quesería", 4.50, Tamaño.MEDIANO, Edades.ADULTOS, Categoria.ALIMENTO,
+	            "Queso cheddar madurado, ideal para sandwiches y gratinados.", "30/09/2024", 104
+	        );
+
+	        Producto producto5 = new Producto(
+	            "Galletas de Avena", "Cerealia", 2.75, Tamaño.PEQUEÑO, Edades.MENORES, Categoria.ALIMENTO,
+	            "Galletas de avena y miel, perfectas para un snack saludable.", "05/11/2024", 105
+	        );
+
+	        // Asignar productos al pasillo y a la tienda
+	        producto1.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto2.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto3.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto4.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto5.asignarPasilloYPonerEnTienda(pasillo1);
+
+	        // Asignar la tienda a los productos
+	        producto1.asignarTienda(tienda);
+	        producto2.asignarTienda(tienda);
+	        producto3.asignarTienda(tienda);
+	        producto4.asignarTienda(tienda);
+	        producto5.asignarTienda(tienda);
+
+	        // Imprimir detalles para verificar la asignación
+	        for (Producto p : pasillo1.getProductos()) {
+	            System.out.println("Producto: " + p.getNombre() + ", Marca: " + p.getMarca() + ", Precio: $" + p.getPrecio() +
+	                               ", Tamaño: " + p.getTamaño() + ", Categoria Edad: " + p.getEdades() +
+	                               ", Categoria Alimento: " + p.getCategoria() + ", ID: " + p.getId() +
+	                               ", Descripción: " + p.getDescripcion() + ", Fecha de Perecer: " + sdf.format(p.getFechaPerecer()) +
+	                               ", Pasillo: " + pasillo1.getNombre() + ", Tienda: " + tienda.getNombre());
+	        }
+		
 		escogerFuncionalidad();
 
 

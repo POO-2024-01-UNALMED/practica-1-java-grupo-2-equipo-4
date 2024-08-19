@@ -95,7 +95,6 @@ public class Carrito implements Serializable{
 	
 	public Carrito(Tienda tienda) {
 		tienda.getCarritos().add(this);
-
 	}
 	
 	
@@ -137,22 +136,20 @@ public class Carrito implements Serializable{
 		if (productos.size()>=tamañoMaximo) {
 			return new StringBuilder("Producto no agregado, ya no tienes espacio en el carrito");
 		}
-		if (cliente.getDinero()-(seleccionado.getPrecio())*cantidad<0) {
+		if (cliente.getDinero()-(cliente.getTienda().cantidadProducto(seleccionado))*cantidad<0) {
 			if (cantidad==1){
 				return new StringBuilder("Producto no agregado, ya no tienes dinero para agregar este producto");
 			}
 			return new StringBuilder("Productos no agregados, ya no tienes dinero para agregar estos productos");
 		}
 		
-		if (seleccionado.cantidadProducto()<cantidad) {
+		if (cliente.getTienda().cantidadProducto(seleccionado)<cantidad) {
 			return new StringBuilder("Productos no agregados, no hay cantidad de productos suficientes, le podemos ofrecer"
 					+"\n"+seleccionado.cantidadProducto()+" productos de ese tipo solamente");
 		}
 		for(int i=0;i<cantidad;i++) {
 				productos.add(seleccionado);
-				for(Pasillo k:cliente.getTienda().getPasillos()) {
-					k.getProductos().remove(seleccionado);
-				}
+				seleccionado.getPasillo().getProductos().remove(seleccionado);
 		}
 		return new StringBuilder("Producto "+seleccionado.getNombre()+" agregado con exito a su carrito");
 	}
@@ -167,6 +164,34 @@ public class Carrito implements Serializable{
         }
 
         return contador;
+    }
+	
+	public void eliminarProductos(Producto producto, int cantidad) {
+        int eliminados = 0;
+
+        // Crear una copia de la lista de productos para evitar ConcurrentModificationException
+        ArrayList<Producto> productosParaEliminar = new ArrayList<>();
+
+        // Agregar los productos que se van a eliminar a una lista temporal
+        for (Producto p : productos) {
+            if (p.equals(producto) && eliminados < cantidad) {
+                productosParaEliminar.add(p);
+                eliminados++;
+                if (eliminados >= cantidad) {
+                    break;
+                }
+            }
+        }
+
+        // Eliminar los productos de la lista original
+        productos.removeAll(productosParaEliminar);
+        for (Pasillo pasillo : tienda.getPasillos()) {
+            if (pasillo.getCategoria().equals(producto.getCategoria())) {
+                // Agregar los productos eliminados al pasillo
+                pasillo.getProductos().addAll(productosParaEliminar);
+                break; // Asumimos que solo hay un pasillo por categoría
+            }
+        }
     }
 	
 	// metodos para factura //

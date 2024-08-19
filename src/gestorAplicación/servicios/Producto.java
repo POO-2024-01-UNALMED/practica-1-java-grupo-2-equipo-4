@@ -1,6 +1,7 @@
 package gestorAplicación.servicios;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
@@ -226,6 +227,19 @@ public class Producto implements Serializable,Cloneable {
 //-------------------------------------------------------------------------------------------------------------
 		//clonable //
 	
+	public Producto(String nombre, String marca, double precio, Tamaño tamaño, Edades categoriaEdad, Categoria categoriaAlimento, String descripcion, String fechaPerecer, int id) {
+		this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.tamaño = tamaño;
+        this.edadValida = categoriaEdad;
+        this.categoria = categoriaAlimento;
+        this.descripcion = descripcion;
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
+        this.id = id;
+	}
+
 	@Override
 	public Producto clone() {
         try {
@@ -237,8 +251,16 @@ public class Producto implements Serializable,Cloneable {
 	
 	
 //Metodos------------------------------------------------------------------------------------------------------
+	public void asignarPasilloYPonerEnTienda(Pasillo pasillo) {
+        this.pasillo = pasillo;
+        pasillo.getProductos().add(this);
+    }
 
-	   public int cantidadProducto() {
+    public void asignarTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
+	   
+	public int cantidadProducto() {
 	    	int cantidad=0;
 	    	for (Pasillo i:getTienda().getPasillos()) {
 				for (Producto j:i.getProductos()){
