@@ -12,7 +12,7 @@ public class Domiciliario extends Empleado implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1708181192964755820L;
-	private String vehiculo;
+//	private String vehiculo;
 	private boolean licencia;
 	//Contructores------------------------------------------------------------------------------------------------
 
@@ -27,13 +27,13 @@ public class Domiciliario extends Empleado implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(String vehiculo) {
-		this.vehiculo = vehiculo;
-	}
+//	public String getVehiculo() {
+//		return vehiculo;
+//	}
+//
+//	public void setVehiculo(String vehiculo) {
+//		this.vehiculo = vehiculo;
+//	}
 
 	@Override
 	protected void buscoChamba() {
