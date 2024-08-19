@@ -4,7 +4,10 @@ import java.util.*;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.sujetos.Cajero;
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Conserje;
+import gestorAplicación.sujetos.Domiciliario;
 import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.sujetos.Persona;
 
@@ -153,7 +156,7 @@ public class Tienda implements Serializable{
 		return seisProveedores;
 	}
 	
-	public void setSeisProveedores(ArrayList<Proveedor> provs) {
+	public static void setSeisProveedores(ArrayList<Proveedor> provs) {
 		 	seisProveedores=provs;
 	}
 	public static void setTiendas(ArrayList<Tienda> arrayList) {
@@ -421,12 +424,13 @@ public class Tienda implements Serializable{
 			return s;
 		}
 	//ANTES EN INVENTARIO
-		public void llamarProveedor(int x) {
+		public ArrayList<Producto> llamarProveedor(int x) {
 			Proveedor prov=Tienda.getSeisProveedores().get(x-1);
 			ArrayList<Producto> entrega =prov.getEntrega();
 			for(Producto p:entrega) {
 				agregarProducto(p);
 			}
+			return entrega;
 		}
 		
 		public ArrayList <Producto> solicitarInventario() {
@@ -521,13 +525,28 @@ public class Tienda implements Serializable{
 		}
 		
 		public void contratarEmpleados(int x5) {
-			if (x5==1) {
-				for(Empleado e:getDesempleados()) {
-					if(e.validarCriterios()!=false) {
-						this.getEmpleados().add(e);
+			switch(x5) {
+				case 1:
+					for(Empleado e:getDesempleados()) {
+						if(e.validarCriterios()!=false && e instanceof Domiciliario) {
+							this.getEmpleados().add(e);
+						}
+					}
+					break;
+				case 2:
+					for(Empleado e:getDesempleados()) {
+						if(e.validarCriterios()!=false && e instanceof Cajero) {
+							this.getEmpleados().add(e);
+						}
+					}
+					break;
+				case 3:
+					for(Empleado e:getDesempleados()) {
+						if(e.validarCriterios()!=false && e instanceof Conserje) {
+							this.getEmpleados().add(e);
+						}
 					}
 				}
-			}
 		}
 
 

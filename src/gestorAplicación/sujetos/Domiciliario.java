@@ -47,7 +47,7 @@ public class Domiciliario extends Empleado implements Serializable{
 	}
 	@Override
 	public boolean validarCriterios() {
-		if((this.licencia!=false)&&(this.getGenero()==Genero.M)) {
+		if((this.licencia==true)&&(this.getGenero()==Genero.M)) {
 			return true;
 		}
 		else {
