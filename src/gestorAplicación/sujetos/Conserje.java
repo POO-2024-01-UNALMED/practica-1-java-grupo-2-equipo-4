@@ -21,8 +21,11 @@ public class Conserje extends Empleado implements Serializable {
 
 	@Override
 	public boolean validarCriterios() {
-		// TODO Auto-generated method stub
-		return false;
+		if((this.experiencia>=2)&&this.getEdad()<=25){
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

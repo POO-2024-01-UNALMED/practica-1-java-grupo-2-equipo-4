@@ -41,7 +41,7 @@ public class Cajero extends Empleado {
 
 	@Override
 	public boolean validarCriterios() {
-		if((this.getExperiencia()>=2)){
+		if((this.getExperiencia()>=2)&&this.getEdad()<=25){
 			return true;
 		}else {
 			return false;

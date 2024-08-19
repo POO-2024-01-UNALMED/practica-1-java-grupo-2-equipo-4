@@ -275,9 +275,7 @@ public class Main {
 				Funcionalidad4.seleccionTienda();
 				break;
 			case 5:
-
-				//Funcionalidad5.personalizarTienda();
-
+				Funcionalidad5.personalizarTienda((Cliente) Identidad.identificarPersona());
 				break;
 			case 6:
 				Serializador.serializarTodo();

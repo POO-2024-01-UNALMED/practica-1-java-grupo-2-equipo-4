@@ -16,6 +16,7 @@ public abstract class Empleado extends Persona implements Serializable{
 	protected Tienda tienda;
 	protected boolean prestacionSalud;
 	protected boolean prestacionPension;
+	protected int experiencia;
 	
 //-------------------------------------------------------------------------------------------------------------
 
