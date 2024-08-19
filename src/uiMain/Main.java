@@ -223,6 +223,14 @@ public class Main {
 	            "Leche Entera", "La Vaquita", 1.50, Tamaño.GRANDE, Edades.MENORES, Categoria.ALIMENTO,
 	            "Leche entera de vaca, fortificada con vitaminas A y D.", "15/10/2024", 101
 	        );
+	        Producto producto12 = new Producto(
+		            "Leche Entera", "La Vaquita", 1.50, Tamaño.GRANDE, Edades.MENORES, Categoria.ALIMENTO,
+		            "Leche entera de vaca, fortificada con vitaminas A y D.", "15/10/2024", 101
+		        );
+	        Producto producto13 = new Producto(
+		            "Leche Entera", "La Vaquita", 1.50, Tamaño.GRANDE, Edades.MENORES, Categoria.ALIMENTO,
+		            "Leche entera de vaca, fortificada con vitaminas A y D.", "15/10/2024", 101
+		        );
 
 	        Producto producto2 = new Producto(
 	            "Pan Integral", "PanRico", 2.00, Tamaño.MEDIANO, Edades.MENORES, Categoria.ALIMENTO,
@@ -246,6 +254,8 @@ public class Main {
 
 	        // Asignar productos al pasillo y a la tienda
 	        producto1.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto12.asignarPasilloYPonerEnTienda(pasillo1);
+	        producto13.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto2.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto3.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto4.asignarPasilloYPonerEnTienda(pasillo1);
@@ -253,6 +263,8 @@ public class Main {
 
 	        // Asignar la tienda a los productos
 	        producto1.asignarTienda(tienda);
+	        producto12.asignarTienda(tienda);
+	        producto13.asignarTienda(tienda);
 	        producto2.asignarTienda(tienda);
 	        producto3.asignarTienda(tienda);
 	        producto4.asignarTienda(tienda);
@@ -263,9 +275,11 @@ public class Main {
 	            System.out.println("Producto: " + p.getNombre() + ", Marca: " + p.getMarca() + ", Precio: $" + p.getPrecio() +
 	                               ", Tamaño: " + p.getTamaño() + ", Categoria Edad: " + p.getEdades() +
 	                               ", Categoria Alimento: " + p.getCategoria() + ", ID: " + p.getId() +
-	                               ", Descripción: " + p.getDescripcion() + ", Fecha de Perecer: " + sdf.format(p.getFechaPerecer()) +
+	                               ", Descripción: " + p.getDescripcion() + ", Fecha de Perecer: " + p.getFechaPerecer() +
 	                               ", Pasillo: " + pasillo1.getNombre() + ", Tienda: " + tienda.getNombre());
 	        }
+	       Empleado empleado=new Cajero();
+	       tienda.getEmpleados().add(empleado);
 		
 		escogerFuncionalidad();
 

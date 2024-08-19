@@ -400,16 +400,15 @@ public class Funcionalidad2 extends Identidad {
 		print("");
 		print(" 1. Por categoria de un producto");
 		print(" 2. Por nombre del producto");
-		print(" 3. Pedir productos no actuales");
 		if (cliente.getCarrito().getProductos().size()>0) {
-			print(" 4. Eliminar un producto de mi carrito");
+			print(" 3. Eliminar un producto de mi carrito");
 		}
-		print(" 5. Volver");
+		print(" 4. Volver");
 		print("");
 		
 		System.out.print("Escoja un numero: ");
 		
-		int decision=escaner(5);
+		int decision=escaner(4);
 		Categoria categoria = null;
 		ArrayList<Producto> productos=new ArrayList<Producto>();
 		Producto seleccionado = null;
@@ -421,43 +420,6 @@ public class Funcionalidad2 extends Identidad {
 			busquedaNombre(cliente, productos,seleccionado);
 			break;
 		case 3:
-			print("Estas son las categorias de los productos de nuestras tiendas: ");
-			print("");
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(" "+enumerado +". "+tipo.getTexto());
-					enumerado++;			
-			}
-			print(" "+enumerado+". Volver");
-			print("");
-			System.out.print("Escoja cual desea para pedir productos: ");
-			int decisionCategoria = escaner(enumerado);
-			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda();
-			}
-			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Producto> posiblepeticion=cliente.getTienda().productosNoActuales(categoria);
-			System.out.println(posiblepeticion);
-			print("+--------------------------------------------+");
-			print("| No. |      Nombre de Producto/Tamaño       |");
-			print("+--------------------------------------------+");
-			int anchoCelda = 34; 
-			for (int i = 0; i < posiblepeticion.size(); i++) {
-				String nombreProducto = posiblepeticion.get(i).getNombre();
-			        String tamañoProducto = posiblepeticion.get(i).getTamaño().getTamaño();
-			        String nombreYtamaño = nombreProducto + "/" + tamañoProducto;
-			        
-			        int espacios = (anchoCelda - nombreYtamaño.length()) / 2;
-
-			        // Relleno a izquierda y derecha para centrar el nombre y tamaño del producto
-			        String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
-			        String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreYtamaño.length()) % 2));
-
-			        print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreYtamaño, paddingDerecho));
-			}
-			print("+--------------------------------------------+");
-
-		case 4:
 			if(cliente.getCarrito().getProductos().size()==0) {
 				print("Usted no puede seleccionar esta opcion");
 				elegirTipoBusqueda();
@@ -566,7 +528,7 @@ public class Funcionalidad2 extends Identidad {
 			    } 
 
 			
-		case 5:
+		case 4:
 			Main.escogerFuncionalidad();
 			break;
 		}
