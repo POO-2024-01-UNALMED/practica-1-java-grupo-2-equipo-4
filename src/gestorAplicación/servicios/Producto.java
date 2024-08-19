@@ -304,10 +304,10 @@ public class Producto implements Serializable,Cloneable {
         return productosAdecuados;
     }
 
-	@Override
-	public String toString() {
-		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio+" y de tamaño "+tamaño.getTamaño();
-	}
+    @Override
+    public String toString() {
+        return nombre + "\t" + marca + "\t" + tamaño + "\t" + precio;
+    }
 	
 //-------------------------------------------------------------------------------------------------------------
 }

@@ -176,34 +176,66 @@ public class Cliente extends Persona implements Serializable {
 //		return texto;
 //	}
 	
-	public StringBuilder obtenerContadorProductos(Persona persona ) {
-		StringBuilder string = new StringBuilder();
-		for (Tienda tienda : persona.getTiendas()) {
-			for(Carrito carrito: tienda.getCarritos()) {
-				 Map<String, Integer> contadorProductos = new HashMap<>();
-
-		        for (Producto producto : carrito.getProductos()) {
-		            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
-		            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
-		        }
-		        
-		         
-		        
-		        string.append(""+contadorProductos);
-		        
-		    }
-		}return string;
-	}
-		 
-       
+//	public StringBuilder obtenerContadorProductos(Persona persona ) {
+//		StringBuilder string = new StringBuilder();
+//		for (Tienda tienda : persona.getTiendas()) {
+//			for(Carrito carrito: tienda.getCarritos()) {
+//				 Map<String, Integer> contadorProductos = new HashMap<>();
+//
+//		        for (Producto producto : carrito.getProductos()) {
+//		            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+//		            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+//		        }
+//
+//		        string.append(""+contadorProductos);
+//		        
+//		    }
+//		}return string;
+//	}
+//	
+//	 public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
+//		 
+//	        Map<String, Integer> contadorProductos = new HashMap<>();
+//
+//	        for (Producto producto : cliente.getCarrito().getProductos()) {
+//	            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+//	            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+//	        }
+//
+//	        return contadorProductos;
+//	    }
+//	
+//	 
 	
-	 public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
-		 
+	
+	
+	 @Override
+	    void mostrarFacturas() {
+	        // Implementación específica para Cliente
+	    }
+
+	 public ArrayList<Carrito> obtenerFacturas(boolean pagadas) {
+	        ArrayList<Carrito> facturas = new ArrayList<>();
+	        for (Tienda tienda : getTiendas()) {
+	            for (Carrito carrito : tienda.getCarritos()) {
+	                if (carrito.isPagado() == pagadas) {
+	                    facturas.add(carrito);
+	                }
+	            }
+	        }
+	        return facturas;
+	    }
+
+	    public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
 	        Map<String, Integer> contadorProductos = new HashMap<>();
 
-	        for (Producto producto : cliente.getCarrito().getProductos()) {
-	            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
-	            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+	        for (Tienda tienda : cliente.getTiendas()) {
+	            for (Carrito carrito : tienda.getCarritos()) {
+	                for (Producto producto : carrito.getProductos()) {
+	                    String clave = producto.getNombre() + "\t" + producto.getMarca() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+	                    contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+	                }
+	            }
 	        }
 
 	        return contadorProductos;
@@ -212,6 +244,8 @@ public class Cliente extends Persona implements Serializable {
 	 //Asigna una tienda y un carrito a un cliente en función de su edad.
 	 // Si el cliente es mayor de edad, se le asigna un carrito para adultos y se le otorgan 100,000 en dinero.
 	 //Si el cliente es menor de edad, se le asigna un carrito para menores y se le otorgan 50,000 en dinero.
+	
+	
 	
 	public static void asignaciones(Cliente cliente,Tienda tienda) {
 		 if (cliente.mayorEdad() ) {

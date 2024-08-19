@@ -21,74 +21,131 @@ import static uiMain.Main.lineas;
 public class Funcionalidad3 extends Identidad {
 		 static Persona persona = identificarPersona();
 		 
-		 public static void administrarRecibos() {
-			 System.out.println("------------------ Administrar recibos  -----------------");
-			 System.out.println("Seleccione una opcion");
-			 System.out.println("Administrar recibos de:");
-			 System.out.println("1. Dueño ");
-			 System.out.println("2. Cliente ");
-			 
-		     int opcion = escaner(2);
+		 public static void imprimirFacturasCliente(Cliente cliente, boolean pagadas) {
+		        ArrayList<Carrito> facturas = cliente.obtenerFacturas(pagadas);
+		        int numeroFactura = 1;
+		        for (Carrito carrito : facturas) {
+		            System.out.printf("%d. %s%n", numeroFactura, carrito.getFechaFacturacion());
+		            numeroFactura++;
+		        }
+		    }
 
-		     switch (opcion) {
-		            case 1:
-		            	seleccionTienda();
-		                break;
-		            case 2:
-		            	
-		                break;
-		            default:
-		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
-		                break;
+		    public static void imprimirFacturaDetalle(Carrito carrito) {
+		        System.out.println("Fecha de Facturación: " + carrito.getFechaFacturacion());
+		        System.out.println("Productos:");
+		        System.out.printf("%-20s %-20s %-10s %-10s %-10s%n", "Nombre", "Marca", "Tamaño", "Precio", "Cantidad");
+
+		        Map<String, Integer> contadorProductos = new HashMap<>();
+		        for (Producto producto : carrito.getProductos()) {
+		            String clave = producto.getNombre() + "\t" + producto.getMarca() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+		            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
 		        }
 
-		 }
-		 
-		 public  static Tienda seleccionTienda() {
-			 System.out.println("------------------ Pago de recibos  -----------------");
-		// seleccion de tiendas para comprar //  
-		    	
-				if(persona.getTiendas().size()==0) {
-					print("No tienes niguna tienda registrada "); 
-					print("Que desea hacer ");
-					print("1. Cambiar de usuario");
-					print("2. Volver al Menu principal");
-					
-					int valor= escaner();
-					switch (valor) {
-						case 1:
-							persona=null;
-							seleccionTienda();
-							break;
-						case 2:
-							Main.escogerFuncionalidad();
-							break;
-					}
-				}
-		    	
-		    	print("Tiendas disponibles: ");
-		    	
-		    	Tienda tienda=null;
-		    	int contT = 1;
-
-		    	for(Tienda i: persona.getTiendas()) {
-		    		print(contT+ ". "+i.getNombre());
-		    		contT++;
-		    	}
-		    	
-		    	contT--;
-		    	
-		    	print("Seleccione una tienda para administrar");
-		    	int decs = escaner(contT);
-		    		    	
-		    	for (int i = 0; i < contT; i++) {
-		           if(i+1 == decs ) {
-		        	   tienda = persona.getTiendas().get(i);
-		        	   break;
-		           }
-		        }	
-		    	return tienda;
+		        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
+		            String[] partes = entry.getKey().split("\t");
+		            System.out.printf("%-20s %-20s %-10s %-10s %-10d%n", partes[0], partes[1], partes[2], partes[3], entry.getValue());
+		        }
 		    }
+
+		    public static void imprimirFacturasPersona(Persona persona) {
+		        int numeroFactura = 1;
+		        for (Tienda tienda : persona.getTiendas()) {
+		            for (Carrito carrito : tienda.getCarritos()) {
+		                if (carrito.isPagado()) {
+		                    System.out.printf("%d. %s - %s%n", numeroFactura, carrito.getFechaFacturacion(), carrito.getCliente().getNombre());
+		                    numeroFactura++;
+		                }
+		            }
+		        }
+		    }
+		    
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+//		 public static void administrarRecibos() {
+//			 System.out.println("------------------ Administrar recibos  -----------------");
+//			 System.out.println("Seleccione una opcion");
+//			 System.out.println("Administrar recibos de:");
+//			 System.out.println("1. Dueño ");
+//			 System.out.println("2. Cliente ");
+//			 
+//		     int opcion = escaner(2);
+//
+//		     switch (opcion) {
+//		            case 1:
+//		            	Tienda tiendaDueno=seleccionTienda();
+//		            	imprimirFacturasDueno(persona);
+//		                break;
+//		            case 2:
+//		            	obtenerContadorProductos((Cliente) persona);
+//		                break;
+//		            default:
+//		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
+//		                break;
+//		        }
+//
+//		 }
+//		 
+//		 public  static Tienda seleccionTienda() {
+//			 System.out.println("------------------ Pago de recibos  -----------------");
+//		// seleccion de tiendas para comprar //  
+//		    	
+//				if(persona.getTiendas().size()==0) {
+//					print("No tienes niguna tienda registrada "); 
+//					print("Que desea hacer ");
+//					print("1. Cambiar de usuario");
+//					print("2. Volver al Menu principal");
+//					
+//					int valor= escaner();
+//					switch (valor) {
+//						case 1:
+//							persona=null;
+//							seleccionTienda();
+//							break;
+//						case 2:
+//							Main.escogerFuncionalidad();
+//							break;
+//					}
+//				}
+//		    	
+//		    	print("Tiendas disponibles: ");
+//		    	
+//		    	Tienda tienda=null;
+//		    	int contT = 1;
+//
+//		    	for(Tienda i: persona.getTiendas()) {
+//		    		print(contT+ ". "+i.getNombre());
+//		    		contT++;
+//		    	}
+//		    	
+//		    	contT--;
+//		    	
+//		    	print("Seleccione una tienda para administrar");
+//		    	int decs = escaner(contT);
+//		    		    	
+//		    	for (int i = 0; i < contT; i++) {
+//		           if(i+1 == decs ) {
+//		        	   tienda = persona.getTiendas().get(i);
+//		        	   break;
+//		           }
+//		        }	
+//		    	return tienda;
+//		    }
 		 
 //	public static void mostrarFacturas() {
 //	
@@ -114,34 +171,46 @@ public class Funcionalidad3 extends Identidad {
 	
 	//        fecha de facturacion 
 	//   Nombre   Tamaño   Precio   Cantidad
-	 
-	
-	public static void imprimirFactura(Cliente cliente) {
-        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
-        System.out.println("Productos:");
-        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
-
-        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
-
-        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-            System.out.println(entry.getKey() + "\t" + entry.getValue());
-        }
-    }
-	
-	public static void imprimirFactura(Persona cliente) {
 		
-		System.out.println("Estas son las facturas en su tienda");	
-		
-        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
-        System.out.println("Productos:");
-        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
-
-        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
-
-        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-            System.out.println(entry.getKey() + "\t" + entry.getValue());
-        }
-    }
+//		 public static void imprimirFacturasDueno(Persona cliente) {
+//		        System.out.println("Estas son las facturas en su tienda");
+//
+//		        int numeroFactura = 1;
+//		        for (Tienda tienda : cliente.getTiendas()) {
+//		            for (Carrito carrito : tienda.getCarritos()) {
+//		                System.out.println(numeroFactura + ". " + carrito.getFechaFacturacion() + " - " + carrito.getCliente().getNombre());
+//		                numeroFactura++;
+//		            }
+//		        }
+//		    }
+//	 
+//	
+//	public static void imprimirFactura(Cliente cliente) {
+//        System.out.println( cliente.getCarrito().getFechaFacturacion());
+//
+//        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
+//
+//        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
+//
+//        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
+//            System.out.println(entry.getKey() + "\t" + entry.getValue());
+//        }
+//    }
+//	
+//	public static void imprimirFactura(Persona cliente) {
+//		
+//		System.out.println("Estas son las facturas en su tienda");	
+//		
+//        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
+//        System.out.println("Productos:");
+//        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
+//
+//        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
+//
+//        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
+//            System.out.println(entry.getKey() + "\t" + entry.getValue());
+//        }
+//    }
 	
 	public static void realizarDevolicion() {
 		Tienda tienda = seleccionTienda();
