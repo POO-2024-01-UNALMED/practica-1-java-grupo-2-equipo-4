@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
+import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Producto;
@@ -21,7 +22,7 @@ public class Cliente extends Persona implements Serializable {
 	private Tienda tienda;
 	private double dinero;
 	private Carrito carrito;
-	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
+	private ArrayList <Carrito> facturas= new ArrayList<>();
 
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -53,6 +54,7 @@ public class Cliente extends Persona implements Serializable {
 	public void setDinero(double dinero) {
 		this.dinero=dinero;
 	}
+	
 	
 	public ArrayList<Carrito> getFacturas() {
 		return facturas;

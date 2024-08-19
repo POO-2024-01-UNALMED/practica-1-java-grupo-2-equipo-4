@@ -8,25 +8,34 @@ import gestorAplicación.servicios.*;
 import gestorAplicación.sujetos.*;
 
 public class Factura {
-
-	LocalDate fechaFacturacion;
+    LocalDate fechaFacturacion;
     ArrayList<Producto> productos;
 
-    Factura() {
+    //constructor //
+    
+    Factura(Carrito carrito) {
+    	
         this.fechaFacturacion = LocalDate.now();
-        this.productos = new ArrayList<>();
+        this.productos = new ArrayList<>(carrito.getProductos());
     }
 
+    // getters and setters//
+    
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
 
-    public void imprimirFactura() {
-        System.out.println("Fecha de Facturación: " + fechaFacturacion);
-        System.out.println("Productos:");
-        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
+    public LocalDate getFechaFacturacion() {
+        return fechaFacturacion;
+    }
 
-        // Usar un mapa para contar la cantidad de cada producto
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+    
+    //methods//
+
+    public Map<String, Integer> obtenerContadorProductos() {
         Map<String, Integer> contadorProductos = new HashMap<>();
 
         for (Producto producto : productos) {
@@ -34,16 +43,6 @@ public class Factura {
             contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
         }
 
-        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-            System.out.println(entry.getKey() + "\t" + entry.getValue());
-        }
+        return contadorProductos;
     }
-
-    public static void main(String[] args) {
-        Factura factura = new Factura();
-
-     
-        factura.imprimirFactura();
-    }
-
 }

@@ -168,8 +168,8 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                
 	            	break;
 	            	
-	            case 3:
-	            	System.out.println("Marcar producto como defectuoso");
+	            case 3: // muestra los productos devueltos y los elimina o regresa//
+	            	System.out.println("Productos devueltos");
 	            	
 	            	
 	            	System.out.println("Seleccione una opcion");

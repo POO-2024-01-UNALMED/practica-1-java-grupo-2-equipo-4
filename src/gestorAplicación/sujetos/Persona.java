@@ -1,10 +1,13 @@
 package gestorAplicación.sujetos;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import gestorAplicación.servicios.Enums.Genero;
+import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.servicios.Factura;
 import static gestorAplicación.servicios.Enums.Genero;
 
 public abstract class Persona implements Serializable{
@@ -20,6 +23,9 @@ public abstract class Persona implements Serializable{
 	private Genero genero;
 	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 	private static ArrayList <Persona> personas=new ArrayList<Persona>();
+	
+	// estaba en cliente pero identificar usuario es clase Persona //
+	private ArrayList <Factura> facturas= new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -29,6 +35,16 @@ public abstract class Persona implements Serializable{
 
 	public static ArrayList<Persona> getPersonas() {
 		return personas;
+	}
+
+	public ArrayList<Factura> getFacturas1() {
+		return facturas;
+	}
+
+	
+	
+	public void setFacturas1(ArrayList<Factura> facturas) {
+		this.facturas = facturas;
 	}
 
 	public static void setPersonas(ArrayList<Persona> persona) {
