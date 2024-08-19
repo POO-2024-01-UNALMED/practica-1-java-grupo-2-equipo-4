@@ -71,11 +71,11 @@ public class Main {
 		cliente.setEdad(18);
 		carrito.setCliente(cliente);
 		cliente.setCarrito(carrito);
-		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES,"");
+		Producto producto = new Producto("Cebolla","Cebollando",0,Categoria.ALIMENTO,tienda,"13/08/2024",1,Edades.MENORES,"",Tamaño.GRANDE);
 		producto.setTamaño(Tamaño.GRANDE);
-		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0,Edades.MENORES,"");
-		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1,Edades.MENORES,"");
-		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2,Edades.MENORES,"");
+		Producto producto12 = new Producto("Cebolla","marquita1",0,Categoria.ALIMENTO,tienda,"13/08/2024",0,Edades.MENORES,"",Tamaño.GRANDE);
+		Producto producto13 = new Producto("Cebolla","marquita2",0,Categoria.ALIMENTO,tienda,"13/08/2024",-1,Edades.MENORES,"",Tamaño.GRANDE);
+		Producto producto14 = new Producto("Cebolla","marquita3",0,Categoria.ALIMENTO,tienda,"13/08/2024",-2,Edades.MENORES,"",Tamaño.GRANDE);
 		//Crear Empleados
 				Empleado juan =new Domiciliario();
 				Empleado pepe =new Domiciliario();
@@ -96,14 +96,17 @@ public class Main {
 				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
 				
 				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan",0,Categoria.ALIMENTO,2,Edades.MENORES,"");
+
+	//			Producto producto1 = new Producto("Pan",0, Categoria.ALIMENTO,2,Edades.MENORES,"",Tamaño.GRANDE);
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
 				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana",0, Categoria.ALIMENTO,3,Edades.MENORES,"");
+
+	//			Producto producto8 = new Producto("Manzana",0, Categoria.ALIMENTO,3,Edades.MENORES,"",Tamaño.MEDIANO);
+
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 	
@@ -112,12 +115,12 @@ public class Main {
 				Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);
 
 				// Crear productos para diferentes categorías y edades
-				Producto producto15 = new Producto("Cereal", "CerealBrand", 2.99, Categoria.ALIMENTO, 101, Enums.Edades.ADULTOS, "Cereal integral saludable");
-				Producto producto16 = new Producto("Leche", "MilkBrand", 1.49, Categoria.BEBIDA, 102, Enums.Edades.MENORES, "Leche para niños");
-				Producto producto17 = new Producto("Jabón", "SoapBrand", 0.99, Categoria.LIMPIEZA, 103, Enums.Edades.ADULTOS, "Jabón de manos antibacterial");
-				Producto producto18 = new Producto("Shampoo", "ShampooBrand", 4.99, Categoria.PERSONAL, 104, Enums.Edades.MENORES, "Shampoo suave para niños");
-				Producto producto19 = new Producto("Silla", "ChairBrand", 29.99, Categoria.HOGAR, 105, Enums.Edades.ADULTOS, "Silla ergonómica");
-				Producto producto20 = new Producto("Televisor", "TVBrand", 299.99, Categoria.ELECTRONICO, 106, Enums.Edades.ADULTOS, "Televisor LED 40 pulgadas");
+				Producto producto15 = new Producto("Cereal", "CerealBrand", 2.99, Categoria.ALIMENTO, 101, Enums.Edades.ADULTOS, "Cereal integral saludable",Tamaño.PEQUEÑO);
+				Producto producto16 = new Producto("Leche", "MilkBrand", 1.49, Categoria.BEBIDA, 102, Enums.Edades.MENORES, "Leche para niños",Tamaño.GRANDE);
+				Producto producto17 = new Producto("Jabón", "SoapBrand", 0.99, Categoria.LIMPIEZA, 103, Enums.Edades.ADULTOS, "Jabón de manos antibacterial",Tamaño.MEDIANO);
+				Producto producto18 = new Producto("Shampoo", "ShampooBrand", 4.99, Categoria.PERSONAL, 104, Enums.Edades.MENORES, "Shampoo suave para niños",Tamaño.PEQUEÑO);
+				Producto producto19 = new Producto("Silla", "ChairBrand", 29.99, Categoria.HOGAR, 105, Enums.Edades.ADULTOS, "Silla ergonómica",Tamaño.GRANDE);
+				Producto producto20 = new Producto("Televisor", "TVBrand", 299.99, Categoria.ELECTRONICO, 106, Enums.Edades.ADULTOS, "Televisor LED 40 pulgadas",Tamaño.GRANDE);
 				
 
 					// Crear listas para cada categoría
@@ -129,8 +132,8 @@ public class Main {
 				ArrayList<Producto> electronico = new ArrayList<Producto>();
 
 				// Agregar productos a las listas correspondientes
-				alimentos.add(producto1);
-				alimentos.add(producto8);
+		//		alimentos.add(producto1);
+		//		alimentos.add(producto8);
 				alimentos.add(producto15);
 
 				bebidas.add(producto2);
@@ -264,7 +267,7 @@ public class Main {
 				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
-				Funcionalidad4.RevisarTienda();
+	//			Funcionalidad4.RevisarTienda();
 				break;
 			case 5:
 				Funcionalidad5.personalizarTienda(cliente);
