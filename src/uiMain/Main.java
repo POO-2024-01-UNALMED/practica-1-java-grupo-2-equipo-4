@@ -261,6 +261,7 @@ public class Main {
 	        producto4.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto5.asignarPasilloYPonerEnTienda(pasillo1);
 
+	        
 	        // Asignar la tienda a los productos
 	        producto1.asignarTienda(tienda);
 	        producto12.asignarTienda(tienda);

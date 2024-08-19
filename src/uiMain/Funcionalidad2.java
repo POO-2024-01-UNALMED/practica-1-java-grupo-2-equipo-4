@@ -105,82 +105,103 @@ public class Funcionalidad2 extends Identidad {
 			System.out.println(" [S] pag. Si desea imprimir los 4 proximos productos, escriba S");
 		}
 		print("");
-		System.out.print("¿Que desea realizar?: ");
 	}
 	
-	public static Producto impresionSeleccionCategoria(Cliente cliente,ArrayList<Producto> productos,Categoria categoria, boolean malSeleccionado) {
-		int inferior=0;
-		int superior=4;
-		Producto seleccionado = null;
-		while(true) {
-			if ((productos.size()-superior)<0) {
-				superior=superior-(superior-productos.size());
-			}
-			if (!malSeleccionado) {
-			cuadriculaProductos(cliente,productos,inferior,superior);
-			}
-			String seleccion=sc.nextLine();
-			malSeleccionado=false;
-			boolean texto=false;
-			int numero=0;
-			try{
-				numero = Integer.parseInt(seleccion);
-			}
-			catch(Exception e) {
-				texto=true;
-			}
-			if(texto) {
-				for(Producto k:productos) {
-					if (k.getNombre().toLowerCase().equals(seleccion.toLowerCase())) {
-						seleccionado=k;
-					}
-				}
-				if (seleccion.toLowerCase().equals("s")) {	
-					inferior=superior;
-					superior+=4;
-					continue;
-				}
-				if (seleccion.toLowerCase().equals("a")) {	
-					superior=inferior;
-					inferior=superior-4;
-					continue;
-				}
-				if (seleccionado==null) {
-					print("");
-					System.out.println("Este producto no se encuentra: ");
-					print(" 1. Desea copiar otra opcion");
-					print(" 2. Desea mirar si puede pedir reabastecer el producto");
-					System.out.print("Escoja una opcion: ");
-					malSeleccionado=true;
-					continue;
-				}
-			}
-			else switch(numero) {
-			case 1:
-				seleccionado=productos.get(numero+inferior-1);
-				break;
-			case 2:
-				seleccionado=productos.get(numero+inferior-1);
-				break;
-			case 3:
-				seleccionado=productos.get(numero+inferior-1);
-				break;
-			case 4:
-				seleccionado=productos.get(numero+inferior-1);
-				break;
-			case 5:
-				busquedaCategoria(cliente, categoria, productos, seleccionado);
-				break;
-			default:
-				print("Ese numero esta fuera del rango");
-				System.out.print("Introduzca otro numero: ");
-				malSeleccionado=true;
-				impresionSeleccionCategoria(cliente,productos,categoria,malSeleccionado);
-				break;
-			}	
-			return seleccionado;
-		}
+	public static Producto impresionSeleccionCategoria(Cliente cliente, ArrayList<Producto> productos, Categoria categoria, boolean malSeleccionado) {
+	    int inferior = 0;
+	    int superior = 4;
+	    Producto seleccionado = null;
+	    Scanner sc = new Scanner(System.in); // Asegúrate de inicializar correctamente el escáner
+
+	    while (true) {
+	        // Ajuste de los índices para no sobrepasar el tamaño de la lista
+	        if ((productos.size() - superior) < 0) {
+	            superior = superior - (superior - productos.size());
+	        }
+
+	        // Mostrar productos si no hubo selección errónea previamente
+	        if (!malSeleccionado) {
+	            cuadriculaProductos(cliente, productos, inferior, superior);
+	        }
+
+	        // Captura de la selección del usuario
+	        System.out.print("Seleccione una opción: ");
+	        String seleccion = sc.nextLine().trim(); // Asegúrate de eliminar espacios en blanco adicionales
+	        seleccionado = null;
+	        malSeleccionado = false; // Resetear malSeleccionado después de recibir una entrada
+	        boolean texto = false;
+	        int numero = 0;
+
+	        // Intentar parsear la selección como número
+	        try {
+	            numero = Integer.parseInt(seleccion);
+	        } catch (NumberFormatException e) {
+	            texto = true;
+	        }
+
+	        if (texto) {
+	            // Buscar el producto por nombre
+	            for (Producto k : productos) {
+	                if (k.getNombre().toLowerCase().equals(seleccion.toLowerCase())) {
+	                    seleccionado = k;
+	                    break; // Salir del bucle si se encuentra el producto
+	                }
+	            }
+
+	            // Manejo de navegación entre páginas
+	            if (seleccion.toLowerCase().equals("s")) {
+	                inferior = superior;
+	                superior += 4;
+	                continue;
+	            }
+	            if (seleccion.toLowerCase().equals("a")) {
+	                superior = inferior;
+	                inferior = superior - 4;
+	                continue;
+	            }
+
+	            // Si no se encontró el producto, manejar selección incorrecta
+	            if (seleccionado == null) {
+	                System.out.println("");
+	                System.out.println("Este producto no se encuentra:");
+	                System.out.println(" 1. Desea copiar otra opcion");
+	                System.out.println(" 2. Desea mirar si puede pedir reabastecer el producto");
+	                System.out.print("Escoja una opción: ");
+	                malSeleccionado = true; // Marcamos que la selección fue incorrecta
+	                continue; // Volver al inicio del ciclo para manejar una nueva entrada
+	            }
+	        } else {
+	            // Manejo de selección numérica
+	            switch (numero) {
+	                case 1:
+	                case 2:
+	                case 3:
+	                case 4:
+	                    // Asegurar que el número seleccionado esté dentro del rango visible actual
+	                    if (numero + inferior - 1 < productos.size()) {
+	                        seleccionado = productos.get(numero + inferior - 1);
+	                    } else {
+	                        System.out.println("Ese número está fuera del rango");
+	                        malSeleccionado = true;
+	                    }
+	                    break;
+	                case 5:
+	                    busquedaCategoria(cliente, categoria, productos, seleccionado);
+	                    break;
+	                default:
+	                    System.out.println("Ese número está fuera del rango");
+	                    malSeleccionado = true;
+	                    continue;
+	            }
+	        }
+
+	        // Salir del bucle y devolver el producto seleccionado
+	        if (seleccionado != null) {
+	            return seleccionado;
+	        }
+	    }
 	}
+
 	
 	public static Producto impresionSeleccionNombre(Cliente cliente,ArrayList<Producto> productos,Producto seleccionado) {
 		int inferior=0;
@@ -340,29 +361,39 @@ public class Funcionalidad2 extends Identidad {
 	}
 	
 	public static void dondeSeAgreganProductos(Cliente cliente, Producto seleccionado) {
+		// Solicita la cantidad de productos al usuario
 		print("¿Cuantos productos de este quiere usted?");
 		print("");
 		System.out.print("Introduzca una cantidad de productos: ");
-		int cantidad=escaner();
-		StringBuilder resultado= cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
+		int cantidad = escaner();
+
+		// Agrega el producto al carrito y obtiene el resultado como un StringBuilder
+		StringBuilder resultado = cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
 		print("");
 		System.out.println(resultado);
+
+		// Verifica si el resultado contiene ciertos mensajes
 		boolean contieneProductosNoAgregados = resultado.indexOf("Productos no agregados") != -1;
-        boolean contieneProductosSuficientes = resultado.indexOf("productos suficientes") != -1;
-        if (contieneProductosNoAgregados && contieneProductosSuficientes) {
-            print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
-            print("1. Recibir la cantidad que tienen");
-            print("2. Escojer otro producto nuevamente");
-            int decision=escaner(2);
-            switch(decision) {
-            case 1:
-            	cliente.getCarrito().agregarAlCarrito(seleccionado,seleccionado.cantidadProducto());
-            	break;
-            case 2:
-            	elegirTipoBusqueda();
-            	break;
-            }
-        }
+		boolean contieneProductosSuficientes = resultado.indexOf("productos suficientes") != -1;
+		boolean contieneNoTienesDinero = resultado.indexOf("no tienes dinero") != -1;
+
+		if (contieneNoTienesDinero) {
+		    recomendarProductos();
+		} else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
+		    // Si el resultado contiene los mensajes de "Productos no agregados" y "productos suficientes"
+		    print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
+		    print("1. Recibir la cantidad que tienen");
+		    print("2. Escojer otro producto nuevamente");
+		    int decision = escaner(2);
+		    switch (decision) {
+		        case 1:
+		            cliente.getCarrito().agregarAlCarrito(seleccionado, seleccionado.cantidadProducto());
+		            break;
+		        case 2:
+		            elegirTipoBusqueda();
+		            break;
+		    }
+		}
 	}
 	
 	// Método auxiliar para ajustar el texto al ancho de la celda, cortando si es necesario
@@ -525,7 +556,8 @@ public class Funcionalidad2 extends Identidad {
 			        }
 			    } else {
 			        System.out.println("Selección inválida.");
-			    } 
+			    }
+			    print("+----+--------------------+---------------+----------+----------+----------+");
 
 			
 		case 4:
