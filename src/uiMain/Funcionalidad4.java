@@ -81,7 +81,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	    	System.out.println("que deasea ver?");
 	    	System.out.println("1. Total de productos en el inventario\n"
 					+ "2. Productos vencidos\n"
-					+ "3. Marcar producto como defectuoso\n"
+					+ "3. Ver productos devueltos\n"
 					+ "4. Reabastecimiento\n"
 					+ "5. Seleccionar otra tienda"
 					+ "6. Volver al menu principal");   	

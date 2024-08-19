@@ -162,6 +162,27 @@ public class Cliente extends Persona implements Serializable {
 //		return texto;
 //	}
 	
+	public StringBuilder obtenerContadorProductos(Persona persona ) {
+		StringBuilder string = new StringBuilder();
+		for (Tienda tienda : persona.getTiendas()) {
+			for(Carrito carrito: tienda.getCarritos()) {
+				 Map<String, Integer> contadorProductos = new HashMap<>();
+
+		        for (Producto producto : carrito.getProductos()) {
+		            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+		            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+		        }
+		        
+		         
+		        
+		        string.append(""+contadorProductos);
+		        
+		    }
+		}return string;
+	}
+		 
+       
+	
 	 public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
 		 
 	        Map<String, Integer> contadorProductos = new HashMap<>();
@@ -186,6 +207,12 @@ public class Cliente extends Persona implements Serializable {
 	        	cliente.setCarrito(carrito);
 	        	cliente.setDinero(50000);
 	        }
+	}
+
+	@Override
+	public StringBuilder imprimirFacturas(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 
 //-------------------------------------------------------------------------------------------------------------
