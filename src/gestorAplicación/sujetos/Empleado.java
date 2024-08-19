@@ -46,5 +46,15 @@ public abstract class Empleado extends Persona implements Serializable{
 
 	public abstract boolean validarCriterios();
 	
+	@Override
+	public StringBuilder imprimirFacturas(Persona persona) {
+		StringBuilder texto=new StringBuilder();
+		return texto.append("Su pago es de: "+this.cantidadPago());
+	}
+	@Override
+	public StringBuilder imprimirFacturas(Cliente cliente) {
+		return null;
+	}
+
 //-------------------------------------------------------------------------------------------------------------
 }

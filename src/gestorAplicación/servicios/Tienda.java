@@ -307,7 +307,7 @@ public class Tienda implements Serializable{
 	public String llamarProveedor() {
 		int n=1;
 		String s= "  Proveedor  |  Categoria \n";
-		for(Proveedor i:proveedores) {
+		for(Proveedor i:sieteProveedores) {
 			s+=n+"."+i.getNombre();
 			s+="     ";
 			s+=i.getTipo();
@@ -530,15 +530,7 @@ public class Tienda implements Serializable{
 			return cantidad;
 		}
 		
-		public void imprimirProveedores() {
-	        System.out.println("Lista de Proveedores:");
-	        int contador = 1;
-	        for (Proveedor proveedor : proveedores) {
-	            System.out.println(contador + ". " + proveedor);
-	            contador++;
-	        }
-	    }
-		
+	
 		public final String toString() {
 			return this.getNombre(); 
 		}

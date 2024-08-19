@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 
-public class Producto implements Serializable {
+public class Producto implements Serializable,Cloneable {
 //Atributos----------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L; //<---parte de serializar
 	private String nombre;
@@ -210,7 +210,18 @@ public class Producto implements Serializable {
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
 	}
 //-------------------------------------------------------------------------------------------------------------
-
+		//clonable //
+	
+	@Override
+	public Producto clone() {
+        try {
+            return (Producto) super.clone();
+        } catch (CloneNotSupportedException e) {         
+            throw new RuntimeException(e);
+        }
+    }
+	
+	
 //Metodos------------------------------------------------------------------------------------------------------
 
 	public Producto(String nombre, double precio, Categoria categoria, int id, Edades edadValida, String descripcion) {
