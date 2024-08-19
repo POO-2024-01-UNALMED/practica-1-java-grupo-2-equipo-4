@@ -223,12 +223,23 @@ public class Cliente extends Persona implements Serializable {
 	        }
 	}
 	
+	public static void asignaciones(Cliente cliente,Tienda tienda,double dinero ) {
+		 if (cliente.mayorEdad() ) {
+	        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
+	            cliente.setTienda(tienda);
+	            cliente.setCarrito(carrito);
+	            cliente.setDinero(dinero);
+	        } else if (!cliente.mayorEdad()) {
+	        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
+	        	cliente.setTienda(tienda);
+	        	cliente.setCarrito(carrito);
+	        	cliente.setDinero(dinero);
+	        }
+	}
+	
 	
 
 //----Membresias----------------------------------------------------------------------------------------------
-
-	
-	
 	public static String PerfilDemografico(Cliente cliente) {
 		
 	    int edad = cliente.getEdad();
@@ -246,40 +257,54 @@ public class Cliente extends Persona implements Serializable {
 	}
 	
 	public static String getMensajePorPerfil(String perfilDemografico, Membresia membresia) {
+	    String mensaje;
 	    switch (membresia) {
 	        case BASICO:
-	            return switch (perfilDemografico) {
-	                case "Mujer Joven" -> "disfrutarás de descuentos en productos ideales para tu estilo joven y vibrante. ¡No te pierdas nuestras ofertas en el boletín mensual!";
-	                case "Mujer Adulta" -> "obtendrás descuentos en productos que complementan tu estilo sofisticado. Mantente al tanto de nuestras ofertas especiales.";
-	                case "Mujer Anciana" -> "te ofrecemos descuentos en productos adaptados a tus necesidades y confort. Consulta nuestras ofertas en el boletín mensual.";
-	                case "Hombre Joven" -> "tendrás descuentos en productos que se adaptan a tu estilo dinámico. No olvides revisar el boletín mensual para novedades y ofertas.";
-	                case "Hombre Adulto" -> "disfrutarás de descuentos en productos que se ajustan a tu estilo profesional. Consulta nuestras ofertas en el boletín mensual.";
-	                case "Hombre Anciano" -> "te ofrecemos descuentos en productos que se adaptan a tus preferencias y comodidad. Revisa el boletín mensual para más detalles.";
-	                default -> "te ofrecemos descuentos en productos seleccionados.";
-	            };
+	            mensaje = """
+	                Membresía Básica:
+	                Como miembro Básico, %s
+	                - Disfruta de descuentos especiales según tu perfil demográfico.
+	                - Mantente al tanto de nuestras ofertas en el boletín mensual.
+	                """;
+	            break;
 	        case PREMIUM:
-	            return switch (perfilDemografico) {
-	                case "Mujer Joven" -> "obtendrás descuentos exclusivos y acceso anticipado a las últimas tendencias. Además, disfruta de nuestra atención prioritaria en cada compra.";
-	                case "Mujer Adulta" -> "tendrás acceso a descuentos adicionales y eventos exclusivos. Nuestra atención prioritaria te garantizará una experiencia superior.";
-	                case "Mujer Anciana" -> "recibirás descuentos adicionales y atención prioritaria en cada compra. También tendrás acceso a eventos exclusivos diseñados pensando en tu comodidad.";
-	                case "Hombre Joven" -> "obtendrás descuentos especiales y acceso anticipado a productos innovadores. Disfruta de nuestra atención prioritaria en cada compra.";
-	                case "Hombre Adulto" -> "tendrás acceso a descuentos adicionales y eventos exclusivos. Nuestra atención prioritaria mejorará tu experiencia de compra.";
-	                case "Hombre Anciano" -> "recibirás descuentos especiales y atención prioritaria. Además, tendrás acceso a eventos exclusivos adaptados a tus necesidades.";
-	                default -> "obtendrás descuentos especiales y acceso a eventos exclusivos.";
-	            };
+	            mensaje = """
+	                Membresía Premium:
+	                Como miembro Premium, %s
+	                - Obtén descuentos exclusivos y acceso anticipado a las últimas tendencias.
+	                - Disfruta de atención prioritaria en cada compra.
+	                - Participa en eventos exclusivos diseñados para ti.
+	                """;
+	            break;
 	        case VIP:
-	            return switch (perfilDemografico) {
-	                case "Mujer Joven" -> "disfrutarás de descuentos máximos y acceso anticipado a colecciones exclusivas. Además, recibirás asesoramiento personal y podrás participar en eventos VIP diseñados especialmente para ti.";
-	                case "Mujer Adulta" -> "obtendrás los mayores descuentos y acceso anticipado a nuevas colecciones. Además, contarás con asesoramiento personal y eventos VIP adaptados a tu estilo.";
-	                case "Mujer Anciana" -> "te ofrecemos los mayores descuentos y acceso a productos antes que el público general. Además, recibirás asesoramiento personal y experiencias VIP adaptadas a tus preferencias.";
-	                case "Hombre Joven" -> "tendrás acceso a descuentos máximos y colecciones antes que nadie. Además, disfrutarás de asesoramiento personal y eventos VIP diseñados para tu estilo dinámico.";
-	                case "Hombre Adulto" -> "obtendrás los mayores descuentos y acceso anticipado a nuevas colecciones. Además, contarás con asesoramiento personal y eventos VIP adaptados a tu estilo profesional.";
-	                case "Hombre Anciano" -> "disfrutarás de descuentos máximos y acceso anticipado a productos. Además, recibirás asesoramiento personal y experiencias VIP adaptadas a tus gustos y necesidades.";
-	                default -> "disfrutarás de descuentos máximos y acceso anticipado a productos exclusivos.";
-	            };
+	            mensaje = """
+	                Membresía VIP:
+	                Como miembro VIP, %s
+	                - Disfruta de los mayores descuentos y acceso anticipado a colecciones exclusivas.
+	                - Recibe asesoramiento personal y participa en eventos VIP diseñados especialmente para ti.
+	                - Obtén beneficios máximos adaptados a tus preferencias.
+	                """;
+	            break;
 	        default:
-	            return "te ofrecemos beneficios personalizados.";
+	            mensaje = """
+	                Beneficios Personalizados:
+	                Te ofrecemos beneficios adaptados a tu perfil demográfico.
+	                - Disfruta de descuentos y ofertas exclusivas.
+	                - Consulta nuestras novedades en el boletín mensual.
+	                """;
+	            break;
 	    }
+
+	    // Personalizar el mensaje según el perfil demográfico
+	    return switch (perfilDemografico) {
+	        case "Mujer Joven" -> String.format(mensaje, "disfrutarás de descuentos en productos ideales para tu estilo joven y vibrante.\n"+"¡No te pierdas nuestras ofertas!");
+	        case "Mujer Adulta" -> String.format(mensaje, "obtendrás descuentos en productos que complementan tu estilo sofisticado.\n"+" Mantente al tanto de nuestras ofertas especiales.");
+	        case "Mujer Anciana" -> String.format(mensaje, "te ofrecemos descuentos en productos adaptados a tus necesidades y confort.\n"+" Consulta nuestras ofertas en el boletín mensual.");
+	        case "Hombre Joven" -> String.format(mensaje, "tendrás descuentos en productos que se adaptan a tu estilo dinámico.\n"+" No olvides revisar el boletín mensual para novedades y ofertas.");
+	        case "Hombre Adulto" -> String.format(mensaje, "disfrutarás de descuentos en productos que se ajustan a tu estilo profesional.\n"+" Consulta nuestras ofertas en el boletín mensual.");
+	        case "Hombre Anciano" -> String.format(mensaje, "te ofrecemos descuentos en productos que se adaptan a tus preferencias y comodidad.\n"+" Revisa el boletín mensual para más detalles.");
+	        default -> String.format(mensaje, "te ofrecemos descuentos en productos seleccionados.");
+	    };
 	}
 	
 	public static String evolucionarMembresia(Cliente cliente, Membresia nuevaMembresia) {
@@ -299,7 +324,8 @@ public class Cliente extends Persona implements Serializable {
 
 	public static double calcularCostoEvolucion(Membresia membresiaActual, Membresia nuevaMembresia) {
 	    if (membresiaActual == null || nuevaMembresia == null) {
-	        return 0.0; // Si alguna membresía es nula, no hay costo de evolución
+	    	double costoNueva = nuevaMembresia.getPrecio();
+	        return costoNueva; // Si alguna membresía es nula, no hay costo de evolución
 	    }
 
 	    double costoActual = membresiaActual.getPrecio();
