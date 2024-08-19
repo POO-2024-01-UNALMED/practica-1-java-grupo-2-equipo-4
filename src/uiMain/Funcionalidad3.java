@@ -32,10 +32,10 @@ public class Funcionalidad3 extends Identidad {
 
 		     switch (opcion) {
 		            case 1:
-		            	persona.obtenerContadorProductos(persona);
+		            	seleccionTienda();
 		                break;
 		            case 2:
-		            	persona.obtenerContadorProductos((Cliente)persona);
+		            	
 		                break;
 		            default:
 		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
