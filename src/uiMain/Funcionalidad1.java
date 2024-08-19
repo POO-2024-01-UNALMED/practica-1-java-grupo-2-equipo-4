@@ -74,7 +74,7 @@ public class Funcionalidad1 extends Identidad{
                 consultaPorCategoria(cliente);
                 break;
             case 3:
-                consultaMembresias();
+                consultaMembresias(cliente);
                 break;
             case 4:
                 Main.escogerFuncionalidad();
@@ -85,7 +85,7 @@ public class Funcionalidad1 extends Identidad{
     }
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
+    //Comentario
     public static void consultaGeneralProductos(Cliente cliente) {
         if (Tienda.buscarTienda()) {
         	print("Selecciona una de las tiendas que tenemos disponibles para ti" );
@@ -109,7 +109,7 @@ public class Funcionalidad1 extends Identidad{
     
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
+    //Comentario
     public static void consultaPorCategoria(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Selecciona una de las categorías disponibles en nuestras tiendas:");
@@ -141,11 +141,11 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public static void consultaMembresias() {
+    //Comentario 
+    public static void consultaMembresias(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Consulta de membresías:");
-            // Aquí puedes agregar la lógica para manejar la consulta de membresías.
+            
         } else {
             print("Lo sentimos, no hay tiendas disponibles en este momento.");
         }
@@ -167,6 +167,7 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    //Comentario
     public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
@@ -204,6 +205,7 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // --------------------------------------------------------------------------------------------------------------------------------------------------- 
+    //Comentario
     public static void seleccionarProducto(ArrayList<Producto> productos,Cliente cliente) {
         print("Seleccione un producto para ver sus detalles:");
         
