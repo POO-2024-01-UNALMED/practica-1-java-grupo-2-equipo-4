@@ -15,6 +15,8 @@ public class Proveedor implements Serializable{
 	private Enums.Categoria tipo;
 	private ArrayList<Tienda> tiendas;
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
+	private static ArrayList <Proveedor> seisProveedores=new ArrayList<Proveedor>();
+	
 	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -58,6 +60,14 @@ public class Proveedor implements Serializable{
 	
 	public void setPasillos(ArrayList<Pasillo> pasillos) {
 		this.pasillos=pasillos;
+	}
+	
+	public static ArrayList<Proveedor> getSeisProveedores() {
+		return seisProveedores;
+	}
+	
+	public static void setSeisProveedores(ArrayList<Proveedor> provs) {
+		 	seisProveedores=provs;
 	}
 
 //-------------------------------------------------------------------------------------------------------------
