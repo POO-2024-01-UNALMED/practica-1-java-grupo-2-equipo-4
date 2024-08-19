@@ -21,8 +21,31 @@ import static uiMain.Main.lineas;
 public class Funcionalidad3 extends Identidad {
 		 static Persona persona = identificarPersona();
 		 
+		 public static void administrarRecibos() {
+			 System.out.println("------------------ Administrar recibos  -----------------");
+			 System.out.println("Seleccione una opcion");
+			 System.out.println("Administrar recibos de:");
+			 System.out.println("1. Dueño ");
+			 System.out.println("2. Cliente ");
+			 
+		     int opcion = escaner();
+
+		     switch (opcion) {
+		            case 1:
+		                administrarRecibosDueno();
+		                break;
+		            case 2:
+		                administrarRecibosCliente();
+		                break;
+		            default:
+		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
+		                break;
+		        }
+
+		 }
+		 
 		 public  static Tienda seleccionTienda() {
-		    
+			 System.out.println("------------------ Pago de recibos  -----------------");
 		// seleccion de tiendas para comprar //  
 		    	
 				if(persona.getTiendas().size()==0) {
