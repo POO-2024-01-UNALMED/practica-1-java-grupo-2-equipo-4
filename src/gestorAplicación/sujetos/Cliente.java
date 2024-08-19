@@ -19,7 +19,7 @@ public class Cliente extends Persona implements Serializable {
 	
 	private Edades membresia;
 	private Tienda tienda;
-	private float dinero;
+	private double dinero;
 	private Carrito carrito;
 	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
 
@@ -46,11 +46,11 @@ public class Cliente extends Persona implements Serializable {
 		this.carrito = carrito;
 	}
 	
-	public float getDinero() {
+	public double getDinero() {
 		return dinero;
 	}
 	
-	public void setDinero(float dinero) {
+	public void setDinero(double dinero) {
 		this.dinero=dinero;
 	}
 	
@@ -71,15 +71,15 @@ public class Cliente extends Persona implements Serializable {
 	public Cliente() {
 	}
 	
-	public Cliente(String nombre, int id, int edad, Genero genero, float dinero, Carrito carrito) {
+	public Cliente(String nombre, int id, int edad, Genero genero, double dinero, Carrito carrito) {
 		super(nombre, id, edad,genero);
 		this.dinero = dinero;
 		this.carrito = carrito;
 		super.getPersonas().add(this);
 	}
 	
-	public Cliente(String nombre, int p, int edad, Genero genero1) {
-		super(nombre, p, edad, genero1);
+	public Cliente(String nombre, int id, int edad, Genero genero1) {
+		super(nombre, id, edad, genero1);
 		super.getPersonas().add(this);
 	}
 

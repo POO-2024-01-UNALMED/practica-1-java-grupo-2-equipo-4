@@ -1,5 +1,6 @@
 package uiMain;
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import gestorAplicación.servicios.Producto;
@@ -7,12 +8,11 @@ import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Pasillo;
 import gestorAplicación.sujetos.Cliente;
-
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
-public class Funcionalidad2 extends Identidad{
+public class Funcionalidad2 extends Identidad {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void cuadriculaProductos(Cliente cliente,ArrayList<Producto> productos, int inferior, int superior) {
