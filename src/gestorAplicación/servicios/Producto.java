@@ -19,6 +19,7 @@ import java.time.temporal.ChronoUnit;
 public class Producto implements Serializable,Cloneable {
 //Atributos----------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L; //<---parte de serializar
+	
 	private String nombre;
 	private String marca;
 	private double precio;
@@ -28,11 +29,12 @@ public class Producto implements Serializable,Cloneable {
 	private Categoria categoria;
 	private String descripcion;
 	private LocalDate fechaPerecer;
-	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
 	private Pasillo pasillo;
-	private EstadoProducto estado=EstadoProducto.ACTIVO;
-	private static LocalDate fechaActual=LocalDate.now();
 	private Tienda tienda;
+//	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
+//	private EstadoProducto estado=EstadoProducto.ACTIVO;
+//	private static LocalDate fechaActual=LocalDate.now();
+	
 	
 //-------------------------------------------------------------------------------------------------------------
 	//LocalDate.of(año,mes,dia)//
@@ -108,21 +110,21 @@ public class Producto implements Serializable,Cloneable {
 		this.fechaPerecer=fecha;
 	}
 	
-	public EstadoProducto getEstado() {
-		return estado;
-	}
-
-	public void setEstado(EstadoProducto estado) {
-		this.estado = estado;
-	}
-		
-	public LocalDate getFechaActual() {
-		return fechaActual;
-	}
-
-	public void setFechaActual(LocalDate fechaActual) {
-		Producto.fechaActual = fechaActual;
-	}
+//	public EstadoProducto getEstado() {
+//		return estado;
+//	}
+//
+//	public void setEstado(EstadoProducto estado) {
+//		this.estado = estado;
+//	}
+//		
+//	public LocalDate getFechaActual() {
+//		return fechaActual;
+//	}
+//
+//	public void setFechaActual(LocalDate fechaActual) {
+//		Producto.fechaActual = fechaActual;
+//	}
 
 	public Tienda getTienda() {
 		return tienda;

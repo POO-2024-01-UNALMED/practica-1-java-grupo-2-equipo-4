@@ -20,48 +20,54 @@ public class Tienda implements Serializable{
 	private String direccion;
 	private double saldo;
 	private String estado;
-	private ArrayList <Persona> cliente;
+	
+//	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
+//	private ArrayList <Persona> cliente;
+//	private ArrayList <Persona> candidatos=new ArrayList<Persona>();	
+//	private ArrayList <Carrito> productosComprados = new ArrayList <Carrito>();	
+//	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
+	
+
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
-	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();
+
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
-	
+	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();	
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
-	
-	private ArrayList <Carrito> productosComprados = new ArrayList <Carrito>();
-	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
+
+
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
 	
-	public ArrayList <Persona> getCliente() {
-		return cliente;
-	}
+//	public ArrayList <Persona> getCliente() {
+//		return cliente;
+//	}
+//	
+//	public void setCliente(ArrayList <Persona> cliente) {
+//		this.cliente = cliente;
+//	}
+//	
+//	public ArrayList<Carrito> getProductosComprados() {
+//		return productosComprados;
+//	}
+//
+//	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
+//		this.productosComprados = productosComprados;
+//	}
 
-	public ArrayList<Carrito> getProductosComprados() {
-		return productosComprados;
-	}
+//	public ArrayList<Producto> getProductosVendidos() {
+//		return productosVendidos;
+//	}
+//
+//	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
+//		this.productosVendidos = productosVendidos;
+//	}
 
-	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
-		this.productosComprados = productosComprados;
-	}
 
-	public ArrayList<Producto> getProductosVendidos() {
-		return productosVendidos;
-	}
-
-	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
-		this.productosVendidos = productosVendidos;
-	}
-
-	public void setCliente(ArrayList <Persona> cliente) {
-		this.cliente = cliente;
-	}
 	
 	public ArrayList<Caja> getCajas() {
 		return cajas;
@@ -135,14 +141,14 @@ public class Tienda implements Serializable{
 		this.pasillos=pasillos;
 	}
 	
-	public ArrayList<Persona> getCandidatos() {
-		return candidatos;
-	}
-	
-	public void setCandidatos(ArrayList<Persona> candidatos) {
-		this.candidatos=candidatos;
-	}
-	
+//	public ArrayList<Persona> getCandidatos() {
+//		return candidatos;
+//	}
+//	
+//	public void setCandidatos(ArrayList<Persona> candidatos) {
+//		this.candidatos=candidatos;
+//	}
+//	
 	public ArrayList<Proveedor> getProveedores() {
 		return proveedores;
 	}
@@ -180,13 +186,13 @@ public class Tienda implements Serializable{
 		ProductosVencidos = productosVencidos;
 	}
 	
-	public ArrayList <Carrito> getCarritos() {
-		return carritos;
-	}
-
-	public void setCarritos(ArrayList <Carrito> carritos) {
-		this.carritos = carritos;
-	}
+//	public ArrayList <Carrito> getCarritos() {
+//		return carritos;
+//	}
+//
+//	public void setCarritos(ArrayList <Carrito> carritos) {
+//		this.carritos = carritos;
+//	}
 
 	
 
@@ -573,6 +579,22 @@ public class Tienda implements Serializable{
 			}
 			return productos;
 		}
+		
+		public String mostrarEmpleados() {
+			if (this.getEmpleados().size()==0) {
+				return "la tienda "+this.getNombre()+" no tiene empleados";
+			}
+			else {
+				String s="  Empleado  |   Tipo \n";
+				for(Empleado i:empleados) {
+					s+="    ";
+					s+=i.getNombre();
+					s+="       ";
+					s+=i.getTipo()+"\n";
+				}
+				return s;
+			}
+		};
 		
 		public final String toString() {
 			return this.getNombre(); 

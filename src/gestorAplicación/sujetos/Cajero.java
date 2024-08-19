@@ -1,5 +1,6 @@
 package gestorAplicación.sujetos;
 import gestorAplicación.servicios.Enums.Genero;
+import gestorAplicación.servicios.Enums.TipoEmpleado;
 import gestorAplicación.servicios.Tienda;
 
 public class Cajero extends Empleado {
@@ -15,7 +16,7 @@ public class Cajero extends Empleado {
 
 	public Cajero(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda,
 			boolean prestacionSalud, boolean prestacionPension) {
-		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension);
+		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.CAJERO);
 		// TODO Auto-generated constructor stub
 	}
 
