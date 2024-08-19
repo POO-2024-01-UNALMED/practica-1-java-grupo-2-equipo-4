@@ -75,6 +75,7 @@ public class Cliente extends Persona implements Serializable {
 		super(nombre, id, edad,genero);
 		this.dinero = dinero;
 		this.carrito = carrito;
+		super.getPersonas().add(this);
 	}
 
 //-------------------------------------------------------------------------------------------------------------
