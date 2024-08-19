@@ -257,8 +257,7 @@ public class Funcionalidad1 extends Identidad{
         
         int seleccionProducto = escaner(8);
         if(seleccionProducto== productos.size()+1 ) {
-        	printTablaProductos(productos);
-        	seleccionarProducto(productos,cliente);
+        	consultaPorCategoria(cliente);
         }
         else {
         // Obtener el producto seleccionado
@@ -275,6 +274,7 @@ public class Funcionalidad1 extends Identidad{
         int opcion = escaner(2);
 
         if (opcion == 1) {
+        	printTablaProductos(productos);
             seleccionarProducto(productos,cliente); // Volver a elegir otro producto
         } else {
         	Main.escogerFuncionalidad(); // Regresar al menú principal
