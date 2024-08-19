@@ -125,6 +125,10 @@ public abstract class Persona implements Serializable{
 			return true;
 		}
 	}
+	void mostrarFacturas() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 //-------------------------------------------------------------------------------------------------------------

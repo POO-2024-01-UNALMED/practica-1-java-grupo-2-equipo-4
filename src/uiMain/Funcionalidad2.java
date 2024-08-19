@@ -372,6 +372,7 @@ public class Funcionalidad2 extends Identidad {
 		StringBuilder resultado = cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
 		print("");
 		System.out.println(resultado);
+		print("");
 
 		// Verifica si el resultado contiene ciertos mensajes
 		boolean contieneProductosNoAgregados = resultado.indexOf("Productos no agregados") != -1;
@@ -492,7 +493,7 @@ public class Funcionalidad2 extends Identidad {
 		
 		System.out.print("Escoja un numero: ");
 		
-		int decision=escaner(4);
+		int decision=escaner(5);
 		Categoria categoria = null;
 		ArrayList<Producto> productos=new ArrayList<Producto>();
 		Producto seleccionado = null;
@@ -505,11 +506,14 @@ public class Funcionalidad2 extends Identidad {
 			break;
 		case 3:
 			if(cliente.getCarrito().getProductos().size()==0) {
+				lineas();
 				print("Usted no puede seleccionar esta opcion");
 				elegirTipoBusqueda(cliente);
 				break;
 			}
-			print("Estos son los productos de su carrito");
+			lineas();
+			print("Estos son los productos de su carrito: ");
+			print("");
 			productos=cliente.getCarrito().getProductos();
 			
 			int anchoCeldaNombre = 20;
@@ -557,8 +561,10 @@ public class Funcionalidad2 extends Identidad {
 
 			    // Pie de la tabla
 			    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
-			    System.out.print("Seleccione el número del producto que desea eliminar del carrito ");
-			    System.out.print(contador+"Cancelar borrar producto del carrito");
+			    print("");
+			    System.out.println("Seleccione el número del producto que desea eliminar del carrito ");
+			    System.out.println(contador+"Cancelar borrar producto del carrito");
+			    System.out.print("Seleccione una opcion: ");
 			    int seleccion = sc.nextInt();
 			    if (seleccion==contador) {
 			    	elegirTipoBusqueda(cliente);
@@ -567,12 +573,16 @@ public class Funcionalidad2 extends Identidad {
 
 			    if (seleccion > 0 && seleccion <= cliente.getCarrito().getProductos().size()) {
 			        Producto productoSeleccionado = cliente.getCarrito().getProductos().get(seleccion - 1);
+			        print("");
 			        System.out.print("Ingrese la cantidad que desea eliminar: ");
+			        print("");
 			        int cantidadEliminar = sc.nextInt();
 
 			        if (cantidadEliminar > 0 && cantidadEliminar <= cliente.getCarrito().contarRepeticiones(productoSeleccionado)) {
 			            cliente.getCarrito().eliminarProductos(productoSeleccionado, cantidadEliminar);
+			            lineas();
 			            System.out.println("Productos actualizados en el carrito:");
+			            print("");
 			            
 			            // Encabezado de la tabla
 			            print("+----+--------------------+---------------+----------+----------+----------+");
