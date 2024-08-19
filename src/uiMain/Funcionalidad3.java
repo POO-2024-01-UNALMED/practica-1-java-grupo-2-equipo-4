@@ -13,7 +13,7 @@ import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
-
+import gestorAplicación.sujetos.*;
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
@@ -28,14 +28,14 @@ public class Funcionalidad3 extends Identidad {
 			 System.out.println("1. Dueño ");
 			 System.out.println("2. Cliente ");
 			 
-		     int opcion = escaner();
+		     int opcion = escaner(2);
 
 		     switch (opcion) {
 		            case 1:
-		                administrarRecibosDueno();
+		            	persona.obtenerContadorProductos(persona);
 		                break;
 		            case 2:
-		                administrarRecibosCliente();
+		            	persona.obtenerContadorProductos((Cliente)persona);
 		                break;
 		            default:
 		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");

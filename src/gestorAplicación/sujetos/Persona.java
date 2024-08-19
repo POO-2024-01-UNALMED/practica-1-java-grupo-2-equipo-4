@@ -3,6 +3,7 @@ package gestorAplicación.sujetos;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Carrito;
@@ -112,9 +113,9 @@ public abstract class Persona implements Serializable{
 
 //Metodos------------------------------------------------------------------------------------------------------
 		
-	abstract public StringBuilder imprimirFacturas(Persona cliente);
+	abstract public StringBuilder obtenerContadorProductos(Persona cliente);
 	
-	abstract public StringBuilder imprimirFacturas(Cliente cliente);
+	abstract public Map<String, Integer> obtenerContadorProductos(Cliente cliente);
 	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();
