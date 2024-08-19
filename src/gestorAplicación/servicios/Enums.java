@@ -129,38 +129,23 @@ public enum RazonDevolucion {
 
 
 public enum Membresia {
-    BASICO("Básico", "Acceso a promociones generales y descuentos limitados."),
-    PREMIUM("Premium", "Acceso a promociones exclusivas y descuentos adicionales."),
-    VIP("VIP", "Acceso a todos los beneficios, promociones exclusivas y eventos especiales.");
+    BASICO(10000.0),
+    PREMIUM(25000.0),
+    VIP(50000.0);
 
-    private final String nombre;
-    private final String descripcion;
+    
+    private final double precio;
 
-    Membresia(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+    Membresia( double precio) {
+       
+        this.precio = precio;
     }
 
-    public String getNombre() {
-        return nombre;
+    public double getPrecio() {
+        return precio;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public static String getBeneficiosPorPerfilDemografico(Membresia membresia, String perfilDemografico) {
-        switch (membresia) {
-            case BASICO:
-                return "Beneficios Básico para " + perfilDemografico;
-            case PREMIUM:
-                return "Beneficios Premium para " + perfilDemografico;
-            case VIP:
-                return "Beneficios VIP para " + perfilDemografico;
-            default:
-                return "Sin beneficios disponibles";
-        }
-    }
+    
 }
 
 }

@@ -226,6 +226,8 @@ public class Cliente extends Persona implements Serializable {
 	
 
 //----Membresias----------------------------------------------------------------------------------------------
+
+	
 	
 	public static String PerfilDemografico(Cliente cliente) {
 		
@@ -278,6 +280,31 @@ public class Cliente extends Persona implements Serializable {
 	        default:
 	            return "te ofrecemos beneficios personalizados.";
 	    }
+	}
+	
+	public static String evolucionarMembresia(Cliente cliente, Membresia nuevaMembresia) {
+	    if (nuevaMembresia != null) {
+	        double costoEvolucion = calcularCostoEvolucion(cliente.getMembresia(), nuevaMembresia); // Suponiendo que tienes un método para calcular el costo
+	        if (cliente.getDinero() >= costoEvolucion) {
+	            cliente.setDinero(cliente.getDinero() - costoEvolucion); // Deduce el costo del saldo del cliente
+	            cliente.setMembresia(nuevaMembresia); // Actualiza la membresía del cliente
+	            return"¡Felicidades! Ahora eres miembro de la membresía " + nuevaMembresia.toString() ;
+	        } else {
+	            return "Lo siento, no tienes suficiente saldo para evolucionar a " +  nuevaMembresia.toString();
+	        }
+	    } else {
+	        return"Selección inválida. Volviendo al menú de consulta.";
+	    }
+	}
+
+	public static double calcularCostoEvolucion(Membresia membresiaActual, Membresia nuevaMembresia) {
+	    if (membresiaActual == null || nuevaMembresia == null) {
+	        return 0.0; // Si alguna membresía es nula, no hay costo de evolución
+	    }
+
+	    double costoActual = membresiaActual.getPrecio();
+	    double costoNueva = nuevaMembresia.getPrecio();
+	    return costoNueva - costoActual; // Diferencia de costo
 	}
 	
 //-------------------------------------------------------------------------------------------------------------
