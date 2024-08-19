@@ -36,7 +36,9 @@ public abstract class Persona implements Serializable{
 	public static ArrayList<Persona> getPersonas() {
 		return personas;
 	}
-
+	public static void setPersonas(ArrayList<Persona> persona) {
+		personas = persona;
+	}
 //	public ArrayList<Factura> getFacturas1() {
 //		return facturas;
 //	}
@@ -47,9 +49,7 @@ public abstract class Persona implements Serializable{
 //		this.facturas = facturas;
 //	}
 
-	public static void setPersonas(ArrayList<Persona> persona) {
-		personas = persona;
-	}
+
 	
 	public ArrayList<Tienda> getTiendas() {
 		return tiendas;
