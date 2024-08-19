@@ -27,7 +27,16 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	
 	
 	    public  static void seleccionTienda() {
+	    	
 	    	Persona usuario = identificarPersona();
+	    	Tienda tiendaM = new Tienda("euro");
+	    	usuario.getTiendas().add(tiendaM);
+	    	for (Tienda tiendas:Tienda.getTiendas()) {
+	    		if(tiendas.getNombre()== "Donde Chucho") {
+	    			usuario.getTiendas().add(tiendas);
+	    		}
+	    	}
+			System.out.println(usuario.getTiendas());
 	    	
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
 	// seleccion de tiendas para administrar //  
