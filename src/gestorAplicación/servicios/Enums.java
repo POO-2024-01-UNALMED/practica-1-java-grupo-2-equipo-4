@@ -119,7 +119,11 @@ public static enum TipoEmpleado{
 	public String getTamaño() {
 		return tipo;
 	}
+}
 
+public enum RazonDevolucion {
+    DEFECTUOSO,
+    INCONFORME
 }
 
 

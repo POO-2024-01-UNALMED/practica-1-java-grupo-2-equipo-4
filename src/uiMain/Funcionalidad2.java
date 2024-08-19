@@ -1,8 +1,10 @@
 package uiMain;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.Scanner;
-
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
@@ -398,16 +400,15 @@ public class Funcionalidad2 extends Identidad {
 		print("");
 		print(" 1. Por categoria de un producto");
 		print(" 2. Por nombre del producto");
-		print(" 3. Pedir productos no actuales");
 		if (cliente.getCarrito().getProductos().size()>0) {
-			print(" 4. Eliminar un producto de mi carrito");
+			print(" 3. Eliminar un producto de mi carrito");
 		}
-		print(" 5. Volver");
+		print(" 4. Volver");
 		print("");
 		
 		System.out.print("Escoja un numero: ");
 		
-		int decision=escaner(5);
+		int decision=escaner(4);
 		Categoria categoria = null;
 		ArrayList<Producto> productos=new ArrayList<Producto>();
 		Producto seleccionado = null;
@@ -419,43 +420,6 @@ public class Funcionalidad2 extends Identidad {
 			busquedaNombre(cliente, productos,seleccionado);
 			break;
 		case 3:
-			print("Estas son las categorias de los productos de nuestras tiendas: ");
-			print("");
-			int enumerado = 1;
-			for(Categoria tipo:Categoria.values()) {
-					print(" "+enumerado +". "+tipo.getTexto());
-					enumerado++;			
-			}
-			print(" "+enumerado+". Volver");
-			print("");
-			System.out.print("Escoja cual desea para pedir productos: ");
-			int decisionCategoria = escaner(enumerado);
-			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda();
-			}
-			categoria=Categoria.resolverEnum(decisionCategoria);
-			ArrayList<Producto> posiblepeticion=cliente.getTienda().productosNoActuales(categoria);
-			System.out.println(posiblepeticion);
-			print("+--------------------------------------------+");
-			print("| No. |      Nombre de Producto/Tamaño       |");
-			print("+--------------------------------------------+");
-			int anchoCelda = 34; 
-			for (int i = 0; i < posiblepeticion.size(); i++) {
-				String nombreProducto = posiblepeticion.get(i).getNombre();
-			        String tamañoProducto = posiblepeticion.get(i).getTamaño().getTamaño();
-			        String nombreYtamaño = nombreProducto + "/" + tamañoProducto;
-			        
-			        int espacios = (anchoCelda - nombreYtamaño.length()) / 2;
-
-			        // Relleno a izquierda y derecha para centrar el nombre y tamaño del producto
-			        String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
-			        String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreYtamaño.length()) % 2));
-
-			        print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreYtamaño, paddingDerecho));
-			}
-			print("+--------------------------------------------+");
-
-		case 4:
 			if(cliente.getCarrito().getProductos().size()==0) {
 				print("Usted no puede seleccionar esta opcion");
 				elegirTipoBusqueda();
@@ -464,42 +428,107 @@ public class Funcionalidad2 extends Identidad {
 			print("Estos son los productos de su carrito");
 			productos=cliente.getCarrito().getProductos();
 			
-			    // Ancho total de la tabla ajustado para las nuevas columnas
-			    int anchoCeldaNombre = 20;
-			    int anchoCeldaMarca = 15;
-			    int anchoCeldaTamaño = 10;
-			    int anchoCeldaPrecio = 10;
-			    int anchoCeldaCantidad = 10;
-			    
-			    // Encabezado de la tabla
-			    print("+----+--------------------+---------------+----------+----------+----------+");
-			    print("| No | Nombre              | Marca         | Tamaño   | Precio   | Cantidad |");
-			    print("+----+--------------------+---------------+----------+----------+----------+");
-			    
-			    for (int i = 0; i < productos.size(); i++) {
-			        Producto producto = productos.get(i);
-			        String nombreProducto = producto.getNombre();
-			        String marcaProducto = producto.getMarca();
-			        String tamañoProducto = producto.getTamaño().getTamaño();
-			        String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
-			        String cantidadProducto = String.valueOf(cliente.getCarrito().contarRepeticiones(producto));
+			int anchoCeldaNombre = 20;
+		    int anchoCeldaMarca = 15;
+		    int anchoCeldaTamaño = 10;
+		    int anchoCeldaPrecio = 10;
+		    int anchoCeldaCantidad = 10;
+			// Mostrar productos únicos en el carrito
+		    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+		    System.out.println("| No | Nombre             | Marca         | Tamaño   | Precio   | Cantidad |");
+		    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
 
-			        // Imprimir cada producto en la tabla
-			        print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8s |", 
-			            i + 1, 
-			            ajustarTexto(nombreProducto, anchoCeldaNombre), 
-			            ajustarTexto(marcaProducto, anchoCeldaMarca), 
-			            ajustarTexto(tamañoProducto, anchoCeldaTamaño), 
-			            ajustarTexto(precioProducto, anchoCeldaPrecio), 
-			            ajustarTexto(cantidadProducto, anchoCeldaCantidad)
-			        ));
-			    }
+		    // Map para almacenar los productos y sus cantidades sumadas
+		    Map<Integer, Integer> productosCantidad = new HashMap<>();
+		    Map<Integer, Producto> productosMap = new HashMap<>();
+
+		    // Sumar cantidades de productos iguales
+		    for (Producto producto : cliente.getCarrito().getProductos()) {
+		        int id = producto.getId();
+		        productosMap.put(id, producto); // Guardar referencia del producto
+		        productosCantidad.put(id, productosCantidad.getOrDefault(id, 0) + 1);
+		    }
+
+		    // Imprimir los productos sin duplicados con la cantidad total
+		    int contador = 1;
+		    for (Map.Entry<Integer, Producto> entry : productosMap.entrySet()) {
+		        Producto producto = entry.getValue();
+		        int cantidadTotal = productosCantidad.get(producto.getId());
+
+		        String nombreProducto = producto.getNombre();
+		        String marcaProducto = producto.getMarca();
+		        String tamañoProducto = producto.getTamaño().getTamaño();
+		        String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
+
+		        // Imprimir cada producto en la tabla
+		        print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8d |", 
+		            contador++, 
+		            ajustarTexto(nombreProducto, 18), 
+		            ajustarTexto(marcaProducto, 13), 
+		            ajustarTexto(tamañoProducto, 8), 
+		            ajustarTexto(precioProducto, 8), 
+		            cantidadTotal
+		        ));
+		    }
 
 			    // Pie de la tabla
-			    print("+----+--------------------+---------------+----------+----------+----------+");
-			  
+			    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+			    System.out.print("Seleccione el número del producto que desea eliminar del carrito: ");
+			    int seleccion = sc.nextInt();
+
+			    if (seleccion > 0 && seleccion <= cliente.getCarrito().getProductos().size()) {
+			        Producto productoSeleccionado = cliente.getCarrito().getProductos().get(seleccion - 1);
+			        System.out.print("Ingrese la cantidad que desea eliminar: ");
+			        int cantidadEliminar = sc.nextInt();
+
+			        if (cantidadEliminar > 0 && cantidadEliminar <= cliente.getCarrito().contarRepeticiones(productoSeleccionado)) {
+			            cliente.getCarrito().eliminarProductos(productoSeleccionado, cantidadEliminar);
+			            System.out.println("Productos actualizados en el carrito:");
+			            
+			            // Encabezado de la tabla
+			            print("+----+--------------------+---------------+----------+----------+----------+");
+			            print("| No | Nombre             | Marca         | Tamaño   | Precio   | Cantidad |");
+			            print("+----+--------------------+---------------+----------+----------+----------+");
+
+			            // Set para almacenar los IDs de los productos ya impresos
+			            Set<Integer> productosImpresos = new HashSet<>();
+
+			            contador = 1;
+			            for (Producto producto : cliente.getCarrito().getProductos()) {
+			                
+			                // Verificar si el producto ya ha sido impreso
+			                if (productosImpresos.contains(producto.getId())) {
+			                    continue; // Saltar la impresión de productos duplicados
+			                }
+
+			                String nombreProducto = producto.getNombre();
+			                String marcaProducto = producto.getMarca();
+			                String tamañoProducto = producto.getTamaño().getTamaño();
+			                String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
+			                String cantidadProducto = String.valueOf(cliente.getCarrito().contarRepeticiones(producto));
+
+			                // Imprimir cada producto en la tabla
+			                print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8s |", 
+			                    contador++, 
+			                    ajustarTexto(nombreProducto, anchoCeldaNombre), 
+			                    ajustarTexto(marcaProducto, anchoCeldaMarca), 
+			                    ajustarTexto(tamañoProducto, anchoCeldaTamaño), 
+			                    ajustarTexto(precioProducto, anchoCeldaPrecio), 
+			                    ajustarTexto(cantidadProducto, anchoCeldaCantidad)
+			                ));
+
+			                // Agregar el ID del producto al set
+			                productosImpresos.add(producto.getId());
+			            }
+			        } else {
+			            System.out.println("Cantidad inválida.");
+			        }
+			    } else {
+			        System.out.println("Selección inválida.");
+			    } 
+
 			
-		case 5:
+		case 4:
 			Main.escogerFuncionalidad();
 			break;
 		}

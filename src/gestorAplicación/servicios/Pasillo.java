@@ -76,6 +76,11 @@ public class Pasillo implements Serializable{
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
+	public void asignarTienda(Tienda tienda) {
+        this.tienda = tienda;
+        tienda.getPasillos().add(this);
+    }
+	
 	public static int cantidadProducto(ArrayList<Producto> productos,int id) {
 		int contador = 0;
         for (Producto producto : productos) {

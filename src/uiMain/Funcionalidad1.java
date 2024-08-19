@@ -12,46 +12,15 @@ import gestorAplicación.servicios.Enums.Membresia;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.Edades;
 import static uiMain.Main.lineas;
+import static uiMain.Main.escaner;
+import static uiMain.Main.print;
 
 public class Funcionalidad1 extends Identidad{
-	
-	//Simplemente para imprimir más fácil （￣︶￣）↗　
-    public static void print(String p) {
-        System.out.println(p);
-    }
     
     //Implementación de scanner para hacer el proceso más fácil y verificar las entradas
 
     static Scanner sc = new Scanner(System.in);
 
-    public static int escaner() {
-        int p;
-        try {
-            p = sc.nextInt();
-        } catch (Exception e) {
-            print("Este no es un número válido");
-            sc.nextLine();
-            p = escaner();
-        }
-        return p;
-    }
-
-    public static int escaner(int rango) {
-        int p;
-        try {
-            p = sc.nextInt();
-        } catch (Exception e) {
-            print("Este no es un número válido");
-            sc.nextLine();
-            p = escaner(rango);
-        }
-        if (p < 1 || p > rango) {
-            print("Este número está fuera del rango");
-            sc.nextLine();
-            p = escaner(rango);
-        }
-        return p;
-    }
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     //Este método se encarga de direccionar al cliente hacia la consulta que desea realizar 

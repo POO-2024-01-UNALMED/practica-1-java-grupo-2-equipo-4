@@ -37,8 +37,9 @@ public class Tienda implements Serializable{
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
 	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();	
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
-
-
+	
+	private Carrito carrito;
+	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
@@ -113,7 +114,7 @@ public class Tienda implements Serializable{
 		return saldo;
 	}
 	
-	public void setSaldo(float saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo=saldo;
 	}
 	
@@ -194,12 +195,45 @@ public class Tienda implements Serializable{
 		this.carritos = carritos;
 	}
 
-	
+	public Carrito getCarrito() {
+		return carrito;
+	}
 
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
+	public ArrayList<Producto> getProductosDevueltos() {
+		return productosDevueltos;
+	}
+
+	public void setProductosDevueltos(ArrayList<Producto> productosDevueltos) {
+		this.productosDevueltos = productosDevueltos;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //------------------------------------------------------------------------------------------------------------
 	
 //Contructores------------------------------------------------------------------------------------------------
+
+	
 
 	public Tienda(){
 		tiendas.add(this);
@@ -599,7 +633,11 @@ public class Tienda implements Serializable{
 				}
 				return s;
 			}
-		};
+		}
+		
+		public static void devolverProductos() {
+			
+		}
 		
 		public final String toString() {
 			return this.getNombre(); 
