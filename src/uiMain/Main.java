@@ -203,7 +203,6 @@ public class Main {
 		tiendas.add(t2);
 		tiendas.add(t3);
 		tiendas.add(t4);
-		
 		clienteMayor.getTiendas().add(t1);*/
 		escogerFuncionalidad();
 
