@@ -199,6 +199,28 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                break;
 	        }
 	    }
-		
+	    
+	    // Método para imprimir los productos en formato tabla ASCII
+	    
+	    public static void printTablaProductos(ArrayList<Producto> productos) {
+	        print("+------------------------------------+");
+	        print("| No. |      Nombre de Producto      |");
+	        print("+------------------------------------+");
+
+	        int anchoCelda = 28; // Ancho de la celda para el nombre del producto
+	        for (int i = 0; i < productos.size(); i++) {
+	            String nombreProducto = productos.get(i).getNombre();
+	            int espacios = (anchoCelda - nombreProducto.length()) / 2;
+
+	            // Relleno a izquierda y derecha para centrar el nombre del producto
+	            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+	            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreProducto.length()) % 2));
+
+	            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreProducto, paddingDerecho));
+	        
+	        }	        
+	        print("+------------------------------------+");
+	    }
+	
 }
 
