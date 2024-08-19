@@ -167,51 +167,6 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
- /*   public static void listaProductos(Tienda tienda) {
-        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-        if (productos.size() > 0) {
-            printTablaProductos(productos);
-        } else {
-            print("No hay productos disponibles en esta tienda.");
-        }
-    }*/
- // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    /*public static void mostrarProductosPorEdad(Tienda tienda, Cliente cliente) {
-    	
-        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-        ArrayList<Producto> productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
-        
-        // Verificar si hay productos disponibles para la edad del cliente
-        if (productosAdecuados.size()==0) {
-            print("No hay productos disponibles para " + (cliente.mayorEdad() ? "adultos" : "menores de edad") + " en esta tienda.");
-            print("¿Desea volver a elegir otra tienda?");
-            print("1. Sí");
-            print("2. No");
-            print("");
-            
-            int seleccion = escaner(2);
-            if (seleccion == 1) {
-                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
-            } else {
-                consultasEco(); // Regresar al menú de opciones
-            }
-        } else {
-            printTablaProductos(productosAdecuados);
-            print("¿Desea volver a elegir otra tienda?");
-            print("1. Sí");
-            print("2. No");
-            print("");
-            
-            int seleccion = escaner(2);
-            if (seleccion == 1) {
-                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
-            } else {
-                consultasEco(); // Regresar al menú de opciones
-            }
-        }
-    }*/
- // ---------------------------------------------------------------------------------------------------------------------------------------------------
     public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
