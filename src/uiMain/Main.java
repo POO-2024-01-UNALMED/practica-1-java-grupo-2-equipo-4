@@ -269,6 +269,9 @@ public class Main {
 				Funcionalidad2.elegirTipoBusqueda();
 				break;
 			case 3:
+				//imorimir facturas organizar //
+				Funcionalidad3.imprimirFactura(((Cliente) Identidad.identificarPersona()));
+				
 				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
@@ -530,6 +533,8 @@ public class Main {
 	}
 	
 	// ------ FUNCINALIDAD 3 ---------------------------------------
+	
+	
 	public static void pagarRecibo(){
 		String nombre= sc.nextLine();
 		nombre = nombre.toLowerCase();
@@ -546,6 +551,8 @@ public class Main {
 				break;
 			}
 		}
+		
+		
 //		Error
 //		for (Carrito i:Cliente.getClientes().get(existencia).getFacturas()) {
 //			

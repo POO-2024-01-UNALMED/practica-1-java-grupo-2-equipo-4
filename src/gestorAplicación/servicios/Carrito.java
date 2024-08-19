@@ -1,5 +1,6 @@
 package gestorAplicación.servicios;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 import gestorAplicación.servicios.Enums.Edades;
@@ -16,6 +17,11 @@ public class Carrito implements Serializable{
 	private Edades tipoCarrito;
 	private double montoTotal;
 	private boolean pagado;
+	
+	//atributos para factura //
+	 LocalDate fechaFacturacion;
+	 ArrayList<Producto> productosFactura;
+
 	
 //-------------------------------------------------------------------------------------------------------------
 	
@@ -93,12 +99,26 @@ public class Carrito implements Serializable{
 		this.cliente = cliente;
 		this.tienda = tienda;
 		this.tipoCarrito = tipoCarrito;
+		this.fechaFacturacion = LocalDate.now();		
 	}
 
+	
+	public LocalDate getFechaFacturacion() {
+		return fechaFacturacion;
+	}
+
+	public void setFechaFacturacion(LocalDate fechaFacturacion) {
+		this.fechaFacturacion = fechaFacturacion;
+	}
+	
+	
+	
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
 	
+	
+
 	public StringBuilder agregarAlCarrito(Producto seleccionado, int cantidad) {
 		int tamañoMaximo;
 		if (tipoCarrito==Edades.ADULTOS) {
@@ -144,6 +164,12 @@ public class Carrito implements Serializable{
 
         return contador;
     }
+	
+	// metodos para factura //
+	
+	
+	
+	
 	
 //-------------------------------------------------------------------------------------------------------------
 }
