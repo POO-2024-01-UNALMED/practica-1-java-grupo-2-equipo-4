@@ -87,7 +87,8 @@ public class Funcionalidad1 extends Identidad{
     }
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    //Comentario
+    //Este método permite al cliente realizar una consulta general de productos en las tiendas disponibles,
+    //seleccionando una tienda para explorar los productos o regresar al menú principal.
     public static void consultaGeneralProductos(Cliente cliente) {
         if (Tienda.buscarTienda()) {
         	print("Selecciona una de las tiendas que tenemos disponibles para ti" );
@@ -100,6 +101,7 @@ public class Funcionalidad1 extends Identidad{
                 consultasEco();
             } else {
                 Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
+                Cliente.asignaciones(cliente,tienda);
                 print("Has seleccionado la tienda: " + tienda.getNombre());
                 print("Esta servira para escoger productos en la funcionalidad 2");
                 print("1. Desea chismosear la descripcion de productos en la tienda");
@@ -126,7 +128,8 @@ public class Funcionalidad1 extends Identidad{
     
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    //Comentario
+    //Este método permite al cliente consultar las categorías de productos disponibles en las tiendas, seleccionar una tienda 
+    //y realizar acciones adicionales, como explorar los productos de esa tienda o regresar al menú principal.
     public static void consultaPorCategoria(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Selecciona una de las categorías disponibles en nuestras tiendas:");
@@ -145,6 +148,7 @@ public class Funcionalidad1 extends Identidad{
                     consultasEco();
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
+                    Cliente.asignaciones(cliente,tienda);
                     print("Has seleccionado la tienda: " + tienda.getNombre());
                     print("Esta servira para escoger productos en la funcionalidad 2");
                     print("1. Desea chismosear la descripcion de productos en la tienda");
@@ -200,7 +204,10 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    //Comentario
+    /*Este método obtiene y filtra los productos disponibles en una tienda específica,
+      basándose en la edad del cliente y en una categoría opcional. Si la categoría es 
+      nula, se filtrarán los productos solo por la edad del cliente. Si se proporciona
+      una categoría, se filtrarán los productos por edad y categoría.*/
     public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
@@ -209,11 +216,11 @@ public class Funcionalidad1 extends Identidad{
 
         if (categoria == null) {
             // Si no se proporciona una categoría, filtrar solo por edad
-            productosAdecuados = Producto.filtrarPorEdad(productos, cliente,tienda);
+            productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
             
         } else {
             // Si se proporciona una categoría, filtrar por edad y categoría
-            productosAdecuados = Producto.filtrarPorEdadYCategoria(productos, cliente, categoria,tienda);
+            productosAdecuados = Producto.filtrarPorEdadYCategoria(productos, cliente, categoria);
         }
         
         
@@ -243,7 +250,8 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // --------------------------------------------------------------------------------------------------------------------------------------------------- 
-    //Comentario
+   /* Este método permite al cliente seleccionar un producto de una lista proporcionada para ver sus detalles.
+      Después de mostrar los detalles del producto, se le da la opción de elegir otro producto o regresar al menú principal.*/ 
     public static void seleccionarProducto(ArrayList<Producto> productos,Cliente cliente) {
         print("Seleccione un producto para ver sus detalles:");
         

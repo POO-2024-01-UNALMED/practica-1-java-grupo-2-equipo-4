@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import gestorAplicación.servicios.Enums;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.sujetos.Persona;
+
 import uiMain.Main;
 
 import java.io.IOException; 
@@ -43,7 +45,7 @@ public class Deserializador {
 	public static void deserializarListas() {
 		deserializar(Tienda.getTiendas(),"tiendas");
 		deserializar(Tienda.getDesempleados(),"empleados");
-		deserializar(Tienda.getSeisProveedores(),"proovedores");
+		deserializar(Proveedor.getSeisProveedores(),"provedores");
 		deserializar(Persona.getPersonas(),"clientes");
 		}
 }

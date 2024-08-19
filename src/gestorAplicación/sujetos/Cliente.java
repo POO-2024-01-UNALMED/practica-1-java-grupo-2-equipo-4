@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
-import gestorAplicación.servicios.Factura;
+//import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Producto;
@@ -159,6 +159,20 @@ public class Cliente extends Persona implements Serializable {
 		}
 		return texto;
 	}
+	
+	public static void asignaciones(Cliente cliente,Tienda tienda) {
+		 if (cliente.mayorEdad() ) {
+	        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
+	            cliente.setTienda(tienda);
+	            cliente.setCarrito(carrito);
+	            cliente.setDinero(100000);
+	        } else if (!cliente.mayorEdad()) {
+	        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
+	        	cliente.setTienda(tienda);
+	        	cliente.setCarrito(carrito);
+	        	cliente.setDinero(50000);
+	        }
+	} 
 
 //-------------------------------------------------------------------------------------------------------------
 }

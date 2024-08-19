@@ -209,7 +209,17 @@ public class Producto implements Serializable,Cloneable {
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
+		
 	}
+	
+	public Producto(String nombre, double precio, Categoria categoria, int id, Edades edadValida, String descripcion) {
+		this.nombre=nombre;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+		this.edadValida=edadValida;
+		this.descripcion=descripcion;
+	}	
 //-------------------------------------------------------------------------------------------------------------
 		//clonable //
 	
@@ -225,17 +235,20 @@ public class Producto implements Serializable,Cloneable {
 	
 //Metodos------------------------------------------------------------------------------------------------------
 
-	public Producto(String nombre, double precio, Categoria categoria, int id, Edades edadValida, String descripcion) {
-		this.nombre=nombre;
-		this.precio=precio;
-		this.categoria=categoria;
-		this.id=id;
-		this.edadValida=edadValida;
-		this.descripcion=descripcion;
-	}
+	   public int cantidadProducto() {
+	    	int cantidad=0;
+	    	for (Pasillo i:getTienda().getPasillos()) {
+				for (Producto j:i.getProductos()){
+					if (j.equals(this)) {
+						cantidad++;
+					}
+				}
+			}
+	    	return cantidad;
+	    }
 
 	// Método para filtrar productos según la edad del cliente
-    public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente,Tienda tienda) {
+    public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();
 
         for (Producto producto : productos) {
@@ -245,36 +258,12 @@ public class Producto implements Serializable,Cloneable {
                 productosAdecuados.add(producto);
             }
         }
-        if (cliente.mayorEdad() ) {
-        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
-            cliente.setTienda(tienda);
-            cliente.setCarrito(carrito);
-            cliente.setDinero(100000);
-            
-        } else if (!cliente.mayorEdad()) {
-        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
-        	cliente.setTienda(tienda);
-        	cliente.setCarrito(carrito);
-        	cliente.setDinero(50000);
-        }
 
         return productosAdecuados;
     }
-
-    public int cantidadProducto() {
-    	int cantidad=0;
-    	for (Pasillo i:getTienda().getPasillos()) {
-			for (Producto j:i.getProductos()){
-				if (j.equals(this)) {
-					cantidad++;
-				}
-			}
-		}
-    	return cantidad;
-    }
     
     // Método para filtrar productos por edad y categoría
-    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria,Tienda tienda) {
+    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();
 
         for (Producto producto : productos) {
@@ -286,17 +275,7 @@ public class Producto implements Serializable,Cloneable {
                 }
             }
         }
-        if (cliente.mayorEdad() ) {
-        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
-            cliente.setTienda(tienda);
-            cliente.setCarrito(carrito);
-            cliente.setDinero(100000);
-        } else if (!cliente.mayorEdad()) {
-        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
-        	cliente.setTienda(tienda);
-        	cliente.setCarrito(carrito);
-        	cliente.setDinero(50000);
-        }
+       
 
         return productosAdecuados;
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Tienda;
-import gestorAplicación.servicios.Factura;
+//import gestorAplicación.servicios.Factura;
 import static gestorAplicación.servicios.Enums.Genero;
 
 public abstract class Persona implements Serializable{
@@ -25,7 +25,7 @@ public abstract class Persona implements Serializable{
 	private static ArrayList <Persona> personas=new ArrayList<Persona>();
 	
 	// estaba en cliente pero identificar usuario es clase Persona //
-	private ArrayList <Factura> facturas= new ArrayList<>();
+//	private ArrayList <Factura> facturas= new ArrayList<>();
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -37,15 +37,15 @@ public abstract class Persona implements Serializable{
 		return personas;
 	}
 
-	public ArrayList<Factura> getFacturas1() {
-		return facturas;
-	}
+//	public ArrayList<Factura> getFacturas1() {
+//		return facturas;
+//	}
 
 	
 	
-	public void setFacturas1(ArrayList<Factura> facturas) {
-		this.facturas = facturas;
-	}
+//	public void setFacturas1(ArrayList<Factura> facturas) {
+//		this.facturas = facturas;
+//	}
 
 	public static void setPersonas(ArrayList<Persona> persona) {
 		personas = persona;

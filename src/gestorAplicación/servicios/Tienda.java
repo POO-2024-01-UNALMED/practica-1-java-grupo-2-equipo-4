@@ -311,7 +311,7 @@ public class Tienda implements Serializable{
 	public String listarProveedores() {
 		int n=1;
 		String s= "  Proveedor  |  Categoria \n";
-		for(Proveedor i:seisProveedores) {
+		for(Proveedor i:Proveedor.getSeisProveedores()) {
 			s+=n+"."+i.getNombre();
 			s+="     ";
 			s+=i.getTipo();
@@ -417,7 +417,7 @@ public class Tienda implements Serializable{
 		}
 	//ANTES EN INVENTARIO
 		public ArrayList<Producto> llamarProveedor(int x) {
-			Proveedor prov=Tienda.getSeisProveedores().get(x-1);
+			Proveedor prov=Proveedor.getSeisProveedores().get(x-1);
 			ArrayList<Producto> entrega =prov.getEntrega();
 			for(Producto p:entrega) {
 				agregarProducto(p);
@@ -557,7 +557,7 @@ public class Tienda implements Serializable{
 		public ArrayList<Producto> productosNoActuales(Categoria categoria){
 			ArrayList<Producto>	productos=new ArrayList<Producto>();
 			Proveedor proveedor=null;
-			for (Proveedor p:seisProveedores) {
+			for (Proveedor p:Proveedor.getSeisProveedores()) {
 				if (p.getTipo()==categoria) {
 					proveedor=p;
 					break;
