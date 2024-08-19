@@ -178,7 +178,10 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    //Comentario 
+    //Este método que permite a un cliente consultar y gestionar su membresía.
+    //Dependiendo de la membresía actual del cliente, el método proporciona 
+    //información sobre los beneficios, permite mejorar la membresía o 
+    //seleccionar una nueva membresía si el cliente no tiene una.
     public static void consultaMembresias(Cliente cliente) {
         if (Tienda.buscarTienda()) {
         	if (cliente.mayorEdad() ) {
@@ -409,10 +412,7 @@ public class Funcionalidad1 extends Identidad{
         }
     }
   // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-        
-
-    // Método mejoraMembresia
+   // Método que gestiona la selección y compra de una membresía para un cliente
     public static void primeraMembresia(Cliente cliente, Membresia membresia) {
         Scanner scanner = new Scanner(System.in);
         String mensaje = "";

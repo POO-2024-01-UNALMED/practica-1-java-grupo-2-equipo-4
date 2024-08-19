@@ -208,6 +208,10 @@ public class Cliente extends Persona implements Serializable {
 
 	        return contadorProductos;
 	    }
+	 
+	 //Asigna una tienda y un carrito a un cliente en función de su edad.
+	 // Si el cliente es mayor de edad, se le asigna un carrito para adultos y se le otorgan 100,000 en dinero.
+	 //Si el cliente es menor de edad, se le asigna un carrito para menores y se le otorgan 50,000 en dinero.
 	
 	public static void asignaciones(Cliente cliente,Tienda tienda) {
 		 if (cliente.mayorEdad() ) {
@@ -222,6 +226,11 @@ public class Cliente extends Persona implements Serializable {
 	        	cliente.setDinero(50000);
 	        }
 	}
+	
+	//Asigna una tienda y un carrito a un cliente en función de su edad, y establece un monto de dinero personalizado.
+	//Si el cliente es mayor de edad, se le asigna un carrito para adultos.
+	//Si el cliente es menor de edad, se le asigna un carrito para menores.
+	//El monto de dinero se asigna según el parámetro proporcionado.
 	
 	public static void asignaciones(Cliente cliente,Tienda tienda,double dinero ) {
 		 if (cliente.mayorEdad() ) {
@@ -240,6 +249,12 @@ public class Cliente extends Persona implements Serializable {
 	
 
 //----Membresias----------------------------------------------------------------------------------------------
+	//Determina el perfil demográfico de un cliente en función de su edad y género. 
+	//@param cliente El cliente cuya información demográfica será evaluada.
+	//@return Un `String` que representa el perfil demográfico del cliente. 
+	//Posibles valores incluyen "Mujer Joven", "Mujer Adulta", "Mujer Anciana", 
+	//"Hombre Joven", "Hombre Adulto", "Hombre Anciano" o "Desconocido" si no se cumple ninguna categoría.
+	 
 	public static String PerfilDemografico(Cliente cliente) {
 		
 	    int edad = cliente.getEdad();
@@ -256,6 +271,8 @@ public class Cliente extends Persona implements Serializable {
 	    }
 	}
 	
+	// Genera un mensaje personalizado para el cliente según su perfil demográfico y el nivel de membresía que posee.
+	 
 	public static String getMensajePorPerfil(String perfilDemografico, Membresia membresia) {
 	    String mensaje;
 	    switch (membresia) {
@@ -307,6 +324,7 @@ public class Cliente extends Persona implements Serializable {
 	    };
 	}
 	
+	//Permite a un cliente evolucionar su membresía a un nivel superior si tiene suficiente saldo.
 	public static String evolucionarMembresia(Cliente cliente, Membresia nuevaMembresia) {
 	    if (nuevaMembresia != null) {
 	        double costoEvolucion = calcularCostoEvolucion(cliente.getMembresia(), nuevaMembresia); // Suponiendo que tienes un método para calcular el costo
@@ -321,6 +339,8 @@ public class Cliente extends Persona implements Serializable {
 	        return"Selección inválida. Volviendo al menú de consulta.";
 	    }
 	}
+	
+	//Calcula el costo de evolución de una membresía a una nueva membresía.
 
 	public static double calcularCostoEvolucion(Membresia membresiaActual, Membresia nuevaMembresia) {
 	    if (membresiaActual == null || nuevaMembresia == null) {
