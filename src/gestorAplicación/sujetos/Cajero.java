@@ -38,4 +38,16 @@ public class Cajero extends Empleado {
 		return false;
 	}
 
+	@Override
+	public StringBuilder imprimirFacturas(Persona cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public StringBuilder imprimirFacturas(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

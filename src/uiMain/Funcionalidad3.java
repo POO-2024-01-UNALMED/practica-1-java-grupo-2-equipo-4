@@ -22,8 +22,10 @@ public class Funcionalidad3 extends Identidad {
 		switch(decision) {
 		case 1:
 			System.out.println(persona.imprimirFacturas((Cliente)persona));
+			break;
 		case 2:
 			System.out.println(persona.imprimirFacturas(persona));
+			break;
 		}
 	}
 }

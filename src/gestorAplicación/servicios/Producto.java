@@ -224,6 +224,15 @@ public class Producto implements Serializable,Cloneable {
 	
 //Metodos------------------------------------------------------------------------------------------------------
 
+	public Producto(String nombre, double precio, Categoria categoria, int id, Edades edadValida, String descripcion) {
+		this.nombre=nombre;
+		this.precio=precio;
+		this.categoria=categoria;
+		this.id=id;
+		this.edadValida=edadValida;
+		this.descripcion=descripcion;
+	}
+
 	// Método para filtrar productos según la edad del cliente
     public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();
