@@ -104,8 +104,23 @@ public static enum Tamaño{
 }
 public static enum Genero{
 	M,
-	H;
+	H
 }
+public static enum TipoEmpleado{
+	CAJERO("Cajero"),CONSERJE("Conserje"),DOMICILIARIO("Domiciliario");
+	
+	private String tipo;
+	
+	private TipoEmpleado(String tipo) {
+		this.tipo=tipo;
+	}
+
+	public String getTamaño() {
+		return tipo;
+	}
+
+}
+
 }
 
 

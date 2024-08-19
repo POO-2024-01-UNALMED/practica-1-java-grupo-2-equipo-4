@@ -9,20 +9,24 @@ import gestorAplicación.sujetos.Persona;
 
 public class Carrito implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
-	private static final long serialVersionUID = 834939881526017922L;
+	
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
-	private Proveedor proveedor;
 	private Tienda tienda;
 	private Edades tipoCarrito;
-	private double montoTotal;
-	private boolean pagado;
+//	private Proveedor proveedor;
+//	private double montoTotal;
+//	private boolean pagado;
 	
+
 	//atributos para factura //
 	 LocalDate fechaFacturacion;
 	 ArrayList<Producto> productosFactura;
 
 	
+
+	private static final long serialVersionUID = 834939881526017922L;
+
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
@@ -32,21 +36,21 @@ public class Carrito implements Serializable{
 		return productos;
 	}
 	
-	public Proveedor getProveedor() {
-		return proveedor;
-	}
-
-	public void setProveedor(Proveedor proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public boolean isPagado() {
-		return pagado;
-	}
-
-	public void setPagado(boolean pagado) {
-		this.pagado = pagado;
-	}
+//	public Proveedor getProveedor() {
+//		return proveedor;
+//	}
+//
+//	public void setProveedor(Proveedor proveedor) {
+//		this.proveedor = proveedor;
+//	}
+//
+//	public boolean isPagado() {
+//		return pagado;
+//	}
+//
+//	public void setPagado(boolean pagado) {
+//		this.pagado = pagado;
+//	}
 
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos=productos;
@@ -75,13 +79,13 @@ public class Carrito implements Serializable{
 		this.tipoCarrito=tipo;
 	}
 	
-	public double getMontoTotal() {
-		return montoTotal;
-	}
-	
-	public void  setMontoTotal(double monto) {
-		this.montoTotal= monto;
-	}
+//	public double getMontoTotal() {
+//		return montoTotal;
+//	}
+//	
+//	public void  setMontoTotal(double monto) {
+//		this.montoTotal= monto;
+//	}
 	
 //Contructores-------------------------------------------------------------------------------------------------
 	

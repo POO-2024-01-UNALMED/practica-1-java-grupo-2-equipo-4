@@ -205,6 +205,17 @@ public class Main {
 		tiendas.add(t4);
 		
 		clienteMayor.getTiendas().add(t1);*/
+		System.out.println();
+		ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
+		tiendas.add(Tienda.getTiendas().get(1));
+		ArrayList<Producto> productos= Tienda.getTiendas().get(1).getPasillos().get(0).getProductos();
+		//Producto producto = new Producto("tomate","Cebollando",0,Categoria.ALIMENTO,"13/08/2024",50,Edades.MENORES,"",Tamaño.GRANDE);
+		//productos.add(producto);
+		Proveedor proveedor= new Proveedor("proveo", productos, Categoria.ALIMENTO, tiendas, null);
+		ArrayList<Proveedor> proveedores= new ArrayList<Proveedor>();
+		proveedores.add(proveedor);
+		Proveedor.setSeisProveedores(proveedores);
+		Tienda.getTiendas().get(1).setProveedores(proveedores);
 		escogerFuncionalidad();
 
 

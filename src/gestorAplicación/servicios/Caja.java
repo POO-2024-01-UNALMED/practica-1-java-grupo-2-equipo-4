@@ -7,13 +7,15 @@ import java.io.Serializable;
 
 public class Caja implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
-	private Empleado empleado;
+	
 	private String nombre;
 	private int estado=2;
 	private Enums.TipoCaja tipo;
 	private Tienda tienda;
-	private String descuento;
-	private Cliente cliente;
+	private Empleado empleado;
+//	private String descuento;
+//	private Cliente cliente;
+
 	
 	private static final long serialVersionUID = 5268347727015736706L;
 //-------------------------------------------------------------------------------------------------------------
@@ -21,13 +23,13 @@ public class Caja implements Serializable{
 	
 //Getters and Setters------------------------------------------------------------------------------------------
 	
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 	
 	public String getNombre() {
 		return nombre;
@@ -61,15 +63,15 @@ public class Caja implements Serializable{
 		this.tienda=tienda;
 	}
 	
-	public String getDescuento() {
-		return descuento;
-	}
-	
-	public void setDescuento(String descuento) {
-		this.descuento=descuento;		
-		
-	}
-	
+//	public String getDescuento() {
+//		return descuento;
+//	}
+//	
+//	public void setDescuento(String descuento) {
+//		this.descuento=descuento;		
+//		
+//	}
+//	
 	public Empleado getEmpleado() {
 		return empleado;
 	}

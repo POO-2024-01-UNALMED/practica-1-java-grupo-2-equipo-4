@@ -16,19 +16,17 @@ public class Funcionalidad5 {
 	public static void personalizarTienda(Cliente clien) {
 		lineas();
 		print("Ha seleccionado Personalizar y modificar tiendas.");
-		if (Tienda.buscarTienda()) {
-            print("Selecciona una de las tiendas disponibles para ti:");
-            int contador = 1;
-            lineas();
-            System.out.print("   Nombre");
-    		System.out.print("    ");
-    		System.out.print("|     ");
-    		System.out.println("Precio");
-            for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
-                System.out.println(contador + ". " + generales.getNombre()+" $"+generales.getSaldo());
-                contador++;
-            }
-		}
+		print("Selecciona una de las tiendas disponibles para ti:");
+        int contador = 1;
+        lineas();
+        System.out.print("   Nombre");
+		System.out.print("    ");
+		System.out.print("|     ");
+		System.out.println("Precio");
+        for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
+            System.out.println(contador + ". " + generales.getNombre()+" $"+generales.getSaldo());
+            contador++;
+        }
 		
 		int h =escaner();
 		Tienda tien=Tienda.getTiendas().get(h-1);
@@ -105,7 +103,9 @@ public class Funcionalidad5 {
   	      		}
   	      		int x5=escaner();
   	      		tien.contratarEmpleados(x5);
-  	      		System.out.println(tien.getEmpleados());
+  	      		
+  	      		System.out.println(tien.mostrarEmpleados());
+  	      		System.out.println(tien.mostrarEmpleados());
   	      		j++;
   	      		print("1.Continuar\n2.Terminar");
   	      		int x6 = escaner();

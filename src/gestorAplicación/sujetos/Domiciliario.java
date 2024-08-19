@@ -3,6 +3,7 @@ package gestorAplicación.sujetos;
 import java.io.Serializable;
 
 import gestorAplicación.servicios.Enums.Genero;
+import gestorAplicación.servicios.Enums.TipoEmpleado;
 import gestorAplicación.servicios.Tienda;
 
 public class Domiciliario extends Empleado implements Serializable{
@@ -22,7 +23,7 @@ public class Domiciliario extends Empleado implements Serializable{
 
 	public Domiciliario(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda,
 			boolean prestacionSalud, boolean prestacionPension) {
-		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension);
+		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.DOMICILIARIO);
 		// TODO Auto-generated constructor stub
 	}
 
