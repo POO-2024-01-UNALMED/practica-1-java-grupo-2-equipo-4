@@ -77,7 +77,7 @@ public class Funcionalidad1 extends Identidad{
                 consultaMembresias();
                 break;
             case 4:
-                Main.escogerFuncionalidad(cliente);
+                Main.escogerFuncionalidad();
                 break;
             default:
                 print("Opción no válida");
@@ -228,7 +228,7 @@ public class Funcionalidad1 extends Identidad{
         if (opcion == 1) {
             seleccionarProducto(productos,cliente); // Volver a elegir otro producto
         } else {
-        	Main.escogerFuncionalidad(cliente);; // Regresar al menú principal
+        	Main.escogerFuncionalidad(); // Regresar al menú principal
         }
         }
     }
