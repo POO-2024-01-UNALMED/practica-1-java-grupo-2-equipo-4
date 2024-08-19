@@ -264,7 +264,7 @@ public class Funcionalidad2 extends Identidad {
 		System.out.print("Escoja un numero: ");
 		int decisionCategoria = escaner(enumerado);
 		if(decisionCategoria==enumerado) {
-			elegirTipoBusqueda(cliente);
+			elegirTipoBusqueda();
 		}
 		categoria=Categoria.resolverEnum(decisionCategoria);
 		productos=new ArrayList<Producto>();
@@ -274,7 +274,7 @@ public class Funcionalidad2 extends Identidad {
 			System.out.print("Escoja un numero nuevamente: ");
 			decisionCategoria=escaner(enumerado);
 			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda(cliente);
+				elegirTipoBusqueda();
 			}
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			productos=new ArrayList<Producto>();
@@ -302,11 +302,11 @@ public class Funcionalidad2 extends Identidad {
 		}
 		if (string) {
 			if (Integer.parseInt(nombre)==3) {
-				elegirTipoBusqueda(cliente);
+				elegirTipoBusqueda();
 			}
 		}
 		if (nombre.toLowerCase().equals("volver")) {
-			elegirTipoBusqueda(cliente);
+			elegirTipoBusqueda();
 		}
 		productos=new ArrayList<Producto>();
 		productos=cliente.getTienda().buscarProductos(cliente,nombre);
@@ -324,11 +324,11 @@ public class Funcionalidad2 extends Identidad {
 			}
 			if (string) {
 				if (Integer.parseInt(nombre)==3) {
-					elegirTipoBusqueda(cliente);
+					elegirTipoBusqueda();
 				}
 			}
 			if (nombre.toLowerCase().equals("volver")) {
-				elegirTipoBusqueda(cliente);
+				elegirTipoBusqueda();
 			}
 			productos=new ArrayList<Producto>();
 			productos=cliente.getTienda().buscarProductos(cliente,nombre);
@@ -355,20 +355,24 @@ public class Funcionalidad2 extends Identidad {
             switch(decision) {
             case 1:
             	cliente.getCarrito().agregarAlCarrito(seleccionado,seleccionado.cantidadProducto());
-            	System.out.println(cliente.getCarrito());
-            	for (Pasillo i:cliente.getTienda().getPasillos()) {
-            		for (Producto p:i.getProductos()) {
-            			System.out.println(p);
-            		} 
-            	}
             	break;
             case 2:
-            	elegirTipoBusqueda(cliente);
+            	elegirTipoBusqueda();
             	break;
             }
         }
 	}
-	public static void elegirTipoBusqueda(Cliente cliente1) {
+	
+	// Método auxiliar para ajustar el texto al ancho de la celda, cortando si es necesario
+				private static String ajustarTexto(String texto, int anchoCelda) {
+				    if (texto.length() > anchoCelda) {
+				        return texto.substring(0, anchoCelda - 1) + ".";
+				    } else {
+				        return texto;
+				    }
+				}
+	
+	public static void elegirTipoBusqueda() {
 		Cliente cliente=(Cliente)identificarPersona();
 		Tienda tienda=cliente.getTienda();
 		if(tienda==null) {
@@ -395,23 +399,106 @@ public class Funcionalidad2 extends Identidad {
 		print(" 1. Por categoria de un producto");
 		print(" 2. Por nombre del producto");
 		print(" 3. Pedir productos no actuales");
-		print(" 4. Volver");
+		if (cliente.getCarrito().getProductos().size()>0) {
+			print(" 4. Eliminar un producto de mi carrito");
+		}
+		print(" 5. Volver");
 		print("");
 		
 		System.out.print("Escoja un numero: ");
 		
-		int decision=escaner(3);
+		int decision=escaner(5);
 		Categoria categoria = null;
 		ArrayList<Producto> productos=new ArrayList<Producto>();
 		Producto seleccionado = null;
 		switch (decision) {
 		case 1:
 			busquedaCategoria(cliente, categoria, productos, seleccionado);
+			break;
 		case 2:
 			busquedaNombre(cliente, productos,seleccionado);
+			break;
 		case 3:
-			//productosNoActuales();
+			print("Estas son las categorias de los productos de nuestras tiendas: ");
+			print("");
+			int enumerado = 1;
+			for(Categoria tipo:Categoria.values()) {
+					print(" "+enumerado +". "+tipo.getTexto());
+					enumerado++;			
+			}
+			print(" "+enumerado+". Volver");
+			print("");
+			System.out.print("Escoja cual desea para pedir productos: ");
+			int decisionCategoria = escaner(enumerado);
+			if(decisionCategoria==enumerado) {
+				elegirTipoBusqueda();
+			}
+			categoria=Categoria.resolverEnum(decisionCategoria);
+			ArrayList<Producto> posiblepeticion=cliente.getTienda().productosNoActuales(categoria);
+			print("+--------------------------------------------+");
+			print("| No. |      Nombre de Producto/Tamaño       |");
+			print("+--------------------------------------------+");
+			int anchoCelda = 34; 
+			for (int i = 0; i < productos.size(); i++) {
+				String nombreProducto = posiblepeticion.get(i).getNombre();
+			        String tamañoProducto = posiblepeticion.get(i).getTamaño().getTamaño();
+			        String nombreYtamaño = nombreProducto + "/" + tamañoProducto;
+			        
+			        int espacios = (anchoCelda - nombreYtamaño.length()) / 2;
+
+			        // Relleno a izquierda y derecha para centrar el nombre y tamaño del producto
+			        String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+			        String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreYtamaño.length()) % 2));
+
+			        print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreYtamaño, paddingDerecho));
+			}
+			print("+--------------------------------------------+");
+
 		case 4:
+			if(cliente.getCarrito().getProductos().size()==0) {
+				print("Usted no puede seleccionar esta opcion");
+				elegirTipoBusqueda();
+				break;
+			}
+			print("Estos son los productos de su carrito");
+			productos=cliente.getCarrito().getProductos();
+			
+			    // Ancho total de la tabla ajustado para las nuevas columnas
+			    int anchoCeldaNombre = 20;
+			    int anchoCeldaMarca = 15;
+			    int anchoCeldaTamaño = 10;
+			    int anchoCeldaPrecio = 10;
+			    int anchoCeldaCantidad = 10;
+			    
+			    // Encabezado de la tabla
+			    print("+----+--------------------+---------------+----------+----------+----------+");
+			    print("| No | Nombre              | Marca         | Tamaño   | Precio   | Cantidad |");
+			    print("+----+--------------------+---------------+----------+----------+----------+");
+			    
+			    for (int i = 0; i < productos.size(); i++) {
+			        Producto producto = productos.get(i);
+			        String nombreProducto = producto.getNombre();
+			        String marcaProducto = producto.getMarca();
+			        String tamañoProducto = producto.getTamaño().getTamaño();
+			        String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
+			        String cantidadProducto = String.valueOf(cliente.getCarrito().contarRepeticiones(producto));
+
+			        // Imprimir cada producto en la tabla
+			        print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8s |", 
+			            i + 1, 
+			            ajustarTexto(nombreProducto, anchoCeldaNombre), 
+			            ajustarTexto(marcaProducto, anchoCeldaMarca), 
+			            ajustarTexto(tamañoProducto, anchoCeldaTamaño), 
+			            ajustarTexto(precioProducto, anchoCeldaPrecio), 
+			            ajustarTexto(cantidadProducto, anchoCeldaCantidad)
+			        ));
+			    }
+
+			    // Pie de la tabla
+			    print("+----+--------------------+---------------+----------+----------+----------+");
+
+			
+		case 5:
 			Main.escogerFuncionalidad();
 			break;
 		}

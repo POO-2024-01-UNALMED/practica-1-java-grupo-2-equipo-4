@@ -260,13 +260,13 @@ public class Main {
 					 continue;
 				}
 			}
-			Cliente cliente1=new Cliente();
+			
 			switch(decision){
 			case 1:
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				Funcionalidad2.elegirTipoBusqueda((Cliente)Identidad.identificarPersona());
+				Funcionalidad2.elegirTipoBusqueda();
 				break;
 			case 3:
 				Funcionalidad3.mostrarFacturas();

@@ -9,6 +9,7 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.Edades;
+import static uiMain.Main.lineas;
 
 public class Funcionalidad1 extends Identidad{
 	
@@ -54,6 +55,7 @@ public class Funcionalidad1 extends Identidad{
     //Este método se encarga de direccionar al cliente hacia la consulta que desea realizar 
     public static void consultasEco() {
     	Cliente cliente= (Cliente)Identidad.identificarPersona();
+    	lineas();
         print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
         print("1. Consulta general de productos\n" +
               "2. Consulta de productos por categoría\n" +
@@ -99,7 +101,22 @@ public class Funcionalidad1 extends Identidad{
             } else {
                 Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
                 print("Has seleccionado la tienda: " + tienda.getNombre());
-                seleccionarProducto(listaProductos(tienda,cliente,null),cliente);
+                print("Esta servira para escoger productos en la funcionalidad 2");
+                print("1. Desea chismosear la descripcion de productos en la tienda");
+                print("2. Desea ir al menu principal para empezar a hacer sus compras");
+                print("3. Volver a escoger tienda");
+                int decision=escaner(3);
+                switch(decision) {
+                case 1:
+                	seleccionarProducto(listaProductos(tienda,cliente,null),cliente);
+                	break;
+                case 2:
+                	Main.escogerFuncionalidad();
+                	break;
+                case 3:
+                	consultasEco();
+                	break;
+                }
             }
             
         } else {
@@ -128,8 +145,24 @@ public class Funcionalidad1 extends Identidad{
                     consultasEco();
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
-                    print("Has seleccionado la tienda esta será utilizada en la funcionalidad 2: " + tienda.getNombre());
-                    seleccionarProducto(listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]),cliente);
+                    print("Has seleccionado la tienda: " + tienda.getNombre());
+                    print("Esta servira para escoger productos en la funcionalidad 2");
+                    print("1. Desea chismosear la descripcion de productos en la tienda");
+                    print("2. Desea ir al menu principal para empezar a hacer sus compras");
+                    print("3. Volver a escoger tienda");
+                    int decision=escaner(3);
+                    switch(decision) {
+                    case 1:
+                    	seleccionarProducto(listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]),cliente);
+                    	break;
+                    case 2:
+                    	Main.escogerFuncionalidad();
+                    	break;
+                    case 3:
+                    	consultasEco();
+                    	break;
+                  
+                    }
                 }
             } else {
                 print("No hay tiendas disponibles para la categoría seleccionada.");

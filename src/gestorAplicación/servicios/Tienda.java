@@ -554,7 +554,26 @@ public class Tienda implements Serializable{
 			return cantidad;
 		}
 		
-	
+		public ArrayList<Producto> productosNoActuales(Categoria categoria){
+			ArrayList<Producto>	productos=new ArrayList<Producto>();
+			Proveedor proveedor=null;
+			for (Proveedor p:seisProveedores) {
+				if (p.getTipo()==categoria) {
+					proveedor=p;
+					break;
+				}
+			}
+			for(Producto i:proveedor.getEntrega()) {
+				for(Producto k:this.obtenerTodosLosProductos()) {
+					if(i.equals(k)) {
+						continue;
+					}
+					productos.add(i);
+				}
+			}
+			return productos;
+		}
+		
 		public final String toString() {
 			return this.getNombre(); 
 		}
