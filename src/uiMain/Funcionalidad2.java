@@ -362,6 +362,12 @@ public class Funcionalidad2 extends Identidad{
         }
 	}
 	public static void elegirTipoBusqueda(Cliente cliente) {
+		try {
+			Tienda tienda=cliente.getTienda();
+		}catch(Exception e) {
+			print("Debe seleccionar una tienda primero, dirijase a la funcionalidad 1");
+			Main.escogerFuncionalidad(cliente);
+		}
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
 				+ "\n"+ "una categoria o por nombre del producto: ");

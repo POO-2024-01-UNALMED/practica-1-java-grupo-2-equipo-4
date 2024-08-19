@@ -96,14 +96,14 @@ public class Main {
 				Pasillo p6 = new Pasillo("A7",Categoria.ELECTRONICO);
 				
 				// Crear Productos para cada categoria
-				Producto producto1 = new Producto("Pan",null,0, Categoria.ALIMENTO,2,Edades.MENORES,"");
+				Producto producto1 = new Producto("Pan",0,Categoria.ALIMENTO,2,Edades.MENORES,"");
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
 				Producto producto5 = new Producto("Mesa", Categoria.HOGAR);
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
-				Producto producto8 = new Producto("Manzana",null,0, Categoria.ALIMENTO,3,Edades.MENORES,"");
+				Producto producto8 = new Producto("Manzana",0, Categoria.ALIMENTO,3,Edades.MENORES,"");
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 	
@@ -252,12 +252,13 @@ public class Main {
 					 continue;
 				}
 			}
+			Cliente cliente1=new Cliente();
 			switch(decision){
 			case 1:
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				Funcionalidad2.elegirTipoBusqueda(cliente);
+				Funcionalidad2.elegirTipoBusqueda(cliente1);
 				break;
 			case 3:
 				Funcionalidad3.mostrarFacturas();
