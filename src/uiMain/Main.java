@@ -64,8 +64,8 @@ public class Main {
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Deserializador.deserializarListas();
-
-		/*Tienda tienda= new Tienda("apilipona");
+	/*	System.out.println(Tienda.getTiendas());
+		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Carrito carrito = new Carrito();
 		cliente.setEdad(18);
@@ -110,11 +110,11 @@ public class Main {
 
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
-	
+	*/
 				// Crear clientes
-				Cliente clienteMayor = new Cliente("Ana", 12345, 25, Enums.Genero.M);
-				Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);				
-
+	//			Cliente clienteMayor = new Cliente("Ana", 12345, 25, Enums.Genero.M);
+	//			Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);				
+/*
 				// Crear productos para diferentes categorías y edades
 				Producto producto15 = new Producto("Cereal", "CerealBrand", 2.99, Categoria.ALIMENTO, 101, Enums.Edades.ADULTOS, "Cereal integral saludable",Tamaño.PEQUEÑO);
 				Producto producto16 = new Producto("Leche", "MilkBrand", 1.49, Categoria.BEBIDA, 102, Enums.Edades.MENORES, "Leche para niños",Tamaño.GRANDE);
@@ -203,6 +203,7 @@ public class Main {
 		tiendas.add(t2);
 		tiendas.add(t3);
 		tiendas.add(t4);
+		
 		clienteMayor.getTiendas().add(t1);*/
 		escogerFuncionalidad();
 
@@ -265,7 +266,7 @@ public class Main {
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				Funcionalidad2.elegirTipoBusqueda(cliente1);
+				Funcionalidad2.elegirTipoBusqueda((Cliente)Identidad.identificarPersona());
 				break;
 			case 3:
 				Funcionalidad3.mostrarFacturas();

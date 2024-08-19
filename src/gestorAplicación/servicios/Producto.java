@@ -235,7 +235,7 @@ public class Producto implements Serializable,Cloneable {
 	}
 
 	// Método para filtrar productos según la edad del cliente
-    public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente) {
+    public static ArrayList<Producto> filtrarPorEdad(ArrayList<Producto> productos, Cliente cliente,Tienda tienda) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();
 
         for (Producto producto : productos) {
@@ -244,6 +244,18 @@ public class Producto implements Serializable,Cloneable {
             } else if (!cliente.mayorEdad() && producto.getEdades() == Edades.MENORES) {
                 productosAdecuados.add(producto);
             }
+        }
+        if (cliente.mayorEdad() ) {
+        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
+            cliente.setTienda(tienda);
+            cliente.setCarrito(carrito);
+            cliente.setDinero(100000);
+            
+        } else if (!cliente.mayorEdad()) {
+        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
+        	cliente.setTienda(tienda);
+        	cliente.setCarrito(carrito);
+        	cliente.setDinero(50000);
         }
 
         return productosAdecuados;
@@ -262,7 +274,7 @@ public class Producto implements Serializable,Cloneable {
     }
     
     // Método para filtrar productos por edad y categoría
-    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria) {
+    public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria,Tienda tienda) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();
 
         for (Producto producto : productos) {
@@ -273,6 +285,17 @@ public class Producto implements Serializable,Cloneable {
                     productosAdecuados.add(producto);
                 }
             }
+        }
+        if (cliente.mayorEdad() ) {
+        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
+            cliente.setTienda(tienda);
+            cliente.setCarrito(carrito);
+            cliente.setDinero(100000);
+        } else if (!cliente.mayorEdad()) {
+        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
+        	cliente.setTienda(tienda);
+        	cliente.setCarrito(carrito);
+        	cliente.setDinero(50000);
         }
 
         return productosAdecuados;

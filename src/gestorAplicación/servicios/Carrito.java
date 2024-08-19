@@ -87,6 +87,14 @@ public class Carrito implements Serializable{
 		tienda.getCarritos().add(this);
 
 	}
+	
+	
+	public Carrito(Cliente cliente, Tienda tienda, Edades tipoCarrito) {
+		this.cliente = cliente;
+		this.tienda = tienda;
+		this.tipoCarrito = tipoCarrito;
+	}
+
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------

@@ -128,7 +128,7 @@ public class Funcionalidad1 extends Identidad{
                     consultasEco();
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
-                    print("Has seleccionado la tienda: " + tienda.getNombre());
+                    print("Has seleccionado la tienda esta será utilizada en la funcionalidad 2: " + tienda.getNombre());
                     seleccionarProducto(listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]),cliente);
                 }
             } else {
@@ -171,17 +171,22 @@ public class Funcionalidad1 extends Identidad{
     public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
+        
+        
 
         if (categoria == null) {
             // Si no se proporciona una categoría, filtrar solo por edad
-            productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
+            productosAdecuados = Producto.filtrarPorEdad(productos, cliente,tienda);
+            
         } else {
             // Si se proporciona una categoría, filtrar por edad y categoría
-            productosAdecuados = Producto.filtrarPorEdadYCategoria(productos, cliente, categoria);
+            productosAdecuados = Producto.filtrarPorEdadYCategoria(productos, cliente, categoria,tienda);
         }
-
+        
+        
+        
         if (productosAdecuados.size() > 0) {
-            printTablaProductos(productosAdecuados);
+        	 printTablaProductos(productosAdecuados);
             return productosAdecuados;
         } else {
             print("No hay productos disponibles para su grupo de edad" +
@@ -211,6 +216,7 @@ public class Funcionalidad1 extends Identidad{
         
         int seleccionProducto = escaner(8);
         if(seleccionProducto== productos.size()+1 ) {
+        	printTablaProductos(productos);
         	seleccionarProducto(productos,cliente);
         }
         else {
