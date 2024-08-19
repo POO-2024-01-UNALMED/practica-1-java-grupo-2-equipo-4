@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
+import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.servicios.Enums.Membresia;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.Edades;
 import static uiMain.Main.lineas;
@@ -181,11 +183,62 @@ public class Funcionalidad1 extends Identidad{
     //Comentario 
     public static void consultaMembresias(Cliente cliente) {
         if (Tienda.buscarTienda()) {
-            print("Consulta de membresías:");
-            
-        } else {
-            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+        	if (cliente.mayorEdad() ) {
+        		Membresia membresia = cliente.getMembresia();
+
+                if (membresia == null) {
+                	print("Bienvenido a nuestro sistema de membresías conoce un poco sobre ellas: ");
+                	
+                	int decision=escaner(4);
+                    switch(decision) {
+                    case 1:
+                    	primeraMembresia(cliente);
+                    	break;
+                    case 2:
+                    	primeraMembresia(cliente);
+                    	break;
+                    case 3:
+                    	primeraMembresia(cliente);
+                    	break;	
+                    case 4:
+                    	consultasEco();
+                    	break;
+                  
+                    }
+                	
+                	 primeraMembresia(cliente);
+                   
+                } else {
+                //    mejoraMembresia(cliente);
+                   
+                }
+            }
         }
+        		
+        		
+	        	
+	         
+        	else if (!cliente.mayorEdad()) {
+	        	print("Lo sentimos, no puedes obtener una membresía ya que eres menor de edad.");
+	        	print("");
+	        	print("Recuerda ir a revisar alguna tienda esto servirá para escoger productos en la funcionalidad 2");
+	        	print("");
+                print("1. Desea ir al menu principal");
+                print("2. Volver al menu de consultar");
+                int decision=escaner(3);
+                switch(decision) {
+                case 1:
+                	Main.escogerFuncionalidad();
+                	break;
+                case 2:
+                	consultasEco();
+                	break;
+                }	
+            
+            } 
+	        else {
+            print("Lo sentimos, no hay tiendas disponibles en este momento.");
+            }
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -281,6 +334,45 @@ public class Funcionalidad1 extends Identidad{
         }
         }
     }
+  // ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+        
+
+    // Método mejoraMembresia
+    public static void primeraMembresia(Cliente cliente) {
+        Membresia membresia = cliente.getMembresia();
+        String mensaje = "";
+        
+        // Obtener perfil demográfico
+        String perfilDemografico = Cliente.PerfilDemografico(cliente);
+
+        switch (membresia) {
+            case BASICO:
+                mensaje = "Como miembro Básico, ";
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.BASICO);
+                print(mensaje);
+                
+                break;
+            case PREMIUM:
+                mensaje = "Como miembro Premium, ";
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.PREMIUM);
+                print(mensaje);
+                break;
+            case VIP:
+                mensaje = "Como miembro VIP, ";
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.VIP);
+                print(mensaje);
+                break;
+            default:
+                mensaje = "Ha ocurrido un error. ";
+                break;
+        }
+
+
+    
+    }
+
+    
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // Método para imprimir las tiendas en formato tabla ASCII
@@ -389,5 +481,35 @@ public class Funcionalidad1 extends Identidad{
 	            return texto + " ".repeat(ancho - texto.length()); // Añade espacios para ajustar el texto
 	        }
 	    }
+	    
+	    // Método para imprimir las membresias en formato tabla ASCII
+	    public static void printTablaMembresias() {
+	        print("+--------------------------+");
+	        print("| No. |  Tipo de Membresía  |");
+	        print("+--------------------------+");
+	        int anchoCelda = 20; // Ancho de la celda para el tipo de membresía
+	        int contador = 1;
+	        for (Membresia membresia : Membresia.values()) {
+	            String membresiaTexto = membresia.toString();
+	            int espacios = (anchoCelda - membresiaTexto.length()) / 2;
+	            
+	            // Si la longitud es impar, añade un espacio adicional al final
+	            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
+	            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - membresiaTexto.length()) % 2));
+	            
+	            print(String.format("| %-3d |%s%s%s|", contador, paddingIzquierdo, membresiaTexto, paddingDerecho));
+	            contador++;
+	        }
+	        int numeroVolver = contador + 1;
+	        String opcionVolver = "Volver";
+	        int espaciosVolver = (anchoCelda - opcionVolver.length()) / 2;
+	        String paddingIzquierdoVolver = " ".repeat(Math.max(0, espaciosVolver));
+	        String paddingDerechoVolver = " ".repeat(Math.max(0, espaciosVolver + (anchoCelda - opcionVolver.length()) % 2));
+
+	        print(String.format("| %-3d |%s%s%s|", numeroVolver, paddingIzquierdoVolver, opcionVolver, paddingDerechoVolver));
+	        print("+------------------------------------+");
+	    }
     
 }
+
+
