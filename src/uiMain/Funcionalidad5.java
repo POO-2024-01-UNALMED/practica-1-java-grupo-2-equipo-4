@@ -37,7 +37,7 @@ public class Funcionalidad5 {
 			tien.setDueño(clien);
 			lineas();
 			print("Se te resto $"+tien.getSaldo()+" de tu saldo");
-			print("Ahora eres el dueño de la tienda: "+tien.getNombre());
+			print("Ahora eres el dueño de la tienda: \""+tien.getNombre()+"\"");
 			clien.setDinero(diferencia);
 			print("Tu saldo ahora es de: $"+diferencia);
 		}
@@ -81,7 +81,10 @@ public class Funcionalidad5 {
       		print("¿Desea llamar a un proveedor?\n1.Si\n2.No");
       		int x3=escaner();
       		if(x3==1) {
-      			print(tien.llamarProveedor());
+      			print(tien.listarProveedores());
+      			int k=escaner();
+      			tien.llamarProveedor(k);
+      			
       		}
       	}
   		

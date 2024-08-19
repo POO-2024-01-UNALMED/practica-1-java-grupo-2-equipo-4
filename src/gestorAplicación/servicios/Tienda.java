@@ -18,7 +18,7 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado;
 	private ArrayList <Persona> cliente;
-	private static ArrayList <Proveedor> sieteProveedores=new ArrayList<Proveedor>();
+	private static ArrayList <Proveedor> seisProveedores=new ArrayList<Proveedor>();
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private ArrayList <Persona> candidatos=new ArrayList<Persona>();
@@ -149,12 +149,12 @@ public class Tienda implements Serializable{
 		this.proveedores = proveedor;
 	}
 
-	public static ArrayList<Proveedor> getSieteProveedores() {
-		return sieteProveedores;
+	public static ArrayList<Proveedor> getSeisProveedores() {
+		return seisProveedores;
 	}
 	
-	public void setSieteProveedores(ArrayList<Proveedor> provs) {
-		 	sieteProveedores=provs;
+	public void setSeisProveedores(ArrayList<Proveedor> provs) {
+		 	seisProveedores=provs;
 	}
 	public static void setTiendas(ArrayList<Tienda> arrayList) {
 			Tienda.tiendas=arrayList;
@@ -313,7 +313,7 @@ public class Tienda implements Serializable{
 		new Pasillo(nom,Categoria.values()[x2-1],this);
 	}
 	
-	public String llamarProveedor() {
+	public String listarProveedores() {
 		int n=1;
 		String s= "  Proveedor  |  Categoria \n";
 		for(Proveedor i:sieteProveedores) {
@@ -421,8 +421,12 @@ public class Tienda implements Serializable{
 			return s;
 		}
 	//ANTES EN INVENTARIO
-		public void contactarProvedor() {
-			
+		public void llamarProveedor(int x) {
+			Proveedor prov=Tienda.getSeisProveedores().get(x-1);
+			ArrayList<Producto> entrega =prov.getEntrega();
+			for(Producto p:entrega) {
+				agregarProducto(p);
+			}
 		}
 		
 		public ArrayList <Producto> solicitarInventario() {
