@@ -74,10 +74,10 @@ public class Funcionalidad1 extends Identidad{
                 consultaPorCategoria(cliente);
                 break;
             case 3:
-                consultaMembresias();
+                consultaMembresias(cliente);
                 break;
             case 4:
-                Main.escogerFuncionalidad(cliente);
+                Main.escogerFuncionalidad();
                 break;
             default:
                 print("Opción no válida");
@@ -85,7 +85,7 @@ public class Funcionalidad1 extends Identidad{
     }
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
+    //Comentario
     public static void consultaGeneralProductos(Cliente cliente) {
         if (Tienda.buscarTienda()) {
         	print("Selecciona una de las tiendas que tenemos disponibles para ti" );
@@ -109,7 +109,7 @@ public class Funcionalidad1 extends Identidad{
     
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
+    //Comentario
     public static void consultaPorCategoria(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Selecciona una de las categorías disponibles en nuestras tiendas:");
@@ -141,11 +141,11 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public static void consultaMembresias() {
+    //Comentario 
+    public static void consultaMembresias(Cliente cliente) {
         if (Tienda.buscarTienda()) {
             print("Consulta de membresías:");
-            // Aquí puedes agregar la lógica para manejar la consulta de membresías.
+            
         } else {
             print("Lo sentimos, no hay tiendas disponibles en este momento.");
         }
@@ -167,51 +167,7 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
- /*   public static void listaProductos(Tienda tienda) {
-        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-        if (productos.size() > 0) {
-            printTablaProductos(productos);
-        } else {
-            print("No hay productos disponibles en esta tienda.");
-        }
-    }*/
- // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    /*public static void mostrarProductosPorEdad(Tienda tienda, Cliente cliente) {
-    	
-        ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-        ArrayList<Producto> productosAdecuados = Producto.filtrarPorEdad(productos, cliente);
-        
-        // Verificar si hay productos disponibles para la edad del cliente
-        if (productosAdecuados.size()==0) {
-            print("No hay productos disponibles para " + (cliente.mayorEdad() ? "adultos" : "menores de edad") + " en esta tienda.");
-            print("¿Desea volver a elegir otra tienda?");
-            print("1. Sí");
-            print("2. No");
-            print("");
-            
-            int seleccion = escaner(2);
-            if (seleccion == 1) {
-                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
-            } else {
-                consultasEco(); // Regresar al menú de opciones
-            }
-        } else {
-            printTablaProductos(productosAdecuados);
-            print("¿Desea volver a elegir otra tienda?");
-            print("1. Sí");
-            print("2. No");
-            print("");
-            
-            int seleccion = escaner(2);
-            if (seleccion == 1) {
-                consultaPorCategoria(cliente); // Volver a seleccionar otra tienda
-            } else {
-                consultasEco(); // Regresar al menú de opciones
-            }
-        }
-    }*/
- // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    //Comentario
     public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
@@ -249,6 +205,7 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // --------------------------------------------------------------------------------------------------------------------------------------------------- 
+    //Comentario
     public static void seleccionarProducto(ArrayList<Producto> productos,Cliente cliente) {
         print("Seleccione un producto para ver sus detalles:");
         
@@ -273,7 +230,7 @@ public class Funcionalidad1 extends Identidad{
         if (opcion == 1) {
             seleccionarProducto(productos,cliente); // Volver a elegir otro producto
         } else {
-        	Main.escogerFuncionalidad(cliente);; // Regresar al menú principal
+        	Main.escogerFuncionalidad(); // Regresar al menú principal
         }
         }
     }

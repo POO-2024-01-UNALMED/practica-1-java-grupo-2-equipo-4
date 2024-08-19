@@ -64,7 +64,7 @@ public class Main {
 //-----------------------------------------------------------------------------------------------------------
 	public static void main(String[] args){
 		Deserializador.deserializarListas();
-		System.out.println(Tienda.getTiendas());
+	/*	System.out.println(Tienda.getTiendas());
 		Tienda tienda= new Tienda("apilipona");
 		Cliente cliente = new Cliente(); 
 		Carrito carrito = new Carrito();
@@ -87,6 +87,7 @@ public class Main {
 				duo1.add(pepe);
 				duo2.add(maria);
 				duo2.add(pedro);
+				
 				//Crear Pasillos
 				Pasillo p1 = new Pasillo("A7",Categoria.ALIMENTO);
 				Pasillo p2 = new Pasillo("A8",Categoria.BEBIDA);
@@ -97,7 +98,7 @@ public class Main {
 				
 				// Crear Productos para cada categoria
 
-	//			Producto producto1 = new Producto("Pan",0, Categoria.ALIMENTO,2,Edades.MENORES,"",Tamaño.GRANDE);
+		//		Producto producto1 = new Producto("Pan",0, Categoria.ALIMENTO,2,Edades.MENORES,"",Tamaño.GRANDE);
 				Producto producto2 = new Producto("Leche", Categoria.BEBIDA);
 				Producto producto3 = new Producto("Detergente", Categoria.LIMPIEZA);
 				Producto producto4 = new Producto("Shampoo", Categoria.PERSONAL);
@@ -105,16 +106,14 @@ public class Main {
 				Producto producto6 = new Producto("Televisor", Categoria.ELECTRONICO);
 				Producto producto7 = new Producto("Café", Categoria.BEBIDA);
 
-	//			Producto producto8 = new Producto("Manzana",0, Categoria.ALIMENTO,3,Edades.MENORES,"",Tamaño.MEDIANO);
+		//		Producto producto8 = new Producto("Manzana",0, Categoria.ALIMENTO,3,Edades.MENORES,"",Tamaño.MEDIANO);
 
 				Producto producto9 = new Producto("Jabón", Categoria.PERSONAL);
 				Producto producto10 = new Producto("Escoba", Categoria.LIMPIEZA);
 	
 				// Crear clientes
 				Cliente clienteMayor = new Cliente("Ana", 12345, 25, Enums.Genero.M);
-				Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);
-				
-				
+				Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);				
 
 				// Crear productos para diferentes categorías y edades
 				Producto producto15 = new Producto("Cereal", "CerealBrand", 2.99, Categoria.ALIMENTO, 101, Enums.Edades.ADULTOS, "Cereal integral saludable",Tamaño.PEQUEÑO);
@@ -203,13 +202,12 @@ public class Main {
 		tiendas.add(t1);
 		tiendas.add(t2);
 		tiendas.add(t3);
-		tiendas.add(t4);
+		tiendas.add(t4);*/
+		
 		clienteMayor.getTiendas().add(t1);
-		
-		
 		escogerFuncionalidad();
-		
-		
+
+
 	}
 	
 	public static void escogerFuncionalidad() {
@@ -277,7 +275,9 @@ public class Main {
 				Funcionalidad4.seleccionTienda();
 				break;
 			case 5:
+
 				//Funcionalidad5.personalizarTienda();
+
 				break;
 			case 6:
 				Serializador.serializarTodo();

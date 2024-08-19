@@ -75,17 +75,18 @@ public class Cliente extends Persona implements Serializable {
 		super(nombre, id, edad,genero);
 		this.dinero = dinero;
 		this.carrito = carrito;
+		super.getPersonas().add(this);
 	}
+	
+	public Cliente(String nombre, int p, int edad, Genero genero1) {
+		super(nombre, p, edad, genero1);
+		super.getPersonas().add(this);
+	}
+
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
-	
-	public Cliente(String nombre, int p, int edad, Genero genero1) {
-		super(nombre, p, edad, genero1);
-	}
-
-	
 	
 	public static int existeCliente(String nombre) {
 		int contador=0;

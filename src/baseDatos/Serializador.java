@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.sujetos.Persona;
 
 import java.io.IOException; 
 import java.io.FileNotFoundException;
@@ -31,12 +32,14 @@ public class Serializador {
 	public static void serializarTodo() {
 		serializar(Tienda.getTiendas(),"tiendas");
 		serializar(Tienda.getDesempleados(),"empleados");
-		serializar(Tienda.getProveedores(),"proovedores");
+		serializar(Tienda.getSieteProveedores(),"proovedores");
+		serializar(Persona.getPersonas(),"clientes");
 		}
 	public static void main(String[] args){
-//		new Proveedor(null,null,Categoria.ALIMENTO);
+		new Proveedor("san pacho",null,Categoria.ALIMENTO,Tienda.getTiendas(),null);
 //		Tienda.getDesempleados().add(new Domiciliario());
 //		Tienda.getDesempleados().add(new Cajero());
+		
 		serializarTodo();
 	}
 	
