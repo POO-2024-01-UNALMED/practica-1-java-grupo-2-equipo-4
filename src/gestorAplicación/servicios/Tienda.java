@@ -21,11 +21,11 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado;
 	
-//	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
+	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
 //	private ArrayList <Persona> cliente;
 //	private ArrayList <Persona> candidatos=new ArrayList<Persona>();	
-//	private ArrayList <Carrito> productosComprados = new ArrayList <Carrito>();	
-//	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
+	private ArrayList <Carrito> productosComprados = new ArrayList <Carrito>();	
+	private ArrayList <Producto> productosVendidos = new ArrayList <Producto>();
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	
@@ -51,21 +51,21 @@ public class Tienda implements Serializable{
 //		this.cliente = cliente;
 //	}
 //	
-//	public ArrayList<Carrito> getProductosComprados() {
-//		return productosComprados;
-//	}
-//
-//	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
-//		this.productosComprados = productosComprados;
-//	}
+	public ArrayList<Carrito> getProductosComprados() {
+		return productosComprados;
+	}
 
-//	public ArrayList<Producto> getProductosVendidos() {
-//		return productosVendidos;
-//	}
-//
-//	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
-//		this.productosVendidos = productosVendidos;
-//	}
+	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
+		this.productosComprados = productosComprados;
+	}
+
+	public ArrayList<Producto> getProductosVendidos() {
+		return productosVendidos;
+	}
+
+	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
+		this.productosVendidos = productosVendidos;
+	}
 
 
 	
@@ -186,13 +186,13 @@ public class Tienda implements Serializable{
 		ProductosVencidos = productosVencidos;
 	}
 	
-//	public ArrayList <Carrito> getCarritos() {
-//		return carritos;
-//	}
-//
-//	public void setCarritos(ArrayList <Carrito> carritos) {
-//		this.carritos = carritos;
-//	}
+	public ArrayList <Carrito> getCarritos() {
+		return carritos;
+	}
+
+	public void setCarritos(ArrayList <Carrito> carritos) {
+		this.carritos = carritos;
+	}
 
 	
 

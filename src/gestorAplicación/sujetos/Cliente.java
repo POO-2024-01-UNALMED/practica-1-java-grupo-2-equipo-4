@@ -18,7 +18,7 @@ public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = -6750540194444988134L;
 //Atributos----------------------------------------------------------------------------------------------------
 	
-	private Edades membresia;
+//	private Edades membresia;
 	private Tienda tienda;
 	private double dinero;
 	private Carrito carrito;

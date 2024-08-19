@@ -13,9 +13,9 @@ public class Carrito implements Serializable{
 	private Cliente cliente;
 	private Tienda tienda;
 	private Edades tipoCarrito;
-//	private Proveedor proveedor;
+	private Proveedor proveedor;
 //	private double montoTotal;
-//	private boolean pagado;
+	private boolean pagado;
 	
 	private static final long serialVersionUID = 834939881526017922L;
 //-------------------------------------------------------------------------------------------------------------
@@ -27,21 +27,21 @@ public class Carrito implements Serializable{
 		return productos;
 	}
 	
-//	public Proveedor getProveedor() {
-//		return proveedor;
-//	}
-//
-//	public void setProveedor(Proveedor proveedor) {
-//		this.proveedor = proveedor;
-//	}
-//
-//	public boolean isPagado() {
-//		return pagado;
-//	}
-//
-//	public void setPagado(boolean pagado) {
-//		this.pagado = pagado;
-//	}
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public boolean isPagado() {
+		return pagado;
+	}
+
+	public void setPagado(boolean pagado) {
+		this.pagado = pagado;
+	}
 
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos=productos;

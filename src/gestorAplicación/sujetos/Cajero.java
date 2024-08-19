@@ -5,8 +5,6 @@ import gestorAplicación.servicios.Tienda;
 
 public class Cajero extends Empleado {
 	//Contructores------------------------------------------------------------------------------------------------
-	
-	private int experiencia;
 	private static final long serialVersionUID = 1L;
 
 	public Cajero() {
@@ -18,14 +16,6 @@ public class Cajero extends Empleado {
 			boolean prestacionSalud, boolean prestacionPension) {
 		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.CAJERO);
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getExperiencia() {
-		return experiencia;
-	}
-
-	public void setExperiencia(int experiencia) {
-		this.experiencia = experiencia;
 	}
 
 	@Override
@@ -42,7 +32,7 @@ public class Cajero extends Empleado {
 
 	@Override
 	public boolean validarCriterios() {
-		if((this.getExperiencia()>=2)&&this.getEdad()<=25){
+		if((this.experiencia>=2)&&this.getEdad()<=25){
 			return true;
 		}else {
 			return false;
