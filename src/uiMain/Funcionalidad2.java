@@ -493,7 +493,7 @@ public class Funcionalidad2 extends Identidad {
 		
 		System.out.print("Escoja un numero: ");
 		
-		int decision=escaner(4);
+		int decision=escaner(5);
 		Categoria categoria = null;
 		ArrayList<Producto> productos=new ArrayList<Producto>();
 		Producto seleccionado = null;
