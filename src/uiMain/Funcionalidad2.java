@@ -361,29 +361,39 @@ public class Funcionalidad2 extends Identidad {
 	}
 	
 	public static void dondeSeAgreganProductos(Cliente cliente, Producto seleccionado) {
+		// Solicita la cantidad de productos al usuario
 		print("¿Cuantos productos de este quiere usted?");
 		print("");
 		System.out.print("Introduzca una cantidad de productos: ");
-		int cantidad=escaner();
-		StringBuilder resultado= cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
+		int cantidad = escaner();
+
+		// Agrega el producto al carrito y obtiene el resultado como un StringBuilder
+		StringBuilder resultado = cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
 		print("");
 		System.out.println(resultado);
+
+		// Verifica si el resultado contiene ciertos mensajes
 		boolean contieneProductosNoAgregados = resultado.indexOf("Productos no agregados") != -1;
-        boolean contieneProductosSuficientes = resultado.indexOf("productos suficientes") != -1;
-        if (contieneProductosNoAgregados && contieneProductosSuficientes) {
-            print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
-            print("1. Recibir la cantidad que tienen");
-            print("2. Escojer otro producto nuevamente");
-            int decision=escaner(2);
-            switch(decision) {
-            case 1:
-            	cliente.getCarrito().agregarAlCarrito(seleccionado,seleccionado.cantidadProducto());
-            	break;
-            case 2:
-            	elegirTipoBusqueda();
-            	break;
-            }
-        }
+		boolean contieneProductosSuficientes = resultado.indexOf("productos suficientes") != -1;
+		boolean contieneNoTienesDinero = resultado.indexOf("no tienes dinero") != -1;
+
+		if (contieneNoTienesDinero) {
+		    recomendarProductos();
+		} else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
+		    // Si el resultado contiene los mensajes de "Productos no agregados" y "productos suficientes"
+		    print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
+		    print("1. Recibir la cantidad que tienen");
+		    print("2. Escojer otro producto nuevamente");
+		    int decision = escaner(2);
+		    switch (decision) {
+		        case 1:
+		            cliente.getCarrito().agregarAlCarrito(seleccionado, seleccionado.cantidadProducto());
+		            break;
+		        case 2:
+		            elegirTipoBusqueda();
+		            break;
+		    }
+		}
 	}
 	
 	// Método auxiliar para ajustar el texto al ancho de la celda, cortando si es necesario
