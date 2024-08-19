@@ -17,13 +17,43 @@ public class Funcionalidad5 {
 		lineas();
 		print("Ha seleccionado Personalizar y modificar tiendas.");
 		print("Selecciona una de las tiendas disponibles para ti:");
-		Funcionalidad1.printTablaTiendas(Tienda.getTiendas());
+			
+		print("+-----------------------------------+----------+");
+        print("| No. |     Nombre de Tienda        |  Precio  |");
+        print("+-----------------------------------+----------+");
+
+        ArrayList<Tienda> tiendas = Tienda.getTiendas();
+        
+        // Filtrar las tiendas que ya tienen dueño
+        for (int i = tiendas.size() - 1; i >= 0; i--) {
+            if (tiendas.get(i).getDueño() != null) {
+                tiendas.remove(i);
+            }
+        }
+
+        for (int i = 0; i < tiendas.size(); i++) {
+            Tienda tienda = tiendas.get(i);
+            String nombreTienda = tienda.getNombre();
+            String precioTienda = String.format("$%,.2f", tienda.getSaldo()); // Formato para el precio
+
+            // Imprimir la fila de la tienda
+            print(String.format("| %2d | %-28s | %8s |", i + 1, nombreTienda, precioTienda));
+        }
+
+        // Agregar opción para volver
+        int numeroVolver = tiendas.size() + 1;
+        String opcionVolver = "Volver";
+
+        // Imprimir la fila de 'Volver'
+        print(String.format("| %2d | %-28s |          |", numeroVolver, opcionVolver));
+        print("+----+------------------------------+----------+");
+     // Selección de la tienda
 		int h =escaner();
+		Tienda tien=tiendas.get(h-1);
 		
-		Tienda tien=Tienda.getTiendas().get(h-1);
 		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
-			tien.setDueño(clien);
+			tien.setDueño(clien);// Asignar la tienda al cliente
 			lineas();
 			print("Has seleccionado la tienda: " + tien.getNombre());
 			print("Se te resto $"+tien.getSaldo()+" de tu saldo");
@@ -61,6 +91,7 @@ public class Funcionalidad5 {
 			}
 		}
 		public static void reorganizarPasillos(Tienda tien) {
+			tien.getPasillos().clear();
 			lineas();
 			int i=1;
 			while(true){
@@ -97,51 +128,40 @@ public class Funcionalidad5 {
 
 	private static void llamarProveedor(Tienda tien) {
 		// TODO Auto-generated method stub
-		if ((tien.disponibilidadProductos()==true)) {
-      		lineas();
+		lineas();
+		if (tien.disponibilidadProductos()==true) {
       		print(tien.getDueño().getNombre() +" de la tienda: \""+tien.getNombre()+ "\", sus pasillos estan vacios ");
-      		print("¿Desea llamar a un proveedor?\n1.Si\n2.No");
-      		int x3=escaner();
-      		if(x3==1) {
-      			print(tien.listarProveedores());
-      			int k=escaner();
-      			Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
-      			print("Se han llenado los pasillos");
-      		}
+      		print("He aquí nuestros proveedores:");
+      		print(tien.listarProveedores());
+      		int k=escaner();
+      		Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
+      		print("Se han llenado los pasillos");
       	}
 	}
 
 	private static void contratar(Tienda tien) {
 		// TODO Auto-generated method stub
 		lineas();
-  		print("¿Desea contratar empleados?\n1.Si\n2.No");
-  		int x4=escaner();
-  		if(x4==1) {
-  			int j=1;
-  	      	while(true){
-  	      		lineas();
-  	      		print("¿Qué tipo de empleado necesita que sea el empleado numero: "+j+"?");
-  	      		String[] ems={"Domiciliario","Concerje","Cajero"};
-  	      		int n=1;
-  	      		for(String e:ems) {
-  	      			print(n+"."+e);
-  	      			n++;
-  	      		}
-  	      		int x5=escaner();
-  	      		tien.contratarEmpleados(x5);
-  	      		
-  	      		System.out.println(tien.mostrarEmpleados());
-  	      		System.out.println(tien.mostrarEmpleados());
-  	      		j++;
-  	      		print("1.Continuar\n2.Terminar");
-  	      		int x6 = escaner();
-  	      		if(x6!=1) {
-  	      			break;
-  	      		}
-  		}
-  		
-  		
-  	}
-}
+		int j=1;
+		while(true){
+      		print("¿Qué tipo de empleado necesita que sea el empleado numero: "+j+"?");
+      		String[] ems={"Domiciliario","Concerje","Cajero"};
+      		int n=1;
+      		for(String e:ems) {
+      			print(n+"."+e);
+      			n++;
+      		}
+      		int x5=escaner();
+      		tien.contratarEmpleados(x5);
+      		
+      		System.out.println(tien.mostrarEmpleados());
+      		j++;
+      		print("1.Continuar\n2.Terminar");
+      		int x6 = escaner();
+      		if(x6!=1) {
+      			break;
+      		}  	
+		}
 	}
+}
 
