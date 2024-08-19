@@ -105,7 +105,6 @@ public class Funcionalidad2 extends Identidad {
 			System.out.println(" [S] pag. Si desea imprimir los 4 proximos productos, escriba S");
 		}
 		print("");
-		System.out.print("¿Que desea realizar?: ");
 	}
 	
 	public static Producto impresionSeleccionCategoria(Cliente cliente, ArrayList<Producto> productos, Categoria categoria, boolean malSeleccionado) {
