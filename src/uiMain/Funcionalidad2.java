@@ -435,11 +435,12 @@ public class Funcionalidad2 extends Identidad {
 			}
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			ArrayList<Producto> posiblepeticion=cliente.getTienda().productosNoActuales(categoria);
+			System.out.println(posiblepeticion);
 			print("+--------------------------------------------+");
 			print("| No. |      Nombre de Producto/Tamaño       |");
 			print("+--------------------------------------------+");
 			int anchoCelda = 34; 
-			for (int i = 0; i < productos.size(); i++) {
+			for (int i = 0; i < posiblepeticion.size(); i++) {
 				String nombreProducto = posiblepeticion.get(i).getNombre();
 			        String tamañoProducto = posiblepeticion.get(i).getTamaño().getTamaño();
 			        String nombreYtamaño = nombreProducto + "/" + tamañoProducto;
@@ -496,7 +497,7 @@ public class Funcionalidad2 extends Identidad {
 
 			    // Pie de la tabla
 			    print("+----+--------------------+---------------+----------+----------+----------+");
-
+			  
 			
 		case 5:
 			Main.escogerFuncionalidad();
