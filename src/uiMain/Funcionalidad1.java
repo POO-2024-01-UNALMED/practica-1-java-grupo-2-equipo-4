@@ -74,12 +74,25 @@ public class Funcionalidad1 extends Identidad{
                 consultasEco();
             } else {
                 Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
-                Cliente.asignaciones(cliente,tienda);
+                print("¿Deseas usar un presupuesto por defecto o ingresar uno personalizado?");
+                print("1. Presupuesto por defecto");
+                print("2. Presupuesto personalizado");
+
+                int opcionPresupuesto = escaner(2);
+                if (opcionPresupuesto == 1) {
+                    Cliente.asignaciones(cliente, tienda);
+                } else if (opcionPresupuesto == 2) {
+                    print("Ingresa la cantidad de dinero que deseas asignar:");
+                    double cantidadPersonalizada = sc.nextDouble(); // Método para obtener la cantidad de dinero del usuario
+                    Cliente.asignaciones(cliente, tienda,cantidadPersonalizada);
+                }
                 print("Has seleccionado la tienda: " + tienda.getNombre());
                 print("Esta servira para escoger productos en la funcionalidad 2");
                 print("1. Desea chismosear la descripcion de productos en la tienda");
                 print("2. Desea ir al menu principal para empezar a hacer sus compras");
                 print("3. Volver a escoger tienda");
+                print("");
+                print("Escoja un número: ");
                 int decision=escaner(3);
                 switch(decision) {
                 case 1:
@@ -121,12 +134,26 @@ public class Funcionalidad1 extends Identidad{
                     consultasEco();
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
-                    Cliente.asignaciones(cliente,tienda);
+                    print("¿Deseas usar un presupuesto por defecto o ingresar uno personalizado?");
+                    print("1. Presupuesto por defecto");
+                    print("2. Presupuesto personalizado");
+
+                    int opcionPresupuesto = escaner(2);
+                    if (opcionPresupuesto == 1) {
+                        Cliente.asignaciones(cliente, tienda);
+                    } else if (opcionPresupuesto == 2) {
+                        print("Ingresa la cantidad de dinero que deseas asignar:");
+                        double cantidadPersonalizada = sc.nextDouble(); // Método para obtener la cantidad de dinero del usuario
+                        Cliente.asignaciones(cliente, tienda,cantidadPersonalizada);
+                    }
+                  
                     print("Has seleccionado la tienda: " + tienda.getNombre());
                     print("Esta servira para escoger productos en la funcionalidad 2");
                     print("1. Desea chismosear la descripcion de productos en la tienda");
                     print("2. Desea ir al menu principal para empezar a hacer sus compras");
                     print("3. Volver a escoger tienda");
+                    print("");
+                    print("Escoja un número: ");
                     int decision=escaner(3);
                     switch(decision) {
                     case 1:
@@ -151,7 +178,10 @@ public class Funcionalidad1 extends Identidad{
     }
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    //Comentario 
+    //Este método que permite a un cliente consultar y gestionar su membresía.
+    //Dependiendo de la membresía actual del cliente, el método proporciona 
+    //información sobre los beneficios, permite mejorar la membresía o 
+    //seleccionar una nueva membresía si el cliente no tiene una.
     public static void consultaMembresias(Cliente cliente) {
         if (Tienda.buscarTienda()) {
         	if (cliente.mayorEdad() ) {
@@ -170,6 +200,8 @@ public class Funcionalidad1 extends Identidad{
         			        	print("");
         		                print("1. Desea ir al menu principal");
         		                print("2. Volver al menu de consulta");
+        		                print("");
+        		                print("Escoja un número: ");
         		                
         		                int decision=escaner(2);
         		                switch(decision) {
@@ -185,25 +217,51 @@ public class Funcionalidad1 extends Identidad{
         		            // Ofrecer mejorar la membresía
         		        	print("¿Te gustaría mejorar tu membresía?");
         		        	print("1. Si");
-        		        	print("1. No");
+        		        	print("2. No");
+        		        	 print("");
+        		             print("Escoja un número: ");
         		        	 int decision=escaner(2);
                              switch(decision) {
                              case 1:
                              	print("Puedes mejorar tu membresia a: ");
                              	Membresia nuevaMembresia = printTablaMembresias(cliente);
-                                print(Cliente.evolucionarMembresia(cliente, nuevaMembresia));
-                            
-                             	break;
-                             case 2:
-                            	 Main.escogerFuncionalidad();
-                             	break;
+                             	double costoEvolucion = Cliente.calcularCostoEvolucion(cliente.getMembresia(), nuevaMembresia);
+                             	print("Esto costará " + costoEvolucion + " y tu saldo actual es " + cliente.getDinero());
+            		        	print("1. Si");
+            		        	print("2. No");
+            		        	 print("");
+            		             print("Escoja un número: ");
+            		        	 int decisionest=escaner(2);
+                                 switch(decisionest) {
+                                 case 1:
+                                	print(Cliente.evolucionarMembresia(cliente, nuevaMembresia));
+                                    print("");
+             		                print("1. Desea ir al menu principal");
+             		                print("2. Volver al menu de consulta");
+             		                print("");
+             		                print("Escoja un número: ");
+             		                int decisiones=escaner(2);
+             		                switch(decisiones) {
+             		                case 1:
+             		                	Main.escogerFuncionalidad();
+             		                	break;
+             		                case 2:
+             		                	consultasEco();
+             		                	break;
+             		                }	
+                                
+                                 case 2:
+                                	 Main.escogerFuncionalidad();
+                                 	break;
+                                 }
                              }
-        		           
         		        }
         		    } else {
         		        // Cliente sin membresía
         		        	print("No tienes una membresía. ¿Te gustaría elegir una?");
         		        printTablaMembresias();
+        		        print("");
+        		        print("Escoja un número: ");
         		        
         		        int decision=escaner(4);
                         switch(decision) {
@@ -235,6 +293,8 @@ public class Funcionalidad1 extends Identidad{
 	        	print("");
                 print("1. Desea ir al menu principal");
                 print("2. Volver al menu de consulta");
+                print("");
+                print("Escoja un número: ");
                 int decision=escaner(3);
                 switch(decision) {
                 case 1:
@@ -302,6 +362,8 @@ public class Funcionalidad1 extends Identidad{
         print("Desea elegir otra tienda?");
         print("1. Sí");
         print("2. No");
+        print("");
+        print("Escoja un número: ");
         int opcion = escaner(2);
 
         if (opcion == 1) {
@@ -318,6 +380,8 @@ public class Funcionalidad1 extends Identidad{
       Después de mostrar los detalles del producto, se le da la opción de elegir otro producto o regresar al menú principal.*/ 
     public static void seleccionarProducto(ArrayList<Producto> productos,Cliente cliente) {
         print("Seleccione un producto para ver sus detalles:");
+        print("");
+        print("Escoja un número: ");
         
         int seleccionProducto = escaner(8);
         if(seleccionProducto== productos.size()+1 ) {
@@ -334,6 +398,8 @@ public class Funcionalidad1 extends Identidad{
         print("¿Desea elegir otro producto?");
         print("1. Sí");
         print("2. No");
+        print("");
+        print("Escoja un número: ");
 
         int opcion = escaner(2);
 
@@ -346,42 +412,99 @@ public class Funcionalidad1 extends Identidad{
         }
     }
   // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-        
-
-    // Método mejoraMembresia
-    public static void primeraMembresia(Cliente cliente,Membresia membresia) {
+   // Método que gestiona la selección y compra de una membresía para un cliente
+    public static void primeraMembresia(Cliente cliente, Membresia membresia) {
+        Scanner scanner = new Scanner(System.in);
         String mensaje = "";
-        
+
         // Obtener perfil demográfico
         String perfilDemografico = Cliente.PerfilDemografico(cliente);
 
         switch (membresia) {
             case BASICO:
-                mensaje = "Como miembro Básico, ";
-                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.BASICO);
-                print(mensaje);
-                
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico, Membresia.BASICO);
+                print("El costo de la membresía es: $" + Membresia.BASICO.getPrecio());
                 break;
             case PREMIUM:
-                mensaje = "Como miembro Premium, ";
-                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.PREMIUM);
-                print(mensaje);
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico, Membresia.PREMIUM);
+                print("El costo de la membresía es: $" + Membresia.PREMIUM.getPrecio() );
                 break;
             case VIP:
-                mensaje = "Como miembro VIP, ";
-                mensaje += Cliente.getMensajePorPerfil(perfilDemografico,Membresia.VIP);
-                print(mensaje);
+                mensaje += Cliente.getMensajePorPerfil(perfilDemografico, Membresia.VIP);
+                print("El costo de la membresía es: $" + Membresia.VIP.getPrecio() );
                 break;
             default:
-                mensaje = "Ha ocurrido un error. ";
+                mensaje = "Ha ocurrido un error.";
                 break;
         }
 
+        // Mostrar beneficios de la membresía seleccionada
+        print(mensaje);
+        
+        
 
-    
+        // Preguntar si desea comprar la membresía
+        print("¿Deseas comprar esta membresía?");
+        print("1. Sí");
+        print("2. No");
+        print("");
+        print("Escoja un número: ");
+
+        int decision = escaner(2);
+        switch (decision) {
+            case 1:
+                // Verificar si el cliente tiene suficiente dinero para la membresía seleccionada
+                double costo = Cliente.calcularCostoEvolucion(cliente.getMembresia(), membresia);
+                if (cliente.getDinero() >= costo) {
+                    cliente.setDinero(cliente.getDinero() - costo); // Deduce el costo del saldo del cliente
+                    cliente.setMembresia(membresia); // Actualiza la membresía del cliente
+                    print("¡Felicidades! Ahora eres miembro de la membresía " + membresia.toString());
+                    // Volver al menú principal o consultar otra membresía
+                    print("1. Volver al menú principal");
+                    print("2. Consultar otra membresía");
+                    print("");
+                    print("Escoja un número: ");
+                    int siguientePaso = escaner(2);
+                    if (siguientePaso == 1) {
+                        Main.escogerFuncionalidad();
+                    } else {
+                        consultaMembresias(cliente);
+                    }
+                } else {
+                    print("Lo siento, no tienes suficiente saldo para comprar esta membresía.");
+                    print("1. Volver al menú principal");
+                    print("2. Consultar otra membresía");
+                    print("");
+                    print("Escoja un número: ");
+                    int siguientePaso = escaner(2);
+                    if (siguientePaso == 1) {
+                        Main.escogerFuncionalidad();
+                    } else {
+                        consultaMembresias(cliente);
+                    }
+                }
+                break;
+            case 2:
+                // Volver al menú principal o consultar otra membresía
+                print("¿Deseas volver al menú principal o consultar otra membresía?");
+                print("1. Volver al menú principal");
+                print("2. Consultar otra membresía");
+                print("");
+                print("Escoja un número: ");
+                int opcion = escaner(2);
+                if (opcion == 1) {
+                    Main.escogerFuncionalidad();
+                } else {
+                    consultaMembresias(cliente);
+                }
+                break;
+            default:
+                print("Opción no válida. Inténtelo de nuevo.");
+                primeraMembresia(cliente, membresia); // Volver a intentar la selección
+                break;
+        }
+        scanner.close();
     }
-
     
 
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -510,7 +633,7 @@ public class Funcionalidad1 extends Identidad{
 	            print(String.format("| %-3d |%s%s%s|", contador, paddingIzquierdo, membresiaTexto, paddingDerecho));
 	            contador++;
 	        }
-	        int numeroVolver = contador + 1;
+	        int numeroVolver = contador;
 	        String opcionVolver = "Volver";
 	        int espaciosVolver = (anchoCelda - opcionVolver.length()) / 2;
 	        String paddingIzquierdoVolver = " ".repeat(Math.max(0, espaciosVolver));
@@ -528,12 +651,18 @@ public class Funcionalidad1 extends Identidad{
 	        int contador = 1;
 	        Map<Integer, Membresia> opciones = new HashMap<>(); // Mapa para rastrear las opciones disponibles
 
-	        for (Membresia membresia : Membresia.values()) {
-	            // Saltar la membresía actual del cliente
-	            if (membresia == cliente.getMembresia()) {
-	                continue;
-	            }
+	        // Definir un orden lógico de membresías usando ArrayList
+	        ArrayList<Membresia> ordenMembresias = new ArrayList<>();
+	        ordenMembresias.add(Membresia.BASICO);
+	        ordenMembresias.add(Membresia.PREMIUM);
+	        ordenMembresias.add(Membresia.VIP);
 
+	        // Obtener la posición de la membresía actual del cliente en la lista
+	        int indiceMembresiaActual = ordenMembresias.indexOf(cliente.getMembresia());
+
+	        // Mostrar solo las membresías superiores a la actual
+	        for (int i = indiceMembresiaActual + 1; i < ordenMembresias.size(); i++) {
+	            Membresia membresia = ordenMembresias.get(i);
 	            String membresiaTexto = membresia.toString();
 	            int espacios = (anchoCelda - membresiaTexto.length()) / 2;
 	            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
@@ -544,7 +673,7 @@ public class Funcionalidad1 extends Identidad{
 	            contador++;
 	        }
 
-	        int numeroVolver = contador + 1;
+	        int numeroVolver = contador;
 	        String opcionVolver = "Volver";
 	        int espaciosVolver = (anchoCelda - opcionVolver.length()) / 2;
 	        String paddingIzquierdoVolver = " ".repeat(Math.max(0, espaciosVolver));
@@ -554,8 +683,19 @@ public class Funcionalidad1 extends Identidad{
 	        print("+--------------------------+");
 
 	        int seleccion = escaner(contador); // Leer selección del cliente
+
+	        // Si el cliente selecciona "Volver", retornamos null o lo llevamos al menú anterior
+	        if (seleccion == numeroVolver) {
+	            print("Volviendo al menú anterior...");
+	            return null;
+	        }
+
 	        return opciones.get(seleccion); // Devolver la membresía seleccionada
 	    }
+
+
+
+
 
     
 }

@@ -279,17 +279,25 @@ public class Tienda implements Serializable{
 		return productos;
 	}
 	
-	public ArrayList<Producto> buscarProductos(Cliente cliente,String nombre) {
-		ArrayList<Producto> productos = new ArrayList<Producto>();
-		for (Pasillo i:cliente.getTienda().getPasillos()) {
-			for (Producto j:i.getProductos()){
-				if (new StringBuilder(j.getNombre().toLowerCase()).indexOf(nombre.toLowerCase())!=-1){
-					productos.add(j);
-				}
-			}
-		}
-		return productos;
+	public ArrayList<Producto> buscarProductos(Cliente cliente, String nombre) {
+	    ArrayList<Producto> productos = new ArrayList<Producto>();
+	    for (Pasillo i : cliente.getTienda().getPasillos()) {
+	        for (Producto j : i.getProductos()) {
+	            boolean exists = false;
+	            for (Producto prod : productos) {
+	                if (prod.getId() == j.getId()) {
+	                    exists = true;
+	                    break;
+	                }
+	            }
+	            if (!exists && new StringBuilder(j.getNombre().toLowerCase()).indexOf(nombre.toLowerCase()) != -1) {
+	                productos.add(j);
+	            }
+	        }
+	    }
+	    return productos;
 	}
+
 	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
@@ -632,6 +640,45 @@ public class Tienda implements Serializable{
 				return s;
 			}
 		}
+		
+
+	    // Método para recomendar productos
+	    public ArrayList<Producto> recomendarProductos(Producto productoOriginal, Cliente cliente) {
+	        ArrayList<Producto> productosRecomendados = new ArrayList<>();
+	        
+	        // Obtener el precio del producto original
+	        double precioOriginal = productoOriginal.getPrecio();
+	        double montoActual=0;
+			for(Producto z:cliente.getCarrito().getProductos()) {
+				montoActual+=z.getPrecio();
+			} 
+	        // Buscar productos similares por nombre y por categoría
+	        for (Pasillo pasillo : pasillos) {
+	            for (Producto producto : pasillo.getProductos()) {
+	                // Verificar si el producto es más barato que el original y se ajusta al presupuesto del cliente
+	                if (producto.getPrecio() < precioOriginal && producto.getPrecio() <= cliente.getDinero()-montoActual) {
+	                    // Buscar coincidencia de nombres parciales
+	                    if (producto.getNombre().toLowerCase().contains(productoOriginal.getNombre().toLowerCase())) {
+	                        productosRecomendados.add(producto);
+	                    }
+	                    // Buscar coincidencia de categoría
+	                    if (producto.getCategoria().equals(productoOriginal.getCategoria())) {
+	                        productosRecomendados.add(producto);
+	                    }
+	                }
+	            }
+	        }
+	        
+	        // Eliminar duplicados si el producto fue agregado tanto por nombre como por categoría
+	        List<Producto> productosSinDuplicados = new ArrayList<>();
+	        for (Producto producto : productosRecomendados) {
+	            if (!productosSinDuplicados.contains(producto)) {
+	                productosSinDuplicados.add(producto);
+	            }
+	        }
+	        
+	        return new ArrayList<Producto>(productosSinDuplicados);
+	    }
 		
 		public static void devolverProductos() {
 			

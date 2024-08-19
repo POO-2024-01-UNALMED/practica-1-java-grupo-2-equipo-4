@@ -137,6 +137,10 @@ public class Carrito implements Serializable{
 
 	public StringBuilder agregarAlCarrito(Producto seleccionado, int cantidad) {
 		int tamañoMaximo;
+		double montoActual=0;
+		for(Producto z:productos) {
+			montoActual+=z.getPrecio();
+		}
 		if (tipoCarrito==Edades.ADULTOS) {
 			tamañoMaximo=15;
 		}
@@ -149,7 +153,7 @@ public class Carrito implements Serializable{
 		if (productos.size()>=tamañoMaximo) {
 			return new StringBuilder("Producto no agregado, ya no tienes espacio en el carrito");
 		}
-		if (cliente.getDinero()-(cliente.getTienda().cantidadProducto(seleccionado))*cantidad<0) {
+		if (cliente.getDinero()-montoActual-((seleccionado.getPrecio())*cantidad)<0) {
 			if (cantidad==1){
 				return new StringBuilder("Producto no agregado, ya no tienes dinero para agregar este producto");
 			}

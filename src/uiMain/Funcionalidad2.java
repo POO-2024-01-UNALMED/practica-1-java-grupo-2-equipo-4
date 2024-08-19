@@ -10,6 +10,7 @@ import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Pasillo;
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.servicios.Carrito;
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
@@ -287,7 +288,7 @@ public class Funcionalidad2 extends Identidad {
 		System.out.print("Escoja un numero: ");
 		int decisionCategoria = escaner(enumerado);
 		if(decisionCategoria==enumerado) {
-			elegirTipoBusqueda();
+			elegirTipoBusqueda(cliente);
 		}
 		categoria=Categoria.resolverEnum(decisionCategoria);
 		productos=new ArrayList<Producto>();
@@ -297,7 +298,7 @@ public class Funcionalidad2 extends Identidad {
 			System.out.print("Escoja un numero nuevamente: ");
 			decisionCategoria=escaner(enumerado);
 			if(decisionCategoria==enumerado) {
-				elegirTipoBusqueda();
+				elegirTipoBusqueda(cliente);
 			}
 			categoria=Categoria.resolverEnum(decisionCategoria);
 			productos=new ArrayList<Producto>();
@@ -325,11 +326,11 @@ public class Funcionalidad2 extends Identidad {
 		}
 		if (string) {
 			if (Integer.parseInt(nombre)==3) {
-				elegirTipoBusqueda();
+				elegirTipoBusqueda(cliente);
 			}
 		}
 		if (nombre.toLowerCase().equals("volver")) {
-			elegirTipoBusqueda();
+			elegirTipoBusqueda(cliente);
 		}
 		productos=new ArrayList<Producto>();
 		productos=cliente.getTienda().buscarProductos(cliente,nombre);
@@ -347,11 +348,11 @@ public class Funcionalidad2 extends Identidad {
 			}
 			if (string) {
 				if (Integer.parseInt(nombre)==3) {
-					elegirTipoBusqueda();
+					elegirTipoBusqueda(cliente);
 				}
 			}
 			if (nombre.toLowerCase().equals("volver")) {
-				elegirTipoBusqueda();
+				elegirTipoBusqueda(cliente);
 			}
 			productos=new ArrayList<Producto>();
 			productos=cliente.getTienda().buscarProductos(cliente,nombre);
@@ -371,6 +372,7 @@ public class Funcionalidad2 extends Identidad {
 		StringBuilder resultado = cliente.getCarrito().agregarAlCarrito(seleccionado, cantidad);
 		print("");
 		System.out.println(resultado);
+		print("");
 
 		// Verifica si el resultado contiene ciertos mensajes
 		boolean contieneProductosNoAgregados = resultado.indexOf("Productos no agregados") != -1;
@@ -378,8 +380,57 @@ public class Funcionalidad2 extends Identidad {
 		boolean contieneNoTienesDinero = resultado.indexOf("no tienes dinero") != -1;
 
 		if (contieneNoTienesDinero) {
-		    recomendarProductos();
-		} else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
+				ArrayList<Producto> productosRecomendados=cliente.getTienda().recomendarProductos(seleccionado,cliente);
+				if (productosRecomendados.isEmpty()) {
+		            System.out.println("No se encontraron productos recomendados.");
+		            print("Voliviendo a funcionalidad 2");
+		            elegirTipoBusqueda(cliente);
+		        }
+
+		        // Imprimir encabezado de la tabla
+		        System.out.println("+----+--------------------+---------------+----------+----------+-----------+");
+		        System.out.println("| No | Nombre             | Marca         | Precio   | Categoría| Descripción");
+		        System.out.println("+----+--------------------+---------------+----------+----------+-----------+");
+
+		        // Imprimir cada producto en la tabla
+		       for (int i = 0; i < productosRecomendados.size(); i++) {
+		            Producto producto = productosRecomendados.get(i);
+
+		            String nombreProducto = producto.getNombre();
+		            String marcaProducto = producto.getMarca();
+		            String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
+		            String categoriaProducto = producto.getCategoria().getTexto();
+		            String descripcionProducto = producto.getDescripcion();
+
+		            // Imprimir la fila de la tabla
+		            System.out.printf("| %-2d | %-18s | %-13s | %-8s | %-8s | %-10s |%n",
+		                    i + 1,
+		                    ajustarTexto(nombreProducto, 18),
+		                    ajustarTexto(marcaProducto, 13),
+		                    ajustarTexto(precioProducto, 8),
+		                    ajustarTexto(categoriaProducto, 8),
+		                    ajustarTexto(descripcionProducto, 10)
+		            );
+		        }
+		        // Imprimir línea final de la tabla
+		        System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+		        System.out.print("Seleccione el número del producto que desea agregar al carrito: ");
+		        int seleccion = sc.nextInt();
+		        sc.nextLine(); // Limpiar el buffer
+
+		        if (seleccion > 0 && seleccion <= productosRecomendados.size()) {
+		            Producto productoSeleccionado = productosRecomendados.get(seleccion - 1);
+		            cantidad=1;
+		            if (cantidad > 0) {
+		                resultado = cliente.getCarrito().agregarAlCarrito(productoSeleccionado, cantidad);
+		                System.out.println(resultado.toString());
+		            } else {
+		                System.out.println("Cantidad no válida.");
+		            }
+		        } else {
+		            System.out.println("Selección inválida.");
+		        }
+		    } else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
 		    // Si el resultado contiene los mensajes de "Productos no agregados" y "productos suficientes"
 		    print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
 		    print("1. Recibir la cantidad que tienen");
@@ -390,10 +441,11 @@ public class Funcionalidad2 extends Identidad {
 		            cliente.getCarrito().agregarAlCarrito(seleccionado, seleccionado.cantidadProducto());
 		            break;
 		        case 2:
-		            elegirTipoBusqueda();
+		            elegirTipoBusqueda(cliente);
 		            break;
 		    }
 		}
+		elegirTipoBusqueda(cliente);
 	}
 	
 	// Método auxiliar para ajustar el texto al ancho de la celda, cortando si es necesario
@@ -405,8 +457,7 @@ public class Funcionalidad2 extends Identidad {
 				    }
 				}
 	
-	public static void elegirTipoBusqueda() {
-		Cliente cliente=(Cliente)identificarPersona();
+	public static void elegirTipoBusqueda(Cliente cliente) {
 		Tienda tienda=cliente.getTienda();
 		if(tienda==null) {
 			lineas();
@@ -434,7 +485,10 @@ public class Funcionalidad2 extends Identidad {
 		if (cliente.getCarrito().getProductos().size()>0) {
 			print(" 3. Eliminar un producto de mi carrito");
 		}
-		print(" 4. Volver");
+		print(" 4. Volver y descartar compra");
+		if (cliente.getCarrito().getProductos().size()>0) {
+			print(" 5. Guardar carrito como factura");
+		}
 		print("");
 		
 		System.out.print("Escoja un numero: ");
@@ -452,11 +506,14 @@ public class Funcionalidad2 extends Identidad {
 			break;
 		case 3:
 			if(cliente.getCarrito().getProductos().size()==0) {
+				lineas();
 				print("Usted no puede seleccionar esta opcion");
-				elegirTipoBusqueda();
+				elegirTipoBusqueda(cliente);
 				break;
 			}
-			print("Estos son los productos de su carrito");
+			lineas();
+			print("Estos son los productos de su carrito: ");
+			print("");
 			productos=cliente.getCarrito().getProductos();
 			
 			int anchoCeldaNombre = 20;
@@ -504,17 +561,28 @@ public class Funcionalidad2 extends Identidad {
 
 			    // Pie de la tabla
 			    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
-			    System.out.print("Seleccione el número del producto que desea eliminar del carrito: ");
+			    print("");
+			    System.out.println("Seleccione el número del producto que desea eliminar del carrito ");
+			    System.out.println(contador+"Cancelar borrar producto del carrito");
+			    System.out.print("Seleccione una opcion: ");
 			    int seleccion = sc.nextInt();
+			    if (seleccion==contador) {
+			    	elegirTipoBusqueda(cliente);
+			    	break;
+			    }
 
 			    if (seleccion > 0 && seleccion <= cliente.getCarrito().getProductos().size()) {
 			        Producto productoSeleccionado = cliente.getCarrito().getProductos().get(seleccion - 1);
+			        print("");
 			        System.out.print("Ingrese la cantidad que desea eliminar: ");
+			        print("");
 			        int cantidadEliminar = sc.nextInt();
 
 			        if (cantidadEliminar > 0 && cantidadEliminar <= cliente.getCarrito().contarRepeticiones(productoSeleccionado)) {
 			            cliente.getCarrito().eliminarProductos(productoSeleccionado, cantidadEliminar);
+			            lineas();
 			            System.out.println("Productos actualizados en el carrito:");
+			            print("");
 			            
 			            // Encabezado de la tabla
 			            print("+----+--------------------+---------------+----------+----------+----------+");
@@ -558,9 +626,30 @@ public class Funcionalidad2 extends Identidad {
 			        System.out.println("Selección inválida.");
 			    }
 			    print("+----+--------------------+---------------+----------+----------+----------+");
+			    elegirTipoBusqueda(cliente);
 
 			
 		case 4:
+			 Carrito carrito = cliente.getCarrito();
+			    tienda = cliente.getTienda();
+			    
+			    for (Producto producto : carrito.getProductos()) {
+			        for (Pasillo pasillo : tienda.getPasillos()) {
+			            if (pasillo.getCategoria().equals(producto.getCategoria())) {
+			                pasillo.getProductos().add(producto);  // Reagrega el producto al pasillo correspondiente
+			                break;
+			            }
+			        }
+			    }
+			    carrito.getProductos().clear();  // Vacía el carrito
+			    System.out.println("Se han descartado todos los productos del carrito y se han devuelto a los pasillos correspondientes.");
+			    cliente.setTienda(null);
+			    cliente.setCarrito(null);
+			Main.escogerFuncionalidad();
+			break;
+		case 5:
+			cliente.getTienda().getCarritos().add(cliente.getCarrito());
+			cliente.setTienda(null);
 			Main.escogerFuncionalidad();
 			break;
 		}

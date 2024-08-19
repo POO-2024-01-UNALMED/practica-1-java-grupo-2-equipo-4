@@ -14,7 +14,7 @@ import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Tamaño;
 import gestorAplicación.sujetos.*;
 
-public class Main {
+public class Main extends Identidad{
 	public static void print(String p) {
 		System.out.println(p);
 	}
@@ -284,8 +284,6 @@ public class Main {
 	       tienda.getEmpleados().add(empleado);
 		
 		escogerFuncionalidad();
-
-
 	}
 	
 	public static void escogerFuncionalidad() {
@@ -344,9 +342,11 @@ public class Main {
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				Funcionalidad2.elegirTipoBusqueda();
+				Cliente cliente=(Cliente)identificarPersona();
+				Funcionalidad2.elegirTipoBusqueda(cliente);
 				break;
 			case 3:
+
 				System.out.println("Seleccione su rol:");
 		        System.out.println("1. Cliente");
 		        System.out.println("2. Persona (Dueño de tiendas)");
@@ -400,6 +400,12 @@ public class Main {
 		                break;
 		        }		        
 		    
+
+				//imorimir facturas organizar //
+				Funcionalidad3.imprimirFactura(((Cliente) Identidad.identificarPersona()));
+				
+				//Funcionalidad3.mostrarFacturas();
+
 				break;
 			case 4:
 				Funcionalidad4.seleccionTienda();
