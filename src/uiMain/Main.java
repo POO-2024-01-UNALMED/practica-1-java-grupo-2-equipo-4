@@ -347,10 +347,59 @@ public class Main {
 				Funcionalidad2.elegirTipoBusqueda();
 				break;
 			case 3:
-				//imorimir facturas organizar //
-				Funcionalidad3.imprimirFactura(((Cliente) Identidad.identificarPersona()));
-				
-				Funcionalidad3.mostrarFacturas();
+				System.out.println("Seleccione su rol:");
+		        System.out.println("1. Cliente");
+		        System.out.println("2. Persona (Dueño de tiendas)");
+
+		        int rol = escaner();
+
+		        switch (rol) {
+		            case 1:
+		                System.out.println("Seleccione una opción:");
+		                System.out.println("1. Ver facturas pagadas");
+		                System.out.println("2. Ver facturas por pagar");
+
+		                int opcionCliente = escaner();
+		                boolean pagadas = opcionCliente == 1;
+
+		                Funcionalidad3.imprimirFacturasCliente(cliente, pagadas);
+
+		                System.out.println("Seleccione el número de la factura para ver los detalles:");
+		                int numeroFactura = escaner();
+
+		                ArrayList<Carrito> facturas = cliente.obtenerFacturas(pagadas);
+		                if (numeroFactura > 0 && numeroFactura <= facturas.size()) {
+		                    Funcionalidad3.imprimirFacturaDetalle(facturas.get(numeroFactura - 1));
+		                } else {
+		                    System.out.println("Número de factura inválido.");
+		                }
+		                break;
+
+		            case 2:
+		                System.out.println("Seleccione una tienda:");
+		                for (int i = 0; i < cliente.getTiendas().size(); i++) {
+		                    System.out.println((i + 1) + ". Tienda " + (i + 1));
+		                }
+
+		                int tiendaSeleccionada = escaner();
+		                if (tiendaSeleccionada > 0 && tiendaSeleccionada <= cliente.getTiendas().size()) {
+		                    Tienda tienda = cliente.getTiendas().get(tiendaSeleccionada - 1);
+		                    System.out.println("Facturas pagadas en la tienda seleccionada:");
+		                    for (Carrito carrito : tienda.getCarritos()) {
+		                        if (carrito.isPagado()) {
+		                            System.out.printf("%s - %s%n", carrito.getFechaFacturacion(), carrito.getCliente().getNombre());
+		                        }
+		                    }
+		                } else {
+		                    System.out.println("Número de tienda inválido.");
+		                }
+		                break;
+
+		            default:
+		                System.out.println("Opción no válida.");
+		                break;
+		        }		        
+		    
 				break;
 			case 4:
 				Funcionalidad4.seleccionTienda();
