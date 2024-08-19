@@ -278,6 +278,15 @@ public class Tienda implements Serializable{
 		return resultado;
    }
 	
+	 public void agregarProducto(Producto producto) {
+	        for (Pasillo pasillo : pasillos) {
+	            if (pasillo.getCategoria() == producto.getCategoria()) {
+	                pasillo.agregarProducto(producto);
+	                return;
+	            }
+	        }
+	    }
+	
 	public boolean confirmarDisponibilidad(){
 		return false; //provisional este false, por el error que tiene
 	}
