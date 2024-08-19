@@ -8,7 +8,10 @@ import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
 import static uiMain.Funcionalidad1.printTablaProductos;
@@ -170,8 +173,56 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	
 	            case 3: // muestra los productos devueltos y los elimina o regresa//
 	            	System.out.println("Productos devueltos");
+	            	System.out.println("Seleccione una de sus compras anteriores");
 	            	
-	            	
+	            	System.out.println("Compras anteriores en la tienda:");
+	                int index = 1;
+	                for (Carrito carrito : tienda.getCarritos()) {
+	                    System.out.println(index + ". " + carrito.getFechaFacturacion());
+	                    index++;
+	                }
+	                
+	                System.out.print("Ingrese el número de la compra que desea seleccionar: ");
+	                int indiceCarrito = escaner(index) - 1;
+	                
+	                Carrito carritoSeleccionado = tienda.getCarritos().get(indiceCarrito);	                
+	             
+	                System.out.println("Productos en el carrito seleccionado:");
+	                index = 1;
+	                for (Producto producto : carritoSeleccionado.getProductos()) {
+	                    System.out.println(index + ". " + producto);
+	                    index++;
+	                }
+
+	                System.out.print("Ingrese el número del producto que desea devolver: ");
+	                int indiceProducto = escaner() - 1;
+
+	                Producto productoSeleccionado = carritoSeleccionado.getProductos().get(indiceProducto);
+
+	                // Solicitar la razón de la devolución
+	                System.out.println("Razones de devolución:");
+	                for (RazonDevolucion razon : RazonDevolucion.values()) {
+	                    System.out.println(razon.ordinal() + 1 + ". " + razon);
+	                }
+	                System.out.print("Ingrese el número de la razón de la devolución: ");
+	                int indiceRazon = escaner() - 1;
+
+	                RazonDevolucion razonDevolucion = RazonDevolucion.values()[indiceRazon];
+
+	                // Cambiar el estado del producto si es defectuoso
+	                if (razonDevolucion == RazonDevolucion.DEFECTUOSO) {
+	                    productoSeleccionado.setEstado(EstadoProducto.DEFECTUOSO);
+	                }
+
+	                // Agregar el producto seleccionado a la lista de productos devueltos
+	                tienda.getProductosDevueltos().add(productoSeleccionado);
+
+	                // Imprimir productos devueltos
+	                System.out.println("Producto exitosamente:");
+	                System.out.println("Productos devueltos:");
+	                for (Producto producto : tienda.getProductosDevueltos()) {
+	                    System.out.println(producto);
+	                }
 	            	System.out.println("Seleccione una opcion");
 	                System.out.println("1.Seleccionar otra tienda");
 	                System.out.println("2. Volver a menu principal");
