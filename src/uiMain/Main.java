@@ -113,6 +113,8 @@ public class Main {
 				// Crear clientes
 				Cliente clienteMayor = new Cliente("Ana", 12345, 25, Enums.Genero.M);
 				Cliente clienteMenor = new Cliente("Luis", 67890, 15, Enums.Genero.H);
+				
+				
 
 				// Crear productos para diferentes categorías y edades
 				Producto producto15 = new Producto("Cereal", "CerealBrand", 2.99, Categoria.ALIMENTO, 101, Enums.Edades.ADULTOS, "Cereal integral saludable",Tamaño.PEQUEÑO);
@@ -122,7 +124,8 @@ public class Main {
 				Producto producto19 = new Producto("Silla", "ChairBrand", 29.99, Categoria.HOGAR, 105, Enums.Edades.ADULTOS, "Silla ergonómica",Tamaño.GRANDE);
 				Producto producto20 = new Producto("Televisor", "TVBrand", 299.99, Categoria.ELECTRONICO, 106, Enums.Edades.ADULTOS, "Televisor LED 40 pulgadas",Tamaño.GRANDE);
 				
-
+				
+				
 					// Crear listas para cada categoría
 				ArrayList<Producto> alimentos = new ArrayList<Producto>();
 				ArrayList<Producto> bebidas = new ArrayList<Producto>();
@@ -201,11 +204,15 @@ public class Main {
 		tiendas.add(t2);
 		tiendas.add(t3);
 		tiendas.add(t4);
-		escogerFuncionalidad(cliente);
-
+		clienteMayor.getTiendas().add(t1);
+		
+		
+		escogerFuncionalidad();
+		
+		
 	}
 	
-	public static void escogerFuncionalidad(Cliente cliente) {
+	public static void escogerFuncionalidad() {
 		do{
 			boolean boleano=false;
 			lineas();
@@ -267,10 +274,10 @@ public class Main {
 				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
-	//			Funcionalidad4.RevisarTienda();
+				Funcionalidad4.seleccionTienda();
 				break;
 			case 5:
-				Funcionalidad5.personalizarTienda(cliente);
+				//Funcionalidad5.personalizarTienda();
 				break;
 			case 6:
 				Serializador.serializarTodo();

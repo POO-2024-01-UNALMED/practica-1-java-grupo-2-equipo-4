@@ -2,6 +2,7 @@ package uiMain;
 
 import uiMain.Main;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
@@ -10,7 +11,7 @@ import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
-
+import static uiMain.Funcionalidad1.printTablaProductos;
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
 import gestorAplicación.sujetos.Cliente;
@@ -19,14 +20,36 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
 
-public class Funcionalidad4 extends Identidad implements Cloneable {	
+public class Funcionalidad4 extends Identidad implements Cloneable {
+	
 	static Scanner sc = new Scanner(System.in);
-	static Persona usuario = identificarPersona();
 	
 	
-	    public  static Tienda seleccionTienda() {
+	
+	    public  static void seleccionTienda() {
+	    	Persona usuario = identificarPersona();
+	    	
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
-	// seleccion de tiendas para administrar //    	
+	// seleccion de tiendas para administrar //  
+	    	
+			if(usuario.getTiendas().size()==0) {
+				print("No tienes niguna tienda registrada "); 
+				print("Que desea hacer ");
+				print("1. Cambiar de usuario");
+				print("2. Volver al Menu principal");
+				
+				int valor= escaner();
+				switch (valor) {
+					case 1:
+						usuario=null;
+						seleccionTienda();
+						break;
+					case 2:
+						Main.escogerFuncionalidad();
+						break;
+				}
+			}
+	    	
 	    	print("Tus tiendas ");
 	    	
 	    	Tienda tienda=null;
@@ -48,13 +71,12 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	        	   break;
 	           }
 	        }	
-	    	return tienda;
+	    	adminitrarTienda(tienda);
 	    }
 	    
 	  // seleccion de acciones en tienda //
 	    
-	    public  static void adminitrarTienda(Tienda tienda) {
-	    	
+	    public  static void adminitrarTienda(Tienda tienda) {	    	
 	    	
 	    	System.out.println("que deasea ver?");
 	    	System.out.println("1.Total de productos en el inventario\n"
@@ -73,14 +95,13 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                ArrayList<Producto> productosUnicos = new ArrayList<>();
 
 	                for (Producto producto : productos) {
-	                    if (!productosUnicos.contains(producto)) {
+	                	int n=0;
+	                    if (!productosUnicos.contains(producto) && producto.getNombre()!=productosUnicos.get(n).getNombre()) {
 	                        productosUnicos.add(producto);
 	                    }
 	                }
 	                	
-	                for (Producto i:productosUnicos) {
-	                	System.out.println(i.getNombre());
-	                }
+	                printTablaProductos(productosUnicos);
 	                
 	            case 2:
 	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
