@@ -1,6 +1,7 @@
 package uiMain;
 
 import uiMain.Main;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
@@ -17,7 +18,8 @@ import gestorAplicación.sujetos.Persona;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
-public class Funcionalidad4 extends Identidad {	
+
+public class Funcionalidad4 extends Identidad implements Cloneable {	
 	static Scanner sc = new Scanner(System.in);
 	static Persona usuario = identificarPersona();
 	
@@ -129,13 +131,9 @@ public class Funcionalidad4 extends Identidad {
 	                     System.out.print("Ingrese la cantidad que desea pedir: ");
 	                     int cantidad = escaner();
 
-	                     for (int i = 0; i < cantidad; i++) {
-	                         try {
-	                             Producto productoClonado = (Producto) productoSeleccionado.clone();
-	                             tienda.agregarProducto(productoClonado);
-	                         } catch (CloneNotSupportedException e) {
-	                             e.printStackTrace();
-	                         }
+	                     for (int i = 0; i < cantidad; i++) {	                         
+	                          Producto productoClonado = (Producto) productoSeleccionado.clone();
+	                          tienda.agregarProducto(productoClonado);                             	                         
 	                     }
 
 	                     System.out.println("Productos agregados al pasillo correspondiente.");
