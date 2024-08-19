@@ -1,6 +1,7 @@
 package gestorAplicación.sujetos;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.TipoEmpleado;
@@ -54,5 +55,15 @@ public class Domiciliario extends Empleado implements Serializable{
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public StringBuilder obtenerContadorProductos(Persona cliente) {
+		StringBuilder texto=new StringBuilder();
+		return texto.append("Su pago es de: "+this.cantidadPago());
+	}
+	@Override
+	public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
+		return null;
 	}
 }

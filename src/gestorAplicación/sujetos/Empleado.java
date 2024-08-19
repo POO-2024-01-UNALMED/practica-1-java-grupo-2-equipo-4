@@ -1,6 +1,7 @@
 package gestorAplicación.sujetos;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.TipoEmpleado;
@@ -56,13 +57,14 @@ public abstract class Empleado extends Persona implements Serializable{
 	protected abstract double cantidadPago();
 	public abstract boolean validarCriterios();
 	
+	
 	@Override
-	public StringBuilder imprimirFacturas(Persona persona) {
+	public StringBuilder obtenerContadorProductos(Persona cliente) {
 		StringBuilder texto=new StringBuilder();
 		return texto.append("Su pago es de: "+this.cantidadPago());
 	}
 	@Override
-	public StringBuilder imprimirFacturas(Cliente cliente) {
+	public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
 		return null;
 	}
 

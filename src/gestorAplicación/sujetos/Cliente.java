@@ -176,7 +176,7 @@ public class Cliente extends Persona implements Serializable {
 //		return texto;
 //	}
 	
-	public static StringBuilder obtenerContadorProductos(Persona persona ) {
+	public StringBuilder obtenerContadorProductos(Persona persona ) {
 		StringBuilder string = new StringBuilder();
 		for (Tienda tienda : persona.getTiendas()) {
 			for(Carrito carrito: tienda.getCarritos()) {
