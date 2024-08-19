@@ -11,8 +11,8 @@ public class Domiciliario extends Empleado implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1708181192964755820L;
-	String vehiculo;
-	boolean licencia;
+	private String vehiculo;
+	private boolean licencia;
 	//Contructores------------------------------------------------------------------------------------------------
 
 	public Domiciliario() {
@@ -24,6 +24,14 @@ public class Domiciliario extends Empleado implements Serializable{
 			boolean prestacionSalud, boolean prestacionPension) {
 		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension);
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(String vehiculo) {
+		this.vehiculo = vehiculo;
 	}
 
 	@Override
@@ -39,7 +47,7 @@ public class Domiciliario extends Empleado implements Serializable{
 	}
 	@Override
 	public boolean validarCriterios() {
-		if(this.licencia!=false) {
+		if((this.licencia!=false)&&(this.getGenero()==Genero.M)) {
 			return true;
 		}
 		else {

@@ -32,14 +32,10 @@ public class Serializador {
 	public static void serializarTodo() {
 		serializar(Tienda.getTiendas(),"tiendas");
 		serializar(Tienda.getDesempleados(),"empleados");
-		serializar(Tienda.getSieteProveedores(),"proovedores");
+		serializar(Tienda.getSeisProveedores(),"proovedores");
 		serializar(Persona.getPersonas(),"clientes");
 		}
 	public static void main(String[] args){
-		new Proveedor("san pacho",null,Categoria.ALIMENTO,Tienda.getTiendas(),null);
-//		Tienda.getDesempleados().add(new Domiciliario());
-//		Tienda.getDesempleados().add(new Cajero());
-		
 		serializarTodo();
 	}
 	

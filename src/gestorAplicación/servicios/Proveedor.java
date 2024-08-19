@@ -65,15 +65,14 @@ public class Proveedor implements Serializable{
 //Constructores------------------------------------------------------------------------------------------------
 
 	public Proveedor(String nombre, ArrayList<Producto> entrega, Categoria tipo, ArrayList<Tienda> tiendas, ArrayList <Pasillo> pasillos) {
-	super();
-	this.nombre = nombre;
-	this.entrega = entrega;
-	this.tipo = tipo;
-	this.pasillos = pasillos;
-	this.tiendas = tiendas;
-	for(Tienda t:tiendas){
-		t.getProveedores().add(this);
-	}
+		this.nombre = nombre;
+		this.entrega = entrega;
+		this.tipo = tipo;
+		this.pasillos = pasillos;
+		this.tiendas = tiendas;
+		for(Tienda t:tiendas){
+			t.getProveedores().add(this);
+		}
 	
 }
 //-------------------------------------------------------------------------------------------------------------

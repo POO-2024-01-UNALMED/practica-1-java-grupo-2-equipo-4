@@ -316,7 +316,7 @@ public class Tienda implements Serializable{
 	public String listarProveedores() {
 		int n=1;
 		String s= "  Proveedor  |  Categoria \n";
-		for(Proveedor i:sieteProveedores) {
+		for(Proveedor i:seisProveedores) {
 			s+=n+"."+i.getNombre();
 			s+="     ";
 			s+=i.getTipo();
