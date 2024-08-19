@@ -45,12 +45,12 @@ public class Funcionalidad3 extends Identidad {
 	//   Nombre   Tamaño   Precio   Cantidad
 	 
 	
-	public static void imprimirFactura(Factura factura) {
-        System.out.println("Fecha de Facturación: " + factura.getFechaFacturacion());
+	public static void imprimirFactura(Cliente cliente) {
+        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
         System.out.println("Productos:");
         System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
 
-        Map<String, Integer> contadorProductos = factura.obtenerContadorProductos();
+        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
 
         for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
             System.out.println(entry.getKey() + "\t" + entry.getValue());

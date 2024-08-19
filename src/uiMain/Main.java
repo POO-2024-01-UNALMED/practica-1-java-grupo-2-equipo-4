@@ -205,6 +205,17 @@ public class Main {
 		tiendas.add(t4);
 		
 		clienteMayor.getTiendas().add(t1);*/
+		System.out.println();
+		ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
+		tiendas.add(Tienda.getTiendas().get(1));
+		ArrayList<Producto> productos= Tienda.getTiendas().get(1).getPasillos().get(0).getProductos();
+		//Producto producto = new Producto("tomate","Cebollando",0,Categoria.ALIMENTO,"13/08/2024",50,Edades.MENORES,"",Tamaño.GRANDE);
+		//productos.add(producto);
+		Proveedor proveedor= new Proveedor("proveo", productos, Categoria.ALIMENTO, tiendas, null);
+		ArrayList<Proveedor> proveedores= new ArrayList<Proveedor>();
+		proveedores.add(proveedor);
+		Proveedor.setSeisProveedores(proveedores);
+		Tienda.getTiendas().get(1).setProveedores(proveedores);
 		escogerFuncionalidad();
 
 
@@ -269,6 +280,9 @@ public class Main {
 				Funcionalidad2.elegirTipoBusqueda();
 				break;
 			case 3:
+				//imorimir facturas organizar //
+				Funcionalidad3.imprimirFactura(((Cliente) Identidad.identificarPersona()));
+				
 				Funcionalidad3.mostrarFacturas();
 				break;
 			case 4:
@@ -530,6 +544,8 @@ public class Main {
 	}
 	
 	// ------ FUNCINALIDAD 3 ---------------------------------------
+	
+	
 	public static void pagarRecibo(){
 		String nombre= sc.nextLine();
 		nombre = nombre.toLowerCase();
@@ -546,6 +562,8 @@ public class Main {
 				break;
 			}
 		}
+		
+		
 //		Error
 //		for (Carrito i:Cliente.getClientes().get(existencia).getFacturas()) {
 //			

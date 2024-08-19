@@ -214,6 +214,19 @@ public class Producto implements Serializable,Cloneable {
 		
 	}
 	
+	public Producto(String nombre, String marca, double precio,Categoria categoria,String fechaPerecer,int id, Edades edadValida,String descripcion,Tamaño tamaño) {
+		this.nombre = nombre;
+		this.marca = marca;
+		this.precio = precio;
+		this.tamaño = tamaño;
+		this.edadValida = edadValida;
+		this.id = id;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato);
+	}
+
 	public Producto(String nombre, double precio, Categoria categoria, int id, Edades edadValida, String descripcion) {
 		this.nombre=nombre;
 		this.precio=precio;
@@ -225,6 +238,7 @@ public class Producto implements Serializable,Cloneable {
 //-------------------------------------------------------------------------------------------------------------
 		//clonable //
 	
+
 	@Override
 	public Producto clone() {
         try {
@@ -284,7 +298,7 @@ public class Producto implements Serializable,Cloneable {
 
 	@Override
 	public String toString() {
-		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio+" y de tamaño "+tamaño.getTamaño();
+		return nombre+" de la marca "+marca+" con un costo por unidad de $"+precio+" y de tamaño "+tamaño;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

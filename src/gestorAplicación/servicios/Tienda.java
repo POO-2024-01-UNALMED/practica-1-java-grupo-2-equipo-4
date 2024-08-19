@@ -569,11 +569,16 @@ public class Tienda implements Serializable{
 					break;
 				}
 			}
+			System.out.println(proveedor.getEntrega());
+			System.out.println(this.obtenerTodosLosProductos());
 			for(Producto i:proveedor.getEntrega()) {
+				boolean confirmacion=false;
 				for(Producto k:this.obtenerTodosLosProductos()) {
 					if(i.equals(k)) {
-						continue;
+						confirmacion=true;
 					}
+				}
+				if(!confirmacion) {
 					productos.add(i);
 				}
 			}

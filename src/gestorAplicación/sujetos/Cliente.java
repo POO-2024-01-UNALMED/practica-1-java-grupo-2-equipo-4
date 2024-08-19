@@ -2,6 +2,8 @@ package gestorAplicación.sujetos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
@@ -139,26 +141,38 @@ public class Cliente extends Persona implements Serializable {
 		return texto;
 	}
 	
-	public StringBuilder imprimirFacturas(Cliente cliente) {
-		StringBuilder texto=new StringBuilder();
-		int contador=1;
-		for(Carrito i:cliente.getFacturas()) {
-			texto.append("Estas son las facturas que ha pagado usted\n");
-			if(i.isPagado()) {
-				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
-			}
-			contador++;
-		}
-		contador=1;
-		for(Carrito i:cliente.getFacturas()) {
-			texto.append("Estas son las facturas sin pagar\n");
-			if(!i.isPagado()) {
-				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
-			}
-			contador++;
-		}
-		return texto;
-	}
+//	public StringBuilder imprimirFacturas(Cliente cliente) {
+//		StringBuilder texto=new StringBuilder();
+//		int contador=1;
+//		for(Carrito i:cliente.getFacturas()) {
+//			texto.append("Estas son las facturas que ha pagado usted\n");
+//			if(i.isPagado()) {
+//				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
+//			}
+//			contador++;
+//		}
+//		contador=1;
+//		for(Carrito i:cliente.getFacturas()) {
+//			texto.append("Estas son las facturas sin pagar\n");
+//			if(!i.isPagado()) {
+//				texto.append(contador+". Factura de la tienda "+i.getTienda().getNombre()+" con "+i.getProductos().size()+" productos\n");
+//			}
+//			contador++;
+//		}
+//		return texto;
+//	}
+	
+	 public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
+		 
+	        Map<String, Integer> contadorProductos = new HashMap<>();
+
+	        for (Producto producto : cliente.getCarrito().getProductos()) {
+	            String clave = producto.getNombre() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
+	            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
+	        }
+
+	        return contadorProductos;
+	    }
 	
 	public static void asignaciones(Cliente cliente,Tienda tienda) {
 		 if (cliente.mayorEdad() ) {
