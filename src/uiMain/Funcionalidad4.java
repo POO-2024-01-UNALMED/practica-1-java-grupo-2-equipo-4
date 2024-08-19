@@ -51,9 +51,9 @@ public class Funcionalidad4 extends Identidad {
 	    
 	  // seleccion de acciones en tienda //
 	    
-	    public  static Tienda adminitrarTienda(Tienda tienda) {
+	    public  static void adminitrarTienda(Tienda tienda) {
 	    	
-	    	return tienda;
+	    	
 	    	System.out.println("que deasea ver?");
 	    	System.out.println("1.Total de productos en el inventario\n"
 					+ "2.Productos vencidos\n"
@@ -147,7 +147,7 @@ public class Funcionalidad4 extends Identidad {
 	             
 	            	
 	            case 5:
-	            	Main.escogerFuncionalidad(usuario);
+	            	
 	    			break;
 	            default:
 	                System.out.println("Opción no válida");
