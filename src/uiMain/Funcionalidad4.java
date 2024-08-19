@@ -95,31 +95,56 @@ public class Funcionalidad4 extends Identidad {
 	            	
 	            case 4: 
 	            	print("Reabastecimiento");   
-	            	print("Lista de Proveedores:");
+	            	print("Proveedores disponibles:");
 	            	
-	    	        int contador = 1;
-	    	        
-	    	        for (Proveedor proveedor : tienda.getProveedores()) {
-	    	            System.out.println(contador + ". " + proveedor);
-	    	            contador++;
-	    	        }
-	    	        
-	            	print("seleccione un proveedor"); 
-	            	
-	            	int opcionProveedor = sc.nextInt();
-	            	
-	            	if (opcionProveedor == 1) {
-	            	    // Código para la opción 1
-	            	} else if (opcionProveedor == 2) {
-	            	    // Código para la opción 2
-	            	} else if (opcionProveedor == 3) {
-	            	    // Código para la opción 3
-	            	} else if (opcionProveedor == 4) {
-	            	    // Código para la opción 4
-	            	} else {
-	            	    // Código para cualquier otra opción
-	            	}
+	                for (int i = 0; i < tienda.getProveedores().size(); i++) {
+	                    System.out.println((i + 1) + ". " + tienda.getProveedores().get(i).getNombre());
+	                }
 
+	                System.out.print("Seleccione el número del proveedor que desea elegir: ");
+	                int seleccion = escaner() - 1;
+
+	                Proveedor proveedorSeleccionado = null;
+	                if (seleccion >= 0 && seleccion < tienda.getProveedores().size()) {
+	                    proveedorSeleccionado = tienda.getProveedores().get(seleccion);
+	                    
+	                    System.out.println("Proveedor seleccionado: " + proveedorSeleccionado.getNombre());
+	                    
+	                } else {
+	                    System.out.println("Selección inválida.");
+	                }
+	            	
+	            	 System.out.println("Productos disponibles para pedido:");
+	                 ArrayList<Producto> entrega = proveedorSeleccionado.getEntrega();
+	                 for (int i = 0; i < entrega.size(); i++) {
+	                     System.out.println((i + 1) + ". " + entrega.get(i));
+	                 }
+
+	                 System.out.print("Seleccione el número del producto que desea pedir: ");
+	                 int seleccion2 = escaner() - 1;
+
+	                 if (seleccion2 >= 0 && seleccion2 < entrega.size()) {
+	                     Producto productoSeleccionado = entrega.get(seleccion2);
+	                     
+	                     System.out.print("Ingrese la cantidad que desea pedir: ");
+	                     int cantidad = escaner();
+
+	                     for (int i = 0; i < cantidad; i++) {
+	                         try {
+	                             Producto productoClonado = (Producto) productoSeleccionado.clone();
+	                             tienda.agregarProducto(productoClonado);
+	                         } catch (CloneNotSupportedException e) {
+	                             e.printStackTrace();
+	                         }
+	                     }
+
+	                     System.out.println("Productos agregados al pasillo correspondiente.");
+	                 } else {
+	                     System.out.println("Selección inválida.");
+	                 }
+
+	                 sc.close();
+	             
 	            	
 	            case 5:
 	            	Main.escogerFuncionalidad(usuario);

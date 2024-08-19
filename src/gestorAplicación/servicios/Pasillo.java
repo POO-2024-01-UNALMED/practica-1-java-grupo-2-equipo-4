@@ -91,8 +91,8 @@ public class Pasillo implements Serializable{
         return cantidadSolicitada <= cantidad;
     }
 
-	public void agregarProductos(ArrayList <Producto> producto) {
-		getProductos().addAll(producto);
+	public void agregarProducto(Producto producto) {
+		getProductos().add(producto);
 	}
 	
 //-------------------------------------------------------------------------------------------------------------
