@@ -43,7 +43,6 @@ public abstract class Empleado extends Persona implements Serializable{
 	
 	protected abstract void buscoChamba();
 	protected abstract double cantidadPago();
-
 	public abstract boolean validarCriterios();
 	
 	@Override

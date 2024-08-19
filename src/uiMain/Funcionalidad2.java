@@ -5,6 +5,7 @@ import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Pasillo;
 import gestorAplicación.sujetos.Cliente;
 
 import static uiMain.Main.print;
@@ -354,6 +355,12 @@ public class Funcionalidad2 extends Identidad{
             switch(decision) {
             case 1:
             	cliente.getCarrito().agregarAlCarrito(seleccionado,seleccionado.cantidadProducto());
+            	System.out.println(cliente.getCarrito());
+            	for (Pasillo i:cliente.getTienda().getPasillos()) {
+            		for (Producto p:i.getProductos()) {
+            			System.out.println(p);
+            		} 
+            	}
             	break;
             case 2:
             	elegirTipoBusqueda(cliente);
@@ -361,8 +368,8 @@ public class Funcionalidad2 extends Identidad{
             }
         }
 	}
-	public static void elegirTipoBusqueda(Cliente cliente) {
-
+	public static void elegirTipoBusqueda(Cliente cliente1) {
+		Cliente cliente=(Cliente)identificarPersona();
 		Tienda tienda=cliente.getTienda();
 		if(tienda==null) {
 			lineas();
