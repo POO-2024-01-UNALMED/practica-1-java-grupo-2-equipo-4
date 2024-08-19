@@ -133,5 +133,17 @@ public class Carrito implements Serializable{
 		return new StringBuilder("Producto "+seleccionado.getNombre()+" agregado con exito a su carrito");
 	}
 	
+	public int contarRepeticiones(Producto productoBuscado) {
+        int contador = 0;
+
+        for (Producto producto : productos) {
+            if (producto.equals(productoBuscado)) {
+                contador++;
+            }
+        }
+
+        return contador;
+    }
+	
 //-------------------------------------------------------------------------------------------------------------
 }
