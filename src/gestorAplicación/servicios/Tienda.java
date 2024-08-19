@@ -321,7 +321,14 @@ public class Tienda implements Serializable{
 	            }
 	        }
 	    }
-	
+	public void agregarProducto(Producto p,String pasillo) {
+			for (Pasillo i:pasillos) {
+				if (i.getNombre()==pasillo) {
+					i.getProductos().add(p);
+					p.setTienda(this);
+				}
+			}
+		}
 	public boolean confirmarDisponibilidad(){
 		return false; //provisional este false, por el error que tiene
 	}
@@ -460,7 +467,7 @@ public class Tienda implements Serializable{
 			Proveedor prov=Proveedor.getSeisProveedores().get(x-1);
 			ArrayList<Producto> entrega =prov.getEntrega();
 			for(Producto p:entrega) {
-				agregarProducto(p);
+				this.agregarProducto(p);
 			}
 			return entrega;
 		}
@@ -537,14 +544,7 @@ public class Tienda implements Serializable{
 			return texto;
 		}
 		
-		public void agregarProducto(Producto p,String pasillo) {
-			for (Pasillo i:pasillos) {
-				if (i.getNombre()==pasillo) {
-					i.getProductos().add(p);
-					p.setTienda(this);
-				}
-			}
-		}
+		
 		
 		public void  vencerProducto() {
 			//si esta caducado//

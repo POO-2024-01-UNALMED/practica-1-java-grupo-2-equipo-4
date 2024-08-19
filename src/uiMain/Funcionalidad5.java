@@ -105,9 +105,8 @@ public class Funcionalidad5 {
       		if(x3==1) {
       			print(tien.listarProveedores());
       			int k=escaner();
-      			print("Se han llenado los pasillos");
       			Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
-      			
+      			print("Se han llenado los pasillos");
       		}
       	}
 	}

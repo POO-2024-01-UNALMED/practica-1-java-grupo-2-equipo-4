@@ -33,6 +33,7 @@ public class Producto implements Serializable,Cloneable {
 	private LocalDate fechaPerecer;
 	private Pasillo pasillo;
 	private Tienda tienda;
+	
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
 //	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
@@ -153,8 +154,6 @@ public class Producto implements Serializable,Cloneable {
 		this.descripcion = descripcion;
 	}
 
-
-
 //Constructores------------------------------------------------------------------------------------------------
 	public Producto(String nombre,Categoria categoria,Pasillo pasillo) {
 		this.categoria = categoria;
@@ -193,21 +192,7 @@ public class Producto implements Serializable,Cloneable {
 		this.tamaño=tamaño;
 	}
 	
-	public Producto(String nombre,Categoria categoria,Tienda tienda,Pasillo pasillo) {
-		this.categoria = categoria;
-		this.nombre= nombre;
-		this.tienda=tienda;// referencia a tienda que pertenece el producto
-		this.pasillo=pasillo;
-		pasillo.getProductos().add(this);
-	}
-	
 
-	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
-		this(nombre, marca, precio, categoria,id,edades,descripcion,pasillo);
-		this.tienda=tienda; 
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
-	}
 
 	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Edades edades,String descripcion,Tamaño tamaño) {
 		this(nombre, marca, precio, categoria,id,edades,descripcion,tamaño);

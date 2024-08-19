@@ -32,10 +32,10 @@ public class Funcionalidad3 extends Identidad {
 
 		     switch (opcion) {
 		            case 1:
-		            	persona.obtenerContadorProductos(persona);
+		            	seleccionTienda();
 		                break;
 		            case 2:
-		            	persona.obtenerContadorProductos((Cliente)persona);
+		            	
 		                break;
 		            default:
 		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
@@ -90,23 +90,25 @@ public class Funcionalidad3 extends Identidad {
 		    	return tienda;
 		    }
 		 
-	public static void mostrarFacturas() {
-	
-		print("Este es el registro de sus facturas ");
+//	public static void mostrarFacturas() {
+//	
+//		print("Este es el registro de sus facturas ");
+//		
+//		print("1. Ver las facturas de compras que he hecho");
+//		print("2. Ver las facturas de mis tiendas");
+//		int decision=escaner(2);
+//		switch(decision) {
+//		case 1:
+//			System.out.println("Nombre del Producto\tTamaño\tPrecio\tCantidad");
+//			System.out.println(persona.obtenerContadorProductos((Cliente)persona));
+//			break;
+//		case 2:
+//			System.out.println("Nombre del Producto\tTamaño\tPrecio\tCantidad");
+//			System.out.println(persona.obtenerContadorProductos(persona));
+//			break;
+//		}	
 		
-		print("1. Ver las facturas de compras que he hecho");
-		print("2. Ver las facturas de mis tiendas");
-		int decision=escaner(2);
-		switch(decision) {
-		case 1:
-			System.out.println(persona.imprimirFacturas((Cliente)persona));
-			break;
-		case 2:
-			System.out.println(persona.imprimirFacturas(persona));
-			break;
-		}	
-		
-	}
+//	}
 	
 	// este metodo imprime la factura 
 	
@@ -115,6 +117,21 @@ public class Funcionalidad3 extends Identidad {
 	 
 	
 	public static void imprimirFactura(Cliente cliente) {
+        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
+        System.out.println("Productos:");
+        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
+
+        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
+
+        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
+            System.out.println(entry.getKey() + "\t" + entry.getValue());
+        }
+    }
+	
+	public static void imprimirFactura(Persona cliente) {
+		
+		System.out.println("Estas son las facturas en su tienda");	
+		
         System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
         System.out.println("Productos:");
         System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
