@@ -147,11 +147,28 @@ public class Carrito implements Serializable{
 			return new StringBuilder("Productos no agregados, no hay cantidad de productos suficientes, le podemos ofrecer"
 					+"\n"+seleccionado.cantidadProducto()+" productos de ese tipo solamente");
 		}
-		for(int i=0;i<cantidad;i++) {
-				productos.add(seleccionado);
-				seleccionado.getPasillo().getProductos().remove(seleccionado);
+		for (int i = 0; i < cantidad; i++) {
+		    // Obtener la tienda y el pasillo
+		    Tienda tienda = this.tienda;
+		    Pasillo pasillo = seleccionado.getPasillo();  // Obtener el pasillo del producto seleccionado
+
+		    // Buscar el pasillo en la tienda que coincida con el pasillo del producto seleccionado
+		    for (Pasillo p : tienda.getPasillos()) {
+		        if (p.equals(pasillo)) {
+		            pasillo = p;
+		            break;  // Salir del bucle una vez encontrado el pasillo
+		        }
+		    }
+
+		    // Ahora que tienes el pasillo correcto, intenta eliminar el producto
+		    if (pasillo.getProductos().remove(seleccionado)) {
+		        productos.add(seleccionado.clone());  // Agregar el producto eliminado a la lista de productos
+		    } else {
+		        // Si no se pudo eliminar (por ejemplo, si ya no queda ninguna instancia), terminar el bucle
+		        break;
+		    }
 		}
-		return new StringBuilder("Producto "+seleccionado.getNombre()+" agregado con exito a su carrito");
+		return new StringBuilder("Producto/Productos "+seleccionado.getNombre()+" agregado con exito a su carrito");
 	}
 	
 	public int contarRepeticiones(Producto productoBuscado) {
@@ -166,33 +183,29 @@ public class Carrito implements Serializable{
         return contador;
     }
 	
-	public void eliminarProductos(Producto producto, int cantidad) {
-        int eliminados = 0;
-
-        // Crear una copia de la lista de productos para evitar ConcurrentModificationException
-        ArrayList<Producto> productosParaEliminar = new ArrayList<>();
-
-        // Agregar los productos que se van a eliminar a una lista temporal
-        for (Producto p : productos) {
-            if (p.equals(producto) && eliminados < cantidad) {
-                productosParaEliminar.add(p);
-                eliminados++;
-                if (eliminados >= cantidad) {
-                    break;
-                }
+	public void eliminarProductos(Producto seleccionado, int cantidad) {
+        Tienda tienda = this.tienda; // Obtener la tienda asociada al carrito
+        Pasillo pasillo = seleccionado.getPasillo(); // Obtener el pasillo original del producto seleccionado
+        
+        // Buscar el pasillo en la tienda que coincida con el pasillo del producto seleccionado
+        for (Pasillo p : tienda.getPasillos()) {
+            if (p.equals(pasillo)) {
+                pasillo = p;
+                break; // Salir del bucle una vez encontrado el pasillo
             }
         }
 
-        // Eliminar los productos de la lista original
-        productos.removeAll(productosParaEliminar);
-        for (Pasillo pasillo : tienda.getPasillos()) {
-            if (pasillo.getCategoria().equals(producto.getCategoria())) {
-                // Agregar los productos eliminados al pasillo
-                pasillo.getProductos().addAll(productosParaEliminar);
-                break; // Asumimos que solo hay un pasillo por categoría
+        // Eliminar los productos del carrito y agregarlos al pasillo
+        for (int i = 0; i < cantidad; i++) {
+            if (productos.remove(seleccionado)) { // Eliminar producto del carrito
+                pasillo.getProductos().add(seleccionado.clone()); // Agregar producto clonado al pasillo
+            } else {
+                System.out.println("No hay suficientes productos en el carrito para eliminar.");
+                break; // Si no se pudo eliminar, salir del bucle
             }
         }
     }
+
 	
 	static double calcularTotal(ArrayList<Producto> carrito) {
         double total = 0;
@@ -200,11 +213,14 @@ public class Carrito implements Serializable{
             total += producto.getPrecio();
         }
         return total;
-    }
+      }
+	}
+	// metodos para factura //
+
 	
 	
 	
 	
 	
 //-------------------------------------------------------------------------------------------------------------
-}
+

@@ -2,6 +2,7 @@ package gestorAplicación.servicios;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
@@ -251,6 +252,19 @@ public class Producto implements Serializable,Cloneable {
 	
 	
 //Metodos------------------------------------------------------------------------------------------------------
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+	    Producto producto = (Producto) obj;
+	    return id==producto.id;  // Asegúrate de que 'id' es único y comparable
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(id);  // Utiliza el mismo campo que en equals()
+	}
+	
 	public void asignarPasilloYPonerEnTienda(Pasillo pasillo) {
         this.pasillo = pasillo;
         pasillo.getProductos().add(this);

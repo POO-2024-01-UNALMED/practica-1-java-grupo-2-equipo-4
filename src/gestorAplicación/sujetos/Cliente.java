@@ -209,7 +209,7 @@ public class Cliente extends Persona implements Serializable {
 	        return contadorProductos;
 	    }
 	
-	public void asignaciones(Cliente cliente,Tienda tienda) {
+	public static void asignaciones(Cliente cliente,Tienda tienda) {
 		 if (cliente.mayorEdad() ) {
 	        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
 	            cliente.setTienda(tienda);
