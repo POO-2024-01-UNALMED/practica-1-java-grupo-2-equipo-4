@@ -490,6 +490,12 @@ public class Funcionalidad2 extends Identidad {
 			print(" 5. Guardar carrito como factura");
 		}
 		print("");
+		int montoActual=0;
+		for(Producto k:cliente.getCarrito().getProductos()) {
+			montoActual+=k.getPrecio();
+		}
+		print("Recuerde que el monto que le queda para gastar es "+(cliente.getDinero()-montoActual)+"$");
+		print("");
 		
 		System.out.print("Escoja un numero: ");
 		
@@ -562,65 +568,83 @@ public class Funcionalidad2 extends Identidad {
 			    // Pie de la tabla
 			    System.out.println("+----+--------------------+---------------+----------+----------+----------+");
 			    print("");
-			    System.out.println("Seleccione el número del producto que desea eliminar del carrito ");
-			    System.out.println(contador+"Cancelar borrar producto del carrito");
-			    System.out.print("Seleccione una opcion: ");
-			    int seleccion = sc.nextInt();
-			    if (seleccion==contador) {
-			    	elegirTipoBusqueda(cliente);
-			    	break;
+			    System.out.println("Seleccione el número del producto que desea eliminar del carrito:");
+			    System.out.println(contador + ". Cancelar borrar producto del carrito");
+			    System.out.print("Seleccione una opción: ");
+			    int seleccion = escaner(contador);
+
+			    if (seleccion == contador) {
+			        elegirTipoBusqueda(cliente);
+			        return;
 			    }
 
 			    if (seleccion > 0 && seleccion <= cliente.getCarrito().getProductos().size()) {
-			        Producto productoSeleccionado = cliente.getCarrito().getProductos().get(seleccion - 1);
-			        print("");
-			        System.out.print("Ingrese la cantidad que desea eliminar: ");
-			        print("");
-			        int cantidadEliminar = sc.nextInt();
+			        // Buscar el producto seleccionado en la lista impresa
+			        Set<Integer> productosImpresos = new HashSet<>();
+			        Producto productoSeleccionado = null;
+			        int index = 0;
 
-			        if (cantidadEliminar > 0 && cantidadEliminar <= cliente.getCarrito().contarRepeticiones(productoSeleccionado)) {
-			            cliente.getCarrito().eliminarProductos(productoSeleccionado, cantidadEliminar);
-			            lineas();
-			            System.out.println("Productos actualizados en el carrito:");
-			            print("");
-			            
-			            // Encabezado de la tabla
-			            print("+----+--------------------+---------------+----------+----------+----------+");
-			            print("| No | Nombre             | Marca         | Tamaño   | Precio   | Cantidad |");
-			            print("+----+--------------------+---------------+----------+----------+----------+");
-
-			            // Set para almacenar los IDs de los productos ya impresos
-			            Set<Integer> productosImpresos = new HashSet<>();
-
-			            contador = 1;
-			            for (Producto producto : cliente.getCarrito().getProductos()) {
-			                
-			                // Verificar si el producto ya ha sido impreso
-			                if (productosImpresos.contains(producto.getId())) {
-			                    continue; // Saltar la impresión de productos duplicados
-			                }
-
-			                String nombreProducto = producto.getNombre();
-			                String marcaProducto = producto.getMarca();
-			                String tamañoProducto = producto.getTamaño().getTamaño();
-			                String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
-			                String cantidadProducto = String.valueOf(cliente.getCarrito().contarRepeticiones(producto));
-
-			                // Imprimir cada producto en la tabla
-			                print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8s |", 
-			                    contador++, 
-			                    ajustarTexto(nombreProducto, anchoCeldaNombre), 
-			                    ajustarTexto(marcaProducto, anchoCeldaMarca), 
-			                    ajustarTexto(tamañoProducto, anchoCeldaTamaño), 
-			                    ajustarTexto(precioProducto, anchoCeldaPrecio), 
-			                    ajustarTexto(cantidadProducto, anchoCeldaCantidad)
-			                ));
-
-			                // Agregar el ID del producto al set
+			        for (Producto producto : cliente.getCarrito().getProductos()) {
+			            if (!productosImpresos.contains(producto.getId())) {
 			                productosImpresos.add(producto.getId());
+			                index++;
+			            }
+
+			            if (index == seleccion) {
+			                productoSeleccionado = producto;
+			                break;
+			            }
+			        }
+
+			        if (productoSeleccionado != null) {
+			            print("");
+			            System.out.print("Ingrese la cantidad que desea eliminar: ");
+			            print("");
+			            int cantidadEliminar = sc.nextInt();
+
+			            int cantidadActual = cliente.getCarrito().contarRepeticiones(productoSeleccionado);
+			            if (cantidadEliminar > 0 && cantidadEliminar <= cantidadActual) {
+			                cliente.getCarrito().eliminarProductos(productoSeleccionado, cantidadEliminar);
+			                lineas();
+			                System.out.println("Productos actualizados en el carrito:");
+			                print("");
+
+			                // Encabezado de la tabla
+			                print("+----+--------------------+---------------+----------+----------+----------+");
+			                print("| No | Nombre             | Marca         | Tamaño   | Precio   | Cantidad |");
+			                print("+----+--------------------+---------------+----------+----------+----------+");
+
+			                // Imprimir productos actualizados sin duplicados
+			                productosImpresos.clear();
+			                contador = 1;
+
+			                for (Producto producto : cliente.getCarrito().getProductos()) {
+			                    if (productosImpresos.contains(producto.getId())) {
+			                        continue;
+			                    }
+
+			                    String nombreProducto = producto.getNombre();
+			                    String marcaProducto = producto.getMarca();
+			                    String tamañoProducto = producto.getTamaño().getTamaño();
+			                    String precioProducto = String.format("%.2f", producto.getPrecio());
+			                    String cantidadProducto = String.valueOf(cliente.getCarrito().contarRepeticiones(producto));
+
+			                    print(String.format("| %-2d | %-18s | %-13s | %-8s | %-8s | %-8s |", 
+			                        contador++, 
+			                        ajustarTexto(nombreProducto, anchoCeldaNombre), 
+			                        ajustarTexto(marcaProducto, anchoCeldaMarca), 
+			                        ajustarTexto(tamañoProducto, anchoCeldaTamaño), 
+			                        ajustarTexto(precioProducto, anchoCeldaPrecio), 
+			                        ajustarTexto(cantidadProducto, anchoCeldaCantidad)
+			                    ));
+
+			                    productosImpresos.add(producto.getId());
+			                }
+			            } else {
+			                System.out.println("Cantidad inválida.");
 			            }
 			        } else {
-			            System.out.println("Cantidad inválida.");
+			            System.out.println("Producto seleccionado no encontrado.");
 			        }
 			    } else {
 			        System.out.println("Selección inválida.");
