@@ -161,7 +161,7 @@ public class Producto implements Serializable,Cloneable {
 	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
-		pasillo.getProductos().add(this);
+		//pasillo.getProductos().add(this);
 	}
 
 	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {
@@ -176,7 +176,7 @@ public class Producto implements Serializable,Cloneable {
 		this.pasillo=pasillo;
 	}
 	
-	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion) {
+	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion,Tamaño tamaño) {
 		this(nombre,categoria);
 		this.precio=precio;
 		this.marca=marca;
@@ -185,6 +185,7 @@ public class Producto implements Serializable,Cloneable {
 		this.id=id;
 		this.edadValida=edades;
 		this.descripcion=descripcion;
+		this.tamaño=tamaño;
 	}
 	
 	public Producto(String nombre,Categoria categoria,Tienda tienda,Pasillo pasillo) {
@@ -203,8 +204,8 @@ public class Producto implements Serializable,Cloneable {
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
 	}
 
-	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Enums.Edades edades,String descripcion) {
-		this(nombre, marca, precio, categoria,id,edades,descripcion);
+	public Producto(String nombre, String marca, double precio,Categoria categoria, Tienda tienda,String fechaPerecer, int id, Edades edades,String descripcion,Tamaño tamaño) {
+		this(nombre, marca, precio, categoria,id,edades,descripcion,tamaño);
 		this.tienda=tienda; 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 		this.fechaPerecer = LocalDate.parse(fechaPerecer, formato); 
@@ -265,7 +266,7 @@ public class Producto implements Serializable,Cloneable {
 
         for (Producto producto : productos) {
             if (producto.getCategoria() == categoria) {
-                if (cliente.mayorEdad() && producto.getEdades() == Edades.ADULTOS) {
+                if (cliente.mayorEdad() && producto.getEdades() == Edades.ADULTOS  ||  producto.getEdades() == Edades.MENORES ) {
                     productosAdecuados.add(producto);
                 } else if (!cliente.mayorEdad() && producto.getEdades() == Edades.MENORES) {
                     productosAdecuados.add(producto);

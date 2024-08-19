@@ -68,7 +68,7 @@ public class Funcionalidad1 extends Identidad{
 
         switch (consulta) {
             case 1:
-                consultaGeneralProductos();
+                consultaGeneralProductos(cliente);
                 break;
             case 2:
                 consultaPorCategoria(cliente);
@@ -86,10 +86,22 @@ public class Funcionalidad1 extends Identidad{
     
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static void consultaGeneralProductos() {
+    public static void consultaGeneralProductos(Cliente cliente) {
         if (Tienda.buscarTienda()) {
+        	print("Selecciona una de las tiendas que tenemos disponibles para ti" );
             ArrayList<Tienda> tiendas = Tienda.revisionTienda(Tienda.getTiendas());
             printTablaTiendas(tiendas);
+            print("Selecciona una tienda:");
+            int tiendaSeleccionada = escaner(tiendas.size() + 1); 
+
+            if (tiendaSeleccionada == tiendas.size() + 1) { // Verificar si la opción seleccionada es "Volver"
+                consultasEco();
+            } else {
+                Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
+                print("Has seleccionado la tienda: " + tienda.getNombre());
+                seleccionarProducto(listaProductos(tienda,cliente,null),cliente);
+            }
+            
         } else {
             print("Lo sentimos, no hay tiendas disponibles en este momento.");
         }
@@ -117,7 +129,7 @@ public class Funcionalidad1 extends Identidad{
                 } else {
                     Tienda tienda = tiendas.get(tiendaSeleccionada - 1);
                     print("Has seleccionado la tienda: " + tienda.getNombre());
-                    listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]);
+                    seleccionarProducto(listaProductos(tienda,cliente,Categoria.values()[categoriaSeleccionada - 1]),cliente);
                 }
             } else {
                 print("No hay tiendas disponibles para la categoría seleccionada.");
@@ -200,7 +212,7 @@ public class Funcionalidad1 extends Identidad{
         }
     }*/
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
-    public static void listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
+    public static  ArrayList<Producto> listaProductos(Tienda tienda, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
         ArrayList<Producto> productosAdecuados;
 
@@ -214,9 +226,11 @@ public class Funcionalidad1 extends Identidad{
 
         if (productosAdecuados.size() > 0) {
             printTablaProductos(productosAdecuados);
+            return productosAdecuados;
         } else {
             print("No hay productos disponibles para su grupo de edad" +
                   (categoria != null ? " en esta categoría." : "."));
+            
         }
 
         print("");
@@ -227,12 +241,43 @@ public class Funcionalidad1 extends Identidad{
 
         if (opcion == 1) {
             consultaPorCategoria(cliente);
+            return null;
         } else {
             consultasEco();
+            return null;
         }
     }
 
-    
+ // --------------------------------------------------------------------------------------------------------------------------------------------------- 
+    public static void seleccionarProducto(ArrayList<Producto> productos,Cliente cliente) {
+        print("Seleccione un producto para ver sus detalles:");
+        
+        int seleccionProducto = escaner(8);
+        if(seleccionProducto== productos.size()+1 ) {
+        	seleccionarProducto(productos,cliente);
+        }
+        else {
+        // Obtener el producto seleccionado
+        Producto productoSeleccionado = productos.get(seleccionProducto - 1);
+
+        // Mostrar detalles del producto en tabla ASCII
+        printDetallesProducto(productoSeleccionado);
+        
+        // Volver al menú de consultas después de mostrar los detalles
+        print("¿Desea elegir otro producto?");
+        print("1. Sí");
+        print("2. No");
+
+        int opcion = escaner(2);
+
+        if (opcion == 1) {
+            seleccionarProducto(productos,cliente); // Volver a elegir otro producto
+        } else {
+        	Main.escogerFuncionalidad(cliente);; // Regresar al menú principal
+        }
+        }
+    }
+
  // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // Método para imprimir las tiendas en formato tabla ASCII
     public static void printTablaTiendas(ArrayList<Tienda> tiendas) {
@@ -313,6 +358,32 @@ public class Funcionalidad1 extends Identidad{
             contador++;
         }
         print("+--------------------------+");
+        
     }
+ // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    
+	 // Método para imprimir los detalles del producto en formato tabla ASCII
+	    public static void printDetallesProducto(Producto producto) {
+	    	int anchoTabla = 44; 
+
+	        // Crea la tabla con formato
+	        print("+--------------------------------------------+");
+	        print("|            Detalles del Producto           |");
+	        print("+--------------------------------------------+");
+	        print("  Nombre:        " + ajustarTexto(producto.getNombre(), anchoTabla ));
+	        print("  Marca:         " + ajustarTexto(producto.getMarca(), anchoTabla ));
+	        print("  Precio:        $" + String.format("%.2f", producto.getPrecio())); 
+	        print("  Descripción:   " + ajustarTexto(producto.getDescripcion(), anchoTabla) );
+	        print("  Tamaño:        " + ajustarTexto(producto.getTamaño().toString(),anchoTabla));
+	        print("+--------------------------------------------+");
+	    }
+	    
+	    public static String ajustarTexto(String texto, int ancho) {
+	        if (texto.length() > ancho) {
+	            return texto.substring(0, ancho - 3) + "..."; // Acorta el texto si es demasiado largo
+	        } else {
+	            return texto + " ".repeat(ancho - texto.length()); // Añade espacios para ajustar el texto
+	        }
+	    }
     
 }
