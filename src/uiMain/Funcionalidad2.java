@@ -378,8 +378,57 @@ public class Funcionalidad2 extends Identidad {
 		boolean contieneNoTienesDinero = resultado.indexOf("no tienes dinero") != -1;
 
 		if (contieneNoTienesDinero) {
-		    recomendarProductos();
-		} else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
+				ArrayList<Producto> productosRecomendados=cliente.getTienda().recomendarProductos(seleccionado,cliente);
+				if (productosRecomendados.isEmpty()) {
+		            System.out.println("No se encontraron productos recomendados.");
+		            print("Voliviendo a funcionalidad 2");
+		            elegirTipoBusqueda();
+		        }
+
+		        // Imprimir encabezado de la tabla
+		        System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+		        System.out.println("| No | Nombre             | Marca         | Precio   | Categoría| Descripción |");
+		        System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+
+		        // Imprimir cada producto en la tabla
+		        for (int i = 0; i < productosRecomendados.size(); i++) {
+		            Producto producto = productosRecomendados.get(i);
+
+		            String nombreProducto = producto.getNombre();
+		            String marcaProducto = producto.getMarca();
+		            String precioProducto = String.format("%.2f", producto.getPrecio()); // Precio formateado a dos decimales
+		            String categoriaProducto = producto.getCategoria().getTexto();
+		            String descripcionProducto = producto.getDescripcion();
+
+		            // Imprimir la fila de la tabla
+		            System.out.printf("| %-2d | %-18s | %-13s | %-8s | %-8s | %-10s |%n",
+		                    i + 1,
+		                    ajustarTexto(nombreProducto, 18),
+		                    ajustarTexto(marcaProducto, 13),
+		                    ajustarTexto(precioProducto, 8),
+		                    ajustarTexto(categoriaProducto, 8),
+		                    ajustarTexto(descripcionProducto, 10)
+		            );
+		        }
+		        // Imprimir línea final de la tabla
+		        System.out.println("+----+--------------------+---------------+----------+----------+----------+");
+		        System.out.print("Seleccione el número del producto que desea agregar al carrito: ");
+		        int seleccion = sc.nextInt();
+		        sc.nextLine(); // Limpiar el buffer
+
+		        if (seleccion > 0 && seleccion <= productosRecomendados.size()) {
+		            Producto productoSeleccionado = productosRecomendados.get(seleccion - 1);
+		            cantidad=1;
+		            if (cantidad > 0) {
+		                resultado = cliente.getCarrito().agregarAlCarrito(productoSeleccionado, cantidad);
+		                System.out.println(resultado.toString());
+		            } else {
+		                System.out.println("Cantidad no válida.");
+		            }
+		        } else {
+		            System.out.println("Selección inválida.");
+		        }
+		    } else if (contieneProductosNoAgregados && contieneProductosSuficientes) {
 		    // Si el resultado contiene los mensajes de "Productos no agregados" y "productos suficientes"
 		    print("Desea recibir la cantidad de productos que tenemos o desea mejor escoger otro");
 		    print("1. Recibir la cantidad que tienen");

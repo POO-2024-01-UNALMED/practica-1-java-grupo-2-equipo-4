@@ -284,8 +284,6 @@ public class Main {
 	       tienda.getEmpleados().add(empleado);
 		
 		escogerFuncionalidad();
-
-
 	}
 	
 	public static void escogerFuncionalidad() {
