@@ -79,12 +79,14 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	    public  static void adminitrarTienda(Tienda tienda) {	    	
 	    	
 	    	System.out.println("que deasea ver?");
-	    	System.out.println("1.Total de productos en el inventario\n"
-					+ "2.Productos vencidos\n"
-					+ "3.Marcar producto como defectuoso\n"
-					+ "4.Reabastecimiento\n");   	
+	    	System.out.println("1. Total de productos en el inventario\n"
+					+ "2. Productos vencidos\n"
+					+ "3. Marcar producto como defectuoso\n"
+					+ "4. Reabastecimiento\n"
+					+ "5. Seleccionar otra tienda"
+					+ "6. Volver al menu principal");   	
 	    	
-	        int opcion = escaner();
+	        int opcion = escaner(6);
 	        
 	        switch (opcion) {
 	            case 1: // productosUnicos contiene todos los productos sin repetición //   
@@ -113,23 +115,27 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                System.out.println("Seleccione una opcion");
 	                System.out.println("1.Seleccionar otra tienda");
 	                System.out.println("2. Volver a menu principal");
+	                System.out.println("3. Volver atras");
 	                
-	                int opcion2 = escaner();
+	                int opcionCase1 = escaner(3);
 	                
-	                switch(opcion2) {
-	                	case 1:
-	                		
+	                switch(opcionCase1) {
+	                	case 1:	                		
 	                		seleccionTienda();
 	                		break;
-	                	case 2:
 	                		
+	                	case 2:                		
 	                		Main.escogerFuncionalidad();
 							break;
+							
+	                	case 3:	
+	                		adminitrarTienda(tienda);
+	                		break;
 	                }
 	                
 	                break;
 	                
-	            case 2:
+	            case 2: // muestra todos los productos vencidos //
 	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
 	            	
 	            	tienda.vencerProducto();
@@ -137,11 +143,58 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	         
 	            	 for (Producto i:productosVencidos) {
 		                	System.out.println(i.getNombre());
-		             }	            	 
+		             }	
+	            	 
+	            	    System.out.println("Seleccione una opcion");
+		                System.out.println("1.Seleccionar otra tienda");
+		                System.out.println("2. Volver a menu principal");
+		                System.out.println("3. Volver atras");
+		                
+		                int opcionCase2 = escaner(3);
+		                
+		                switch(opcionCase2) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
+		                
 	            	break;
+	            	
 	            case 3:
 	            	System.out.println("Marcar producto como defectuoso");
+	            	
+	            	
+	            	System.out.println("Seleccione una opcion");
+	                System.out.println("1.Seleccionar otra tienda");
+	                System.out.println("2. Volver a menu principal");
+	                System.out.println("3. Volver atras");
+	                
+	                int opcionCase3 = escaner(3);
+	                
+	                switch(opcionCase3) {		                
+	                	case 1:	                		
+	                		seleccionTienda();
+	                		break;
+	                		
+	                	case 2:                		
+	                		Main.escogerFuncionalidad();
+							break;
+							
+	                	case 3:	
+	                		adminitrarTienda(tienda);
+	                		break;
+	                }
+	                
 	            	break;
+	            	
 	            case 4: 
 	            	print("Reabastecimiento");   
 	            	print("Proveedores disponibles:");
@@ -189,11 +242,36 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                 }
 
 	                 sc.close();
+	                 System.out.println("Seleccione una opcion");
+		                System.out.println("1.Seleccionar otra tienda");
+		                System.out.println("2. Volver a menu principal");
+		                System.out.println("3. Volver atras");
+		                
+		                int opcionCase4 = escaner(3);
+		                
+		                switch(opcionCase4) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
+		                
 	             break;
 	            	
 	            case 5:
-	            	
+	            	seleccionTienda();
 	    			break;
+	            case 6:
+	            	Main.escogerFuncionalidad();
+	            	break;
+	            	
 	            default:
 	                System.out.println("Opción no válida");
 	                break;
