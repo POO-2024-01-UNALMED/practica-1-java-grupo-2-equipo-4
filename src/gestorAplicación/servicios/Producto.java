@@ -260,6 +260,7 @@ public class Producto implements Serializable,Cloneable {
 		}
     	return cantidad;
     }
+    
     // Método para filtrar productos por edad y categoría
     public static ArrayList<Producto> filtrarPorEdadYCategoria(ArrayList<Producto> productos, Cliente cliente, Categoria categoria) {
         ArrayList<Producto> productosAdecuados = new ArrayList<>();

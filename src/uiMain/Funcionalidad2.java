@@ -362,8 +362,10 @@ public class Funcionalidad2 extends Identidad{
         }
 	}
 	public static void elegirTipoBusqueda(Cliente cliente) {
+
 		Tienda tienda=cliente.getTienda();
 		if(tienda==null) {
+			lineas();
 			print("Deberia seleccionar una tienda primero, dirijase a la funcionalidad 1");
 			print("1. Ir a la funcionalidad 1");
 			print("2. Ver el menu para escoger otra funcionalidad");
@@ -374,9 +376,10 @@ public class Funcionalidad2 extends Identidad{
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				Main.escogerFuncionalidad(cliente);
+				Main.escogerFuncionalidad();
 				break;
 			}
+
 		}
 		lineas();
 		print("La busqueda de nuestra tienda es lo mas accesible para nuestros clientes, desea buscar por"
@@ -402,7 +405,7 @@ public class Funcionalidad2 extends Identidad{
 		case 3:
 			//productosNoActuales();
 		case 4:
-			Main.escogerFuncionalidad(cliente);
+			Main.escogerFuncionalidad();
 			break;
 		}
 	}
