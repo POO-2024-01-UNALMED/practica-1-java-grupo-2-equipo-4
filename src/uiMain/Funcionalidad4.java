@@ -56,7 +56,7 @@ public class Funcionalidad4 extends Identidad {
 	    	return tienda;
 	    	System.out.println("que deasea ver?");
 	    	System.out.println("1.Total de productos en el inventario\n"
-					+ "2.Productos para vencer\n"
+					+ "2.Productos vencidos\n"
 					+ "3.Marcar producto como defectuoso\n"
 					+ "4.Reabastecimiento\n");   	
 	    	
@@ -94,12 +94,20 @@ public class Funcionalidad4 extends Identidad {
 	            	System.out.println("Marcar producto como defectuoso");
 	            	
 	            case 4: 
-	            	System.out.println("reabastecimiento");
-	            	System.out.println("seleccione un proveedor");
+	            	print("Reabastecimiento");   
+	            	print("Lista de Proveedores:");
 	            	
-	            	tienda.imprimirProveedores();
+	    	        int contador = 1;
+	    	        
+	    	        for (Proveedor proveedor : tienda.getProveedores()) {
+	    	            System.out.println(contador + ". " + proveedor);
+	    	            contador++;
+	    	        }
+	    	        
+	            	print("seleccione un proveedor"); 
 	            	
 	            	int opcionProveedor = sc.nextInt();
+	            	
 	            	if (opcionProveedor == 1) {
 	            	    // Código para la opción 1
 	            	} else if (opcionProveedor == 2) {
