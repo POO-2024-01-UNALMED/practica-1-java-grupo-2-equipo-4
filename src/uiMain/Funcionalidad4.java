@@ -81,12 +81,12 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	    
 	    public  static void adminitrarTienda(Tienda tienda) {	    	
 	    	
-	    	System.out.println("que deasea ver?");
+	    	System.out.println("Seleccione una opcion?");
 	    	System.out.println("1. Total de productos en el inventario\n"
 					+ "2. Productos vencidos\n"
 					+ "3. Ver productos devueltos\n"
 					+ "4. Reabastecimiento\n"
-					+ "5. Seleccionar otra tienda"
+					+ "5. Seleccionar otra tienda\n"
 					+ "6. Volver al menu principal");   	
 	    	
 	        int opcion = escaner(6);
@@ -172,54 +172,8 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	break;
 	            	
 	            case 3: // muestra los productos devueltos y los elimina o regresa//
-	            	System.out.println("Productos devueltos");
-	            	System.out.println("Seleccione una de sus compras anteriores");
 	            	
-	            	System.out.println("Compras anteriores en la tienda:");
-	                int index = 1;
-	                for (Carrito carrito : tienda.getCarritos()) {
-	                    System.out.println(index + ". " + carrito.getFechaFacturacion());
-	                    index++;
-	                }
-	                
-	                System.out.print("Ingrese el número de la compra que desea seleccionar: ");
-	                int indiceCarrito = escaner(index) - 1;
-	                
-	                Carrito carritoSeleccionado = tienda.getCarritos().get(indiceCarrito);	                
-	             
-	                System.out.println("Productos en el carrito seleccionado:");
-	                index = 1;
-	                for (Producto producto : carritoSeleccionado.getProductos()) {
-	                    System.out.println(index + ". " + producto);
-	                    index++;
-	                }
-
-	                System.out.print("Ingrese el número del producto que desea devolver: ");
-	                int indiceProducto = escaner() - 1;
-
-	                Producto productoSeleccionado = carritoSeleccionado.getProductos().get(indiceProducto);
-
-	                // Solicitar la razón de la devolución
-	                System.out.println("Razones de devolución:");
-	                for (RazonDevolucion razon : RazonDevolucion.values()) {
-	                    System.out.println(razon.ordinal() + 1 + ". " + razon);
-	                }
-	                System.out.print("Ingrese el número de la razón de la devolución: ");
-	                int indiceRazon = escaner() - 1;
-
-	                RazonDevolucion razonDevolucion = RazonDevolucion.values()[indiceRazon];
-
-	                // Cambiar el estado del producto si es defectuoso
-	                if (razonDevolucion == RazonDevolucion.DEFECTUOSO) {
-	                    productoSeleccionado.setEstado(EstadoProducto.DEFECTUOSO);
-	                }
-
-	                // Agregar el producto seleccionado a la lista de productos devueltos
-	                tienda.getProductosDevueltos().add(productoSeleccionado);
-
-	                // Imprimir productos devueltos
-	                System.out.println("Producto exitosamente:");
-	                System.out.println("Productos devueltos:");
+	                System.out.println("Productos devueltos en la tienda:");
 	                for (Producto producto : tienda.getProductosDevueltos()) {
 	                    System.out.println(producto);
 	                }
@@ -277,13 +231,13 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                 int seleccion2 = escaner() - 1;
 
 	                 if (seleccion2 >= 0 && seleccion2 < entrega.size()) {
-	                     Producto productoSeleccionado = entrega.get(seleccion2);
+	                     Producto productoSeleccionado1 = entrega.get(seleccion2);
 	                     
 	                     System.out.print("Ingrese la cantidad que desea pedir: ");
 	                     int cantidad = escaner();
 
 	                     for (int i = 0; i < cantidad; i++) {	                         
-	                          Producto productoClonado = (Producto) productoSeleccionado.clone();
+	                          Producto productoClonado = (Producto) productoSeleccionado1.clone();
 	                          tienda.agregarProducto(productoClonado);                             	                         
 	                     }
 

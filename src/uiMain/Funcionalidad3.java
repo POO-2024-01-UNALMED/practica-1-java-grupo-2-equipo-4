@@ -8,10 +8,9 @@ import gestorAplicación.servicios.*;
 import gestorAplicación.sujetos.*;
 import java.util.Scanner;
 
-import gestorAplicación.servicios.Producto;
-import gestorAplicación.servicios.Tienda;
-import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Categoria;
+import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
 
@@ -20,9 +19,56 @@ import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-	
+		 static Persona persona = identificarPersona();
+		 
+		 public  static Tienda seleccionTienda() {
+		    
+		// seleccion de tiendas para comprar //  
+		    	
+				if(persona.getTiendas().size()==0) {
+					print("No tienes niguna tienda registrada "); 
+					print("Que desea hacer ");
+					print("1. Cambiar de usuario");
+					print("2. Volver al Menu principal");
+					
+					int valor= escaner();
+					switch (valor) {
+						case 1:
+							persona=null;
+							seleccionTienda();
+							break;
+						case 2:
+							Main.escogerFuncionalidad();
+							break;
+					}
+				}
+		    	
+		    	print("Tiendas disponibles: ");
+		    	
+		    	Tienda tienda=null;
+		    	int contT = 1;
+
+		    	for(Tienda i: persona.getTiendas()) {
+		    		print(contT+ ". "+i.getNombre());
+		    		contT++;
+		    	}
+		    	
+		    	contT--;
+		    	
+		    	print("Seleccione una tienda para administrar");
+		    	int decs = escaner(contT);
+		    		    	
+		    	for (int i = 0; i < contT; i++) {
+		           if(i+1 == decs ) {
+		        	   tienda = persona.getTiendas().get(i);
+		        	   break;
+		           }
+		        }	
+		    	return tienda;
+		    }
+		 
 	public static void mostrarFacturas() {
-		Persona persona = identificarPersona();
+	
 		print("Este es el registro de sus facturas ");
 		
 		print("1. Ver las facturas de compras que he hecho");
@@ -56,5 +102,76 @@ public class Funcionalidad3 extends Identidad {
             System.out.println(entry.getKey() + "\t" + entry.getValue());
         }
     }
+	
+	public static void realizarDevolicion() {
+		Tienda tienda = seleccionTienda();
+		System.out.println("Realizar una devolucion");
+		System.out.println("Seleccione una de sus compras anteriores");
+		
+		System.out.println("Compras anteriores en la tienda:");
+	    int index = 1;
+	    for (Carrito carrito : tienda.getCarritos()) {
+	        System.out.println(index + ". " + carrito.getFechaFacturacion());
+	        index++;
+	    }
+	    
+	    System.out.print("Ingrese el número de la compra que desea seleccionar: ");
+	    int indiceCarrito = escaner(index) - 1;
+	    
+	    Carrito carritoSeleccionado = tienda.getCarritos().get(indiceCarrito);	                
+	 
+	    System.out.println("Productos en el carrito seleccionado:");
+	    index = 1;
+	    for (Producto producto : carritoSeleccionado.getProductos()) {
+	        System.out.println(index + ". " + producto);
+	        index++;
+	    }
+	
+	    System.out.print("Ingrese el número del producto que desea devolver: ");
+	    int indiceProducto = escaner() - 1;
+	
+	    Producto productoSeleccionado = carritoSeleccionado.getProductos().get(indiceProducto);
+	
+	    // Solicitar la razón de la devolución
+	    System.out.println("Razones de devolución:");
+	    for (RazonDevolucion razon : RazonDevolucion.values()) {
+	        System.out.println(razon.ordinal() + 1 + ". " + razon);
+	    }
+	    System.out.print("Ingrese el número de la razón de la devolución: ");
+	    int indiceRazon = escaner() - 1;
+	
+	    RazonDevolucion razonDevolucion = RazonDevolucion.values()[indiceRazon];
+	
+	    // Cambiar el estado del producto si es defectuoso
+	    if (razonDevolucion == RazonDevolucion.DEFECTUOSO) {
+	        productoSeleccionado.setEstado(EstadoProducto.DEFECTUOSO);
+	    }
+	
+	    // Agregar el producto seleccionado a la lista de productos devueltos
+	    tienda.getProductosDevueltos().add(productoSeleccionado);
+	
+	    // Imprimir productos devueltos
+	    System.out.println("Producto devuelto exitosamente");
+	    System.out.println("Seleccione una opcion");
+	    System.out.println("1.Seleccionar otra tienda");
+        System.out.println("2. Volver a menu principal");
+        System.out.println("3. Volver atras");        
+        
+        int opcionCase4 = escaner(3);
+        
+        switch(opcionCase4) {		                
+        	case 1:	                		
+        		seleccionTienda();
+        		break;
+        		
+        	case 2:                		
+        		Main.escogerFuncionalidad();
+				break;
+				
+        	case 3:	
+        		// opcion anterior a realizar devolucion //;
+        		break;
+        }
+	}
 }
 

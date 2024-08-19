@@ -251,7 +251,7 @@ public class Main {
 	            "Galletas de Avena", "Cerealia", 2.75, Tamaño.PEQUEÑO, Edades.MENORES, Categoria.ALIMENTO,
 	            "Galletas de avena y miel, perfectas para un snack saludable.", "05/11/2024", 105
 	        );
-
+	        
 	        // Asignar productos al pasillo y a la tienda
 	        producto1.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto12.asignarPasilloYPonerEnTienda(pasillo1);
@@ -279,6 +279,7 @@ public class Main {
 	                               ", Pasillo: " + pasillo1.getNombre() + ", Tienda: " + tienda.getNombre());
 	        }
 	       Empleado empleado=new Cajero();
+	       Persona.getPersonas().get(0).getTiendas().add(tienda);
 	       tienda.getEmpleados().add(empleado);
 		
 		escogerFuncionalidad();
