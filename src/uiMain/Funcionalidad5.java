@@ -17,33 +17,51 @@ public class Funcionalidad5 {
 		lineas();
 		print("Ha seleccionado Personalizar y modificar tiendas.");
 		print("Selecciona una de las tiendas disponibles para ti:");
-        int contador = 1;
-        lineas();
-        System.out.print("   Nombre");
-		System.out.print("    ");
-		System.out.print("|     ");
-		System.out.println("Precio");
-        for (Tienda generales : Tienda.revisionTienda(Tienda.getTiendas())) {
-            System.out.println(contador + ". " + generales.getNombre()+" $"+generales.getSaldo());
-            contador++;
-        }
-		
+		Funcionalidad1.printTablaTiendas(Tienda.getTiendas());
 		int h =escaner();
+		
 		Tienda tien=Tienda.getTiendas().get(h-1);
 		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
 			tien.setDueño(clien);
 			lineas();
+			print("Has seleccionado la tienda: " + tien.getNombre());
 			print("Se te resto $"+tien.getSaldo()+" de tu saldo");
 			print("Ahora eres el dueño de la tienda: \""+tien.getNombre()+"\"");
 			clien.setDinero(diferencia);
 			print("Tu saldo ahora es de: $"+diferencia);
 		}
-		//System.out.println(tien.getDueño());
-		lineas();
-		print("¿Desea reorganizar pasillos?\n1.Si\n2.No");
-		h = escaner();
-		if(h==1) {
+		boolean iterar=true;
+		while(iterar) {
+			lineas();
+			print("1.Desea reorganizar pasillos?");
+			print("2.Desea llamar al proveedor?");
+			print("3.Desea contratar empleados?");
+			print("4.Salir de personalizar tienda");
+			int decision = escaner();
+			switch(decision) {
+		        case 1:
+		        	reorganizarPasillos(tien);
+		        	break;
+		        case 2:
+		        	llamarProveedor(tien);
+		        	break;
+		        case 3:
+		        	contratar(tien);
+		        	break;
+		        case 4:
+		        	iterar=false;
+		        	print("Ha salido de personalizar tienda");
+		        	break;
+		        default:
+		        	print("Ese numero esta fuera del rango");
+					print("Introduzca otro numero: ");
+					break;
+		        } 
+			}
+		}
+		public static void reorganizarPasillos(Tienda tien) {
+			lineas();
 			int i=1;
 			while(true){
 				lineas();
@@ -70,10 +88,16 @@ public class Funcionalidad5 {
 				if(x3!=1) {
 					break;
 				}
-			}
+			}	
 		}
       	
-      	if ((tien.disponibilidadProductos()==true)) {
+      	
+  		
+  		
+
+	private static void llamarProveedor(Tienda tien) {
+		// TODO Auto-generated method stub
+		if ((tien.disponibilidadProductos()==true)) {
       		lineas();
       		print(tien.getDueño().getNombre() +" de la tienda: \""+tien.getNombre()+ "\", sus pasillos estan vacios ");
       		print("¿Desea llamar a un proveedor?\n1.Si\n2.No");
@@ -86,8 +110,11 @@ public class Funcionalidad5 {
       			
       		}
       	}
-  		
-  		lineas();
+	}
+
+	private static void contratar(Tienda tien) {
+		// TODO Auto-generated method stub
+		lineas();
   		print("¿Desea contratar empleados?\n1.Si\n2.No");
   		int x4=escaner();
   		if(x4==1) {
@@ -117,4 +144,5 @@ public class Funcionalidad5 {
   		
   	}
 }
-}
+	}
+
