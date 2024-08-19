@@ -106,6 +106,7 @@ public static enum Genero{
 	M,
 	H
 }
+
 public static enum TipoEmpleado{
 	CAJERO("Cajero"),CONSERJE("Conserje"),DOMICILIARIO("Domiciliario");
 	
@@ -123,6 +124,43 @@ public static enum TipoEmpleado{
 public enum RazonDevolucion {
     DEFECTUOSO,
     INCONFORME
+}
+
+
+
+public enum Membresia {
+    BASICO("Básico", "Acceso a promociones generales y descuentos limitados."),
+    PREMIUM("Premium", "Acceso a promociones exclusivas y descuentos adicionales."),
+    VIP("VIP", "Acceso a todos los beneficios, promociones exclusivas y eventos especiales.");
+
+    private final String nombre;
+    private final String descripcion;
+
+    Membresia(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public static String getBeneficiosPorPerfilDemografico(Membresia membresia, String perfilDemografico) {
+        switch (membresia) {
+            case BASICO:
+                return "Beneficios Básico para " + perfilDemografico;
+            case PREMIUM:
+                return "Beneficios Premium para " + perfilDemografico;
+            case VIP:
+                return "Beneficios VIP para " + perfilDemografico;
+            default:
+                return "Sin beneficios disponibles";
+        }
+    }
 }
 
 }

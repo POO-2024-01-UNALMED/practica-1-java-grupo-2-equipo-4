@@ -10,6 +10,7 @@ import gestorAplicación.servicios.Enums;
 //import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
+import gestorAplicación.servicios.Enums.Membresia;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 
@@ -20,7 +21,8 @@ public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = -6750540194444988134L;
 //Atributos----------------------------------------------------------------------------------------------------
 	
-//	private Edades membresia;
+
+	private Membresia membresia;
 	private Tienda tienda;
 	private double dinero;
 	private Carrito carrito;
@@ -65,6 +67,14 @@ public class Cliente extends Persona implements Serializable {
 	public void setFacturas(ArrayList<Carrito> facturas) {
 		this.facturas = facturas;
 	}
+	
+	public Membresia getMembresia() {
+		return membresia;
+	}
+
+	public void setMembresia(Membresia membresia) {
+		this.membresia = membresia;
+	}
 
 	
 	
@@ -72,6 +82,8 @@ public class Cliente extends Persona implements Serializable {
 	
 //Constructores------------------------------------------------------------------------------------------------
 	
+	
+
 	public Cliente() {
 	}
 	
@@ -86,6 +98,8 @@ public class Cliente extends Persona implements Serializable {
 		super(nombre, id, edad, genero1);
 		super.getPersonas().add(this);
 	}
+	
+	
 
 
 //-------------------------------------------------------------------------------------------------------------
@@ -208,12 +222,67 @@ public class Cliente extends Persona implements Serializable {
 	        	cliente.setDinero(50000);
 	        }
 	}
-
+	
 	@Override
 	public StringBuilder imprimirFacturas(Cliente cliente) {
 		// TODO Auto-generated method stub
 		return null;
 	} 
 
+//----Membresias----------------------------------------------------------------------------------------------
+	
+	public static String PerfilDemografico(Cliente cliente) {
+		
+	    int edad = cliente.getEdad();
+	    Genero genero = cliente.getGenero();
+
+	    if (edad >= 18 && edad <= 26) {
+	        return (genero == Genero.M) ? "Mujer Joven" : "Hombre Joven";
+	    } else if (edad >= 27 && edad <= 59) {
+	        return (genero == Genero.M) ? "Mujer Adulta" : "Hombre Adulto";
+	    } else if (edad >= 60) {
+	        return (genero == Genero.M) ? "Mujer Anciana" : "Hombre Anciano";
+	    } else {
+	        return "Desconocido";
+	    }
+	}
+	
+	public static String getMensajePorPerfil(String perfilDemografico, Membresia membresia) {
+	    switch (membresia) {
+	        case BASICO:
+	            return switch (perfilDemografico) {
+	                case "Mujer Joven" -> "disfrutarás de descuentos en productos ideales para tu estilo joven y vibrante. ¡No te pierdas nuestras ofertas en el boletín mensual!";
+	                case "Mujer Adulta" -> "obtendrás descuentos en productos que complementan tu estilo sofisticado. Mantente al tanto de nuestras ofertas especiales.";
+	                case "Mujer Anciana" -> "te ofrecemos descuentos en productos adaptados a tus necesidades y confort. Consulta nuestras ofertas en el boletín mensual.";
+	                case "Hombre Joven" -> "tendrás descuentos en productos que se adaptan a tu estilo dinámico. No olvides revisar el boletín mensual para novedades y ofertas.";
+	                case "Hombre Adulto" -> "disfrutarás de descuentos en productos que se ajustan a tu estilo profesional. Consulta nuestras ofertas en el boletín mensual.";
+	                case "Hombre Anciano" -> "te ofrecemos descuentos en productos que se adaptan a tus preferencias y comodidad. Revisa el boletín mensual para más detalles.";
+	                default -> "te ofrecemos descuentos en productos seleccionados.";
+	            };
+	        case PREMIUM:
+	            return switch (perfilDemografico) {
+	                case "Mujer Joven" -> "obtendrás descuentos exclusivos y acceso anticipado a las últimas tendencias. Además, disfruta de nuestra atención prioritaria en cada compra.";
+	                case "Mujer Adulta" -> "tendrás acceso a descuentos adicionales y eventos exclusivos. Nuestra atención prioritaria te garantizará una experiencia superior.";
+	                case "Mujer Anciana" -> "recibirás descuentos adicionales y atención prioritaria en cada compra. También tendrás acceso a eventos exclusivos diseñados pensando en tu comodidad.";
+	                case "Hombre Joven" -> "obtendrás descuentos especiales y acceso anticipado a productos innovadores. Disfruta de nuestra atención prioritaria en cada compra.";
+	                case "Hombre Adulto" -> "tendrás acceso a descuentos adicionales y eventos exclusivos. Nuestra atención prioritaria mejorará tu experiencia de compra.";
+	                case "Hombre Anciano" -> "recibirás descuentos especiales y atención prioritaria. Además, tendrás acceso a eventos exclusivos adaptados a tus necesidades.";
+	                default -> "obtendrás descuentos especiales y acceso a eventos exclusivos.";
+	            };
+	        case VIP:
+	            return switch (perfilDemografico) {
+	                case "Mujer Joven" -> "disfrutarás de descuentos máximos y acceso anticipado a colecciones exclusivas. Además, recibirás asesoramiento personal y podrás participar en eventos VIP diseñados especialmente para ti.";
+	                case "Mujer Adulta" -> "obtendrás los mayores descuentos y acceso anticipado a nuevas colecciones. Además, contarás con asesoramiento personal y eventos VIP adaptados a tu estilo.";
+	                case "Mujer Anciana" -> "te ofrecemos los mayores descuentos y acceso a productos antes que el público general. Además, recibirás asesoramiento personal y experiencias VIP adaptadas a tus preferencias.";
+	                case "Hombre Joven" -> "tendrás acceso a descuentos máximos y colecciones antes que nadie. Además, disfrutarás de asesoramiento personal y eventos VIP diseñados para tu estilo dinámico.";
+	                case "Hombre Adulto" -> "obtendrás los mayores descuentos y acceso anticipado a nuevas colecciones. Además, contarás con asesoramiento personal y eventos VIP adaptados a tu estilo profesional.";
+	                case "Hombre Anciano" -> "disfrutarás de descuentos máximos y acceso anticipado a productos. Además, recibirás asesoramiento personal y experiencias VIP adaptadas a tus gustos y necesidades.";
+	                default -> "disfrutarás de descuentos máximos y acceso anticipado a productos exclusivos.";
+	            };
+	        default:
+	            return "te ofrecemos beneficios personalizados.";
+	    }
+	}
+	
 //-------------------------------------------------------------------------------------------------------------
 }
