@@ -19,24 +19,15 @@ import gestorAplicación.sujetos.Persona;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Categoria;
+import java.util.HashSet;
 
 public class Funcionalidad4 extends Identidad implements Cloneable {
 	
 	static Scanner sc = new Scanner(System.in);
 	
 	
-	
+	static Persona usuario = identificarPersona();
 	    public  static void seleccionTienda() {
-	    	
-	    	Persona usuario = identificarPersona();
-	    	Tienda tiendaM = new Tienda("euro");
-	    	usuario.getTiendas().add(tiendaM);
-	    	for (Tienda tiendas:Tienda.getTiendas()) {
-	    		if(tiendas.getNombre()== "Donde Chucho") {
-	    			usuario.getTiendas().add(tiendas);
-	    		}
-	    	}
-			System.out.println(usuario.getTiendas());
 	    	
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
 	// seleccion de tiendas para administrar //  
@@ -59,7 +50,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 				}
 			}
 	    	
-	    	print("Tus tiendas ");
+	    	print("Tiendas disponibles: ");
 	    	
 	    	Tienda tienda=null;
 	    	int contT = 1;
@@ -101,16 +92,42 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                System.out.println("Todos los productos se mostraran a continuacion...");
 	                
 	                ArrayList<Producto> productos = tienda.obtenerTodosLosProductos();
-	                ArrayList<Producto> productosUnicos = new ArrayList<>();
-
+	                ArrayList<Producto> productosUnicos = new ArrayList<Producto>();
+	                HashSet<String> nombres = new HashSet<>();
+	                
 	                for (Producto producto : productos) {
-	                	int n=0;
-	                    if (!productosUnicos.contains(producto) && producto.getNombre()!=productosUnicos.get(n).getNombre()) {
+	                    if (!nombres.contains(producto.getNombre())) {
+	                        nombres.add(producto.getNombre());
 	                        productosUnicos.add(producto);
 	                    }
 	                }
-	                	
-	                printTablaProductos(productosUnicos);
+	                
+	                if(productosUnicos.size()>0) {
+	                	printTablaProductos(productosUnicos);
+	                
+	                }else {	                
+		                	System.out.println("La tienda no tiene ningun producto");
+	                }
+	                
+	              
+	                System.out.println("Seleccione una opcion");
+	                System.out.println("1.Seleccionar otra tienda");
+	                System.out.println("2. Volver a menu principal");
+	                
+	                int opcion2 = escaner();
+	                
+	                switch(opcion2) {
+	                	case 1:
+	                		
+	                		seleccionTienda();
+	                		break;
+	                	case 2:
+	                		
+	                		Main.escogerFuncionalidad();
+							break;
+	                }
+	                
+	                break;
 	                
 	            case 2:
 	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
@@ -121,10 +138,10 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	 for (Producto i:productosVencidos) {
 		                	System.out.println(i.getNombre());
 		             }	            	 
-	            	
+	            	break;
 	            case 3:
 	            	System.out.println("Marcar producto como defectuoso");
-	            	
+	            	break;
 	            case 4: 
 	            	print("Reabastecimiento");   
 	            	print("Proveedores disponibles:");
@@ -172,7 +189,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                 }
 
 	                 sc.close();
-	             
+	             break;
 	            	
 	            case 5:
 	            	
