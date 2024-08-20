@@ -76,9 +76,28 @@ public class Carrito implements Serializable{
 		this.tipoCarrito=tipo;
 	}
 	
+	public LocalDate getFechaFacturacion() {
+		return fechaFacturacion;
+	}
+
+	public void setFechaFacturacion(LocalDate fechaFacturacion) {
+		this.fechaFacturacion = fechaFacturacion;
+	}
+	
+	public ArrayList<Producto> getProductosFactura() {
+		return productosFactura;
+	}
+
+	public void setProductosFactura(ArrayList<Producto> productosFactura) {
+		this.productosFactura = productosFactura;
+	}
+
+	
+	
 
 //Contructores-------------------------------------------------------------------------------------------------
 	
+
 	public Carrito() {
 		
 	}
@@ -105,13 +124,6 @@ public class Carrito implements Serializable{
 	}
 
 	
-	public LocalDate getFechaFacturacion() {
-		return fechaFacturacion;
-	}
-
-	public void setFechaFacturacion(LocalDate fechaFacturacion) {
-		this.fechaFacturacion = fechaFacturacion;
-	}
 	
 	
 	

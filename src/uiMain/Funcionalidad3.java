@@ -21,8 +21,8 @@ import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-	public static void impresionFacturas() {
-		Persona persona = identificarPersona();
+	public static void impresionFacturas(Persona persona) {
+	//	Persona persona = identificarPersona();
 		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
         Map<String, Integer> conteoTiendas = new HashMap<>();
         for (Tienda tienda : tiendas) {
@@ -95,7 +95,9 @@ public class Funcionalidad3 extends Identidad {
 		 
 		 
 		 public static void funcionalidad() {
-			 Cliente cliente = seleccionRol();			 
+			 Persona persona = identificarPersona();
+			 
+			 Cliente cliente = seleccionRol(persona);			 
 			 if (cliente != null) {
 				 // logica para cliente //	//utilizar cliente 	//	
 				 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
@@ -119,17 +121,19 @@ public class Funcionalidad3 extends Identidad {
 				 
 			 } else {
 				 //logica para dueño
-				 seleccionDueno();
+				 seleccionDueno(persona);
 			 }				 				 
 		 }
 		 
-		 public static void seleccionDueno() {
-			 Tienda tienda = seleccionarTiendaDueno(persona);
+		 public static Administrador seleccionDueno(Persona persona) {
+			 Administrador dueño = (Administrador)persona;
+			 Tienda tienda = seleccionarTiendaDueno(dueño);
 			 imprimirCarritosPagados(tienda);
+			 return  dueño;
 		 }
 		 
 		 
-		 public static void seleccionCliente() {
+		 public static void seleccionCliente(Cliente cliente) {
 			 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
 			 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
 			 System.out.println("Que desea consultar ");
@@ -153,11 +157,11 @@ public class Funcionalidad3 extends Identidad {
 			 			case 1:
 			 				System.out.println("Seleccione el Producto que desea devolver:  ");
 			 				imprimirFacturaCompleta(carrito);
-			 				int index = escaner(carrito);
+			 				int index = escaner(carrito.getProductosFactura().size());
 			 						
 			 				break;
 			 			case 2:
-			 				seleccionCliente();
+			 				seleccionCliente(cliente);
 			 				break;
 			 			case 3:
 			 				Main.escogerFuncionalidad();
@@ -192,7 +196,7 @@ public class Funcionalidad3 extends Identidad {
 		        ArrayList<Carrito> carritosPagados = new ArrayList<>();
 		        int contador = 1;
 
-		        for (Carrito carrito : tienda.getCarritos()) {
+		        for (Carrito carrito : tienda.getFacturas()) {
 		            if (carrito.isPagado()) {
 		                carritosPagados.add(carrito);
 		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cantidad de productos: " + carrito.getProductos().size());
@@ -215,7 +219,7 @@ public class Funcionalidad3 extends Identidad {
 		 public static void imprimirCarritosPagados(Tienda tienda) {
 			 System.out.println("estas son todas las facturas pagadas en su tienda");
 		        int contador = 1;
-		        for (Carrito carrito : tienda.getCarritos()) {
+		        for (Carrito carrito : tienda.getFacturas()) {
 		            if (carrito.isPagado()) {
 		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cliente: " + carrito.getCliente().getNombre());
 		                contador++;
@@ -223,7 +227,7 @@ public class Funcionalidad3 extends Identidad {
 		        }
 		    }		 		 
 		 
-		 public static Cliente seleccionRol() {
+		 public static Cliente seleccionRol(Persona persona) {
 			 System.out.println("ver facturas como:");
              System.out.println("1. Cliente");
              System.out.println("2. Dueño");
@@ -255,7 +259,7 @@ public class Funcionalidad3 extends Identidad {
 		    }
 		 
 		 
-		  static public Tienda seleccionarTiendaDueno(Persona persona) {
+		  static public Tienda seleccionarTiendaDueno(Administrador persona) {
 		        if (persona.getTiendas().isEmpty()) {
 		            System.out.println("No es dueño de ninguna tienda.");
 		            return null;
@@ -311,10 +315,10 @@ public class Funcionalidad3 extends Identidad {
 		        }
 		    }
 
-		    public static void imprimirFacturasPersona(Persona persona) {
+		    public static void imprimirFacturasPersona(Administrador persona) {
 		        int numeroFactura = 1;
 		        for (Tienda tienda : persona.getTiendas()) {
-		            for (Carrito carrito : tienda.getCarritos()) {
+		            for (Carrito carrito : tienda.getFacturas()) {
 		                if (carrito.isPagado()) {
 		                    System.out.printf("%d. %s - %s%n", numeroFactura, carrito.getFechaFacturacion(), carrito.getCliente().getNombre());
 		                    numeroFactura++;
