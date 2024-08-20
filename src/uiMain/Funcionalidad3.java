@@ -26,7 +26,9 @@ public class Funcionalidad3 extends Identidad {
 		 public static void funcionalidad() {
 			 Cliente cliente = seleccionRol();			 
 			 if (cliente != null) {
-				 // logica para cliente //				
+				 // logica para cliente //	//utilizar cliente 	//	
+				 Tienda tienda = seleccionarTiendaDueno(cliente);
+				 
 			 } else {
 				 //logica para dueño
 				 Tienda tienda = seleccionarTiendaDueno(persona);
@@ -43,9 +45,7 @@ public class Funcionalidad3 extends Identidad {
 		                contador++;
 		            }
 		        }
-		    }
-		 
-		 
+		    }		 		 
 		 
 		 public static Cliente seleccionRol() {
 			 System.out.println("ver facturas como:");
@@ -62,8 +62,29 @@ public class Funcionalidad3 extends Identidad {
 		 }
 		 
 		 
+		  static public Tienda seleccionarTiendaDueno(Persona persona) {
+		        if (persona.getTiendas().isEmpty()) {
+		            System.out.println("No es dueño de ninguna tienda.");
+		            return null;
+		        }
+
+		       
+		        System.out.println("Seleccione una tienda de la lista:");
+		        for (int i = 0; i < persona.getTiendas().size(); i++) {
+		            System.out.println((i + 1) + ". " + persona.getTiendas().get(i).getNombre());
+		        }
+
+		        int seleccion = escaner();
+		        if (seleccion < 1 || seleccion > persona.getTiendas().size()) {
+		            System.out.println("Selección inválida.");
+		            return null;
+		        }
+
+		        return persona.getTiendas().get(seleccion - 1);
+		    }  
 		 
 		 
+		 /// de aqui pa abajo es caca //
 		 
 		 
 		 
@@ -131,26 +152,7 @@ public class Funcionalidad3 extends Identidad {
 //		 }
 		    
 		    
-		   static public Tienda seleccionarTiendaDueno(Persona persona) {
-		        if (persona.getTiendas().isEmpty()) {
-		            System.out.println("No es dueño de ninguna tienda.");
-		            return null;
-		        }
-
-		       
-		        System.out.println("Seleccione una tienda de la lista:");
-		        for (int i = 0; i < persona.getTiendas().size(); i++) {
-		            System.out.println((i + 1) + ". " + persona.getTiendas().get(i).getNombre());
-		        }
-
-		        int seleccion = escaner();
-		        if (seleccion < 1 || seleccion > persona.getTiendas().size()) {
-		            System.out.println("Selección inválida.");
-		            return null;
-		        }
-
-		        return persona.getTiendas().get(seleccion - 1);
-		    }  
+		 
 		    
 	 
 		 public  static Tienda seleccionTienda() {

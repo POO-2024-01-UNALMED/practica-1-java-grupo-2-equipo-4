@@ -386,6 +386,12 @@ public class Cliente extends Persona implements Serializable {
 	    double costoNueva = nuevaMembresia.getPrecio();
 	    return costoNueva - costoActual; // Diferencia de costo
 	}
+
+	@Override
+	public StringBuilder obtenerContadorProductos(Persona cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 //-------------------------------------------------------------------------------------------------------------
 }

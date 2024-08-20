@@ -682,7 +682,21 @@ public class Tienda implements Serializable{
 		
 		public static void devolverProductos() {
 			
-		}
+		}				
+
+	    public ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
+	        Set<Tienda> tiendasConCliente = new HashSet<>();
+	        for (Tienda tienda : tiendas) {
+	            for (Carrito carrito : tienda.getCarritos()) {
+	                if (carrito.getCliente().equals(cliente)) {
+	                    tiendasConCliente.add(tienda);
+	                    break;
+	                }
+	            }
+	        }
+	        return new ArrayList<>(tiendasConCliente);
+	    }
+
 		
 		public final String toString() {
 			return this.getNombre(); 
