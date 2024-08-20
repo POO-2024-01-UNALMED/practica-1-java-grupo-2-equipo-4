@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
@@ -20,8 +21,13 @@ import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-		 static Persona persona = identificarPersona();
-		 static Cliente cliente = null;
+	public static void impresionFacturas() {
+		Persona persona = identificarPersona();
+		ArrayList<Tienda> tiendas = persona.getTiendas();
+	}
+		 Persona persona = identificarPersona();
+		 Cliente cliente = null;
+		 
 		 
 		 
 		 public static void funcionalidad() {

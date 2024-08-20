@@ -22,7 +22,7 @@ public class Cliente extends Persona implements Serializable {
 	private Tienda tienda;
 	private double dinero;
 	private Carrito carrito;
-	private ArrayList <Carrito> facturas= new ArrayList<>();
+	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
 
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -206,10 +206,7 @@ public class Cliente extends Persona implements Serializable {
 	
 	
 	
-	 @Override
-	    void mostrarFacturas() {
-	        // Implementación específica para Cliente
-	    }
+	
 
 	 public ArrayList<Carrito> obtenerFacturas(boolean pagadas) {
 	        ArrayList<Carrito> facturas = new ArrayList<>();
@@ -386,6 +383,12 @@ public class Cliente extends Persona implements Serializable {
 
 	@Override
 	public StringBuilder obtenerContadorProductos(Persona cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Tienda> getTiendas() {
 		// TODO Auto-generated method stub
 		return null;
 	}
