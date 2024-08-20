@@ -31,7 +31,7 @@ public class Tienda implements Serializable{
 	private static ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
 	
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+	
 		
 	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
 	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
@@ -125,13 +125,7 @@ public class Tienda implements Serializable{
 	public static ArrayList<Tienda> getTiendas() {
 		return tiendas;
 	}
-	public ArrayList<Pasillo> getBodegas() {
-		return bodegas;
-	}
-
-	public void setBodegas(ArrayList<Pasillo> bodegas) {
-		this.bodegas = bodegas;
-	}
+	
 
 	public static ArrayList<Empleado> getDesempleados() {
 		return desempleados;
@@ -246,7 +240,6 @@ public class Tienda implements Serializable{
 	
 	public boolean disponibilidadProductos() {
 		boolean pasillo = false;
-		boolean bodega = false;
 		
 		for (Pasillo i:pasillos) {
 			if (i.getProductos().size()!=0){
@@ -254,13 +247,9 @@ public class Tienda implements Serializable{
 				break;
 			}
 		}
-		for (Pasillo p:this.bodegas) {
-			if (p.getProductos().size()!=0) {
-				bodega=true;
-				break;
-			}
-		}
-		boolean resultado=pasillo || bodega;
+		
+		
+		boolean resultado=pasillo ;
 		return resultado;
    }
 	
@@ -415,16 +404,6 @@ public class Tienda implements Serializable{
 	//ANTES EN INVENTARIO
 		public void llamarProveedor(int x) {
 
-		}
-		
-		public ArrayList <Producto> solicitarInventario() {
-			ArrayList <Producto> Inventario=new ArrayList<Producto>();
-			for (Pasillo i:bodegas) {
-				for (Producto p:i.getProductos()) {
-					Inventario.add(p);
-				}
-			}
-			return Inventario;
 		}
 		
 		public ArrayList<Producto> obtenerTodosLosProductos() {
