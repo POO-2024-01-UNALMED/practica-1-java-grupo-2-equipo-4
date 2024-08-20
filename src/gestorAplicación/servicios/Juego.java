@@ -1,8 +1,9 @@
 package gestorAplicación.servicios;
 
-public interface Juego{
-	void tresEnRaya();
-	void adivinaElNumero();
-	void palabraAnumero();
-	void numeroApalabra();
+public interface Juego {
+    void iniciar();
+    boolean jugar(int posicion);
+    boolean haGanado();
+    boolean haPerdido();
+    String obtenerEstado();
 }

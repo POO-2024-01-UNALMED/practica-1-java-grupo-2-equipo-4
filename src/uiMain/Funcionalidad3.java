@@ -11,6 +11,7 @@ import java.util.Scanner;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
+import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
 import gestorAplicación.sujetos.*;
@@ -335,5 +336,102 @@ public class Funcionalidad3 extends Identidad {
         		break;
         }
 	}
+	
+
+	public boolean tresEnRaya() {
+		Scanner sc = new Scanner(System.in);
+
+        // Juego de Tres en Raya
+        Juego juegoTresEnRaya = new TresEnRaya();
+        juegoTresEnRaya.iniciar();
+        while (!juegoTresEnRaya.haGanado() && !juegoTresEnRaya.haPerdido()) {
+            System.out.println(juegoTresEnRaya.obtenerEstado());
+            System.out.print("Elige una posición (0-8): ");
+            int posicion = sc.nextInt();
+            juegoTresEnRaya.jugar(posicion);
+        }
+        System.out.println(juegoTresEnRaya.obtenerEstado());
+        System.out.println(juegoTresEnRaya.haGanado() ? "¡Ganaste!" : "¡Perdiste!");
+        if((juegoTresEnRaya.haGanado() ? "¡Ganaste!" : "¡Perdiste!").equals("¡Ganaste!")) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
+	}
+	
+	public boolean juegoAhorcado() {
+		Juego juegoAhorcado = new Ahorcado("java");
+        juegoAhorcado.iniciar();
+        while (!juegoAhorcado.haGanado() && !juegoAhorcado.haPerdido()) {
+            System.out.println(juegoAhorcado.obtenerEstado());
+            System.out.print("Introduce una letra: ");
+            char letra = sc.next().charAt(0);
+            juegoAhorcado.jugar(letra);
+        }
+        System.out.println(juegoAhorcado.obtenerEstado());
+        System.out.println(juegoAhorcado.haGanado() ? "¡Ganaste!" : "¡Perdiste!");
+        if((juegoAhorcado.haGanado() ? "¡Ganaste!" : "¡Perdiste!").equals("¡Ganaste!")) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
+	}
+	
+	
+	public static void seleccionarCaja(Cliente cliente, Carrito carrito) {
+	    Scanner sc = new Scanner(System.in);
+	    ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
+	    
+	    while (true) {
+	        if (cajas.isEmpty()) {
+	            System.out.println("No hay cajas disponibles.");
+	            System.out.println("1. Esperar a que una caja esté disponible.");
+	            System.out.println("2. No pagar y salir.");
+	            System.out.print("Seleccione una opción: ");
+	            int opcion = sc.nextInt();
+	            
+	            if (opcion == 1) {
+	                asignarEmpleado(); // Método para asignar un empleado a una caja
+	                continue; // Repetir el proceso después de asignar un empleado
+	            } else if (opcion == 2) {
+	                System.out.println("Ha decidido no pagar. Saliendo del proceso.");
+	                return; // Salir del método
+	            } else {
+	                System.out.println("Opción no válida. Inténtelo de nuevo.");
+	                continue;
+	            }
+	        }
+
+	        System.out.println("Seleccione una caja para pagar:");
+	        for (int i = 0; i < cajas.size(); i++) {
+	            Caja caja = cajas.get(i);
+	            System.out.printf("%d. Caja: %s, Tipo: %s, Empleado: %s\n", 
+	                              i + 1, caja.getNombre(), caja.getTipo(), caja.getEmpleado().getNombre());
+	        }
+	        
+	        System.out.print("Seleccione el número de la caja: ");
+	        int seleccion = sc.nextInt();
+	        
+	        if (seleccion > 0 && seleccion <= cajas.size()) {
+	            Caja cajaSeleccionada = cajas.get(seleccion - 1);
+
+	            if (cajaSeleccionada.getTipo() == TipoCaja.RAPIDA && cliente.getCarrito().getProductos().size() > 5) {
+	                System.out.println("No puede usar la caja rápida porque tiene más de 5 productos.");
+	                System.out.println("Por favor, seleccione otra caja.");
+	                continue;
+	            }
+
+	            System.out.println("Ha seleccionado la caja: " + cajaSeleccionada.getNombre());
+	            break; // Caja seleccionada correctamente, salir del bucle
+	        } else {
+	            System.out.println("Selección inválida. Inténtelo de nuevo.");
+	        }
+	    }  
+	}
+	
+	
+
 }
 
