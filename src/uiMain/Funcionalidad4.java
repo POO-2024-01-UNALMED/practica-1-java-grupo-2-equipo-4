@@ -319,6 +319,16 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                    	 System.out.println("Productos agregados al pasillo correspondiente."); 
 	                     }else {
 	                    	 System.out.println("saldo insuficiente"); 
+	                    	 System.out.println("La tienda puede estar en banca rota");
+	                    	 System.out.println("Desea poner la tienda en venta?");
+	                    	 System.out.println("1. Si");
+	                    	 System.out.println("2. No");
+	                    	 
+	                    	 int caso = escaner(2);
+	                    	 if (caso==1) {
+	                    		 tienda.setDueño(null);
+	                    		 System.out.println("tienda en venta");
+	                    	 }
 	                     }
 	                    
 	                 } else {
