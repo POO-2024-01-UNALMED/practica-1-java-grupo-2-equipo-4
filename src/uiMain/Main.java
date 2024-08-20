@@ -1,9 +1,5 @@
 package uiMain;
-import static uiMain.Main.print;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import baseDatos.Deserializador;

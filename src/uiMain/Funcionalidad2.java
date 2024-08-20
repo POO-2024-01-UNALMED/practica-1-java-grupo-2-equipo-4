@@ -112,7 +112,6 @@ public class Funcionalidad2 extends Identidad {
 	    int inferior = 0;
 	    int superior = 4;
 	    Producto seleccionado = null;
-	    Scanner sc = new Scanner(System.in); // Asegúrate de inicializar correctamente el escáner
 
 	    while (true) {
 	        // Ajuste de los índices para no sobrepasar el tamaño de la lista

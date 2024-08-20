@@ -12,7 +12,7 @@ public class Pasillo implements Serializable{
 	private ArrayList<Producto> productos=new ArrayList<Producto>();
 	private Categoria categoria;
 	private Tienda tienda;
-//	private ArrayList <Proveedor> proveedores=new ArrayList<Proveedor>();
+
 	
 	private static final long serialVersionUID = 1L;
 //-------------------------------------------------------------------------------------------------------------

@@ -20,53 +20,24 @@ public class Tienda implements Serializable{
 	private String direccion;
 	private double saldo;
 	private String estado;
-
-	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
-//	private ArrayList <Persona> cliente;
-//	private ArrayList <Persona> candidatos=new ArrayList<Persona>();	
-	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
-	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-	
-
-	private ArrayList <Caja> cajas= new ArrayList<Caja>();
-
-	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
-	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
-	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();	
-	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
-	
 	private Carrito carrito;
+	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
+	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
+	
+	private ArrayList <Caja> cajas= new ArrayList<Caja>();
+	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
+	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
+	
+	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
+	
+	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
+	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+		
+	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
 	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
-	
-//	public ArrayList <Persona> getCliente() {
-//		return cliente;
-//	}
-//	
-//	public void setCliente(ArrayList <Persona> cliente) {
-//		this.cliente = cliente;
-//	}
-//	
-	public ArrayList<Carrito> getProductosComprados() {
-		return productosComprados;
-	}
-
-	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
-		this.productosComprados = productosComprados;
-	}
-
-	public ArrayList<Producto> getProductosVendidos() {
-		return productosVendidos;
-	}
-
-	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
-		this.productosVendidos = productosVendidos;
-	}
-
-
 	
 	public ArrayList<Caja> getCajas() {
 		return cajas;
@@ -139,15 +110,7 @@ public class Tienda implements Serializable{
 	public void setPasillos(ArrayList<Pasillo> pasillos) {
 		this.pasillos=pasillos;
 	}
-	
-//	public ArrayList<Persona> getCandidatos() {
-//		return candidatos;
-//	}
-//	
-//	public void setCandidatos(ArrayList<Persona> candidatos) {
-//		this.candidatos=candidatos;
-//	}
-//	
+
 	public ArrayList<Proveedor> getProveedores() {
 		return proveedores;
 	}
@@ -208,30 +171,12 @@ public class Tienda implements Serializable{
 	public void setProductosDevueltos(ArrayList<Producto> productosDevueltos) {
 		this.productosDevueltos = productosDevueltos;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
 //------------------------------------------------------------------------------------------------------------
 	
 //Contructores------------------------------------------------------------------------------------------------
-
-	
 
 	public Tienda(){
 		tiendas.add(this);
@@ -335,16 +280,12 @@ public class Tienda implements Serializable{
 				}
 			}
 		}
-	public boolean confirmarDisponibilidad(){
-		return false; //provisional este false, por el error que tiene
-	}
-	
 	
 	
 	public ArrayList<Caja> cajasDisponibles() {
 		ArrayList<Caja> cajas= new ArrayList<Caja>();
 		for(Caja i:this.cajas) {
-			if(i.getEstado()==2 & i.getEmpleado()!=null) {
+			if(i.getEstado()==2 & i.getCliente()!=null) {
 				cajas.add(i);
 			}
 		}
@@ -645,7 +586,7 @@ public class Tienda implements Serializable{
 		
 
 	    // Método para recomendar productos
-	    public ArrayList<Producto> recomendarProductos(Producto productoOriginal, Cliente cliente) {
+	  public ArrayList<Producto> recomendarProductos(Producto productoOriginal, Cliente cliente) {
 	        ArrayList<Producto> productosRecomendados = new ArrayList<>();
 	        
 	        // Obtener el precio del producto original

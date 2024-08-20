@@ -7,7 +7,6 @@ import java.util.Map;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
-//import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.Membresia;
@@ -15,9 +14,6 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 
 public class Cliente extends Persona implements Serializable {
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6750540194444988134L;
 //Atributos----------------------------------------------------------------------------------------------------
 	
@@ -85,6 +81,7 @@ public class Cliente extends Persona implements Serializable {
 	
 
 	public Cliente() {
+		
 	}
 	
 	public Cliente(String nombre, int id, int edad, Genero genero, double dinero, Carrito carrito) {

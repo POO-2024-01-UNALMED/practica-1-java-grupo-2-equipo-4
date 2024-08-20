@@ -3,7 +3,6 @@ package gestorAplicación.servicios;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cajero;
 import gestorAplicación.sujetos.Cliente;
-import gestorAplicación.sujetos.Empleado;
 import java.io.Serializable;
 
 public class Caja implements Serializable{
@@ -14,28 +13,26 @@ public class Caja implements Serializable{
 	private TipoCaja tipo;
 	private Tienda tienda;
 	private Cajero cajero;
-//	private String descuento;
 	private Cliente cliente;
 
 	
 	private static final long serialVersionUID = 5268347727015736706L;
 //-------------------------------------------------------------------------------------------------------------
-//holi
 	
 //Getters and Setters------------------------------------------------------------------------------------------
-	
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
 	
 	public String getNombre() {
 		return nombre;
 	}
 	
+	public Cajero getCajero() {
+		return cajero;
+	}
+
+	public void setCajero(Cajero cajero) {
+		this.cajero = cajero;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre=nombre;
 	}
@@ -64,15 +61,6 @@ public class Caja implements Serializable{
 		this.tienda=tienda;
 	}
 	
-//	public String getDescuento() {
-//		return descuento;
-//	}
-//	
-//	public void setDescuento(String descuento) {
-//		this.descuento=descuento;		
-//		
-//	}
-//	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -89,7 +77,7 @@ public class Caja implements Serializable{
 		
 	}
 	
-	public Caja(String nombre, Enums.TipoCaja tipo, Tienda tienda){
+	public Caja(String nombre, TipoCaja tipo, Tienda tienda){
 		this.nombre=nombre;
 		this.tipo=tipo;
 		this.tienda=tienda;

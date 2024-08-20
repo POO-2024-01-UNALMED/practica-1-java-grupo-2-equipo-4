@@ -6,13 +6,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 import gestorAplicación.sujetos.Cliente;
-import gestorAplicación.sujetos.Persona;
-import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Membresia;
 import gestorAplicación.servicios.Enums.Categoria;
-import gestorAplicación.servicios.Enums.Edades;
 import static uiMain.Main.lineas;
 import static uiMain.Main.escaner;
 import static uiMain.Main.print;

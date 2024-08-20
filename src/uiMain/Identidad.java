@@ -1,5 +1,4 @@
 package uiMain;
-import gestorAplicación.servicios.Enums;
 import gestorAplicación.sujetos.*;
 import gestorAplicación.sujetos.Persona;
 import static uiMain.Main.escaner;

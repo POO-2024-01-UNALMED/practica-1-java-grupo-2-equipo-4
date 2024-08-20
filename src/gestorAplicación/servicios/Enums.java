@@ -1,9 +1,8 @@
 package gestorAplicación.servicios;
-import java.util.ArrayList;
 
 public enum Enums{
 	SOLO_EXISTO_PARA_QUE_ESTO_NO_ESTALLE_NO_ME_BORRES;
-
+	
 public static enum Categoria{
 	 ALIMENTO(1,"Alimento"),
 	 BEBIDA(2,"Bebida"),
@@ -38,7 +37,6 @@ public static enum Categoria{
 	 }
 }
 
-
 public static enum Edades{
 	MENORES("-18"),
 	ADULTOS("+18");
@@ -70,17 +68,7 @@ public static enum TipoCaja {
 	public String getTipos(){
 		return this.tipos;
 	}
-        /*TipoCaja tCaja=null;
-	while(p==null){
-	    String tipo = sc.nextLine();
-	    if (resolverTipoCaja(tipo,p)!=null){
-		p=resolverTipoCaja(tipo,p);
- 	        print("La caja es de tipo: "+p);
-	    }else {
-	        print("Ese no es un tipo válido de caja, introduzca uno válido");
-	    }
-	}*/
-	//SE DEBE COMPLEMENTAR ESTE METODO EN EL MAIN COMO SE MUESTRA ARRIBA
+       
 	public static Enums.TipoCaja resolverTipoCaja(String tipo) {
 		for (Enums.TipoCaja i:Enums.TipoCaja.values()) {
 			if(tipo==i.tipos) {
@@ -105,6 +93,7 @@ public static enum Tamaño{
 	}
 
 }
+
 public static enum Genero{
 	M,
 	H
@@ -129,8 +118,6 @@ public enum RazonDevolucion {
     INCONFORME
 }
 
-
-
 public enum Membresia {
     BASICO(10000.0),
     PREMIUM(25000.0),
@@ -146,11 +133,8 @@ public enum Membresia {
 
     public double getPrecio() {
         return precio;
-    }
-
-    
-}
-
+    }    
+  }
 }
 
 
