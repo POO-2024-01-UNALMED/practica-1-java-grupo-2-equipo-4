@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public enum Enums{
 	SOLO_EXISTO_PARA_QUE_ESTO_NO_ESTALLE_NO_ME_BORRES;
-
+	
 public static enum Categoria{
 	 ALIMENTO(1,"Alimento"),
 	 BEBIDA(2,"Bebida"),
