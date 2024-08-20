@@ -96,7 +96,7 @@ public abstract class Persona implements Serializable{
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
-	public ArrayList<Tienda> getTiendasConFactura(){
+	public ArrayList<Tienda> getTiendasConFacturas(){
 		return null;
 	}
 	

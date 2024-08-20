@@ -24,18 +24,6 @@ public class Funcionalidad3 extends Identidad {
 	public static void impresionFacturas() {
 		Persona persona = identificarPersona();
 		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
-		Map<String, Integer> conteoTiendas = new HashMap<>();
-        for (Tienda tienda : tiendas) {
-            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
-        }
-
-        // Imprimir tabla
-        System.out.println("Número de Facturas");
-        System.out.println("+-----+----------------+-----------------+");
-        System.out.println("| No. | Nombre         | Cantidad         |");
-        System.out.println("+-----+----------------+-----------------+");
-
-        int numero = 1;
         Map<String, Integer> conteoTiendas = new HashMap<>();
         for (Tienda tienda : tiendas) {
             conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);

@@ -12,6 +12,7 @@ import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
+import gestorAplicación.sujetos.Administrador;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
 import static uiMain.Funcionalidad1.printTablaProductos;
@@ -29,7 +30,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	static Scanner sc = new Scanner(System.in);
 	
 	
-	static Persona usuario = identificarPersona();
+	static Administrador usuario =(Administrador) identificarPersona();
 	    public  static void seleccionTienda() {
 	    	
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
