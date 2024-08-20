@@ -22,7 +22,6 @@ public abstract class Persona implements Serializable{
 	private int id;
 	private int edad;
 	private Genero genero;
-	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 	private static ArrayList <Persona> personas=new ArrayList<Persona>();
 	
 	// estaba en cliente pero identificar usuario es clase Persona //
@@ -49,16 +48,6 @@ public abstract class Persona implements Serializable{
 //	public void setFacturas1(ArrayList<Factura> facturas) {
 //		this.facturas = facturas;
 //	}
-
-
-	
-	public ArrayList<Tienda> getTiendas() {
-		return tiendas;
-	}
-	
-	public  void setTiendas(ArrayList<Tienda> tienda) {
-		this.tiendas=tienda;
-	}
 	
 	public String getNombre() {
 		return nombre;
