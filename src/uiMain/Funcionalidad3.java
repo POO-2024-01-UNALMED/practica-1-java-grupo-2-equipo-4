@@ -155,6 +155,8 @@ public class Funcionalidad3 extends Identidad {
 	                    int opcion = scanner.nextInt();
 	                    switch (opcion) {
 	                        case 1:
+	                        	Cliente cliente=(Cliente)persona;
+	                        	cliente.setTienda(tiendaSeleccionada);
 	                            seleccionarCaja((Cliente) persona, facturaSeleccionada);
 	                            break;
 	                        case 2:
@@ -228,6 +230,7 @@ public class Funcionalidad3 extends Identidad {
 	
 	public static void seleccionarCaja(Cliente cliente, Carrito carrito) {
 		ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
+		cliente.setCarrito(carrito);
 		Caja cajaSeleccionada = null;
 
 		while (true) {
@@ -246,7 +249,7 @@ public class Funcionalidad3 extends Identidad {
 		            continue; // Repetir el proceso después de asignar un empleado
 		        } else if (opcion == 2) {
 		            System.out.println("Ha decidido no pagar. Saliendo del proceso.");
-		            return; // Salir del método
+		            Main.escogerFuncionalidad(); // Salir del método
 		        } else {
 		            System.out.println("Opción no válida. Inténtelo de nuevo.");
 		            continue;
@@ -390,10 +393,9 @@ public class Funcionalidad3 extends Identidad {
 		    carrito.setCaja(null); // Desasignar caja del carrito
 
 		    System.out.println("La factura ha sido pagada exitosamente.");
-		 }
-
-
-		sc.close();
+		    sc.close();
+		    Main.escogerFuncionalidad();
+		}
 
 	}
 }

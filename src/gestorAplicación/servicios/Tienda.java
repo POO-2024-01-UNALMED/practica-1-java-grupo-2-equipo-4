@@ -518,7 +518,7 @@ public class Tienda implements Serializable{
 	public ArrayList<Caja> cajasDisponibles() {
 		ArrayList<Caja> cajas= new ArrayList<Caja>();
 		for(Caja i:this.cajas) {
-			if(i.getEstado()==2 & i.getCliente()!=null) {
+			if(i.getEstado()==2 && i.getCajero()!=null) {
 				cajas.add(i);
 			}
 		}
