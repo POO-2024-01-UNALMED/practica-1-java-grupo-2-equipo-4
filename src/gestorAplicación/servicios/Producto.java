@@ -1,21 +1,16 @@
 package gestorAplicación.servicios;
-import java.time.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.servicios.Enums.Tamaño;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.sujetos.Cliente;
-import gestorAplicación.sujetos.Persona;
-
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+
 
 
 public class Producto implements Serializable,Cloneable {
@@ -36,7 +31,7 @@ public class Producto implements Serializable,Cloneable {
 	
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
-//	private ArrayList<Pasillo> pasillos=new ArrayList<Pasillo>();
+
 
 	
 	
@@ -165,7 +160,7 @@ public class Producto implements Serializable,Cloneable {
 	public Producto(String nombre,Categoria categoria) {
 		this.categoria = categoria;
 		this.nombre= nombre;
-		//pasillo.getProductos().add(this);
+		
 	}
 
 	public Producto(String nombre,String marca,double precio,Categoria categoria,int id, Enums.Edades edades,String descripcion,Pasillo pasillo) {

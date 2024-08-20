@@ -14,7 +14,6 @@ public class Proveedor implements Serializable{
 	private ArrayList<Producto> entrega=new ArrayList<Producto>();
 	private Enums.Categoria tipo;
 	private ArrayList<Tienda> tiendas;
-//	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private static ArrayList <Proveedor> seisProveedores=new ArrayList<Proveedor>();
 	
 	private static final long serialVersionUID = 1L;
