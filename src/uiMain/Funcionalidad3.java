@@ -233,7 +233,8 @@ public class Funcionalidad3 extends Identidad {
 
 		        if (opcion == 1) {
 
-		            Tienda.encontrarCajero(cliente.getTienda().getEmpleados()); // Método para asignar un empleado a una caja
+		        	Tienda tienda = cliente.getTienda();
+		        	tienda.asignarCajero(Tienda.encontrarCajero(tienda.getEmpleados())); // Método para asignar un empleado a una caja
 
 		            continue; // Repetir el proceso después de asignar un empleado
 		        } else if (opcion == 2) {
