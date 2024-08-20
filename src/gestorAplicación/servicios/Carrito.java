@@ -12,6 +12,7 @@ public class Carrito implements Serializable{
 	
 	private ArrayList <Producto> productos=new ArrayList<Producto>();
 	private Cliente cliente;
+	private Caja caja;
 	private Tienda tienda;
 	private Edades tipoCarrito;
 	private Proveedor proveedor;
@@ -25,12 +26,28 @@ public class Carrito implements Serializable{
 //-------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters------------------------------------------------------------------------------------------
-
+	
 	
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
 	
+	public Caja getCaja() {
+		return caja;
+	}
+
+	public void setCaja(Caja caja) {
+		this.caja = caja;
+	}
+
+	public double getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
 	public Proveedor getProveedor() {
 		return proveedor;
 	}
@@ -220,7 +237,6 @@ public class Carrito implements Serializable{
         }
         return total;
       }
-	}
 	// metodos para factura //
 
     

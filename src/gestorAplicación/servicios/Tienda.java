@@ -196,6 +196,13 @@ public class Tienda implements Serializable{
 //Metodos-----------------------------------------------------------------------------------------------------
 	
 
+	public void subirSaldo(double cantidad) {
+		saldo+=cantidad;
+	}
+	
+	public void bajarSaldo(double cantidad) {
+		saldo-=cantidad;
+	}
 	
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
 			public static boolean buscarTienda(Categoria categoria){
