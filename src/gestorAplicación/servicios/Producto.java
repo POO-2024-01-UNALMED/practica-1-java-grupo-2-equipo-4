@@ -28,6 +28,7 @@ public class Producto implements Serializable,Cloneable {
 	private LocalDate fechaPerecer;
 	private Pasillo pasillo;
 	private Tienda tienda;
+	private final double iva = 0.19;
 	
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
@@ -78,7 +79,8 @@ public class Producto implements Serializable,Cloneable {
 	}
 
 	public double getPrecio() {
-		return precio;
+		double ivita = getIva() *precio;
+		return precio + ivita;
 	}
 	
 	public void setPrecio(double precio) {
@@ -148,8 +150,12 @@ public class Producto implements Serializable,Cloneable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public double getIva() {
+		return iva;
+	}
 
-//Constructores------------------------------------------------------------------------------------------------
+	//Constructores------------------------------------------------------------------------------------------------
 	public Producto(String nombre,Categoria categoria,Pasillo pasillo) {
 		this.categoria = categoria;
 		this.nombre= nombre;
