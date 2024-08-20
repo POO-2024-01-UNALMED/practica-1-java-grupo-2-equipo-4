@@ -376,11 +376,11 @@ public class Cliente extends Persona implements Serializable {
 	
 	public double calcularDescuentoPorMembresia() {
 	    switch (this.getMembresia()) {
-	        case Membresia.BASICO:
+	        case BASICO:
 	            return 0.05;
-	        case Membresia.PREMIUM:
+	        case PREMIUM:
 	            return 0.10;
-	        case Membresia.VIP:
+	        case VIP:
 	            return 0.20;
 	        default:
 	            return 0.0;
