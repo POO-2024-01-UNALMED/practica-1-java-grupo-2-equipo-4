@@ -623,7 +623,7 @@ public class Tienda implements Serializable{
 	        return new ArrayList<Producto>(productosSinDuplicados);
 	    }
 		
-		public static void devolverProductos() {
+		public static void devolverProductos(Carrito carrito ) {
 			
 		}				
 

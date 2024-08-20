@@ -28,36 +28,66 @@ public class Funcionalidad3 extends Identidad {
 			 Cliente cliente = seleccionRol();			 
 			 if (cliente != null) {
 				 // logica para cliente //	//utilizar cliente 	//	
-				 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
-				 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
-				 System.out.println("Que desea consultar ");
-				 System.out.println("1. Facturas pagadas ");
-				 System.out.println("2. Facturas por pagar  ");
-				 
-				 
-				 int opcion = escaner(2);
-				 
-				 switch (opcion){
-				 	case 1:
-				 		Carrito carrito = seleccionarCarritoPagado(tienda);
-				 		imprimirFacturaCompleta(carrito);
-				 		System.out.println("Seleccione una opcion");
-				 		System.out.println("1.");
-				 		break;
-				 	case 2:
-				 		break;
-				 }
+				 seleccionCliente();
 				 
 			 } else {
 				 //logica para dueño
-				 Tienda tienda = seleccionarTiendaDueno(persona);
-				 imprimirCarritosPagados(tienda);
+				 seleccionDueno();
 			 }				 				 
 		 }
 		 
-		 public static void seleccionDieno() {
-			 
+		 public static void seleccionDueno() {
+			 Tienda tienda = seleccionarTiendaDueno(persona);
+			 imprimirCarritosPagados(tienda);
 		 }
+		 
+		 
+		 public static void seleccionCliente() {
+			 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
+			 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
+			 System.out.println("Que desea consultar ");
+			 System.out.println("1. Facturas pagadas ");
+			 System.out.println("2. Facturas por pagar  ");
+			 System.out.println("3. Volver ");
+			 
+			 int opcion = escaner(2);
+			 
+			 switch (opcion){
+			 	case 1:
+			 		Carrito carrito = seleccionarCarritoPagado(tienda);
+			 		imprimirFacturaCompleta(carrito);
+			 		System.out.println("Seleccione una opcion");
+			 		System.out.println("1. Realizar devolucion");
+			 		System.out.println("2. Volver ");
+			 		System.out.println("3. volver al menu principal");
+			 		
+			 		int opcionCase1 = escaner(3);
+			 		switch (opcionCase1) {
+			 			case 1:
+			 				System.out.println("Seleccione el Producto que desea devolver:  ");
+			 				imprimirFacturaCompleta(carrito);
+			 				int index = escaner(carrito);
+			 						
+			 				break;
+			 			case 2:
+			 				seleccionCliente();
+			 				break;
+			 			case 3:
+			 				Main.escogerFuncionalidad();
+			 				break;
+			 		}
+			 		
+			 		break;
+			 		
+			 	case 2:
+			 		break;
+			 		
+			 	case 3:
+			 		funcionalidad();
+			 		break;
+			 }
+		 }
+		 
 		 
 		 public static void imprimirFacturaCompleta(Carrito carrito) {
 		        Map<String, Integer> resumenProductos = new HashMap<>();
@@ -158,6 +188,7 @@ public class Funcionalidad3 extends Identidad {
 
 		        return persona.getTiendas().get(seleccion - 1);
 		    }  
+		 
 		 
 		 
 		  
