@@ -110,12 +110,13 @@ public class Carrito implements Serializable{
 		
 	}
 	
-	Carrito(Date fechaFacturacion, Cliente cliente, boolean pagado, Tienda tienda) {
+	public Carrito(Cliente cliente, boolean pagado, Tienda tienda,Edades tipoCarrito) {
         this.productos = new ArrayList<>();
         this.fechaFacturacion = LocalDate.now();
         this.cliente = cliente;
         this.pagado = pagado;
         this.tienda = tienda;
+        this.tipoCarrito=tipoCarrito;
     }
 	
 	

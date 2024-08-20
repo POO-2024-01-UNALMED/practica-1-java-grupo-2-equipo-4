@@ -14,6 +14,7 @@ public abstract class Empleado extends Persona implements Serializable{
 	protected boolean prestacionSalud;
 	protected boolean prestacionPension;
 	protected int experiencia;
+	private Tienda tienda;
 	private TipoEmpleado tipo;
 	
 //-------------------------------------------------------------------------------------------------------------
@@ -52,6 +53,20 @@ public abstract class Empleado extends Persona implements Serializable{
 
 	public void setLiquidacion(double liquidacion) {
 		this.liquidacion = liquidacion;
+	}
+
+	/**
+	 * @return the tienda
+	 */
+	public Tienda getTienda() {
+		return tienda;
+	}
+
+	/**
+	 * @param tienda the tienda to set
+	 */
+	public void setTienda(Tienda tienda) {
+		this.tienda = tienda;
 	}
 
 	public boolean isPrestacionSalud() {

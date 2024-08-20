@@ -69,7 +69,7 @@ public class Pasillo implements Serializable{
 		this.productos = productos;
 		this.categoria = categoria;
 		this.tienda = tienda;
-		tienda.getPasillos().add(this);
+//		tienda.getPasillos().add(this);
 	}
 
 //-------------------------------------------------------------------------------------------------------------

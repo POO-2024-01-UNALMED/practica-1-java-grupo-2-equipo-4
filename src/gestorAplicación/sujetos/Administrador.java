@@ -15,9 +15,9 @@ public class Administrador extends Persona implements Serializable {
 	private double dinero;
 	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 	
-	public Administrador(String nombre, int id, int edad, Genero genero) {
+	public Administrador(String nombre, int id, int edad, Genero genero, double dinero) {
 		super(nombre,id,edad,genero);
-//		this.dinero=dinero;
+		this.dinero=dinero;
 	}
 	
 	

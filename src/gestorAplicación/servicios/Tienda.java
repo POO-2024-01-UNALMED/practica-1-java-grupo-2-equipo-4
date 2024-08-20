@@ -4,6 +4,7 @@ import java.util.*;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.sujetos.Administrador;
 import gestorAplicación.sujetos.Cajero;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Conserje;
@@ -20,6 +21,7 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado="cerrado";
 	private Carrito carrito;
+	
 	private ArrayList <Carrito> facturas=new ArrayList<Carrito>();	
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	
@@ -179,6 +181,7 @@ public class Tienda implements Serializable{
 		this.dueño = dueño;
 		this.saldo = saldo;
 		this.estado = estado;
+
 	}
 
 //------------------------------------------------------------------------------------------------------------

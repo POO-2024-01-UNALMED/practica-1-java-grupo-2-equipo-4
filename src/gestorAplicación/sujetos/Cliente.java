@@ -86,9 +86,9 @@ public class Cliente extends Persona implements Serializable {
 	
 	
 
-	public Cliente() {
-		
-	}
+//	public Cliente() {
+//		
+//	}
 	
 	public Cliente(String nombre, int id, int edad, Genero genero, double dinero, Carrito carrito) {
 		super(nombre, id, edad,genero);

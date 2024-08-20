@@ -81,7 +81,7 @@ public class Caja implements Serializable{
 		this.nombre=nombre;
 		this.tipo=tipo;
 		this.tienda=tienda;
-		tienda.getCajas().add(this);
+//		tienda.getCajas().add(this);
 	}
 
 //Metodos------------------------------------------------------------------------------------------------------
