@@ -5,6 +5,7 @@ import java.util.Scanner;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
+import gestorAplicación.sujetos.Administrador;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.servicios.Enums.Categoria;
@@ -16,7 +17,7 @@ import static uiMain.Main.lineas;
 public class Funcionalidad5 {
 	static Scanner sc = new Scanner(System.in);
 	
-	public static void personalizarTienda(Cliente clien) {
+	public static void personalizarTienda(Administrador admin) {
 		lineas();
 		print("Ha seleccionado Personalizar y modificar tiendas.");
 		print("Selecciona una de las tiendas disponibles para ti:");
@@ -48,13 +49,13 @@ public class Funcionalidad5 {
 		int h =escaner();
 		Tienda tien=tiendas.get(h-1);
 		
-		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
+		float diferencia=(float) (admin.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
-			tien.setDueño(clien);// Asignar la tienda al cliente
+			tien.setDueño(admin);// Asignar la tienda al cliente
 			print("Has seleccionado la tienda: " + tien.getNombre());
 			print("Se te resto $"+tien.getSaldo()+" de tu saldo");
 			print("Ahora eres el dueño de la tienda: \""+tien.getNombre()+"\"");
-			clien.setDinero(diferencia);
+			admin.setDinero(diferencia);
 			print("Tu saldo ahora es de: $"+diferencia);
 		}
 		boolean iterar=true;
@@ -70,7 +71,7 @@ public class Funcionalidad5 {
 		        	reorganizarPasillos(tien);
 		        	break;
 		        case 2:
-		        	llamarProveedor(tien,clien);
+		        	llamarProveedor(tien,admin);
 		        	break;
 		        case 3:
 		        	contratar(tien);
@@ -123,7 +124,7 @@ public class Funcionalidad5 {
   		
   		
 
-	private static void llamarProveedor(Tienda tien, Cliente clien) {
+	private static void llamarProveedor(Tienda tien, Administrador admin) {
 		// TODO Auto-generated method stub
 		lineas();
 		if (tien.disponibilidadProductos()==false) {
@@ -141,7 +142,7 @@ public class Funcionalidad5 {
 					tien.setSaldo(diferencia);
 					tien.agregarProducto(p);
 					print("Producto agregado");
-				} else if(clien.getDinero()>0) {
+				} else if(admin.getDinero()>0) {
 						print("La tienda no tiene suficiente saldo");
 						print("Desea proporcionar transferir su dinero a su tienda?\n1.Sí\n2.No\n");
 						Boolean iter=true;
@@ -149,8 +150,8 @@ public class Funcionalidad5 {
 							int l=escaner();
 							switch(l) {
 								case 1:
-									tien.setSaldo(clien.getDinero());
-									clien.setDinero(0);
+									tien.setSaldo(admin.getDinero());
+									admin.setDinero(0);
 									iter=false;
 									break;
 								case 2:
