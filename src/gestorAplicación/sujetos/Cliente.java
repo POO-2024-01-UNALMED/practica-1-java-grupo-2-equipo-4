@@ -382,15 +382,12 @@ public class Cliente extends Persona implements Serializable {
 	}
 
 	@Override
-	public StringBuilder obtenerContadorProductos(Persona cliente) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Tienda> getTiendas() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
+		for(Carrito c:facturas) {
+			tiendas.add(c.getTienda());
+		}
+		return tiendas;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

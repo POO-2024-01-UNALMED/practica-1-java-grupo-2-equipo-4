@@ -21,14 +21,14 @@ public class Tienda implements Serializable{
 	private double saldo;
 	private String estado;
 	private Carrito carrito;
-	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
+	private ArrayList <Carrito> facturas=new ArrayList<Carrito>();	
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
 	
-	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
+	private static ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
 	
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
@@ -148,12 +148,12 @@ public class Tienda implements Serializable{
 		ProductosVencidos = productosVencidos;
 	}
 	
-	public ArrayList <Carrito> getCarritos() {
-		return carritos;
+	public ArrayList <Carrito> getFacturas() {
+		return facturas;
 	}
 
-	public void setCarritos(ArrayList <Carrito> carritos) {
-		this.carritos = carritos;
+	public void setFacturas(ArrayList <Carrito> facturas) {
+		this.facturas = facturas;
 	}
 
 	public Carrito getCarrito() {
@@ -626,7 +626,7 @@ public class Tienda implements Serializable{
 	    public static ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
 	        Set<Tienda> tiendasConCliente = new HashSet<>();
 	        for (Tienda tienda : tiendas) {
-	            for (Carrito carrito : tienda.getCarritos()) {
+	            for (Carrito carrito : tienda.getFacturas()) {
 	                if (carrito.getCliente().equals(cliente)) {
 	                    tiendasConCliente.add(tienda);
 	                    break;
