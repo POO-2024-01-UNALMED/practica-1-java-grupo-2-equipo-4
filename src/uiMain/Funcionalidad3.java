@@ -23,39 +23,83 @@ import static uiMain.Main.lineas;
 public class Funcionalidad3 extends Identidad {
 	public static void impresionFacturas() {
 		Persona persona = identificarPersona();
-		ArrayList<Tienda> tiendas = persona.getTiendas();
+		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
 		Map<String, Integer> conteoTiendas = new HashMap<>();
-	        for (Tienda tienda : tiendas) {
-	            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
-	        }
-	        System.out.println("Número de Facturas");
-	        System.out.println("+-----+----------------+-----------------+");
-	        System.out.println("| No. | Nombre         | Cantidad         |");
-	        System.out.println("+-----+----------------+-----------------+");
+        for (Tienda tienda : tiendas) {
+            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
+        }
 
-	        int numero = 1;
-	        for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
-	            System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
-	            numero++;
-	        }
+        // Imprimir tabla
+        System.out.println("Número de Facturas");
+        System.out.println("+-----+----------------+-----------------+");
+        System.out.println("| No. | Nombre         | Cantidad         |");
+        System.out.println("+-----+----------------+-----------------+");
 
-	        // Imprimir línea final
-	        System.out.println("+-----+----------------+-----------------+");
+        int numero = 1;
+        Map<String, Integer> conteoTiendas = new HashMap<>();
+        for (Tienda tienda : tiendas) {
+            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
+        }
 
-	        // Solicitar selección del usuario
-	        Scanner scanner = new Scanner(System.in);
-	        System.out.print("Seleccione el número de la tienda: ");
-	        int seleccion = scanner.nextInt();
-	        scanner.close();
+        // Imprimir tabla
+        System.out.println("Número de Facturas");
+        System.out.println("+-----+----------------+-----------------+");
+        System.out.println("| No. | Nombre         | Cantidad         |");
+        System.out.println("+-----+----------------+-----------------+");
 
-	        // Validar selección
-	        if (seleccion < 1 || seleccion > conteoTiendas.size()) {
-	            System.out.println("Selección inválida.");
-	        } else {
-	            // Obtener el nombre de la tienda seleccionada
-	            String tiendaSeleccionada = (String) conteoTiendas.keySet().toArray()[seleccion - 1];
-	            System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada);
-	        }
+        int numero = 1;
+        for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
+            System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
+            numero++;
+        }
+
+        // Imprimir línea final
+        System.out.println("+-----+----------------+-----------------+");
+
+        // Solicitar selección del usuario
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Seleccione el número de la tienda: ");
+        int seleccion = scanner.nextInt();
+
+        // Validar selección y buscar la tienda seleccionada
+        Tienda tiendaSeleccionada = null;
+        if (seleccion >= 1 && seleccion <= conteoTiendas.size()) {
+            numero = 1;
+            for (Tienda tienda : tiendas) {
+                if (numero == seleccion) {
+                    tiendaSeleccionada = tienda;
+                    break;
+                }
+                if (conteoTiendas.get(tienda.getNombre()) == null) {
+                    continue;
+                }
+                numero++;
+            }
+        }
+
+        // Mostrar la tienda seleccionada
+        if (tiendaSeleccionada != null) {
+            System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
+            // Aquí puedes usar tiendaSeleccionada para lo que necesites
+        } else {
+            System.out.println("Selección inválida.");
+        }
+        
+        scanner.close();
+        if (persona instanceof Cliente) {
+        	ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
+        	for(Carrito c:tiendaSeleccionada.getFacturas()) {
+        		if (c.getCliente().equals(persona)) {
+        			misFacturas.add(c);
+        		}
+        	}
+        }
+        if (persona instanceof Administrador) {
+        	ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
+        	for(Carrito c:tiendaSeleccionada.getFacturas()) {
+        		misFacturas.add(c);
+        	}
+        }
 	} 
 		 
 		 
