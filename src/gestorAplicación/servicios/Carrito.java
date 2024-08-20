@@ -220,7 +220,7 @@ public class Carrito implements Serializable{
         }
         return total;
       }
-	}
+
 	// metodos para factura //
 
     
