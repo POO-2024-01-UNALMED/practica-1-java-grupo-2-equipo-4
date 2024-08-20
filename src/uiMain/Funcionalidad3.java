@@ -12,163 +12,180 @@ import gestorAplicación.sujetos.Persona;
 
 public class Funcionalidad3 extends Identidad {
 	public static void impresionFacturas() {
-		Persona persona = identificarPersona();
-		Scanner scanner = new Scanner(System.in);
-		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
+	    Persona persona = identificarPersona();
+	    Scanner scanner = new Scanner(System.in);
+	    ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
 
-		if (tiendas.isEmpty()) {
-		    System.out.println("No tienes facturas en ninguna tienda.");
-		    Main.escogerFuncionalidad(); // Regresar al menú principal
-		    scanner.close();
-		    return; // Salir del método
-		}
+	    if (tiendas.isEmpty()) {
+	        System.out.println("No tienes facturas en ninguna tienda.");
+	        Main.escogerFuncionalidad(); // Regresar al menú principal
+	        scanner.close();
+	        return; // Salir del método
+	    }
 
-		Map<String, Integer> conteoTiendas = new HashMap<>();
-		for (Tienda tienda : tiendas) {
-		    conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
-		}
+	    // Crear un mapa para contar facturas por tienda
+	    Map<String, Integer> conteoTiendas = new HashMap<>();
+	    for (Tienda tienda : tiendas) {
+	        if (tienda != null) {
+	            String nombreTienda = tienda.getNombre();
+	            if (nombreTienda != null) {
+	                conteoTiendas.put(nombreTienda, conteoTiendas.getOrDefault(nombreTienda, 0) + 1);
+	            }
+	        }
+	    }
 
-		// Imprimir tabla de tiendas y cantidad de facturas
-		System.out.println("Número de Facturas");
-		System.out.println("+-----+----------------+-----------------+");
-		System.out.println("| No. | Nombre         | Cantidad        |");
-		System.out.println("+-----+----------------+-----------------+");
+	    // Imprimir tabla de tiendas y cantidad de facturas
+	    System.out.println("Número de Facturas");
+	    System.out.println("+-----+----------------+-----------------+");
+	    System.out.println("| No. | Nombre         | Cantidad        |");
+	    System.out.println("+-----+----------------+-----------------+");
 
-		int numero = 1;
-		for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
-		    System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
-		    numero++;
-		}
+	    int numero = 1;
+	    for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
+	        System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
+	        numero++;
+	    }
 
-		System.out.println("+-----+----------------+-----------------+");
+	    System.out.println("+-----+----------------+-----------------+");
 
-		// Solicitar selección del usuario
-		System.out.print("Seleccione el número de la tienda: ");
-		int seleccion = scanner.nextInt();
+	    // Solicitar selección del usuario
+	    System.out.print("Seleccione el número de la tienda: ");
+	    int seleccion = scanner.nextInt();
 
-		// Validar selección y buscar la tienda seleccionada
-		Tienda tiendaSeleccionada = null;
-		if (seleccion >= 1 && seleccion <= conteoTiendas.size()) {
-		    numero = 1;
-		    for (Tienda tienda : tiendas) {
-		        if (numero == seleccion) {
-		            tiendaSeleccionada = tienda;
-		            break;
-		        }
-		        if (conteoTiendas.get(tienda.getNombre()) == null) {
-		            continue;
-		        }
-		        numero++;
-		    }
-		}
+	    // Validar selección y buscar la tienda seleccionada
+	    Tienda tiendaSeleccionada = null;
+	    if (seleccion >= 1 && seleccion <= conteoTiendas.size()) {
+	        numero = 1;
+	        for (Tienda tienda : tiendas) {
+	            if (tienda != null && numero == seleccion) {
+	                tiendaSeleccionada = tienda;
+	                break;
+	            }
+	            if (conteoTiendas.get(tienda.getNombre()) == null) {
+	                continue;
+	            }
+	            numero++;
+	        }
+	    }
 
-		if (tiendaSeleccionada != null) {
-		    System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
+	    if (tiendaSeleccionada != null) {
+	        System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
 
-		    // Obtener las facturas de la tienda seleccionada
-		    ArrayList<Carrito> misFacturas = persona.getFacturas(tiendaSeleccionada);
+	        // Obtener las facturas de la tienda seleccionada
+	        ArrayList<Carrito> misFacturas = persona.getFacturas(tiendaSeleccionada);
 
-		    // Imprimir las facturas
-		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
-		    System.out.println("| No. | Tienda             | Fecha      | Productos        | Precio     | Pagada   |");
-		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+	        // Imprimir las facturas
+	        System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+	        System.out.println("| No. | Tienda             | Fecha      | Productos        | Precio     | Pagada   |");
+	        System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
 
-		    numero = 1;
-		    for (Carrito factura : misFacturas) {
-		        boolean estadoPago = factura.isPagado();
-		        System.out.printf("| %-3d | %-18s | %-10s | %-15d | %-10.2f | %-8s |%n",
-		                numero,
-		                factura.getTienda().getNombre(),
-		                factura.getFechaFacturacion(),
-		                factura.getProductos().size(),
-		                Carrito.calcularTotal(factura.getProductos()),
-		                estadoPago
-		        );
-		        numero++;
-		    }
+	        numero = 1;
+	        for (Carrito factura : misFacturas) {
+	            if (factura != null) {
+	                boolean estadoPago = factura.isPagado();
+	                System.out.printf("| %-3d | %-18s | %-10s | %-15d | %-10.2f | %-8s |%n",
+	                        numero,
+	                        factura.getTienda().getNombre(),
+	                        factura.getFechaFacturacion(),
+	                        factura.getProductos().size(),
+	                        Carrito.calcularTotal(factura.getProductos()),
+	                        estadoPago
+	                );
+	                numero++;
+	            }
+	        }
 
-		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+	        System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
 
-		    // Solicitar selección de factura
-		    System.out.print("Seleccione el número de la factura que desea imprimir: ");
-		    seleccion = scanner.nextInt();
+	        // Solicitar selección de factura
+	        System.out.print("Seleccione el número de la factura que desea imprimir: ");
+	        seleccion = scanner.nextInt();
 
-		    // Validar selección y mostrar la factura seleccionada
-		    Carrito facturaSeleccionada = null;
-		    if (seleccion >= 1 && seleccion <= misFacturas.size()) {
-		        facturaSeleccionada = misFacturas.get(seleccion - 1);
-		        System.out.println("Has seleccionado la factura de la tienda: " + facturaSeleccionada.getTienda().getNombre());
+	        // Validar selección y mostrar la factura seleccionada
+	        Carrito facturaSeleccionada = null;
+	        if (seleccion >= 1 && seleccion <= misFacturas.size()) {
+	            facturaSeleccionada = misFacturas.get(seleccion - 1);
+	            if (facturaSeleccionada != null) {
+	                System.out.println("Has seleccionado la factura de la tienda: " + facturaSeleccionada.getTienda().getNombre());
 
-		        // Imprimir detalles de los productos de la factura seleccionada
-		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
-		        System.out.println("| No. | Producto           | Marca         | Tamaño   | Categoría  | Precio   |");
-		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+	                // Imprimir detalles de los productos de la factura seleccionada
+	                System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+	                System.out.println("| No. | Producto           | Marca         | Tamaño   | Categoría  | Precio   |");
+	                System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
 
-		        int numeroProducto = 1;
-		        for (Producto producto : facturaSeleccionada.getProductos()) {
-		            System.out.printf("| %-3d | %-18s | %-13s | %-8s | %-10s | %-8.2f |%n",
-		                    numeroProducto,
-		                    producto.getNombre(),
-		                    producto.getMarca(),
-		                    producto.getTamaño().getTamaño(),
-		                    producto.getCategoria().getTexto(),
-		                    producto.getPrecio()
-		            );
-		            numeroProducto++;
-		        }
+	                int numeroProducto = 1;
+	                for (Producto producto : facturaSeleccionada.getProductos()) {
+	                    if (producto != null) {
+	                        System.out.printf("| %-3d | %-18s | %-13s | %-8s | %-10s | %-8.2f |%n",
+	                                numeroProducto,
+	                                producto.getNombre(),
+	                                producto.getMarca(),
+	                                producto.getTamaño().getTamaño(),
+	                                producto.getCategoria().getTexto(),
+	                                producto.getPrecio()
+	                        );
+	                        numeroProducto++;
+	                    }
+	                }
 
-		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+	                System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
 
-		        // Opciones adicionales dependiendo del tipo de objeto
-		        if (persona instanceof Administrador) {
-		            System.out.println("Opciones:");
-		            System.out.println("1. Escoger otra factura");
-		            System.out.println("2. Salir de funcionalidad");
+	                // Opciones adicionales dependiendo del tipo de objeto
+	                if (persona instanceof Administrador) {
+	                    System.out.println("Opciones:");
+	                    System.out.println("1. Escoger otra factura");
+	                    System.out.println("2. Salir de funcionalidad");
 
-		            int opcion = scanner.nextInt();
-		            switch (opcion) {
-		                case 1:
-		                    // Regresar a la selección de facturas
-		                    break;
-		                case 2:
-		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
-		                    break;
-		                default:
-		                    System.out.println("Opción no válida.");
-		                    break;
-		            }
-		        } else if (persona instanceof Cliente) {
-		            System.out.println("Opciones:");
-		            System.out.println("1. Pagar factura");
-		            System.out.println("2. Escoger otra factura");
-		            System.out.println("3. Salir de funcionalidad");
+	                    int opcion = scanner.nextInt();
+	                    switch (opcion) {
+	                        case 1:
+	                            // Regresar a la selección de facturas
+	                            impresionFacturas(); // Volver a llamar al método
+	                            break;
+	                        case 2:
+	                            Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
+	                            break;
+	                        default:
+	                            System.out.println("Opción no válida.");
+	                            break;
+	                    }
+	                } else if (persona instanceof Cliente) {
+	                    System.out.println("Opciones:");
+	                    System.out.println("1. Pagar factura");
+	                    System.out.println("2. Escoger otra factura");
+	                    System.out.println("3. Salir de funcionalidad");
 
-		            int opcion = scanner.nextInt();
-		            switch (opcion) {
-		                case 1:
-		                    // Llamar al método para seleccionar caja y proceder con el pago
-		                    seleccionarCaja((Cliente) persona, facturaSeleccionada);
-		                    break;
-		                case 2:
-		                    // Regresar a la selección de facturas
-		                    break;
-		                case 3:
-		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
-		                    break;
-		                default:
-		                    System.out.println("Opción no válida.");
-		                    break;
-		            }
-		        }
-		    } else {
-		        System.out.println("Selección inválida.");
-		    }
-		} else {
-		    System.out.println("Selección inválida.");
-		}
+	                    int opcion = scanner.nextInt();
+	                    switch (opcion) {
+	                        case 1:
+	                            // Llamar al método para seleccionar caja y proceder con el pago
+	                            seleccionarCaja((Cliente) persona, facturaSeleccionada);
+	                            break;
+	                        case 2:
+	                            // Regresar a la selección de facturas
+	                            impresionFacturas(); // Volver a llamar al método
+	                            break;
+	                        case 3:
+	                            Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
+	                            break;
+	                        default:
+	                            System.out.println("Opción no válida.");
+	                            break;
+	                    }
+	                }
+	            } else {
+	                System.out.println("Selección inválida.");
+	            }
+	        } else {
+	            System.out.println("Selección inválida.");
+	        }
+	    } else {
+	        System.out.println("Selección inválida.");
+	    }
 
-		scanner.close();
+	    scanner.close();
 	}
+
         
         //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
 

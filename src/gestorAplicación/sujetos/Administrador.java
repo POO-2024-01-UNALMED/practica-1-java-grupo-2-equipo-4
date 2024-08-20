@@ -31,15 +31,20 @@ public class Administrador extends Persona implements Serializable {
     	return misFacturas;
 	}
 
-	public ArrayList<Tienda> getTiendasConFactura() {
-		ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
-		for(Tienda t:this.tiendas) {
-			for(Carrito c:t.getFacturas()) {
-				tiendas.add(c.getTienda());
-			}
-		}
-		return tiendas;
+	public ArrayList<Tienda> getTiendasConFacturas() {
+	    ArrayList<Tienda> tiendas = new ArrayList<>();
+	    for (Tienda t : this.tiendas) {
+	        if (t != null) {
+	            for (Carrito c : t.getFacturas()) {
+	                if (c != null && c.getTienda() != null) {
+	                    tiendas.add(c.getTienda());
+	                }
+	            }
+	        }
+	    }
+	    return tiendas;
 	}
+
 
 	public void setTiendas(ArrayList<Tienda> tiendas) {
 		this.tiendas = tiendas;
