@@ -296,10 +296,16 @@ public class Main extends Identidad{
 	       for (Tienda tiendas : admin.getTiendas() ) {
 	    	   tiendas.getFacturas().add(carrito1);
 	    	   tiendas.getFacturas().add(carrito2);
+	    	   carrito1.setTienda(tiendas);
+	    	   carrito2.setTienda(tiendas);
 	       }
 	       
 	       pepe.getFacturas().add(carrito3);
 	       pepe.getFacturas().add(carrito4);
+	       carrito3.setTienda(tienda);
+	       carrito4.setTienda(tienda);
+	       carrito3.setCliente(pepe);
+	       carrito4.setCliente(pepe);
 	       
 	       
 	       
