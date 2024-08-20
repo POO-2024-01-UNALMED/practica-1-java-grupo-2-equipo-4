@@ -41,4 +41,5 @@ public class Cajero extends Empleado implements Serializable{
 			return false;
 		}
 	}
+	
 }

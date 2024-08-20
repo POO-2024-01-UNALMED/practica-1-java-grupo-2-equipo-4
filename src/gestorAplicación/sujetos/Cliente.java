@@ -2,15 +2,12 @@ package gestorAplicación.sujetos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+import gestorAplicación.servicios.Caja;
 import gestorAplicación.servicios.Carrito;
-import gestorAplicación.servicios.Enums;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.Membresia;
-import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 
 public class Cliente extends Persona implements Serializable {
@@ -22,6 +19,7 @@ public class Cliente extends Persona implements Serializable {
 	private Tienda tienda;
 	private double dinero;
 	private Carrito carrito;
+	private Caja caja;
 	private ArrayList <Carrito> facturas= new ArrayList<Carrito>();
 
 	
@@ -32,6 +30,14 @@ public class Cliente extends Persona implements Serializable {
 	public Carrito getCarrito() {
 		return carrito;
 	}	
+
+	public Caja getCaja() {
+		return caja;
+	}
+
+	public void setCaja(Caja caja) {
+		this.caja = caja;
+	}
 
 	public Tienda getTienda() {
 		return this.tienda;
@@ -62,7 +68,7 @@ public class Cliente extends Persona implements Serializable {
 	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada) {
 		ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
     	for(Carrito c:tiendaSeleccionada.getFacturas()) {
-    		if (c.getCliente().equals(persona)) {
+    		if (c.getCliente().equals(this)) {
     			misFacturas.add(c);
     		}
     	}
@@ -211,37 +217,6 @@ public class Cliente extends Persona implements Serializable {
 //	
 //	 
 	
-	
-	
-	
-
-	 public ArrayList<Carrito> obtenerFacturas(boolean pagadas) {
-	        ArrayList<Carrito> facturas = new ArrayList<>();
-	        for (Tienda tienda : getTiendas()) {
-	            for (Carrito carrito : tienda.getFacturas()) {
-	                if (carrito.isPagado() == pagadas) {
-	                    facturas.add(carrito);
-	                }
-	            }
-	        }
-	        return facturas;
-	    }
-
-	    public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
-	        Map<String, Integer> contadorProductos = new HashMap<>();
-
-	        for (Tienda tienda : cliente.getTiendas()) {
-	            for (Carrito carrito : tienda.getCarritos()) {
-	                for (Producto producto : carrito.getProductos()) {
-	                    String clave = producto.getNombre() + "\t" + producto.getMarca() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
-	                    contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
-	                }
-	            }
-	        }
-
-	        return contadorProductos;
-	    }
-	 
 	 //Asigna una tienda y un carrito a un cliente en función de su edad.
 	 // Si el cliente es mayor de edad, se le asigna un carrito para adultos y se le otorgan 100,000 en dinero.
 	 //Si el cliente es menor de edad, se le asigna un carrito para menores y se le otorgan 50,000 en dinero.
