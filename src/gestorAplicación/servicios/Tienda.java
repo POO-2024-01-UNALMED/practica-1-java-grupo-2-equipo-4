@@ -22,14 +22,9 @@ public class Tienda implements Serializable{
 	private String estado;
 
 	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
-//	private ArrayList <Persona> cliente;
-//	private ArrayList <Persona> candidatos=new ArrayList<Persona>();	
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
-	
-
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
-
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
 	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
 	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
@@ -41,32 +36,6 @@ public class Tienda implements Serializable{
 //------------------------------------------------------------------------------------------------------------
 	
 //Getters and Setters-----------------------------------------------------------------------------------------
-	
-//	public ArrayList <Persona> getCliente() {
-//		return cliente;
-//	}
-//	
-//	public void setCliente(ArrayList <Persona> cliente) {
-//		this.cliente = cliente;
-//	}
-//	
-	public ArrayList<Carrito> getProductosComprados() {
-		return productosComprados;
-	}
-
-	public void setProductosComprados(ArrayList<Carrito> productosComprados) {
-		this.productosComprados = productosComprados;
-	}
-
-	public ArrayList<Producto> getProductosVendidos() {
-		return productosVendidos;
-	}
-
-	public void setProductosVendidos(ArrayList<Producto> productosVendidos) {
-		this.productosVendidos = productosVendidos;
-	}
-
-
 	
 	public ArrayList<Caja> getCajas() {
 		return cajas;
@@ -139,15 +108,7 @@ public class Tienda implements Serializable{
 	public void setPasillos(ArrayList<Pasillo> pasillos) {
 		this.pasillos=pasillos;
 	}
-	
-//	public ArrayList<Persona> getCandidatos() {
-//		return candidatos;
-//	}
-//	
-//	public void setCandidatos(ArrayList<Persona> candidatos) {
-//		this.candidatos=candidatos;
-//	}
-//	
+
 	public ArrayList<Proveedor> getProveedores() {
 		return proveedores;
 	}
@@ -208,6 +169,8 @@ public class Tienda implements Serializable{
 	public void setProductosDevueltos(ArrayList<Producto> productosDevueltos) {
 		this.productosDevueltos = productosDevueltos;
 	}
+	
+	
 	
 //------------------------------------------------------------------------------------------------------------
 	
@@ -315,10 +278,6 @@ public class Tienda implements Serializable{
 				}
 			}
 		}
-	public boolean confirmarDisponibilidad(){
-		return false; //provisional este false, por el error que tiene
-	}
-	
 	
 	
 	public ArrayList<Caja> cajasDisponibles() {
