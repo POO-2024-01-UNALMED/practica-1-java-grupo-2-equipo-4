@@ -1,29 +1,28 @@
 package uiMain;
 import java.util.ArrayList;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import gestorAplicación.servicios.*;
 import gestorAplicación.sujetos.*;
 import java.util.Scanner;
 
-import gestorAplicación.servicios.Enums.Categoria;
-import gestorAplicación.servicios.Enums.EstadoProducto;
-import gestorAplicación.servicios.Enums.Genero;
-import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
-import gestorAplicación.sujetos.*;
-import static uiMain.Main.print;
-import static uiMain.Main.escaner;
-import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-	public static void impresionFacturas(Persona persona) {
-	//	Persona persona = identificarPersona();
+	public static void impresionFacturas() {
+		Persona persona = identificarPersona();
+		Scanner scanner = new Scanner(System.in);
 		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
+
+		if (tiendas.isEmpty()) {
+		    System.out.println("No tienes facturas en ninguna tienda.");
+		    Main.escogerFuncionalidad(); // Regresar al menú principal
+		    scanner.close();
+		    return; // Salir del método
+		}
+
 		Map<String, Integer> conteoTiendas = new HashMap<>();
 		for (Tienda tienda : tiendas) {
 		    conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
@@ -44,7 +43,6 @@ public class Funcionalidad3 extends Identidad {
 		System.out.println("+-----+----------------+-----------------+");
 
 		// Solicitar selección del usuario
-		Scanner scanner = new Scanner(System.in);
 		System.out.print("Seleccione el número de la tienda: ");
 		int seleccion = scanner.nextInt();
 
@@ -131,7 +129,6 @@ public class Funcionalidad3 extends Identidad {
 		            switch (opcion) {
 		                case 1:
 		                    // Regresar a la selección de facturas
-		                    // Repetir el proceso desde la selección de facturas
 		                    break;
 		                case 2:
 		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
@@ -154,7 +151,6 @@ public class Funcionalidad3 extends Identidad {
 		                    break;
 		                case 2:
 		                    // Regresar a la selección de facturas
-		                    // Repetir el proceso desde la selección de facturas
 		                    break;
 		                case 3:
 		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
@@ -172,12 +168,11 @@ public class Funcionalidad3 extends Identidad {
 		}
 
 		scanner.close();
-    }
+	}
         
         //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
 
 	public static boolean tresEnRaya() {
-		Scanner sc = new Scanner(System.in);
 
         // Juego de Tres en Raya
         Juego juegoTresEnRaya = new TresEnRaya();
@@ -219,7 +214,6 @@ public class Funcionalidad3 extends Identidad {
 	
 	
 	public static void seleccionarCaja(Cliente cliente, Carrito carrito) {
-		Scanner sc = new Scanner(System.in);
 		ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
 		Caja cajaSeleccionada = null;
 
