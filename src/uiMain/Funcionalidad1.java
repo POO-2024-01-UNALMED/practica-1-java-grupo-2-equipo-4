@@ -380,7 +380,7 @@ public class Funcionalidad1 extends Identidad{
         print("");
         print("Escoja un número: ");
         
-        int seleccionProducto = escaner(8);
+        int seleccionProducto = escaner();
         if(seleccionProducto== productos.size()+1 ) {
         	consultaPorCategoria(cliente);
         }
@@ -455,7 +455,7 @@ public class Funcionalidad1 extends Identidad{
                 if (cliente.getDinero() >= costo) {
                     cliente.setDinero(cliente.getDinero() - costo); // Deduce el costo del saldo del cliente
                     cliente.setMembresia(membresia); // Actualiza la membresía del cliente
-                    print("¡Felicidades! Ahora eres miembro de la membresía " + membresia.toString());
+                    print("¡Felicidades! Ahora eres miembro de la membresía " + membresia.toString()+"tu saldo actual quedo en $"+ cliente.getDinero());
                     // Volver al menú principal o consultar otra membresía
                     print("1. Volver al menú principal");
                     print("2. Consultar otra membresía");

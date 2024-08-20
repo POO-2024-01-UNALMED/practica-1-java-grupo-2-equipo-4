@@ -357,7 +357,7 @@ public class Cliente extends Persona implements Serializable {
 	        if (cliente.getDinero() >= costoEvolucion) {
 	            cliente.setDinero(cliente.getDinero() - costoEvolucion); // Deduce el costo del saldo del cliente
 	            cliente.setMembresia(nuevaMembresia); // Actualiza la membresía del cliente
-	            return"¡Felicidades! Ahora eres miembro de la membresía " + nuevaMembresia.toString() ;
+	            return"¡Felicidades! Ahora eres miembro de la membresía " + nuevaMembresia.toString()+"tu saldo actual quedo en $"+ cliente.getDinero() ;
 	        } else {
 	            return "Lo siento, no tienes suficiente saldo para evolucionar a " +  nuevaMembresia.toString();
 	        }
