@@ -28,7 +28,7 @@ public class Producto implements Serializable,Cloneable {
 	private LocalDate fechaPerecer;
 	private Pasillo pasillo;
 	private Tienda tienda;
-	private final double iva = 0.19;
+	private final static double IVA = 0.19;
 	
 	private EstadoProducto estado=EstadoProducto.ACTIVO;
 	private static LocalDate fechaActual=LocalDate.now();
@@ -152,7 +152,7 @@ public class Producto implements Serializable,Cloneable {
 	}
 	
 	public double getIva() {
-		return iva;
+		return IVA;
 	}
 
 	//Constructores------------------------------------------------------------------------------------------------
