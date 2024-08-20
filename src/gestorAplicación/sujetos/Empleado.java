@@ -29,11 +29,12 @@ public abstract class Empleado extends Persona implements Serializable{
 	}
 	
 	protected Empleado(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda, 
-			boolean prestacionSalud, boolean prestacionPension,TipoEmpleado tipo) {
+			boolean prestacionSalud, boolean prestacionPension,TipoEmpleado tipo, int experiencia2) {
 		super(nombre, id, edad, genero);
 		this.liquidacion=liquidacion;
 		this.prestacionSalud=prestacionSalud;
 		this.prestacionPension=prestacionPension;
+		this.experiencia=experiencia2;
 		this.setTipo(tipo);
 	}
 	
