@@ -6,7 +6,9 @@ import baseDatos.Serializador;
 import gestorAplicación.servicios.*;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.Edades;
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.Tamaño;
+import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.*;
 
 public class Main extends Identidad{
@@ -302,10 +304,30 @@ public class Main extends Identidad{
 	       
 	       pepe.getFacturas().add(carrito3);
 	       pepe.getFacturas().add(carrito4);
+	       tienda.getFacturas().add(carrito3);
+	       tienda.getFacturas().add(carrito4);
 	       carrito3.setTienda(tienda);
 	       carrito4.setTienda(tienda);
 	       carrito3.setCliente(pepe);
 	       carrito4.setCliente(pepe);
+	       
+
+	       Caja caja1 = new Caja("Caja 1", TipoCaja.RAPIDA, tienda);
+	       Caja caja2 = new Caja("Caja 2", TipoCaja.NORMAL, tienda);
+	       Caja caja3 = new Caja("Caja 3", TipoCaja.RAPIDA, tienda);
+	       // Crear tienda y asignar cajas
+	       tienda.getCajas().add(caja1);
+	       tienda.getCajas().add(caja2);
+	       tienda.getCajas().add(caja3);
+	       
+	       Cajero cajero1 = new Cajero("Juan", 101, 30, Genero.H, 5000.0, tienda, true, false, 5, caja1);
+	       Cajero cajero2 = new Cajero("Maria", 102, 28, Genero.M, 4500.0, tienda, true, true, 3, caja2);
+	       Cajero cajero3 = new Cajero("Pedro", 103, 35, Genero.H, 5500.0, tienda, false, true, 7, caja3);
+	       
+	       caja1.setCajero(cajero1);
+	       caja2.setCajero(cajero2);
+	       caja3.setCajero(cajero3);
+	       
 	       
 	       
 	       
