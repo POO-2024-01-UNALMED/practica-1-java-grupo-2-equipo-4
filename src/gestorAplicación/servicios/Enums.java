@@ -38,7 +38,6 @@ public static enum Categoria{
 	 }
 }
 
-
 public static enum Edades{
 	MENORES("-18"),
 	ADULTOS("+18");
@@ -105,6 +104,7 @@ public static enum Tamaño{
 	}
 
 }
+
 public static enum Genero{
 	M,
 	H
@@ -129,8 +129,6 @@ public enum RazonDevolucion {
     INCONFORME
 }
 
-
-
 public enum Membresia {
     BASICO(10000.0),
     PREMIUM(25000.0),
@@ -146,11 +144,8 @@ public enum Membresia {
 
     public double getPrecio() {
         return precio;
-    }
-
-    
-}
-
+    }    
+  }
 }
 
 

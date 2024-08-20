@@ -14,9 +14,6 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 
 public class Cliente extends Persona implements Serializable {
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6750540194444988134L;
 //Atributos----------------------------------------------------------------------------------------------------
 	

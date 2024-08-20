@@ -17,8 +17,6 @@ public class Carrito implements Serializable{
 	private Proveedor proveedor;
 //	private double montoTotal;
 	private boolean pagado;
-	
-
 	//atributos para factura //
 	 LocalDate fechaFacturacion;
 	 ArrayList<Producto> productosFactura;
