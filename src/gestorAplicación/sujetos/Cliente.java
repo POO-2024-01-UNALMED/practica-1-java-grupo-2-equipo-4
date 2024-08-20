@@ -380,7 +380,7 @@ public class Cliente extends Persona implements Serializable {
 	}
 
 	@Override
-	public ArrayList<Tienda> getTiendasConFactura() {
+	public ArrayList<Tienda> getTiendasConFacturas() {
 		ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 		for(Carrito c:facturas) {
 			tiendas.add(c.getTienda());

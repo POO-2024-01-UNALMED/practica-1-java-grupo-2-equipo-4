@@ -81,10 +81,6 @@ public class Proveedor implements Serializable{
 //-------------------------------------------------------------------------------------------------------------
 	
 //Metodos------------------------------------------------------------------------------------------------------
-
-	public void informarRebastecimiento(Producto producto) {
-		
-	}
 	
 	public String toString(){
 		return this.nombre+" con categoria: "+(this.tipo+"").toLowerCase();
