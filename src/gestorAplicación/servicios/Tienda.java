@@ -208,30 +208,10 @@ public class Tienda implements Serializable{
 	public void setProductosDevueltos(ArrayList<Producto> productosDevueltos) {
 		this.productosDevueltos = productosDevueltos;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 //------------------------------------------------------------------------------------------------------------
 	
 //Contructores------------------------------------------------------------------------------------------------
-
-	
 
 	public Tienda(){
 		tiendas.add(this);
@@ -344,7 +324,7 @@ public class Tienda implements Serializable{
 	public ArrayList<Caja> cajasDisponibles() {
 		ArrayList<Caja> cajas= new ArrayList<Caja>();
 		for(Caja i:this.cajas) {
-			if(i.getEstado()==2 & i.getEmpleado()!=null) {
+			if(i.getEstado()==2 & i.getCliente()!=null) {
 				cajas.add(i);
 			}
 		}
@@ -645,7 +625,7 @@ public class Tienda implements Serializable{
 		
 
 	    // Método para recomendar productos
-	    public ArrayList<Producto> recomendarProductos(Producto productoOriginal, Cliente cliente) {
+	  public ArrayList<Producto> recomendarProductos(Producto productoOriginal, Cliente cliente) {
 	        ArrayList<Producto> productosRecomendados = new ArrayList<>();
 	        
 	        // Obtener el precio del producto original

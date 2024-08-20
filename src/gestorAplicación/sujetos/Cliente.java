@@ -7,7 +7,6 @@ import java.util.Map;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums;
-//import gestorAplicación.servicios.Factura;
 import gestorAplicación.servicios.Enums.Edades;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.Membresia;
@@ -85,6 +84,7 @@ public class Cliente extends Persona implements Serializable {
 	
 
 	public Cliente() {
+		
 	}
 	
 	public Cliente(String nombre, int id, int edad, Genero genero, double dinero, Carrito carrito) {
@@ -385,6 +385,12 @@ public class Cliente extends Persona implements Serializable {
 	    double costoActual = membresiaActual.getPrecio();
 	    double costoNueva = nuevaMembresia.getPrecio();
 	    return costoNueva - costoActual; // Diferencia de costo
+	}
+
+	@Override
+	public StringBuilder obtenerContadorProductos(Persona cliente) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------
