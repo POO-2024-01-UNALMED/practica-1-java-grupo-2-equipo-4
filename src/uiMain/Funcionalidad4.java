@@ -144,10 +144,10 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	
 	            	tienda.vencerProducto();
 	            	ArrayList<Producto> productosVencidos = tienda.getProductosVencidos();
-	         
-	            	 for (Producto i:productosVencidos) {
+	            	if (!productosVencidos.isEmpty()) {
+	            		for (Producto i:productosVencidos) {
 		                	System.out.println(i.getNombre());
-		             }	
+	            		}	
 	            	 
 	            	    System.out.println("Seleccione una opcion");
 		                System.out.println("1.Seleccionar otra tienda");
@@ -170,6 +170,45 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                		break;
 		                }
 		                
+	            	}else {
+	            		System.out.println("No hay productos vencidos");
+	            		System.out.println("Seleccione una opcion");
+		                System.out.println("1.Seleccionar otra tienda");
+		                System.out.println("2. Volver a menu principal");
+		                System.out.println("3. Volver atras");
+	            		int opcionCase2 = escaner(3);
+		                
+		                switch(opcionCase2) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+	            	}
+	            	 
+		                
+		                int opcionCase4 = escaner(3);
+		                
+		                switch(opcionCase4) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
+	            	}  
 	            	break;
 	            	
 	            case 3: // muestra los productos devueltos y los elimina o regresa//
@@ -302,7 +341,8 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 
 	            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreProducto, paddingDerecho));
 	        
-	        }	        
+	        }	
+	        
 	        print("+------------------------------------+");
 	    }
 	
