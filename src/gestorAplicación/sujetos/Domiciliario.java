@@ -13,28 +13,31 @@ public class Domiciliario extends Empleado implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1708181192964755820L;
-//	private String vehiculo;
+	private String vehiculo;
 	private boolean licencia;
 	//Contructores------------------------------------------------------------------------------------------------
 
-	public Domiciliario() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+//	public Domiciliario() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
 
 	public Domiciliario(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda,
-			boolean prestacionSalud, boolean prestacionPension) {
+			boolean prestacionSalud, boolean prestacionPension,boolean licencia,String vehiculo) {
 		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.DOMICILIARIO);
+		this.vehiculo=vehiculo;
+		this.licencia=licencia;
+		Tienda.getDesempleados().add(this);
 		// TODO Auto-generated constructor stub
 	}
 
-//	public String getVehiculo() {
-//		return vehiculo;
-//	}
-//
-//	public void setVehiculo(String vehiculo) {
-//		this.vehiculo = vehiculo;
-//	}
+	public String getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(String vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 
 	@Override
 	protected void buscoChamba() {
@@ -49,7 +52,7 @@ public class Domiciliario extends Empleado implements Serializable{
 	}
 	@Override
 	public boolean validarCriterios() {
-		if((this.licencia==true)&&(this.getGenero()==Genero.M)) {
+		if((this.licencia==true)&&(this.getVehiculo()!=null)) {
 			return true;
 		}
 		else {

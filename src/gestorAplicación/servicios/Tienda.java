@@ -502,28 +502,36 @@ public class Tienda implements Serializable{
 		}
 		
 		public void contratarEmpleados(int x5) {
+			ArrayList<Empleado> quitados=new ArrayList();
 			switch(x5) {
 				case 1:
 					for(Empleado e:getDesempleados()) {
 						if(e.validarCriterios()!=false && e instanceof Domiciliario) {
-							this.getEmpleados().add(e);
+							quitados.add(e); //Se va de Desempleados
+							this.getEmpleados().add(e); //llega a esta
 						}
 					}
 					break;
 				case 2:
 					for(Empleado e:getDesempleados()) {
 						if(e.validarCriterios()!=false && e instanceof Cajero) {
-							this.getEmpleados().add(e);
+							quitados.add(e); //Se va de Desempleados
+							this.getEmpleados().add(e);//llega a esta
 						}
 					}
 					break;
 				case 3:
 					for(Empleado e:getDesempleados()) {
 						if(e.validarCriterios()!=false && e instanceof Conserje) {
-							this.getEmpleados().add(e);
+							quitados.add(e); //Se va de Desempleados
+							this.getEmpleados().add(e);//llega a esta
 						}
 					}
+					break;
 				}
+			for(Empleado e:quitados) {
+					getDesempleados().remove(e); //Se va de Desempleados
+			}
 		}
 
 
@@ -579,6 +587,18 @@ public class Tienda implements Serializable{
 				return s;
 			}
 		}
+		public static String mostrarDesempleados() {
+			int m=1;
+			String s= "  Empleado   |   tipo \n";
+			for(Empleado i:Tienda.getDesempleados()) {
+				s+="\n"+m+"."+i.getNombre();
+				s+="     ";
+				s+=i.getTipo();
+				m++;
+			}
+			return s;
+		}
+		
 		
 
 	    // Método para recomendar productos
@@ -636,7 +656,7 @@ public class Tienda implements Serializable{
 	        return new ArrayList<>(tiendasConCliente);
 	    }
 
-		
+		@Override
 		public final String toString() {
 			return this.getNombre(); 
 		}
