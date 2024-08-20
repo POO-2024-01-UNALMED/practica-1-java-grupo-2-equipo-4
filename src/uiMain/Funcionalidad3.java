@@ -20,6 +20,53 @@ import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
 		 static Persona persona = identificarPersona();
+		 static Cliente cliente = null;
+		 
+		 
+		 public static void funcionalidad() {
+			 Cliente cliente = seleccionRol();			 
+			 if (cliente != null) {
+				 // logica para cliente //				
+			 } else {
+				 //logica para dueño
+				 Tienda tienda = seleccionarTiendaDueno(persona);
+				 imprimirCarritosPagados(tienda);
+			 }				 				 
+		 }
+			
+		 public static void imprimirCarritosPagados(Tienda tienda) {
+			 System.out.println("estas son todas las facturas pagadas en su tienda");
+		        int contador = 1;
+		        for (Carrito carrito : tienda.getCarritos()) {
+		            if (carrito.isPagado()) {
+		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cliente: " + carrito.getCliente().getNombre());
+		                contador++;
+		            }
+		        }
+		    }
+		 
+		 
+		 
+		 public static Cliente seleccionRol() {
+			 System.out.println("ver facturas como:");
+             System.out.println("1. Cliente");
+             System.out.println("2. Dueño");
+             
+             int opcionUsuario = escaner();
+             
+             if(opcionUsuario == 1) {
+            	Cliente cliente = (Cliente) persona;  
+            	return cliente;
+             }  return  null;
+             
+		 }
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		 
 		 public static void imprimirFacturasCliente(Cliente cliente, boolean pagadas) {
 		        ArrayList<Carrito> facturas = cliente.obtenerFacturas(pagadas);
@@ -59,25 +106,7 @@ public class Funcionalidad3 extends Identidad {
 		        }
 		    }
 		    
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-//		 public static void administrarRecibos() {
+		 //		 public static void administrarRecibos() {
 //			 System.out.println("------------------ Administrar recibos  -----------------");
 //			 System.out.println("Seleccione una opcion");
 //			 System.out.println("Administrar recibos de:");
@@ -100,52 +129,74 @@ public class Funcionalidad3 extends Identidad {
 //		        }
 //
 //		 }
-//		 
-//		 public  static Tienda seleccionTienda() {
-//			 System.out.println("------------------ Pago de recibos  -----------------");
-//		// seleccion de tiendas para comprar //  
-//		    	
-//				if(persona.getTiendas().size()==0) {
-//					print("No tienes niguna tienda registrada "); 
-//					print("Que desea hacer ");
-//					print("1. Cambiar de usuario");
-//					print("2. Volver al Menu principal");
-//					
-//					int valor= escaner();
-//					switch (valor) {
-//						case 1:
-//							persona=null;
-//							seleccionTienda();
-//							break;
-//						case 2:
-//							Main.escogerFuncionalidad();
-//							break;
-//					}
-//				}
-//		    	
-//		    	print("Tiendas disponibles: ");
-//		    	
-//		    	Tienda tienda=null;
-//		    	int contT = 1;
-//
-//		    	for(Tienda i: persona.getTiendas()) {
-//		    		print(contT+ ". "+i.getNombre());
-//		    		contT++;
-//		    	}
-//		    	
-//		    	contT--;
-//		    	
-//		    	print("Seleccione una tienda para administrar");
-//		    	int decs = escaner(contT);
-//		    		    	
-//		    	for (int i = 0; i < contT; i++) {
-//		           if(i+1 == decs ) {
-//		        	   tienda = persona.getTiendas().get(i);
-//		        	   break;
-//		           }
-//		        }	
-//		    	return tienda;
-//		    }
+		    
+		    
+		   static public Tienda seleccionarTiendaDueno(Persona persona) {
+		        if (persona.getTiendas().isEmpty()) {
+		            System.out.println("No es dueño de ninguna tienda.");
+		            return null;
+		        }
+
+		       
+		        System.out.println("Seleccione una tienda de la lista:");
+		        for (int i = 0; i < persona.getTiendas().size(); i++) {
+		            System.out.println((i + 1) + ". " + persona.getTiendas().get(i).getNombre());
+		        }
+
+		        int seleccion = escaner();
+		        if (seleccion < 1 || seleccion > persona.getTiendas().size()) {
+		            System.out.println("Selección inválida.");
+		            return null;
+		        }
+
+		        return persona.getTiendas().get(seleccion - 1);
+		    }  
+		    
+	 
+		 public  static Tienda seleccionTienda() {
+		// seleccion de tiendas para comprar //  
+		    	
+				if(persona.getTiendas().size()==0) {
+					print("No tienes niguna tienda registrada "); 
+					print("Que desea hacer ");
+					print("1. Cambiar de usuario");
+					print("2. Volver al Menu principal");
+					
+					int valor= escaner();
+					switch (valor) {
+						case 1:
+							persona=null;
+							seleccionTienda();
+							break;
+						case 2:
+							Main.escogerFuncionalidad();
+							break;
+					}
+				}
+		    	
+		    	print("Tiendas disponibles: ");
+		    	
+		    	Tienda tienda=null;
+		    	int contT = 1;
+
+		    	for(Tienda i: persona.getTiendas()) {
+		    		print(contT+ ". "+i.getNombre());
+		    		contT++;
+		    	}
+		    	
+		    	contT--;
+		    	
+		    	print("Seleccione una tienda para administrar");
+		    	int decs = escaner(contT);
+		    		    	
+		    	for (int i = 0; i < contT; i++) {
+		           if(i+1 == decs ) {
+		        	   tienda = persona.getTiendas().get(i);
+		        	   break;
+		           }
+		        }	
+		    	return tienda;
+		    }
 		 
 //	public static void mostrarFacturas() {
 //	
