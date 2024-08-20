@@ -360,13 +360,13 @@ public class Main extends Identidad{
 					 continue;
 				}
 			}
-			Cliente cliente=(Cliente)identificarPersona();
+			
 			switch(decision){
 			case 1:
 				Funcionalidad1.consultasEco();
 				break;
 			case 2:
-				
+				Cliente cliente=(Cliente)identificarPersona();
 				Funcionalidad2.elegirTipoBusqueda(cliente);
 				break;
 			case 3:
@@ -437,7 +437,8 @@ public class Main extends Identidad{
 				Funcionalidad4.seleccionTienda();
 				break;
 			case 5:
-				Funcionalidad5.personalizarTienda(cliente);
+				Cliente cliente1=(Cliente)identificarPersona();
+				Funcionalidad5.personalizarTienda(cliente1);
 				break;
 			case 6:
 				Serializador.serializarTodo();
