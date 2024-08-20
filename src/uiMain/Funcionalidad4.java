@@ -277,7 +277,8 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	print("Reabastecimiento");   
 	            	print("Proveedores disponibles:");
 	            	
-	                for (int i = 0; i < tienda.getProveedores().size(); i++) {
+	            	if(!tienda.getProveedores().isEmpty()) {
+	            		for (int i = 0; i < tienda.getProveedores().size(); i++) {
 	                    System.out.println((i + 1) + ". " + tienda.getProveedores().get(i).getNombre());
 	                }
 
@@ -336,7 +337,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                 }
 
 	                 sc.close();
-	                 System.out.println("Seleccione una opcion");
+	                 	System.out.println("Seleccione una opcion");
 		                System.out.println("1.Seleccionar otra tienda");
 		                System.out.println("2. Volver a menu principal");
 		                System.out.println("3. Volver atras");
@@ -356,6 +357,33 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                		adminitrarTienda(tienda);
 		                		break;
 		                }
+	            		
+	            	}else {
+	            		print("No hay proveedores");
+	            		System.out.println("Seleccione una opcion");
+		                System.out.println("1.Seleccionar otra tienda");
+		                System.out.println("2. Volver a menu principal");
+		                System.out.println("3. Volver atras");
+		                
+		                int opcionCase5 = escaner(3);
+		                
+		                switch(opcionCase5) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
+	            		
+	            	}
+	            	
+	                
 		                
 	             break;
 	            	
