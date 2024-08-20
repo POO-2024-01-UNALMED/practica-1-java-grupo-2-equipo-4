@@ -244,6 +244,25 @@ public class Main extends Identidad{
 	            "Galletas de avena y miel, perfectas para un snack saludable.", "05/11/2024", 105
 	        );
 	        
+	        
+	        Producto productoDevuelto1 = new Producto(
+		            "Queso Cheddar", "La Gran Quesería", 4.50, Tamaño.MEDIANO, Edades.ADULTOS, Categoria.ALIMENTO,
+		            "Queso cheddar madurado, ideal para sandwiches y gratinados.", "30/09/2024", 104
+		        );
+
+		        Producto productoDevuelto2 = new Producto(
+		            "Galletas de Avena", "Cerealia", 2.75, Tamaño.PEQUEÑO, Edades.MENORES, Categoria.ALIMENTO,
+		            "Galletas de avena y miel, perfectas para un snack saludable.", "05/11/2024", 105
+		        );
+	        
+		        Producto productoDevuelto3 = new Producto(
+			            "Leche Entera", "La Vaquita", 1.50, Tamaño.GRANDE, Edades.MENORES, Categoria.ALIMENTO,
+			            "Leche entera de vaca, fortificada con vitaminas A y D.", "15/10/2024", 101
+			        );
+		        
+		        tienda.getProductosDevueltos().add(productoDevuelto3);
+		        tienda.getProductosDevueltos().add(productoDevuelto2);
+		        tienda.getProductosDevueltos().add(productoDevuelto1);
 	        // Asignar productos al pasillo y a la tienda
 	        producto1.asignarPasilloYPonerEnTienda(pasillo1);
 	        producto12.asignarPasilloYPonerEnTienda(pasillo1);
