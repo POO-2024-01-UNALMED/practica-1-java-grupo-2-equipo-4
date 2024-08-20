@@ -210,6 +210,21 @@ public class Tienda implements Serializable{
 				}
 				return tiendaDisp.size()>0;
 			}
+			
+			//Este método se encarga de buscar si existe al menos una tienda 
+			public static boolean buscarTienda() {
+				ArrayList<Tienda> tiendasRevisa = tiendas;
+				if(tiendas.size() > 0 ) {
+					
+					 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
+					 return tiendasRevisadas.size()>0;
+				}
+				else {
+					return false;
+				}
+			    
+			}
+			
 //------------------------------------------------------------------------------------------------------------
 			
 			//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
@@ -573,19 +588,6 @@ public class Tienda implements Serializable{
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
 	
-	//Este método se encarga de buscar si existe al menos una tienda 
-	public static boolean buscarTienda() {
-		ArrayList<Tienda> tiendasRevisa = tiendas;
-		if(tiendas.size() > 0 ) {
-			
-			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
-			 return tiendasRevisadas.size()>0;
-		}
-		else {
-			return false;
-		}
-	    
-	}
 	
 	//------------------------------------------------------------------------------------------------------------
 	

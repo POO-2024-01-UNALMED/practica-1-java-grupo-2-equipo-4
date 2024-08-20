@@ -55,9 +55,18 @@ public class Cliente extends Persona implements Serializable {
 		this.dinero=dinero;
 	}
 	
-	
-	public ArrayList<Carrito> getFacturas() {
+	public ArrayList<Carrito> getFacturas(){
 		return facturas;
+	}
+	
+	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada) {
+		ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
+    	for(Carrito c:tiendaSeleccionada.getFacturas()) {
+    		if (c.getCliente().equals(persona)) {
+    			misFacturas.add(c);
+    		}
+    	}
+    	return misFacturas;
 	}
 
 	public void setFacturas(ArrayList<Carrito> facturas) {
@@ -244,12 +253,14 @@ public class Cliente extends Persona implements Serializable {
 	        	Carrito carrito =new Carrito(cliente,tienda,Edades.ADULTOS);
 	            cliente.setTienda(tienda);
 	            cliente.setCarrito(carrito);
+	            carrito.setCliente(cliente);
 	            cliente.setDinero(100000);
 	        } else if (!cliente.mayorEdad()) {
 	        	Carrito carrito =new Carrito(cliente,tienda,Edades.MENORES);
 	        	cliente.setTienda(tienda);
 	        	cliente.setCarrito(carrito);
 	        	cliente.setDinero(50000);
+	        	carrito.setCliente(cliente);
 	        }
 	}
 	
@@ -386,6 +397,19 @@ public class Cliente extends Persona implements Serializable {
 			tiendas.add(c.getTienda());
 		}
 		return tiendas;
+	}
+	
+	public double calcularDescuentoPorMembresia() {
+	    switch (this.getMembresia()) {
+	        case Membresia.BASICO:
+	            return 0.05;
+	        case Membresia.PREMIUM:
+	            return 0.10;
+	        case Membresia.VIP:
+	            return 0.20;
+	        default:
+	            return 0.0;
+	    }
 	}
 	
 //-------------------------------------------------------------------------------------------------------------

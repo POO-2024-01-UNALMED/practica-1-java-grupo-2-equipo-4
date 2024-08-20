@@ -16,11 +16,9 @@ public class Carrito implements Serializable{
 	private Edades tipoCarrito;
 	private Proveedor proveedor;
 	private boolean pagado;
+	private double precioTotal;
 	//atributos para factura //
-	 LocalDate fechaFacturacion;
-	 ArrayList<Producto> productosFactura;
-
-	
+	private LocalDate fechaFacturacion;
 
 	private static final long serialVersionUID = 834939881526017922L;
 
@@ -83,14 +81,7 @@ public class Carrito implements Serializable{
 	public void setFechaFacturacion(LocalDate fechaFacturacion) {
 		this.fechaFacturacion = fechaFacturacion;
 	}
-	
-	public ArrayList<Producto> getProductosFactura() {
-		return productosFactura;
-	}
 
-	public void setProductosFactura(ArrayList<Producto> productosFactura) {
-		this.productosFactura = productosFactura;
-	}
 
 	
 	
@@ -232,9 +223,57 @@ public class Carrito implements Serializable{
 	}
 	// metodos para factura //
 
+    
+    public String generarDetallesFactura(double descuentoMembresia, boolean ganoJuego) {
+        StringBuilder detalles = new StringBuilder();
+        detalles.append("Factura:\n");
+        detalles.append("+-----+--------------------+---------------+----------+------------+----------+\n");
+        detalles.append("| No. | Producto           | Marca         | Tamaño   | Categoría  | Precio   |\n");
+        detalles.append("+-----+--------------------+---------------+----------+------------+----------+\n");
+
+        int numeroProducto = 1;
+        for (Producto producto : productos) {
+            detalles.append(String.format("| %-3d | %-18s | %-13s | %-8s | %-10s | %-8.2f |\n",
+                numeroProducto,
+                producto.getNombre(),
+                producto.getMarca(),
+                producto.getTamaño().getTamaño(),
+                producto.getCategoria().getTexto(),
+                producto.getPrecio()
+            ));
+            numeroProducto++;
+        }
+        detalles.append("+-----+--------------------+---------------+----------+------------+----------+\n");
+
+        // Mostrar descuentos
+        detalles.append(String.format("Descuento por membresía: %.2f%%\n", descuentoMembresia * 100));
+        if (ganoJuego) {
+            detalles.append("Descuento adicional por ganar el juego: 10%\n");
+        }
+
+        detalles.append(String.format("Precio final: %.2f\n", precioTotal * (1 - descuentoMembresia) * (ganoJuego ? 0.9 : 1.0)));
+        return detalles.toString();
+    }
+    
+    	
+    
+    public void eliminarCarrito() {
+        // Devolver los productos al inventario
+        for (Producto producto : productos) {
+            // Asumimos que existe un método en la clase Tienda para devolver productos
+            producto.getPasillo().getProductos().add(producto);
+        }
+        // Eliminar el carrito
+        productos.clear();
+        precioTotal = 0.0;
+        pagado = false;
+    }
+    
+    public void incrementarCosto(double numero) {
+    	precioTotal+=numero;
+    }
 	
-	
-	
+}	
 	
 	
 //-------------------------------------------------------------------------------------------------------------

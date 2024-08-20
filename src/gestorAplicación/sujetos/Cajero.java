@@ -6,7 +6,7 @@ import gestorAplicación.servicios.Enums.TipoEmpleado;
 import gestorAplicación.servicios.Tienda;
 
 public class Cajero extends Empleado implements Serializable{
-	//Contructores------------------------------------------------------------------------------------------------
+//Contructores------------------------------------------------------------------------------------------------
 	private static final long serialVersionUID = 1L;
 
 	public Cajero() {
