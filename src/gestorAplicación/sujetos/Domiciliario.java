@@ -20,8 +20,8 @@ public class Domiciliario extends Empleado implements Serializable{
 //	}
 
 	public Domiciliario(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda,
-			boolean prestacionSalud, boolean prestacionPension,boolean licencia,String vehiculo) {
-		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.DOMICILIARIO);
+			double p ,boolean prestacionSalud, boolean prestacionPension,boolean licencia,String vehiculo) {
+		super();
 		this.vehiculo=vehiculo;
 		this.licencia=licencia;
 		Tienda.getDesempleados().add(this);
