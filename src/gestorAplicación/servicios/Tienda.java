@@ -686,7 +686,7 @@ public class Tienda implements Serializable{
 			
 		}				
 
-	    public ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
+	    public static ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
 	        Set<Tienda> tiendasConCliente = new HashSet<>();
 	        for (Tienda tienda : tiendas) {
 	            for (Carrito carrito : tienda.getCarritos()) {
