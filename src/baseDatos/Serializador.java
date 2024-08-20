@@ -76,9 +76,11 @@ public class Serializador {
 //	        );
 //	        ArrayList<Tienda> t=new ArrayList<>();
 //	        ArrayList<Producto> entrega=new ArrayList<>();
-	     new Domiciliario("Pablo",10101,20,Genero.H,100000,null,true,true,true,"moto");
-	     new Cajero("Carlos", 3030, 30, Genero.M, 25000, null, true, true);
-	     new Conserje("Sara",1313,21,Genero.M,100000,null,true,false);
+//	     new Domiciliario("Pablo",10101,20,Genero.H,100000,null,true,true,true,"moto");
+//	     new Cajero("Carlos", 3030, 30, Genero.M, 25000, null, true, true);
+//	     new Conserje("Sara",1313,21,Genero.M,100000,null,true,false);
+		
+		new Tienda();
 //		serializar(Tienda.getDesempleados(),"empleados");
 	}
 	
