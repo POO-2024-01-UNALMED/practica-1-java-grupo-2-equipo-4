@@ -8,10 +8,7 @@ import gestorAplicación.servicios.Enums.TipoEmpleado;
 import gestorAplicación.servicios.Tienda;
 
 public class Domiciliario extends Empleado implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1708181192964755820L;
 	private String vehiculo;
 	private boolean licencia;
@@ -60,13 +57,4 @@ public class Domiciliario extends Empleado implements Serializable{
 		}
 	}
 	
-	@Override
-	public StringBuilder obtenerContadorProductos(Persona cliente) {
-		StringBuilder texto=new StringBuilder();
-		return texto.append("Su pago es de: "+this.cantidadPago());
-	}
-	@Override
-	public Map<String, Integer> obtenerContadorProductos(Cliente cliente) {
-		return null;
-	}
 }

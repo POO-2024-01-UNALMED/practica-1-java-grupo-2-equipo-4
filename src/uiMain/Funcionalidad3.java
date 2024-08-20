@@ -100,6 +100,9 @@ public class Funcionalidad3 extends Identidad {
         		misFacturas.add(c);
         	}
         }
+        
+        //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
+        
 	} 
 		 
 		 

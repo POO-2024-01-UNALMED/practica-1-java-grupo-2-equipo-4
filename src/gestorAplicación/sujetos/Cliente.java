@@ -72,8 +72,6 @@ public class Cliente extends Persona implements Serializable {
 		this.membresia = membresia;
 	}
 
-	
-	
 //-------------------------------------------------------------------------------------------------------------
 	
 //Constructores------------------------------------------------------------------------------------------------
@@ -211,7 +209,7 @@ public class Cliente extends Persona implements Serializable {
 	 public ArrayList<Carrito> obtenerFacturas(boolean pagadas) {
 	        ArrayList<Carrito> facturas = new ArrayList<>();
 	        for (Tienda tienda : getTiendas()) {
-	            for (Carrito carrito : tienda.getCarritos()) {
+	            for (Carrito carrito : tienda.getFacturas()) {
 	                if (carrito.isPagado() == pagadas) {
 	                    facturas.add(carrito);
 	                }
