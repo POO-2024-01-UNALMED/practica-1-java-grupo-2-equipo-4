@@ -641,7 +641,22 @@ public class Tienda implements Serializable{
 		
 		public static void devolverProductos(Carrito carrito ) {
 			
-		}				
+		}		
+		
+		// este metodo tansfiere productos de un array a un pasillo con su categoria especifica
+		public void transferirProductos(ArrayList<Producto> productosTransferir) {
+		    ArrayList<Producto> productosParaEliminar = new ArrayList<>();
+		    for (Producto producto : productosTransferir) {
+		        for (Pasillo pasillo : pasillos) {
+		            if (pasillo.getCategoria() == producto.getCategoria()) {
+		                pasillo.agregarProducto(producto);
+		                productosParaEliminar.add(producto);
+		                break;
+		            }
+		        }
+		    }
+		    productosTransferir.removeAll(productosParaEliminar);
+		}
 
 	    public static ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
 	        Set<Tienda> tiendasConCliente = new HashSet<>();

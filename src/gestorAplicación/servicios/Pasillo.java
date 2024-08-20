@@ -101,6 +101,8 @@ public class Pasillo implements Serializable{
 		getProductos().add(producto);
 	}
 	
+	
+	
 //-------------------------------------------------------------------------------------------------------------
 }
  

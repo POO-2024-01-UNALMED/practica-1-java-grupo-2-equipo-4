@@ -31,6 +31,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	
 	
 	static Administrador usuario =(Administrador) identificarPersona();
+	static Tienda tiendaSelecta = null;
 	    public  static void seleccionTienda() {
 	    	
 	    	System.out.println("------------------ REVISION DE TIENDA -----------------");
@@ -72,6 +73,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	    	for (int i = 0; i < contT; i++) {
 	           if(i+1 == decs ) {
 	        	   tienda = usuario.getTiendas().get(i);
+	        	   tiendaSelecta = usuario.getTiendas().get(i);
 	        	   break;
 	           }
 	        }	
@@ -93,7 +95,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	        int opcion = escaner(6);
 	        
 	        switch (opcion) {
-	            case 1: // productosUnicos contiene todos los productos sin repetición //   
+	            case 1: // productosUnicos contiene todos los productos sin repetición y su cantidad stock //   
 	            	
 	                System.out.println("Todos los productos se mostraran a continuacion...");
 	                
@@ -147,7 +149,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            	if (!productosVencidos.isEmpty()) {
 	            		for (Producto i:productosVencidos) {
 		                	System.out.println(i.getNombre());
-	            		}	
+	            		}
 	            	 
 	            	    System.out.println("Seleccione una opcion");
 		                System.out.println("1.Seleccionar otra tienda");
@@ -170,7 +172,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                		break;
 		                }
 		                
-	            	}else {
+	            	  }else {
 	            		System.out.println("No hay productos vencidos");
 	            		System.out.println("Seleccione una opcion");
 		                System.out.println("1.Seleccionar otra tienda");
@@ -214,30 +216,63 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	            case 3: // muestra los productos devueltos y los elimina o regresa//
 	            	
 	                System.out.println("Productos devueltos en la tienda:");
-	                for (Producto producto : tienda.getProductosDevueltos()) {
-	                    System.out.println(producto);
+	                ArrayList<Producto> productosDevueltos =tienda.getProductosDevueltos();
+	                if (!productosDevueltos.isEmpty()) {	                	                
+		                for (Producto producto : productosDevueltos) {
+		                	System.out.printf("%-30s Estado: %-10s%n", producto, producto.getEstado());
+		                }
+		            	System.out.println("Seleccione una opcion");
+		            	System.out.println("1.Eliminar de la tienda los productos defectuosos");
+		            	System.out.println("2. Devolver a los pasillos los productos activos");
+		                System.out.println("3.Seleccionar otra tienda");
+		                System.out.println("4. Volver a menu principal");
+		                System.out.println("5. Volver atras");
+		                
+		                int opcionCase3 = escaner(5);
+		                
+		                switch(opcionCase3) {	
+		                	case 1:		                		
+		                		tienda.getProductosDevueltos().clear();		                		
+		                		System.out.println("El dinero ya ha sido devuelto al cliente ");
+		                		System.out.println("prodcutos eliminados con exito");
+		                		break;
+		                	case 2:
+		                		tienda.transferirProductos(productosDevueltos);
+		                		break;
+		                	case 3:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 4:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 5:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
+	                } else {
+	                	System.out.println("No hay productos devueltos");
+	            		System.out.println("Seleccione una opcion");
+		                System.out.println("1.Seleccionar otra tienda");
+		                System.out.println("2. Volver a menu principal");
+		                System.out.println("3. Volver atras");
+	            		int opcionCase2 = escaner(3);
+		                
+		                switch(opcionCase2) {		                
+		                	case 1:	                		
+		                		seleccionTienda();
+		                		break;
+		                		
+		                	case 2:                		
+		                		Main.escogerFuncionalidad();
+								break;
+								
+		                	case 3:	
+		                		adminitrarTienda(tienda);
+		                		break;
+		                }
 	                }
-	            	System.out.println("Seleccione una opcion");
-	                System.out.println("1.Seleccionar otra tienda");
-	                System.out.println("2. Volver a menu principal");
-	                System.out.println("3. Volver atras");
-	                
-	                int opcionCase3 = escaner(3);
-	                
-	                switch(opcionCase3) {		                
-	                	case 1:	                		
-	                		seleccionTienda();
-	                		break;
-	                		
-	                	case 2:                		
-	                		Main.escogerFuncionalidad();
-							break;
-							
-	                	case 3:	
-	                		adminitrarTienda(tienda);
-	                		break;
-	                }
-	                
 	            	break;
 	            	
 	            case 4: 
@@ -329,21 +364,22 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	        print("+------------------------------------+");
 	        print("| No. |      Nombre de Producto      |");
 	        print("+------------------------------------+");
-
+	        
+	        
 	        int anchoCelda = 28; // Ancho de la celda para el nombre del producto
-	        for (int i = 0; i < productos.size(); i++) {
-	            String nombreProducto = productos.get(i).getNombre();
+	        for (int i = 0; i < productos.size(); i++) {	        	
+	        	int cant = tiendaSelecta.cantidadProducto(productos.get(i));
+	            String nombreProducto = productos.get(i).getNombre() + ". unidades en el inventario: "+cant;
 	            int espacios = (anchoCelda - nombreProducto.length()) / 2;
 
 	            // Relleno a izquierda y derecha para centrar el nombre del producto
 	            String paddingIzquierdo = " ".repeat(Math.max(0, espacios));
 	            String paddingDerecho = " ".repeat(Math.max(0, espacios + (anchoCelda - nombreProducto.length()) % 2));
 
-	            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreProducto, paddingDerecho));
-	        
-	        }	
-	        
+	            print(String.format("| %-3d |%s%s%s|", i + 1, paddingIzquierdo, nombreProducto, paddingDerecho));	        
+	        }		        
 	        print("+------------------------------------+");
+	        
 	    }
 	
 }
