@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
@@ -20,8 +21,42 @@ import static uiMain.Main.escaner;
 import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-		 static Persona persona = identificarPersona();
-		 static Cliente cliente = null;
+	public static void impresionFacturas() {
+		Persona persona = identificarPersona();
+		ArrayList<Tienda> tiendas = persona.getTiendas();
+		Map<String, Integer> conteoTiendas = new HashMap<>();
+	        for (Tienda tienda : tiendas) {
+	            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
+	        }
+	        System.out.println("Número de Facturas");
+	        System.out.println("+-----+----------------+-----------------+");
+	        System.out.println("| No. | Nombre         | Cantidad         |");
+	        System.out.println("+-----+----------------+-----------------+");
+
+	        int numero = 1;
+	        for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
+	            System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
+	            numero++;
+	        }
+
+	        // Imprimir línea final
+	        System.out.println("+-----+----------------+-----------------+");
+
+	        // Solicitar selección del usuario
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Seleccione el número de la tienda: ");
+	        int seleccion = scanner.nextInt();
+	        scanner.close();
+
+	        // Validar selección
+	        if (seleccion < 1 || seleccion > conteoTiendas.size()) {
+	            System.out.println("Selección inválida.");
+	        } else {
+	            // Obtener el nombre de la tienda seleccionada
+	            String tiendaSeleccionada = (String) conteoTiendas.keySet().toArray()[seleccion - 1];
+	            System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada);
+	        }
+	} 
 		 
 		 
 		 public static void funcionalidad() {

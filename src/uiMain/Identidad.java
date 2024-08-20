@@ -1,6 +1,7 @@
 package uiMain;
+import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.sujetos.*;
-import gestorAplicación.sujetos.Persona;
+
 import static uiMain.Main.escaner;
 import static gestorAplicación.servicios.Enums.Genero;
 import java.util.Scanner;
@@ -8,12 +9,12 @@ import static uiMain.Main.lineas;
 import static uiMain.Main.print;
 public abstract class Identidad {
   static Scanner  sc = new Scanner(System.in);
-	public static Persona identificarPersona() {
+  public static Persona identificarPersona() {
 		lineas();
 		System.out.print("Digite su documento: ");
 		int p=escaner();
 		for (Persona i : Persona.getPersonas()) {
-			if (p== i.getId()) {
+			if (p==i.getId()) {
 				System.out.println("Bienvenido "+i.getNombre());
 				return i;
 			}					
@@ -26,13 +27,13 @@ public abstract class Identidad {
 		print("");
 		System.out.print("Seleccione una opcion: ");
 		
-		
 		int seleccion = escaner(2);
 		if (seleccion== 1) {
 			Persona persona1 = identificarPersona();
 			return persona1;
 		}
 		lineas();
+		
 		System.out.print("Digite su nombre: ");
 		String nombre = sc.nextLine();
 		
@@ -55,8 +56,20 @@ public abstract class Identidad {
 		System.out.print("Digite su edad: ");
 		int edad = escaner();
 		
-		
-		Cliente persona = new Cliente(nombre,p,edad,genero1);
+		print("");
+		print("Desea comprar productos o administrar tiendas: ");
+		print(" 1.Comprar productos");
+		print(" 2.Administrar tiendas");
+		print("");
+		System.out.print("Seleccione una: ");
+		int decision=escaner(2);
+		Persona persona;
+		if (decision==1) {
+			persona = new Cliente(nombre,p,edad,genero1);
+		}
+		else {
+			persona = new Administrador(nombre,p,edad,genero1);
+		}
 		lineas();
 		print("");
 		System.out.println("Usuario creado con exito ");

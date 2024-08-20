@@ -6,15 +6,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import gestorAplicación.servicios.Enums.Genero;
-import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Tienda;
-//import gestorAplicación.servicios.Factura;
-import static gestorAplicación.servicios.Enums.Genero;
 
 public abstract class Persona implements Serializable{
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9139003303968753009L;
 //Atributos----------------------------------------------------------------------------------------------------
 	
@@ -22,7 +16,6 @@ public abstract class Persona implements Serializable{
 	private int id;
 	private int edad;
 	private Genero genero;
-	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 	private static ArrayList <Persona> personas=new ArrayList<Persona>();
 	
 	// estaba en cliente pero identificar usuario es clase Persona //
@@ -49,16 +42,6 @@ public abstract class Persona implements Serializable{
 //	public void setFacturas1(ArrayList<Factura> facturas) {
 //		this.facturas = facturas;
 //	}
-
-
-	
-	public ArrayList<Tienda> getTiendas() {
-		return tiendas;
-	}
-	
-	public  void setTiendas(ArrayList<Tienda> tienda) {
-		this.tiendas=tienda;
-	}
 	
 	public String getNombre() {
 		return nombre;
@@ -112,10 +95,8 @@ public abstract class Persona implements Serializable{
 //-------------------------------------------------------------------------------------------------------------
 
 //Metodos------------------------------------------------------------------------------------------------------
-		
-	abstract public StringBuilder obtenerContadorProductos(Persona cliente);
 	
-	abstract public Map<String, Integer> obtenerContadorProductos(Cliente cliente);
+	public abstract ArrayList<Tienda> getTiendasConFactura();
 	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();

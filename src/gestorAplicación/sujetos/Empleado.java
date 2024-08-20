@@ -10,9 +10,6 @@ import gestorAplicación.servicios.Tienda;
 public abstract class Empleado extends Persona implements Serializable{
 //Atributos----------------------------------------------------------------------------------------------------
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1006554030509380019L;
 	protected double liquidacion;
 	protected boolean prestacionSalud;

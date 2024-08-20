@@ -276,9 +276,37 @@ public class Main extends Identidad{
 	                               ", Pasillo: " + pasillo1.getNombre() + ", Tienda: " + tienda.getNombre());
 	        }
 	       Empleado empleado=new Cajero();
-	       Persona.getPersonas().get(0).getTiendas().add(tienda);
+	  //     Persona.getPersonas().get(0).getTiendas().add(tienda);
 	       tienda.getEmpleados().add(empleado);
-		
+	       Administrador admin = new Administrador("Juan",54321,26,Enums.Genero.M);
+	       Cliente pepe =new Cliente("pepe",9876,18,Enums.Genero.M);
+	       admin.getTiendas().add(tienda);
+	       Carrito carrito1 = new Carrito();
+	       Carrito carrito2 = new Carrito();
+	       Carrito carrito3 = new Carrito();
+	       Carrito carrito4 = new Carrito();
+	       carrito1.getProductos().add(producto1);
+	       carrito1.getProductos().add(producto12);
+	       carrito1.getProductos().add(producto13);
+	       carrito2.getProductos().add(producto4);
+	       carrito2.getProductos().add(producto2);
+	       carrito2.getProductos().add(producto3);
+	       carrito1.getProductos().add(producto5);
+	       carrito3.getProductos().add(producto1);
+	       carrito3.getProductos().add(producto12);
+	       carrito4.getProductos().add(producto4);
+	       carrito4.getProductos().add(producto2);
+	       
+	       for (Tienda tiendas : admin.getTiendas() ) {
+	    	   tiendas.getFacturas().add(carrito1);
+	    	   tiendas.getFacturas().add(carrito2);
+	       }
+	       
+	       pepe.getFacturas().add(carrito3);
+	       pepe.getFacturas().add(carrito4);
+	       
+	       
+	       
 		escogerFuncionalidad();
 	}
 	
