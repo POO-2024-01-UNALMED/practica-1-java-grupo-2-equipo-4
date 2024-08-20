@@ -240,7 +240,6 @@ public class Carrito implements Serializable{
 
 	// metodos para factura //
 
-    
     public String generarDetallesFactura(double descuentoMembresia, boolean ganoJuego) {
         StringBuilder detalles = new StringBuilder();
         detalles.append("Factura:\n");

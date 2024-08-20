@@ -1,5 +1,4 @@
 package uiMain;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import baseDatos.Deserializador;
@@ -210,9 +209,6 @@ public class Main extends Identidad{
 
 	        // Asignar el pasillo a la tienda
 	        pasillo1.asignarTienda(tienda);
-
-	        // Formato de fecha
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	        // Crear productos
 	        Producto producto1 = new Producto(

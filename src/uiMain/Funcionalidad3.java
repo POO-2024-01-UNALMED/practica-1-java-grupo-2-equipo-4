@@ -1,29 +1,28 @@
 package uiMain;
 import java.util.ArrayList;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import gestorAplicación.servicios.*;
 import gestorAplicación.sujetos.*;
 import java.util.Scanner;
 
-import gestorAplicación.servicios.Enums.Categoria;
-import gestorAplicación.servicios.Enums.EstadoProducto;
-import gestorAplicación.servicios.Enums.Genero;
-import gestorAplicación.servicios.Enums.RazonDevolucion;
 import gestorAplicación.servicios.Enums.TipoCaja;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.sujetos.Persona;
-import gestorAplicación.sujetos.*;
-import static uiMain.Main.print;
-import static uiMain.Main.escaner;
-import static uiMain.Main.lineas;
 
 public class Funcionalidad3 extends Identidad {
-	public static void impresionFacturas(Persona persona) {
-	//	Persona persona = identificarPersona();
+	public static void impresionFacturas() {
+		Persona persona = identificarPersona();
+		Scanner scanner = new Scanner(System.in);
 		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
+
+		if (tiendas.isEmpty()) {
+		    System.out.println("No tienes facturas en ninguna tienda.");
+		    Main.escogerFuncionalidad(); // Regresar al menú principal
+		    scanner.close();
+		    return; // Salir del método
+		}
+
 		Map<String, Integer> conteoTiendas = new HashMap<>();
 		for (Tienda tienda : tiendas) {
 		    conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
@@ -44,7 +43,6 @@ public class Funcionalidad3 extends Identidad {
 		System.out.println("+-----+----------------+-----------------+");
 
 		// Solicitar selección del usuario
-		Scanner scanner = new Scanner(System.in);
 		System.out.print("Seleccione el número de la tienda: ");
 		int seleccion = scanner.nextInt();
 
@@ -131,7 +129,6 @@ public class Funcionalidad3 extends Identidad {
 		            switch (opcion) {
 		                case 1:
 		                    // Regresar a la selección de facturas
-		                    // Repetir el proceso desde la selección de facturas
 		                    break;
 		                case 2:
 		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
@@ -154,7 +151,6 @@ public class Funcionalidad3 extends Identidad {
 		                    break;
 		                case 2:
 		                    // Regresar a la selección de facturas
-		                    // Repetir el proceso desde la selección de facturas
 		                    break;
 		                case 3:
 		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
@@ -172,12 +168,11 @@ public class Funcionalidad3 extends Identidad {
 		}
 
 		scanner.close();
-    }
+	}
         
         //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
 
 	public static boolean tresEnRaya() {
-		Scanner sc = new Scanner(System.in);
 
         // Juego de Tres en Raya
         Juego juegoTresEnRaya = new TresEnRaya();
@@ -219,7 +214,6 @@ public class Funcionalidad3 extends Identidad {
 	
 	
 	public static void seleccionarCaja(Cliente cliente, Carrito carrito) {
-		Scanner sc = new Scanner(System.in);
 		ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
 		Caja cajaSeleccionada = null;
 
@@ -233,7 +227,8 @@ public class Funcionalidad3 extends Identidad {
 
 		        if (opcion == 1) {
 
-		            Tienda.encontrarCajero(cliente.getTienda().getEmpleados()); // Método para asignar un empleado a una caja
+		        	Tienda tienda = cliente.getTienda();
+		        	tienda.asignarCajero(Tienda.encontrarCajero(tienda.getEmpleados())); // Método para asignar un empleado a una caja
 
 		            continue; // Repetir el proceso después de asignar un empleado
 		        } else if (opcion == 2) {
@@ -276,7 +271,8 @@ public class Funcionalidad3 extends Identidad {
 
 		// Aplicar descuento por membresía
 		double descuentoMembresia = cliente.calcularDescuentoPorMembresia();
-		double precioConDescuento = Carrito.calcularTotal(carrito.getProductos()) * (1 - descuentoMembresia);
+		double precioTotal = Carrito.calcularTotal(carrito.getProductos());
+		double precioConDescuento = precioTotal * (1 - descuentoMembresia);
 
 		// Imprimir factura con descuento por membresía
 		System.out.println(carrito.generarDetallesFactura(descuentoMembresia, false));
@@ -307,77 +303,85 @@ public class Funcionalidad3 extends Identidad {
 		    if (!tieneMembresia) {
 		        System.out.println("Debe pagar 10 mil para intentar jugar.");
 		        carrito.incrementarCosto(10000);
+		        precioTotal += 10000; // Aumentar el precio total antes de aplicar descuento del juego
 		    }
-		    
+
 		    // Selección del juego
 		    System.out.println("Seleccione un juego:");
 		    System.out.println("1. Tres en Raya");
 		    System.out.println("2. Ahorcado");
 		    int seleccionJuego = sc.nextInt();
-		    
+
 		    if (seleccionJuego == 1) {
 		        ganoJuego = tresEnRaya();
 		    } else if (seleccionJuego == 2) {
 		        ganoJuego = juegoAhorcado();
 		    }
-		    
+
 		    if (ganoJuego) {
 		        System.out.println("¡Felicidades! Ha ganado un descuento adicional del 10%.");
-		        precioConDescuento *= 0.9;
+		        precioConDescuento *= 0.9; // Aplicar descuento adicional del juego
 		    } else {
 		        System.out.println("Lo sentimos, no ha ganado el juego.");
 		    }
+		}
 
-		    // Imprimir factura con descuento adicional si ganó el juego
-		    System.out.println(carrito.generarDetallesFactura(descuentoMembresia, ganoJuego));
+		// Imprimir factura con descuento adicional si ganó el juego
+		System.out.println(carrito.generarDetallesFactura(descuentoMembresia, ganoJuego));
 
-		    // Confirmar si el cliente desea pagar la factura
-		    System.out.println("¿Desea pagar la factura?");
-		    System.out.println("1. Sí");
-		    System.out.println("2. No");
-		    int opcionPago = sc.nextInt();
+		// Confirmar si el cliente desea pagar la factura
+		System.out.println("¿Desea pagar la factura?");
+		System.out.println("1. Sí");
+		System.out.println("2. No");
+		int opcionPago = sc.nextInt();
 
-		    if (opcionPago == 2) {
-		        System.out.println("Ha decidido no pagar la factura. Regresando a la tienda...");
+		if (opcionPago == 2) {
+		    System.out.println("Ha decidido no pagar la factura. Regresando a la tienda...");
+		    cliente.setCarrito(null); // Desasignar carrito del cliente
+		    cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
+		    return;
+		} else if (opcionPago == 1) {
+		    // Verificar si el cliente tiene suficiente saldo
+		    double precioFinal = precioConDescuento; // Usar el precio con descuento
+		    if (cliente.getDinero() < precioFinal) {
+		        System.out.println("No tiene suficiente saldo para pagar la factura. Regresando a la tienda...");
 		        cliente.setCarrito(null); // Desasignar carrito del cliente
 		        cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
 		        return;
-		    } else if (opcionPago == 1) {
-		        // Marcar la factura como pagada
-		        carrito.setPagado(true);
-		        cliente.getFacturas().add(carrito); // Registrar la factura en las facturas del cliente
-
-		        // Actualizar saldo de la tienda
-		        double precioFinal = carrito.getPrecioTotal();
-		        cliente.getTienda().bajarSaldo(precioFinal);
-
-		        // Calcular y descontar el pago del cajero
-		        Empleado cajero = cajaSeleccionada.getCajero();
-		        double pagoCajero = 20000; // Pago inicial
-		        if (cajero.isPrestacionPension()) {
-		            pagoCajero += 5000;
-		        }
-		        if (cajero.isPrestacionSalud()) {
-		            pagoCajero += 5000;
-		        }
-		        cliente.getTienda().bajarSaldo(pagoCajero);
-
-		        // Desasignar referencias
-		        cliente.setCarrito(null); // Desasignar carrito del cliente
-		        cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
-		        carrito.setCaja(null); // Desasignar caja del carrito
-		        carrito.setPagado(true); // Confirmar que la factura está pagada
-
-		        System.out.println("La factura ha sido pagada exitosamente.");
 		    }
-		}
+
+		    // Marcar la factura como pagada
+		    carrito.setPagado(true);
+		    cliente.getFacturas().add(carrito); // Registrar la factura en las facturas del cliente
+
+		    // Actualizar saldo de la tienda
+		    cliente.getTienda().bajarSaldo(precioFinal);
+
+		    // Restar el monto al saldo del cliente
+		    cliente.bajarDinero(precioFinal);
+
+		    // Calcular y descontar el pago del cajero
+		    Empleado cajero = cajaSeleccionada.getCajero();
+		    double pagoCajero = 20000; // Pago inicial
+		    if (cajero.isPrestacionPension()) {
+		        pagoCajero += 5000;
+		    }
+		    if (cajero.isPrestacionSalud()) {
+		        pagoCajero += 5000;
+		    }
+		    cliente.getTienda().bajarSaldo(pagoCajero);
+
+		    // Desasignar referencias
+		    cliente.setCarrito(null); // Desasignar carrito del cliente
+		    cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
+		    carrito.setCaja(null); // Desasignar caja del carrito
+
+		    System.out.println("La factura ha sido pagada exitosamente.");
+		 }
+
 
 		sc.close();
 
 	}
-
-	
-	
-
 }
 
