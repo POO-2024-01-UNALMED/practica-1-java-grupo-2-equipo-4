@@ -269,8 +269,6 @@ public class Funcionalidad2 extends Identidad {
 	}
 	
 	
-	
-	
 	public static void busquedaCategoria(Cliente cliente, Categoria categoria, ArrayList<Producto> productos, Producto seleccionado) {
 		//Impresion de categorias para luego ser escogidas por el cliente con escaner
 		//Esta hace que se cree una lista con los productos de la tienda con esa categoria
@@ -489,11 +487,11 @@ public class Funcionalidad2 extends Identidad {
 			print(" 5. Guardar carrito como factura");
 		}
 		print("");
-		int montoActual=0;
+		double montoActual=0;
 		for(Producto k:cliente.getCarrito().getProductos()) {
 			montoActual+=k.getPrecio();
 		}
-		print("Recuerde que el monto que le queda para gastar es "+(cliente.getDinero()-montoActual)+"$");
+		print("Recuerde que el monto que le queda para gastar es "+(((double)cliente.getDinero())-montoActual)+"$");
 		print("");
 		
 		System.out.print("Escoja un numero: ");
