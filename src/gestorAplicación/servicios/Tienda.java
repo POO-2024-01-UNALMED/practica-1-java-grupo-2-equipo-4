@@ -643,6 +643,22 @@ public class Tienda implements Serializable{
 		}
 		
 //------------------------------------------------------------------------------------------------------------
+		// este metodo transfiere productos de un Array a su correspondiente pasillo
+		public void transferirProductos(ArrayList<Producto> productosTransferir) {
+		    ArrayList<Producto> productosParaEliminar = new ArrayList<>();
+		    for (Producto producto : productosTransferir) {
+		        for (Pasillo pasillo : pasillos) {
+		            if (pasillo.getCategoria() == producto.getCategoria()) {
+		                pasillo.agregarProducto(producto);
+		                productosParaEliminar.add(producto);
+		                break;
+		            }
+		        }
+		    }
+		    productosTransferir.removeAll(productosParaEliminar);
+		}
+
+// ------------------------------------------------------------------------------------------------------------
 		public static String mostrarDesempleados() {
 			int m=1;
 			String s= "  Empleado   |   tipo \n";
