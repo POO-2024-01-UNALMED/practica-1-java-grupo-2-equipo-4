@@ -29,7 +29,7 @@ public class Funcionalidad5 {
 
 		// Filtrar las tiendas que ya tienen dueño
 		for (int i = tiendas.size() - 1; i >= 0; i--) {
-		    if (tiendas.get(i).getDueño() != null) {
+		    if (tiendas.get(i).getDueño() != null ||tiendas.get(i).getEstado().equals("Cerrado")) {
 		        tiendas.remove(i);
 		    }
 		}

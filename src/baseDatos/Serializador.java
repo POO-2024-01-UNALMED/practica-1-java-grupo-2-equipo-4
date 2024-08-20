@@ -80,17 +80,19 @@ public class Serializador {
 //	     new Cajero("Carlos", 3030, 30, Genero.M, 25000, null, true, true);
 //	     new Conserje("Sara",1313,21,Genero.M,100000,null,true,false);
 		// Cajero
-		new Cajero("Javier", 4040, 25, Genero.H, 30000, null, true, false, 5,null);
-		new Cajero("Elena", 5050, 26, Genero.M, 28000, null, false, true, 6,null);
-		new Cajero("Fernando", 6060, 24, Genero.H, 29000, null, true, true, 4,null);
-		new Cajero("Sofía", 7070, 27, Genero.M, 31000, null, true, false, 7 ,null);
-		new Cajero("Miguel", 8080, 29, Genero.H, 27000, null, false, true, 8,null);
-		
-		new Conserje("Ana", 1616, 26, Genero.M, 90000, null, false, true, 7);  // Cumple
-		new Conserje("Luis", 2020, 27, Genero.H, 95000, null, true, false, 8);  // Cumple
-		new Conserje("Carmen", 5050, 30, Genero.M, 94000, null, true, false, 9); // Cumple
-		new Conserje("Rosa", 6060, 28, Genero.H, 96000, null, true, true, 3);  
-		new Conserje("Julia", 3030, 24, Genero.M, 92000, null, true, true, 10); 
+//		new Cajero("Javier", 4040, 25, Genero.H, 30000, null, true, false, 5,null);
+//		new Cajero("Elena", 5050, 26, Genero.M, 28000, null, false, true, 6,null);
+//		new Cajero("Fernando", 6060, 24, Genero.H, 29000, null, true, true, 4,null);
+//		new Cajero("Sofía", 7070, 27, Genero.M, 31000, null, true, false, 7 ,null);
+//		new Cajero("Miguel", 8080, 29, Genero.H, 27000, null, false, true, 8,null);
+//		
+//		new Conserje("Ana", 1616, 26, Genero.M, 90000, null, false, true, 7);  // Cumple
+//		new Conserje("Luis", 2020, 27, Genero.H, 95000, null, true, false, 8);  // Cumple
+//		new Conserje("Carmen", 5050, 30, Genero.M, 94000, null, true, false, 9); // Cumple
+//		new Conserje("Rosa", 6060, 28, Genero.H, 96000, null, true, true, 3);  
+//		new Conserje("Julia", 3030, 24, Genero.M, 92000, null, true, true, 10); 
+		Tienda t=new Tienda("NIT123456", null, "Exito", 1000000, "abierto");
+		Tienda.getTiendas().add(t);
 		serializar(Tienda.getDesempleados(),"empleados");
 	}
 	

@@ -18,7 +18,7 @@ public class Tienda implements Serializable{
 	private Persona dueño;
 	private String nombre;
 	private double saldo;
-	private String estado;
+	private String estado="cerrado";
 	private Carrito carrito;
 	private ArrayList <Carrito> facturas=new ArrayList<Carrito>();	
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
@@ -173,20 +173,12 @@ public class Tienda implements Serializable{
 	}
 	
 
-	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado,ArrayList<Caja> caja, Carrito carrito, ArrayList<Carrito> facturas, ArrayList<Proveedor> proveedores, ArrayList<Caja> cajas, ArrayList<Empleado> empleados, ArrayList<Pasillo> pasillos, ArrayList<Producto> productosVencidos, ArrayList<Producto> productosDevueltos) {	
+	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado) {	
 		this.nit = nit;
 		this.dueño = dueño;
 		this.nombre = nombre;
 		this.saldo = saldo;
 		this.estado = estado;
-		this.carrito=carrito;
-		this.facturas=facturas;
-		this.proveedores=proveedores;
-		this.cajas=cajas;
-		this.empleados=empleados;
-		this.pasillos=pasillos;
-		this.productosVencidos = productosVencidos;
-		this.productosDevueltos = productosDevueltos;
 		Tienda.getTiendas().add(this);
 	}
 
