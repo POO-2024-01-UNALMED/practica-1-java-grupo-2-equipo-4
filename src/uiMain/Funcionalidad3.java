@@ -19,7 +19,6 @@ public class Funcionalidad3 extends Identidad {
 	    if (tiendas.isEmpty()) {
 	        System.out.println("No tienes facturas en ninguna tienda.");
 	        Main.escogerFuncionalidad(); // Regresar al menú principal
-	        scanner.close();
 	        return; // Salir del método
 	    }
 
@@ -180,7 +179,6 @@ public class Funcionalidad3 extends Identidad {
 	        System.out.println("Selección inválida.");
 	    }
 
-	    scanner.close();
 	}
 
 
@@ -393,7 +391,6 @@ public class Funcionalidad3 extends Identidad {
 		    carrito.setCaja(null); // Desasignar caja del carrito
 
 		    System.out.println("La factura ha sido pagada exitosamente.");
-		    sc.close();
 		    Main.escogerFuncionalidad();
 		}
 

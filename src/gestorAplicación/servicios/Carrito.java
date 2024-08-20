@@ -267,7 +267,7 @@ public class Carrito implements Serializable{
             detalles.append("Descuento adicional por ganar el juego: 10%\n");
         }
 
-        detalles.append(String.format("Precio final: %.2f\n", precioTotal * (1 - descuentoMembresia) * (ganoJuego ? 0.9 : 1.0)));
+        detalles.append(String.format("Precio final: %.2f\n", calcularTotal(this.getProductos()) * (1 - descuentoMembresia) * (ganoJuego ? 0.9 : 1.0)));
         return detalles.toString();
     }
     

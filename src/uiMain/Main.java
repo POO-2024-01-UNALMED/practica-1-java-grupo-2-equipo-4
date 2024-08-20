@@ -336,6 +336,7 @@ public class Main extends Identidad{
 	
 	public static void escogerFuncionalidad() {
 		do{
+			Scanner sc=new Scanner(System.in);
 			boolean boleano=false;
 			lineas();
 			print("""
