@@ -67,15 +67,6 @@ public class Cliente extends Persona implements Serializable {
 		return facturas;
 	}
 	
-	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada) {
-	    ArrayList<Carrito> misFacturas = new ArrayList<>();
-	    for (Carrito c : tiendaSeleccionada.getFacturas()) {
-	        if (c.getCliente() != null && c.getCliente().equals(this)) {
-	            misFacturas.add(c);
-	        }
-	    }
-	    return misFacturas;
-	}
 
 	public void setFacturas(ArrayList<Carrito> facturas) {
 		this.facturas = facturas;
@@ -277,6 +268,16 @@ public class Cliente extends Persona implements Serializable {
 	    double costoActual = membresiaActual.getPrecio();
 	    double costoNueva = nuevaMembresia.getPrecio();
 	    return costoNueva - costoActual; // Diferencia de costo
+	}
+	
+	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada) {
+	    ArrayList<Carrito> misFacturas = new ArrayList<>();
+	    for (Carrito c : tiendaSeleccionada.getFacturas()) {
+	        if (c.getCliente() != null && c.getCliente().equals(this)) {
+	            misFacturas.add(c);
+	        }
+	    }
+	    return misFacturas;
 	}
 
 	public ArrayList<Tienda> getTiendasConFacturas() {
