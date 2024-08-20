@@ -2,6 +2,8 @@ package uiMain;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import gestorAplicación.servicios.Producto;
+import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.sujetos.Cliente;
 import gestorAplicación.servicios.Enums.Categoria;
@@ -19,34 +21,28 @@ public class Funcionalidad5 {
 		print("Selecciona una de las tiendas disponibles para ti:");
 			
 		print("+-----------------------------------+----------+");
-        print("| No. |     Nombre de Tienda        |  Precio  |");
-        print("+-----------------------------------+----------+");
+		print("| No.|     Nombre de Tienda        |  Precio  |");
+		print("+-----------------------------------+----------+");
 
-        ArrayList<Tienda> tiendas = Tienda.getTiendas();
-        
-        // Filtrar las tiendas que ya tienen dueño
-        for (int i = tiendas.size() - 1; i >= 0; i--) {
-            if (tiendas.get(i).getDueño() != null) {
-                tiendas.remove(i);
-            }
-        }
+		ArrayList<Tienda> tiendas = Tienda.getTiendas();
 
-        for (int i = 0; i < tiendas.size(); i++) {
-            Tienda tienda = tiendas.get(i);
-            String nombreTienda = tienda.getNombre();
-            String precioTienda = String.format("$%,.2f", tienda.getSaldo()); // Formato para el precio
+		// Filtrar las tiendas que ya tienen dueño
+		for (int i = tiendas.size() - 1; i >= 0; i--) {
+		    if (tiendas.get(i).getDueño() != null) {
+		        tiendas.remove(i);
+		    }
+		}
 
-            // Imprimir la fila de la tienda
-            print(String.format("| %2d | %-28s | %8s |", i + 1, nombreTienda, precioTienda));
-        }
+		for (int i = 0; i < tiendas.size(); i++) {
+		    Tienda tienda = tiendas.get(i);
+		    String nombreTienda = tienda.getNombre();
+		    String precioTienda = String.format("$%,.2f", tienda.getSaldo()); // Formato para el precio
 
-        // Agregar opción para volver
-        int numeroVolver = tiendas.size() + 1;
-        String opcionVolver = "Volver";
+		    // Imprimir la fila de la tienda
+		    print(String.format("| %2d | %-28s | %8s |", i + 1, nombreTienda, precioTienda));
+		}
 
-        // Imprimir la fila de 'Volver'
-        print(String.format("| %2d | %-28s |          |", numeroVolver, opcionVolver));
-        print("+----+------------------------------+----------+");
+		print("+----+------------------------------+----------+");
      // Selección de la tienda
 		int h =escaner();
 		Tienda tien=tiendas.get(h-1);
@@ -54,7 +50,6 @@ public class Funcionalidad5 {
 		float diferencia=(float) (clien.getDinero()-tien.getSaldo());
 		if(diferencia>=0) {
 			tien.setDueño(clien);// Asignar la tienda al cliente
-			lineas();
 			print("Has seleccionado la tienda: " + tien.getNombre());
 			print("Se te resto $"+tien.getSaldo()+" de tu saldo");
 			print("Ahora eres el dueño de la tienda: \""+tien.getNombre()+"\"");
@@ -74,20 +69,21 @@ public class Funcionalidad5 {
 		        	reorganizarPasillos(tien);
 		        	break;
 		        case 2:
-		        	llamarProveedor(tien);
+		        	llamarProveedor(tien,clien);
 		        	break;
 		        case 3:
 		        	contratar(tien);
 		        	break;
 		        case 4:
 		        	iterar=false;
+		        	
 		        	print("Ha salido de personalizar tienda");
 		        	break;
 		        default:
 		        	print("Ese numero esta fuera del rango");
 					print("Introduzca otro numero: ");
 					break;
-		        } 
+		        }
 			}
 		}
 		public static void reorganizarPasillos(Tienda tien) {
@@ -126,7 +122,7 @@ public class Funcionalidad5 {
   		
   		
 
-	private static void llamarProveedor(Tienda tien) {
+	private static void llamarProveedor(Tienda tien, Cliente clien) {
 		// TODO Auto-generated method stub
 		lineas();
 		if (tien.disponibilidadProductos()==true) {
@@ -134,10 +130,47 @@ public class Funcionalidad5 {
       		print("He aquí nuestros proveedores:");
       		print(tien.listarProveedores());
       		int k=escaner();
-      		Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
-      		print("Se han llenado los pasillos");
+      		lineas();
+      		Proveedor prov=Proveedor.getSeisProveedores().get(k-1);
+			ArrayList<Producto> entrega =prov.getEntrega();
+			for(Producto p:entrega) {
+				double diferencia=tien.getSaldo()-p.getPrecio();
+				if(diferencia>=0) {
+					tien.setSaldo(diferencia);
+					tien.agregarProducto(p);
+					print("Producto agregado");
+				} else {
+					if(clien.getDinero()>10000) {
+						print("La tienda no tiene suficiente saldo");
+						print("Desea proporcionar transferir su dinero a su tienda?\n1.Sí\n2.No\n");
+						Boolean iter=true;
+						while(iter) {
+							int l=escaner();
+							switch(l) {
+								case 1:
+									tien.setSaldo(clien.getDinero());
+									clien.setDinero(0);
+									iter=false;
+									break;
+								case 2:
+									iter=false;
+									print("Se termino el pedido al proveedor");
+									break;
+								default:
+									print("Entrada inválida");
+									break;
+								}
+							break;
+							}
+						
+					}
+				}
+				
+			}
+				//Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
+				}
+				print("Pasillos reorganizados");
       	}
-	}
 
 	private static void contratar(Tienda tien) {
 		// TODO Auto-generated method stub
