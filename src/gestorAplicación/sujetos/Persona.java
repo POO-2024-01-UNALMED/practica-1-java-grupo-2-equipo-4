@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
+import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums.Genero;
 import gestorAplicación.servicios.Tienda;
 
@@ -97,6 +98,10 @@ public abstract class Persona implements Serializable{
 //Metodos------------------------------------------------------------------------------------------------------
 	
 	public ArrayList<Tienda> getTiendasConFacturas(){
+		return null;
+	}
+	
+	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada){
 		return null;
 	}
 	

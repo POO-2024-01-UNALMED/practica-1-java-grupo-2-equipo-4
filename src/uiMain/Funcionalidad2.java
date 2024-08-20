@@ -670,6 +670,8 @@ public class Funcionalidad2 extends Identidad {
 			break;
 		case 5:
 			cliente.getTienda().getFacturas().add(cliente.getCarrito());
+			cliente.getFacturas().add(cliente.getCarrito());
+			cliente.setCarrito(null);
 			cliente.setTienda(null);
 			Main.escogerFuncionalidad();
 			break;
