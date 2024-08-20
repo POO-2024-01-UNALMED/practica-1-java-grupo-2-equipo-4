@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import gestorAplicación.sujetos.Administrador;
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Persona;
 import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Enums.Membresia;
@@ -24,7 +26,21 @@ public class Funcionalidad1 extends Identidad{
 
     //Este método se encarga de direccionar al cliente hacia la consulta que desea realizar 
     public static void consultasEco() {
-    	Cliente cliente= (Cliente)Identidad.identificarPersona();
+    	
+    	Cliente cliente = null;
+
+    	while (cliente == null) {
+    	    Persona persona = Identidad.identificarPersona();
+
+    	    if (persona instanceof Cliente) {
+    	        cliente = (Cliente) persona;
+    	    } else if (persona instanceof Administrador) {
+    	        System.out.println("Error: Se identificó un administrador. Por favor, ingrese un número de cliente válido.");
+    	    } else {
+    	        System.out.println("Error: Tipo de persona no reconocido. Por favor, ingrese un número de cliente válido.");
+    	    }
+    	}
+    	
     	lineas();
         print("Ha seleccionado Ecosistema de Consultas Personalizadas. Elija una opción:");
         print("1. Consulta general de productos\n" +

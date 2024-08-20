@@ -222,7 +222,7 @@ public class Carrito implements Serializable{
     }
 
 	
-	static double calcularTotal(ArrayList<Producto> carrito) {
+	 public static double calcularTotal(ArrayList<Producto> carrito) {
         double total = 0;
         for (Producto producto : carrito) {
             total += producto.getPrecio();
