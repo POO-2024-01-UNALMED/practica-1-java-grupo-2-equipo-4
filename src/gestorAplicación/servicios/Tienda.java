@@ -20,18 +20,20 @@ public class Tienda implements Serializable{
 	private String direccion;
 	private double saldo;
 	private String estado;
-
+	private Carrito carrito;
 	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
 	private ArrayList<Proveedor> proveedores=new ArrayList<Proveedor>();
-	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
+	
 	private ArrayList <Caja> cajas= new ArrayList<Caja>();
 	private ArrayList <Empleado> empleados=new ArrayList<Empleado>();
-	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
-	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
-	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();	
-	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
+	private static ArrayList<Empleado> desempleados=new ArrayList<Empleado>();
 	
-	private Carrito carrito;
+	private static ArrayList<Tienda>tiendas = new ArrayList<Tienda>();
+	
+	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
+	private  ArrayList <Pasillo> bodegas=new ArrayList<Pasillo>();
+		
+	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
 	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
@@ -621,7 +623,7 @@ public class Tienda implements Serializable{
 			
 		}				
 
-	    public ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
+	    public static ArrayList<Tienda> tiendasConCliente(Cliente cliente) {
 	        Set<Tienda> tiendasConCliente = new HashSet<>();
 	        for (Tienda tienda : tiendas) {
 	            for (Carrito carrito : tienda.getCarritos()) {

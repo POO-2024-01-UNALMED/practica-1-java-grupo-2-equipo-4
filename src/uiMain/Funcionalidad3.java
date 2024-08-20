@@ -28,7 +28,25 @@ public class Funcionalidad3 extends Identidad {
 			 Cliente cliente = seleccionRol();			 
 			 if (cliente != null) {
 				 // logica para cliente //	//utilizar cliente 	//	
-				 Tienda tienda = seleccionarTiendaDueno(cliente);
+				 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
+				 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
+				 System.out.println("Que desea consultar ");
+				 System.out.println("1. Facturas pagadas ");
+				 System.out.println("2. Facturas por pagar  ");
+				 
+				 
+				 int opcion = escaner(2);
+				 
+				 switch (opcion){
+				 	case 1:
+				 		Carrito carrito = seleccionarCarritoPagado(tienda);
+				 		imprimirFacturaCompleta(carrito);
+				 		System.out.println("Seleccione una opcion");
+				 		System.out.println("1.");
+				 		break;
+				 	case 2:
+				 		break;
+				 }
 				 
 			 } else {
 				 //logica para dueño
@@ -36,6 +54,46 @@ public class Funcionalidad3 extends Identidad {
 				 imprimirCarritosPagados(tienda);
 			 }				 				 
 		 }
+		 
+		 public static void seleccionDieno() {
+			 
+		 }
+		 
+		 public static void imprimirFacturaCompleta(Carrito carrito) {
+		        Map<String, Integer> resumenProductos = new HashMap<>();
+		        for (Producto producto : carrito.getProductos()) {
+		            String clave = producto.getNombre() + " " + producto.getMarca() + " " + producto.getTamaño() + " " + producto.getPrecio();
+		            resumenProductos.put(clave, resumenProductos.getOrDefault(clave, 0) + 1);
+		        }
+
+		        for (Map.Entry<String, Integer> entry : resumenProductos.entrySet()) {
+		            System.out.println(entry.getKey() + " Cantidad: " + entry.getValue());
+		        }
+		    }
+		 
+		 public static Carrito seleccionarCarritoPagado(Tienda tienda) {
+		        ArrayList<Carrito> carritosPagados = new ArrayList<>();
+		        int contador = 1;
+
+		        for (Carrito carrito : tienda.getCarritos()) {
+		            if (carrito.isPagado()) {
+		                carritosPagados.add(carrito);
+		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cantidad de productos: " + carrito.getProductos().size());
+		                contador++;
+		            }
+		        }
+
+		        if (carritosPagados.isEmpty()) {
+		            System.out.println("No hay carritos pagados.");
+		            return null;
+		        }
+
+		        
+		        System.out.print("Seleccione el número del carrito que desea consultar: ");
+		        int seleccion = escaner();
+
+		        return carritosPagados.get(seleccion - 1);
+		    }
 			
 		 public static void imprimirCarritosPagados(Tienda tienda) {
 			 System.out.println("estas son todas las facturas pagadas en su tienda");
@@ -62,6 +120,23 @@ public class Funcionalidad3 extends Identidad {
              
 		 }
 		 
+		 public static Tienda seleccionarTiendaCliente(ArrayList<Tienda> tiendasConCliente) {
+		        if (tiendasConCliente.isEmpty()) {
+		            System.out.println("No hay tiendas disponibles.");
+		            return null;
+		        }
+
+		        System.out.println("Estas son las tiendas disponibles:");
+		        for (int i = 0; i < tiendasConCliente.size(); i++) {
+		            System.out.println((i + 1) + ". " + tiendasConCliente.get(i).getNombre());
+		        }
+
+		        System.out.print("Seleccione el número de la tienda que desea consultar: ");
+		        int seleccion = escaner();
+
+		        return tiendasConCliente.get(seleccion - 1);
+		    }
+		 
 		 
 		  static public Tienda seleccionarTiendaDueno(Persona persona) {
 		        if (persona.getTiendas().isEmpty()) {
@@ -85,6 +160,8 @@ public class Funcionalidad3 extends Identidad {
 		    }  
 		 
 		 
+		  
+		  
 		 /// de aqui pa abajo es caca //
 		 
 		 
