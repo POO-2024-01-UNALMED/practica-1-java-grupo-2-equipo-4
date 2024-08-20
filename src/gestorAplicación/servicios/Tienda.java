@@ -308,9 +308,10 @@ public class Tienda implements Serializable{
 		int n=1;
 		String s= "  Proveedor  |  Categoria \n";
 		for(Proveedor i:Proveedor.getSeisProveedores()) {
-			s+=n+"."+i.getNombre();
+			s+="\n"+n+"."+i.getNombre();
 			s+="     ";
 			s+=i.getTipo();
+			n++;
 		}
 		return s;
 	}
@@ -412,13 +413,8 @@ public class Tienda implements Serializable{
 			return s;
 		}
 	//ANTES EN INVENTARIO
-		public ArrayList<Producto> llamarProveedor(int x) {
-			Proveedor prov=Proveedor.getSeisProveedores().get(x-1);
-			ArrayList<Producto> entrega =prov.getEntrega();
-			for(Producto p:entrega) {
-				this.agregarProducto(p);
-			}
-			return entrega;
+		public void llamarProveedor(int x) {
+
 		}
 		
 		public ArrayList <Producto> solicitarInventario() {
