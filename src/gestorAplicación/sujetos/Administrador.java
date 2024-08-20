@@ -1,6 +1,8 @@
 package gestorAplicación.sujetos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums.Genero;
@@ -23,27 +25,27 @@ public class Administrador extends Persona implements Serializable {
 		return tiendas;
 	}
 
-	public ArrayList<Carrito> getFacturas(Tienda tiendaSeleccionada){
-		ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
-    	for(Carrito c:tiendaSeleccionada.getFacturas()) {
-    		misFacturas.add(c);
-    	}
-    	return misFacturas;
-	}
+	 public ArrayList<Carrito> getFacturas(Tienda tienda) {
+	        // Método que debe estar implementado para devolver las facturas de la tienda
+	        return tienda.getFacturas();
+	    }
+	
+	 @Override
+	    public ArrayList<Tienda> getTiendasConFacturas() {
+	        Map<Tienda, Integer> tiendaConFacturas = new HashMap<>();
 
-	public ArrayList<Tienda> getTiendasConFacturas() {
-	    ArrayList<Tienda> tiendas = new ArrayList<>();
-	    for (Tienda t : this.tiendas) {
-	        if (t != null) {
-	            for (Carrito c : t.getFacturas()) {
-	                if (c != null && c.getTienda() != null) {
-	                    tiendas.add(c.getTienda());
+	        for (Tienda tienda : tiendas) {
+	            if (tienda != null) {
+	                ArrayList<Carrito> facturas = tienda.getFacturas(); // Obtener facturas de la tienda
+	                if (facturas != null && !facturas.isEmpty()) {
+	                    tiendaConFacturas.put(tienda, facturas.size()); // Contar las facturas
 	                }
 	            }
 	        }
+
+	        // Devolver la lista de tiendas únicas con al menos una factura
+	        return new ArrayList<>(tiendaConFacturas.keySet());
 	    }
-	    return tiendas;
-	}
 
 
 	public void setTiendas(ArrayList<Tienda> tiendas) {

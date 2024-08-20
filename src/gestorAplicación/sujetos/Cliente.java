@@ -2,6 +2,8 @@ package gestorAplicación.sujetos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import gestorAplicación.servicios.Caja;
 import gestorAplicación.servicios.Carrito;
@@ -365,14 +367,22 @@ public class Cliente extends Persona implements Serializable {
 	    return costoNueva - costoActual; // Diferencia de costo
 	}
 
-	@Override
 	public ArrayList<Tienda> getTiendasConFacturas() {
-		ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
-		for(Carrito c:facturas) {
-			tiendas.add(c.getTienda());
-		}
-		return tiendas;
-	}
+        Map<Tienda, Integer> tiendaConFacturas = new HashMap<>();
+
+        for (Carrito factura : facturas) {
+            if (factura != null) {
+                Tienda tienda = factura.getTienda();
+                if (tienda != null) {
+                    int cantidadFacturas = tiendaConFacturas.getOrDefault(tienda, 0);
+                    tiendaConFacturas.put(tienda, cantidadFacturas + 1); // Contar las facturas
+                }
+            }
+        }
+
+        // Devolver la lista de tiendas únicas con al menos una factura
+        return new ArrayList<>(tiendaConFacturas.keySet());
+    }
 	
 	public double calcularDescuentoPorMembresia() {
 	    switch (this.getMembresia()) {

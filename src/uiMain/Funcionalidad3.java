@@ -29,7 +29,8 @@ public class Funcionalidad3 extends Identidad {
 	        if (tienda != null) {
 	            String nombreTienda = tienda.getNombre();
 	            if (nombreTienda != null) {
-	                conteoTiendas.put(nombreTienda, conteoTiendas.getOrDefault(nombreTienda, 0) + 1);
+	                int cantidadFacturas = tienda.getFacturas() != null ? tienda.getFacturas().size() : 0;
+	                conteoTiendas.put(nombreTienda, cantidadFacturas);
 	            }
 	        }
 	    }
@@ -60,9 +61,6 @@ public class Funcionalidad3 extends Identidad {
 	            if (tienda != null && numero == seleccion) {
 	                tiendaSeleccionada = tienda;
 	                break;
-	            }
-	            if (conteoTiendas.get(tienda.getNombre()) == null) {
-	                continue;
 	            }
 	            numero++;
 	        }
@@ -139,7 +137,6 @@ public class Funcionalidad3 extends Identidad {
 	                    int opcion = scanner.nextInt();
 	                    switch (opcion) {
 	                        case 1:
-	                            // Regresar a la selección de facturas
 	                            impresionFacturas(); // Volver a llamar al método
 	                            break;
 	                        case 2:
@@ -158,11 +155,9 @@ public class Funcionalidad3 extends Identidad {
 	                    int opcion = scanner.nextInt();
 	                    switch (opcion) {
 	                        case 1:
-	                            // Llamar al método para seleccionar caja y proceder con el pago
 	                            seleccionarCaja((Cliente) persona, facturaSeleccionada);
 	                            break;
 	                        case 2:
-	                            // Regresar a la selección de facturas
 	                            impresionFacturas(); // Volver a llamar al método
 	                            break;
 	                        case 3:
@@ -185,6 +180,7 @@ public class Funcionalidad3 extends Identidad {
 
 	    scanner.close();
 	}
+
 
         
         //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
