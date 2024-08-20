@@ -12,8 +12,8 @@ public class Conserje extends Empleado implements Serializable {
 	private static final long serialVersionUID = -8101559432401102040L;
 	
 	public Conserje(String nombre, int id, int edad, Genero genero, double liquidacion, Tienda tienda,
-			boolean prestacionSalud, boolean prestacionPension) {
-		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.CONSERJE);
+			boolean prestacionSalud, boolean prestacionPension,int experiencia) {
+		super(nombre, id, edad, genero, liquidacion, tienda, prestacionSalud, prestacionPension,TipoEmpleado.CONSERJE,experiencia);
 		Tienda.getDesempleados().add(this);
 	}
 	@Override
