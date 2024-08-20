@@ -20,7 +20,7 @@ public class Tienda implements Serializable{
 	private String direccion;
 	private double saldo;
 	private String estado;
-	
+
 	private ArrayList <Carrito> carritos=new ArrayList<Carrito>();	
 //	private ArrayList <Persona> cliente;
 //	private ArrayList <Persona> candidatos=new ArrayList<Persona>();	
@@ -341,12 +341,14 @@ public class Tienda implements Serializable{
 	
 	
 	
-	public void cajasDisponibles(ArrayList<Caja> cajas) {
+	public ArrayList<Caja> cajasDisponibles() {
+		ArrayList<Caja> cajas= new ArrayList<Caja>();
 		for(Caja i:this.cajas) {
 			if(i.getEstado()==2 & i.getEmpleado()!=null) {
 				cajas.add(i);
 			}
 		}
+		return cajas;
 	}
 	
 	public void agregarPasillo(Pasillo pasillo) {

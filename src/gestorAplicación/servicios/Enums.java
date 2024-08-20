@@ -61,11 +61,14 @@ public static enum EstadoProducto{
 }
 
 public static enum TipoCaja { 
-	NORMAL("normal"),
-	RAPIDA("rapida");
+	NORMAL("Normal"),
+	RAPIDA("Rapida");
 	final String tipos;
 	private TipoCaja(String tipo){
 	    this.tipos=tipo;
+	}
+	public String getTipos(){
+		return this.tipos;
 	}
         /*TipoCaja tCaja=null;
 	while(p==null){
