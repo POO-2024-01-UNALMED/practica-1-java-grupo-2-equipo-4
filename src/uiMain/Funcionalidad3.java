@@ -274,7 +274,8 @@ public class Funcionalidad3 extends Identidad {
 
 		// Aplicar descuento por membresía
 		double descuentoMembresia = cliente.calcularDescuentoPorMembresia();
-		double precioConDescuento = Carrito.calcularTotal(carrito.getProductos()) * (1 - descuentoMembresia);
+		double precioTotal = Carrito.calcularTotal(carrito.getProductos());
+		double precioConDescuento = precioTotal * (1 - descuentoMembresia);
 
 		// Imprimir factura con descuento por membresía
 		System.out.println(carrito.generarDetallesFactura(descuentoMembresia, false));
@@ -305,77 +306,85 @@ public class Funcionalidad3 extends Identidad {
 		    if (!tieneMembresia) {
 		        System.out.println("Debe pagar 10 mil para intentar jugar.");
 		        carrito.incrementarCosto(10000);
+		        precioTotal += 10000; // Aumentar el precio total antes de aplicar descuento del juego
 		    }
-		    
+
 		    // Selección del juego
 		    System.out.println("Seleccione un juego:");
 		    System.out.println("1. Tres en Raya");
 		    System.out.println("2. Ahorcado");
 		    int seleccionJuego = sc.nextInt();
-		    
+
 		    if (seleccionJuego == 1) {
 		        ganoJuego = tresEnRaya();
 		    } else if (seleccionJuego == 2) {
 		        ganoJuego = juegoAhorcado();
 		    }
-		    
+
 		    if (ganoJuego) {
 		        System.out.println("¡Felicidades! Ha ganado un descuento adicional del 10%.");
-		        precioConDescuento *= 0.9;
+		        precioConDescuento *= 0.9; // Aplicar descuento adicional del juego
 		    } else {
 		        System.out.println("Lo sentimos, no ha ganado el juego.");
 		    }
+		}
 
-		    // Imprimir factura con descuento adicional si ganó el juego
-		    System.out.println(carrito.generarDetallesFactura(descuentoMembresia, ganoJuego));
+		// Imprimir factura con descuento adicional si ganó el juego
+		System.out.println(carrito.generarDetallesFactura(descuentoMembresia, ganoJuego));
 
-		    // Confirmar si el cliente desea pagar la factura
-		    System.out.println("¿Desea pagar la factura?");
-		    System.out.println("1. Sí");
-		    System.out.println("2. No");
-		    int opcionPago = sc.nextInt();
+		// Confirmar si el cliente desea pagar la factura
+		System.out.println("¿Desea pagar la factura?");
+		System.out.println("1. Sí");
+		System.out.println("2. No");
+		int opcionPago = sc.nextInt();
 
-		    if (opcionPago == 2) {
-		        System.out.println("Ha decidido no pagar la factura. Regresando a la tienda...");
+		if (opcionPago == 2) {
+		    System.out.println("Ha decidido no pagar la factura. Regresando a la tienda...");
+		    cliente.setCarrito(null); // Desasignar carrito del cliente
+		    cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
+		    return;
+		} else if (opcionPago == 1) {
+		    // Verificar si el cliente tiene suficiente saldo
+		    double precioFinal = precioConDescuento; // Usar el precio con descuento
+		    if (cliente.getDinero() < precioFinal) {
+		        System.out.println("No tiene suficiente saldo para pagar la factura. Regresando a la tienda...");
 		        cliente.setCarrito(null); // Desasignar carrito del cliente
 		        cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
 		        return;
-		    } else if (opcionPago == 1) {
-		        // Marcar la factura como pagada
-		        carrito.setPagado(true);
-		        cliente.getFacturas().add(carrito); // Registrar la factura en las facturas del cliente
-
-		        // Actualizar saldo de la tienda
-		        double precioFinal = carrito.getPrecioTotal();
-		        cliente.getTienda().bajarSaldo(precioFinal);
-
-		        // Calcular y descontar el pago del cajero
-		        Empleado cajero = cajaSeleccionada.getCajero();
-		        double pagoCajero = 20000; // Pago inicial
-		        if (cajero.isPrestacionPension()) {
-		            pagoCajero += 5000;
-		        }
-		        if (cajero.isPrestacionSalud()) {
-		            pagoCajero += 5000;
-		        }
-		        cliente.getTienda().bajarSaldo(pagoCajero);
-
-		        // Desasignar referencias
-		        cliente.setCarrito(null); // Desasignar carrito del cliente
-		        cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
-		        carrito.setCaja(null); // Desasignar caja del carrito
-		        carrito.setPagado(true); // Confirmar que la factura está pagada
-
-		        System.out.println("La factura ha sido pagada exitosamente.");
 		    }
-		}
+
+		    // Marcar la factura como pagada
+		    carrito.setPagado(true);
+		    cliente.getFacturas().add(carrito); // Registrar la factura en las facturas del cliente
+
+		    // Actualizar saldo de la tienda
+		    cliente.getTienda().bajarSaldo(precioFinal);
+
+		    // Restar el monto al saldo del cliente
+		    cliente.bajarDinero(precioFinal);
+
+		    // Calcular y descontar el pago del cajero
+		    Empleado cajero = cajaSeleccionada.getCajero();
+		    double pagoCajero = 20000; // Pago inicial
+		    if (cajero.isPrestacionPension()) {
+		        pagoCajero += 5000;
+		    }
+		    if (cajero.isPrestacionSalud()) {
+		        pagoCajero += 5000;
+		    }
+		    cliente.getTienda().bajarSaldo(pagoCajero);
+
+		    // Desasignar referencias
+		    cliente.setCarrito(null); // Desasignar carrito del cliente
+		    cajaSeleccionada.setCliente(null); // Desasignar cliente de la caja
+		    carrito.setCaja(null); // Desasignar caja del carrito
+
+		    System.out.println("La factura ha sido pagada exitosamente.");
+		 }
+
 
 		sc.close();
 
 	}
-
-	
-	
-
 }
 

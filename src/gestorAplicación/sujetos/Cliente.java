@@ -386,6 +386,10 @@ public class Cliente extends Persona implements Serializable {
 	            return 0.0;
 	    }
 	}
+
+	public void bajarDinero(double precioFinal) {
+		dinero-=precioFinal;
+	}
 	
 //-------------------------------------------------------------------------------------------------------------
 }
