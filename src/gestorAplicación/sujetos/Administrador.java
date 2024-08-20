@@ -12,11 +12,12 @@ import java.io.Serializable;
 
 public class Administrador extends Persona implements Serializable {
 	private static final long serialVersionUID = -9139003303968753008L;
-	
+	private double dinero;
 	private ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 	
 	public Administrador(String nombre, int id, int edad, Genero genero) {
 		super(nombre,id,edad,genero);
+//		this.dinero=dinero;
 	}
 	
 	
@@ -50,6 +51,24 @@ public class Administrador extends Persona implements Serializable {
 
 	public void setTiendas(ArrayList<Tienda> tiendas) {
 		this.tiendas = tiendas;
+	}
+
+
+
+	/**
+	 * @return the dinero
+	 */
+	public double getDinero() {
+		return dinero;
+	}
+
+
+
+	/**
+	 * @param dinero the dinero to set
+	 */
+	public void setDinero(double dinero) {
+		this.dinero = dinero;
 	}
 	
 }

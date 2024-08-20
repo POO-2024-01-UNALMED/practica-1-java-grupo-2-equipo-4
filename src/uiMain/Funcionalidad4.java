@@ -40,7 +40,7 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 				print("1. Cambiar de usuario");
 				print("2. Volver al Menu principal");
 				
-				int valor= escaner();
+				int valor= escaner(2);
 				switch (valor) {
 					case 1:
 						usuario=null;
@@ -139,75 +139,137 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                break;
 	                
 	            case 2: // muestra todos los productos vencidos //
-	            	System.out.println("Todos los productos vencidos se mostraran a continuacion...");
 	            	
-	            	tienda.vencerProducto();
-	            	ArrayList<Producto> productosVencidos = tienda.getProductosVencidos();
-	            	if (!productosVencidos.isEmpty()) {
-	            		for (Producto i:productosVencidos) {
-		                	System.out.println(i.getNombre());
+	            	System.out.println("Productos vencidos recolectados ");
+	            	if (!tienda.getProductosVencidos().isEmpty()) {
+	            		
+	            		for(Producto productoVencido:tienda.getProductosVencidos()) {
+	            		System.out.println(productoVencido.getNombre()+productoVencido.getMarca()+productoVencido.getTamaño()+productoVencido.getEstado());
 	            		}
-	            	 
-	            	    System.out.println("Seleccione una opcion");
-		                System.out.println("1.Seleccionar otra tienda");
-		                System.out.println("2. Volver a menu principal");
-		                System.out.println("3. Volver atras");
-		                
-		                int opcionCase2 = escaner(3);
-		                
-		                switch(opcionCase2) {		                
-		                	case 1:	                		
-		                		seleccionTienda();
-		                		break;
-		                		
-		                	case 2:                		
-		                		Main.escogerFuncionalidad();
-								break;
-								
-		                	case 3:	
-		                		adminitrarTienda(tienda);
-		                		break;
-		                }
-		                
-	            	  }else {
-	            		System.out.println("No hay productos vencidos");
-	            		System.out.println("Seleccione una opcion");
-		                System.out.println("1.Seleccionar otra tienda");
-		                System.out.println("2. Volver a menu principal");
-		                System.out.println("3. Volver atras");
-	            		int opcionCase2 = escaner(3);
-		                
-		                switch(opcionCase2) {		                
-		                	case 1:	                		
-		                		seleccionTienda();
-		                		break;
-		                		
-		                	case 2:                		
-		                		Main.escogerFuncionalidad();
-								break;
-								
-		                	case 3:	
-		                		adminitrarTienda(tienda);
-		                		break;
+	            		
+	            	} else {
+	            		System.out.println("La tienda no ha recolectado productos vencidos ");
+	
 	            	}
-	            	 
-		                
-		                int opcionCase4 = escaner(3);
-		                
-		                switch(opcionCase4) {		                
-		                	case 1:	                		
-		                		seleccionTienda();
-		                		break;
-		                		
-		                	case 2:                		
-		                		Main.escogerFuncionalidad();
-								break;
-								
-		                	case 3:	
-		                		adminitrarTienda(tienda);
-		                		break;
-		                }
-	            	}  
+	            	System.out.println("Desea recolegtar productos vencidos de los pasillos?");
+	            	System.out.println("Seleccione una opcion");
+            		System.out.println("1. Si");
+            		System.out.println("2. No");          		
+	                System.out.println("3.Seleccionar otra tienda");
+	                System.out.println("4. Volver a menu principal");
+	                System.out.println("5. Volver atras");
+	                
+	                int opcionCaset = escaner(3);
+	                
+	                switch(opcionCaset) {
+	                	case 1:	                		
+	                		System.out.println("Todos los productos vencidos recolectados se mostraran a continuacion...");
+	    	            	
+	    	            	tienda.vencerProducto();
+	    	            	ArrayList<Producto> productosVencidos = tienda.getProductosVencidos();
+	    	            	if (!productosVencidos.isEmpty()) {
+	    	            		for (Producto i:productosVencidos) {
+	    		                	System.out.println(i.getNombre());
+	    	            		}
+	    	            	 
+	    	            	    System.out.println("Seleccione una opcion");
+	    		                System.out.println("1.Seleccionar otra tienda");
+	    		                System.out.println("2. Volver a menu principal");
+	    		                System.out.println("3. Volver atras");
+	    		                
+	    		                int opcionCase2 = escaner(3);
+	    		                
+	    		                switch(opcionCase2) {		                
+	    		                	case 1:	                		
+	    		                		seleccionTienda();
+	    		                		break;
+	    		                		
+	    		                	case 2:                		
+	    		                		Main.escogerFuncionalidad();
+	    								break;
+	    								
+	    		                	case 3:	
+	    		                		adminitrarTienda(tienda);
+	    		                		break;
+	    		                }
+	    		                
+	    	            	  }else {
+	    	            		System.out.println("No hay productos vencidos");
+	    	            		System.out.println("Seleccione una opcion");
+	    		                System.out.println("1.Seleccionar otra tienda");
+	    		                System.out.println("2. Volver a menu principal");
+	    		                System.out.println("3. Volver atras");
+	    	            		int opcionCase2 = escaner(3);
+	    		                
+	    		                switch(opcionCase2) {		                
+	    		                	case 1:	                		
+	    		                		seleccionTienda();
+	    		                		break;
+	    		                		
+	    		                	case 2:                		
+	    		                		Main.escogerFuncionalidad();
+	    								break;
+	    								
+	    		                	case 3:	
+	    		                		adminitrarTienda(tienda);
+	    		                		break;
+	    	            	}
+	    	            	 
+	    		                
+	    		                int opcionCase4 = escaner(3);
+	    		                
+	    		                switch(opcionCase4) {		                
+	    		                	case 1:	                		
+	    		                		seleccionTienda();
+	    		                		break;
+	    		                		
+	    		                	case 2:                		
+	    		                		Main.escogerFuncionalidad();
+	    								break;
+	    								
+	    		                	case 3:	
+	    		                		adminitrarTienda(tienda);
+	    		                		break;
+	    		                }
+	    	            	}
+	                		break;
+	                		
+	                	case 2:                		
+	                		System.out.println("Seleccione una opcion");
+    		                System.out.println("1.Seleccionar otra tienda");
+    		                System.out.println("2. Volver a menu principal");
+    		                System.out.println("3. Volver atras");
+    		                
+    		                int opcionCase2 = escaner(3);
+    		                
+    		                switch(opcionCase2) {		                
+    		                	case 1:	                		
+    		                		seleccionTienda();
+    		                		break;
+    		                		
+    		                	case 2:                		
+    		                		Main.escogerFuncionalidad();
+    								break;
+    								
+    		                	case 3:	
+    		                		adminitrarTienda(tienda);
+    		                		break;
+    		                }
+							break;
+							
+	                	case 3:	
+	                		seleccionTienda();
+	                		break;
+	                		
+	                	case 4:
+	                		Main.escogerFuncionalidad();
+							break;
+	                	case 5 :
+	                		adminitrarTienda(tienda);
+	                		break;
+	                }
+            		
+	            	  
 	            	break;
 	            	
 	            case 3: // muestra los productos devueltos y los elimina o regresa//
@@ -232,10 +294,52 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                		tienda.getProductosDevueltos().removeIf(producto -> producto.getEstado() == Enums.EstadoProducto.DEFECTUOSO);		                		
 		                		System.out.println("El dinero ya ha sido devuelto al cliente ");
 		                		System.out.println("prodcutos eliminados con exito");
+		                		
+		                		System.out.println("Seleccione una opcion");
+				                System.out.println("1.Seleccionar otra tienda");
+				                System.out.println("2. Volver a menu principal");
+				                System.out.println("3. Volver atras");
+			            		int opcionCasea = escaner(3);
+				                
+				                switch(opcionCasea) {		                
+				                	case 1:	                		
+				                		seleccionTienda();
+				                		break;
+				                		
+				                	case 2:                		
+				                		Main.escogerFuncionalidad();
+										break;
+										
+				                	case 3:	
+				                		adminitrarTienda(tienda);
+				                		break;
+			            	}
+		                		
 		                		break;
 		                	case 2:
 		                		System.out.println("prodcutos devueltos al pasillo con exito");
 		                		tienda.transferirProductos(productosDevueltos);
+		                		
+		                		System.out.println("Seleccione una opcion");
+				                System.out.println("1.Seleccionar otra tienda");
+				                System.out.println("2. Volver a menu principal");
+				                System.out.println("3. Volver atras");
+			            		int opcionCasec = escaner(3);
+				                
+				                switch(opcionCasec) {		                
+				                	case 1:	                		
+				                		seleccionTienda();
+				                		break;
+				                		
+				                	case 2:                		
+				                		Main.escogerFuncionalidad();
+										break;
+										
+				                	case 3:	
+				                		adminitrarTienda(tienda);
+				                		break;
+				                }
+		                		
 		                		break;
 		                	case 3:	                		
 		                		seleccionTienda();
