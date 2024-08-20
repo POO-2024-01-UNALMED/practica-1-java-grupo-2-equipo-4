@@ -15,7 +15,6 @@ public class Carrito implements Serializable{
 	private Tienda tienda;
 	private Edades tipoCarrito;
 	private Proveedor proveedor;
-//	private double montoTotal;
 	private boolean pagado;
 	//atributos para factura //
 	 LocalDate fechaFacturacion;
@@ -77,16 +76,7 @@ public class Carrito implements Serializable{
 		this.tipoCarrito=tipo;
 	}
 	
-//	public double getMontoTotal() {
-//		return montoTotal;
-//	}
-//	
-//	public void  setMontoTotal(double monto) {
-//		this.montoTotal= monto;
-//	}
-	
-	
-	
+
 //Contructores-------------------------------------------------------------------------------------------------
 	
 	public Carrito() {
@@ -100,8 +90,6 @@ public class Carrito implements Serializable{
         this.pagado = pagado;
         this.tienda = tienda;
     }
-	
-	
 	
 	
 	public Carrito(Tienda tienda) {
