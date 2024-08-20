@@ -167,10 +167,10 @@ public class Tienda implements Serializable{
 //		tiendas.add(this);
 //	}
 
-//	public Tienda(String nombre) {
-//		this.nombre=nombre;
-//		tiendas.add(this);
-//	}
+	public Tienda(String nombre) {
+		this.nombre=nombre;
+		tiendas.add(this);
+	}
 	
 	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado,ArrayList<Caja> caja, Carrito carrito) {	
 		this.nit = nit;
@@ -185,7 +185,7 @@ public class Tienda implements Serializable{
 		this.empleados=empleados;
 		this.pasillos=pasillos;
 		this.productosVencidos = new ArrayList <Producto>();
-		private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
+	//	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 		Tienda.getTiendas().add(this);
 	}
 
@@ -668,7 +668,8 @@ public class Tienda implements Serializable{
 	        }
 	        productosTransferir.removeAll(productosParaEliminar);
 	    }
-	}
+
+
 
 // ------------------------------------------------------------------------------------------------------------
 		public static String mostrarDesempleados() {
