@@ -231,7 +231,7 @@ public class Funcionalidad3 extends Identidad {
 		        int opcion = sc.nextInt();
 
 		        if (opcion == 1) {
-		            asignarEmpleado(); // Método para asignar un empleado a una caja
+		            Tienda.encontrarCajero(cliente.getTienda().getEmpleados()); // Método para asignar un empleado a una caja
 		            continue; // Repetir el proceso después de asignar un empleado
 		        } else if (opcion == 2) {
 		            System.out.println("Ha decidido no pagar. Saliendo del proceso.");
