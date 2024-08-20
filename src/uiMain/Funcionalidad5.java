@@ -126,7 +126,7 @@ public class Funcionalidad5 {
 	private static void llamarProveedor(Tienda tien, Cliente clien) {
 		// TODO Auto-generated method stub
 		lineas();
-		if (tien.disponibilidadProductos()==true) {
+		if (tien.disponibilidadProductos()==false) {
       		print(tien.getDueño().getNombre() +" de la tienda: \""+tien.getNombre()+ "\", sus pasillos estan vacios ");
       		print("He aquí nuestros proveedores:");
       		print(tien.listarProveedores());

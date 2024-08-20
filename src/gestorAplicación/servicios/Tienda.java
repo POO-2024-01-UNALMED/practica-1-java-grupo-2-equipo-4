@@ -17,7 +17,6 @@ public class Tienda implements Serializable{
 	private String nit;
 	private Persona dueño;
 	private String nombre;
-	private String direccion;
 	private double saldo;
 	private String estado;
 	private Carrito carrito;
@@ -33,7 +32,7 @@ public class Tienda implements Serializable{
 	private ArrayList <Pasillo> pasillos=new ArrayList<Pasillo>();
 	
 		
-	private ArrayList <Producto> ProductosVencidos = new ArrayList <Producto>();
+	private ArrayList <Producto> productosVencidos = new ArrayList <Producto>();
 	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 //------------------------------------------------------------------------------------------------------------
 	
@@ -69,14 +68,6 @@ public class Tienda implements Serializable{
 	
 	public void setNombre(String nombre) {
 		this.nombre=nombre;
-	}
-	
-	public String getDireccion() {
-		return direccion;
-	}
-	
-	public void setDireccion(String direccion) {
-		this.direccion=direccion;
 	}
 	
 	public double getSaldo() {
@@ -135,11 +126,11 @@ public class Tienda implements Serializable{
 		desempleados = des;
 	}
 	public ArrayList<Producto> getProductosVencidos() {
-		return ProductosVencidos;
+		return productosVencidos;
 	}
 
 	public void setProductosVencidos(ArrayList<Producto> productosVencidos) {
-		ProductosVencidos = productosVencidos;
+		productosVencidos = productosVencidos;
 	}
 	
 	public ArrayList <Carrito> getFacturas() {
@@ -172,22 +163,29 @@ public class Tienda implements Serializable{
 	
 //Contructores------------------------------------------------------------------------------------------------
 
-	public Tienda(){
-		tiendas.add(this);
-	}
+//	public Tienda(){
+//		tiendas.add(this);
+//	}
 
-	public Tienda(String nombre) {
-		this.nombre=nombre;
-		tiendas.add(this);
-	}
+//	public Tienda(String nombre) {
+//		this.nombre=nombre;
+//		tiendas.add(this);
+//	}
 	
-	public Tienda(String nit, Persona dueño, String nombre, String direccion, double saldo, String estado) {	
+	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado,ArrayList<Caja> caja, Carrito carrito) {	
 		this.nit = nit;
 		this.dueño = dueño;
 		this.nombre = nombre;
-		this.direccion = direccion;
 		this.saldo = saldo;
 		this.estado = estado;
+		this.carrito=carrito;
+		this.facturas=facturas;
+		this.proveedores=proveedores;
+		this.cajas=cajas;
+		this.empleados=empleados;
+		this.pasillos=pasillos;
+		this.productosVencidos = new ArrayList <Producto>();
+		private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
 		Tienda.getTiendas().add(this);
 	}
 
@@ -607,6 +605,7 @@ public class Tienda implements Serializable{
 						if(e.validarCriterios()!=false && e instanceof Cajero) {
 							quitados.add(e); //Se va de Desempleados
 							this.getEmpleados().add(e);//llega a esta
+							this.asignarCajero((Cajero)e);
 						}
 					}
 					break;
@@ -621,6 +620,14 @@ public class Tienda implements Serializable{
 				}
 			for(Empleado e:quitados) {
 					getDesempleados().remove(e); //Se va de Desempleados
+			}
+		}
+		
+		public void asignarCajero(Cajero cajero){
+			for(Caja c:this.cajas) {
+				if(c.getCajero()==null) {
+					c.setCajero(cajero);
+				}
 			}
 		}
 
