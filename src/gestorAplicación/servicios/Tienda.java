@@ -210,6 +210,21 @@ public class Tienda implements Serializable{
 				}
 				return tiendaDisp.size()>0;
 			}
+			
+			//Este método se encarga de buscar si existe al menos una tienda 
+			public static boolean buscarTienda() {
+				ArrayList<Tienda> tiendasRevisa = tiendas;
+				if(tiendas.size() > 0 ) {
+					
+					 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
+					 return tiendasRevisadas.size()>0;
+				}
+				else {
+					return false;
+				}
+			    
+			}
+			
 //------------------------------------------------------------------------------------------------------------
 			
 			//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
@@ -573,19 +588,6 @@ public class Tienda implements Serializable{
 		cajas.add(new Caja(nom,tipocaja,this));
 	}
 	
-	//Este método se encarga de buscar si existe al menos una tienda 
-	public static boolean buscarTienda() {
-		ArrayList<Tienda> tiendasRevisa = tiendas;
-		if(tiendas.size() > 0 ) {
-			
-			 ArrayList<Tienda> tiendasRevisadas = revisionTienda(tiendasRevisa);
-			 return tiendasRevisadas.size()>0;
-		}
-		else {
-			return false;
-		}
-	    
-	}
 	
 	//------------------------------------------------------------------------------------------------------------
 	
@@ -643,6 +645,22 @@ public class Tienda implements Serializable{
 		}
 		
 //------------------------------------------------------------------------------------------------------------
+		// este metodo transfiere productos de un Array a su correspondiente pasillo
+		public void transferirProductos(ArrayList<Producto> productosTransferir) {
+		    ArrayList<Producto> productosParaEliminar = new ArrayList<>();
+		    for (Producto producto : productosTransferir) {
+		        for (Pasillo pasillo : pasillos) {
+		            if (pasillo.getCategoria() == producto.getCategoria()) {
+		                pasillo.agregarProducto(producto);
+		                productosParaEliminar.add(producto);
+		                break;
+		            }
+		        }
+		    }
+		    productosTransferir.removeAll(productosParaEliminar);
+		}
+
+// ------------------------------------------------------------------------------------------------------------
 		public static String mostrarDesempleados() {
 			int m=1;
 			String s= "  Empleado   |   tipo \n";
