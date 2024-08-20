@@ -24,520 +24,159 @@ public class Funcionalidad3 extends Identidad {
 	public static void impresionFacturas(Persona persona) {
 	//	Persona persona = identificarPersona();
 		ArrayList<Tienda> tiendas = persona.getTiendasConFacturas();
-        Map<String, Integer> conteoTiendas = new HashMap<>();
-        for (Tienda tienda : tiendas) {
-            conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
-        }
+		Map<String, Integer> conteoTiendas = new HashMap<>();
+		for (Tienda tienda : tiendas) {
+		    conteoTiendas.put(tienda.getNombre(), conteoTiendas.getOrDefault(tienda.getNombre(), 0) + 1);
+		}
 
-        // Imprimir tabla
-        System.out.println("Número de Facturas");
-        System.out.println("+-----+----------------+-----------------+");
-        System.out.println("| No. | Nombre         | Cantidad         |");
-        System.out.println("+-----+----------------+-----------------+");
+		// Imprimir tabla de tiendas y cantidad de facturas
+		System.out.println("Número de Facturas");
+		System.out.println("+-----+----------------+-----------------+");
+		System.out.println("| No. | Nombre         | Cantidad        |");
+		System.out.println("+-----+----------------+-----------------+");
 
-        int numero = 1;
-        for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
-            System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
-            numero++;
-        }
+		int numero = 1;
+		for (Map.Entry<String, Integer> entry : conteoTiendas.entrySet()) {
+		    System.out.printf("| %-3d | %-14s | %-15d |%n", numero, entry.getKey(), entry.getValue());
+		    numero++;
+		}
 
-        // Imprimir línea final
-        System.out.println("+-----+----------------+-----------------+");
+		System.out.println("+-----+----------------+-----------------+");
 
-        // Solicitar selección del usuario
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Seleccione el número de la tienda: ");
-        int seleccion = scanner.nextInt();
+		// Solicitar selección del usuario
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Seleccione el número de la tienda: ");
+		int seleccion = scanner.nextInt();
 
-        // Validar selección y buscar la tienda seleccionada
-        Tienda tiendaSeleccionada = null;
-        if (seleccion >= 1 && seleccion <= conteoTiendas.size()) {
-            numero = 1;
-            for (Tienda tienda : tiendas) {
-                if (numero == seleccion) {
-                    tiendaSeleccionada = tienda;
-                    break;
-                }
-                if (conteoTiendas.get(tienda.getNombre()) == null) {
-                    continue;
-                }
-                numero++;
-            }
-        }
+		// Validar selección y buscar la tienda seleccionada
+		Tienda tiendaSeleccionada = null;
+		if (seleccion >= 1 && seleccion <= conteoTiendas.size()) {
+		    numero = 1;
+		    for (Tienda tienda : tiendas) {
+		        if (numero == seleccion) {
+		            tiendaSeleccionada = tienda;
+		            break;
+		        }
+		        if (conteoTiendas.get(tienda.getNombre()) == null) {
+		            continue;
+		        }
+		        numero++;
+		    }
+		}
 
-        // Mostrar la tienda seleccionada
-        if (tiendaSeleccionada != null) {
-            System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
-            // Aquí puedes usar tiendaSeleccionada para lo que necesites
-        } else {
-            System.out.println("Selección inválida.");
-        }
-        
-        scanner.close();
-        if (persona instanceof Cliente) {
-        	ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
-        	for(Carrito c:tiendaSeleccionada.getFacturas()) {
-        		if (c.getCliente().equals(persona)) {
-        			misFacturas.add(c);
-        		}
-        	}
-        }
-        if (persona instanceof Administrador) {
-        	ArrayList<Carrito> misFacturas = new ArrayList<Carrito>();
-        	for(Carrito c:tiendaSeleccionada.getFacturas()) {
-        		misFacturas.add(c);
-        	}
-        }
+		if (tiendaSeleccionada != null) {
+		    System.out.println("Has seleccionado la tienda: " + tiendaSeleccionada.getNombre());
+
+		    // Obtener las facturas de la tienda seleccionada
+		    ArrayList<Carrito> misFacturas = persona.getFacturas(tiendaSeleccionada);
+
+		    // Imprimir las facturas
+		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+		    System.out.println("| No. | Tienda             | Fecha      | Productos        | Precio     | Pagada   |");
+		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+
+		    numero = 1;
+		    for (Carrito factura : misFacturas) {
+		        boolean estadoPago = factura.isPagado();
+		        System.out.printf("| %-3d | %-18s | %-10s | %-15d | %-10.2f | %-8s |%n",
+		                numero,
+		                factura.getTienda().getNombre(),
+		                factura.getFechaFacturacion(),
+		                factura.getProductos().size(),
+		                Carrito.calcularTotal(factura.getProductos()),
+		                estadoPago
+		        );
+		        numero++;
+		    }
+
+		    System.out.println("+-----+--------------------+------------+-----------------+------------+----------+");
+
+		    // Solicitar selección de factura
+		    System.out.print("Seleccione el número de la factura que desea imprimir: ");
+		    seleccion = scanner.nextInt();
+
+		    // Validar selección y mostrar la factura seleccionada
+		    Carrito facturaSeleccionada = null;
+		    if (seleccion >= 1 && seleccion <= misFacturas.size()) {
+		        facturaSeleccionada = misFacturas.get(seleccion - 1);
+		        System.out.println("Has seleccionado la factura de la tienda: " + facturaSeleccionada.getTienda().getNombre());
+
+		        // Imprimir detalles de los productos de la factura seleccionada
+		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+		        System.out.println("| No. | Producto           | Marca         | Tamaño   | Categoría  | Precio   |");
+		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+
+		        int numeroProducto = 1;
+		        for (Producto producto : facturaSeleccionada.getProductos()) {
+		            System.out.printf("| %-3d | %-18s | %-13s | %-8s | %-10s | %-8.2f |%n",
+		                    numeroProducto,
+		                    producto.getNombre(),
+		                    producto.getMarca(),
+		                    producto.getTamaño().getTamaño(),
+		                    producto.getCategoria().getTexto(),
+		                    producto.getPrecio()
+		            );
+		            numeroProducto++;
+		        }
+
+		        System.out.println("+-----+--------------------+---------------+----------+------------+----------+");
+
+		        // Opciones adicionales dependiendo del tipo de objeto
+		        if (persona instanceof Administrador) {
+		            System.out.println("Opciones:");
+		            System.out.println("1. Escoger otra factura");
+		            System.out.println("2. Salir de funcionalidad");
+
+		            int opcion = scanner.nextInt();
+		            switch (opcion) {
+		                case 1:
+		                    // Regresar a la selección de facturas
+		                    // Repetir el proceso desde la selección de facturas
+		                    break;
+		                case 2:
+		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
+		                    break;
+		                default:
+		                    System.out.println("Opción no válida.");
+		                    break;
+		            }
+		        } else if (persona instanceof Cliente) {
+		            System.out.println("Opciones:");
+		            System.out.println("1. Pagar factura");
+		            System.out.println("2. Escoger otra factura");
+		            System.out.println("3. Salir de funcionalidad");
+
+		            int opcion = scanner.nextInt();
+		            switch (opcion) {
+		                case 1:
+		                    // Llamar al método para seleccionar caja y proceder con el pago
+		                    seleccionarCaja((Cliente) persona, facturaSeleccionada);
+		                    break;
+		                case 2:
+		                    // Regresar a la selección de facturas
+		                    // Repetir el proceso desde la selección de facturas
+		                    break;
+		                case 3:
+		                    Main.escogerFuncionalidad(); // Llamar al método para salir de la funcionalidad
+		                    break;
+		                default:
+		                    System.out.println("Opción no válida.");
+		                    break;
+		            }
+		        }
+		    } else {
+		        System.out.println("Selección inválida.");
+		    }
+		} else {
+		    System.out.println("Selección inválida.");
+		}
+
+		scanner.close();
+    }
         
         //Debes imprimir que facturas hay, y para que el usuario escoja una y pase a pagarla, si es administrador solo las mostrara
-        
-	} 
-		 
-		 
-		 public static void funcionalidad() {
-			 Persona persona = identificarPersona();
-			 
-			 Cliente cliente = seleccionRol(persona);			 
-			 if (cliente != null) {
-				 // logica para cliente //	//utilizar cliente 	//	
-				 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
-				 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
-				 System.out.println("Que desea consultar ");
-				 System.out.println("1. Facturas pagadas ");
-				 System.out.println("2. Facturas por pagar  ");
-				 
-				 int opcion = escaner(2);
-				 
-				 switch (opcion){
-				 	case 1:
-				 		Carrito carrito = seleccionarCarritoPagado(tienda);
-				 		imprimirFacturaCompleta(carrito);
-				 		System.out.println("Seleccione una opcion");
-				 		System.out.println("1.");
-				 		break;
-				 	case 2:
-				 		break;
-				 }
-				 
-			 } else {
-				 //logica para dueño
-				 seleccionDueno(persona);
-			 }				 				 
-		 }
-		 
-		 public static Administrador seleccionDueno(Persona persona) {
-			 Administrador dueño = (Administrador)persona;
-			 Tienda tienda = seleccionarTiendaDueno(dueño);
-			 imprimirCarritosPagados(tienda);
-			 return  dueño;
-		 }
-		 
-		 
-		 public static void seleccionCliente(Cliente cliente) {
-			 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
-			 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
-			 System.out.println("Que desea consultar ");
-			 System.out.println("1. Facturas pagadas ");
-			 System.out.println("2. Facturas por pagar  ");
-			 System.out.println("3. Volver ");
-			 
-			 int opcion = escaner(2);
-			 
-			 switch (opcion){
-			 	case 1:
-			 		Carrito carrito = seleccionarCarritoPagado(tienda);
-			 		imprimirFacturaCompleta(carrito);
-			 		System.out.println("Seleccione una opcion");
-			 		System.out.println("1. Realizar devolucion");
-			 		System.out.println("2. Volver ");
-			 		System.out.println("3. volver al menu principal");
-			 		
-			 		int opcionCase1 = escaner(3);
-			 		switch (opcionCase1) {
-			 			case 1:
-			 				System.out.println("Seleccione el Producto que desea devolver:  ");
-			 				imprimirFacturaCompleta(carrito);
-			 				int index = escaner(carrito.getProductosFactura().size());
-			 						
-			 				break;
-			 			case 2:
-			 				seleccionCliente(cliente);
-			 				break;
-			 			case 3:
-			 				Main.escogerFuncionalidad();
-			 				break;
-			 		}
-			 		
-			 		break;
-			 		
-			 	case 2:
-			 		break;
-			 		
-			 	case 3:
-			 		funcionalidad();
-			 		break;
-			 }
-		 }
-		 
-		 
-		 public static void imprimirFacturaCompleta(Carrito carrito) {
-		        Map<String, Integer> resumenProductos = new HashMap<>();
-		        for (Producto producto : carrito.getProductos()) {
-		            String clave = producto.getNombre() + " " + producto.getMarca() + " " + producto.getTamaño() + " " + producto.getPrecio();
-		            resumenProductos.put(clave, resumenProductos.getOrDefault(clave, 0) + 1);
-		        }
 
-		        for (Map.Entry<String, Integer> entry : resumenProductos.entrySet()) {
-		            System.out.println(entry.getKey() + " Cantidad: " + entry.getValue());
-		        }
-		    }
-		 
-		 public static Carrito seleccionarCarritoPagado(Tienda tienda) {
-		        ArrayList<Carrito> carritosPagados = new ArrayList<>();
-		        int contador = 1;
-
-		        for (Carrito carrito : tienda.getFacturas()) {
-		            if (carrito.isPagado()) {
-		                carritosPagados.add(carrito);
-		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cantidad de productos: " + carrito.getProductos().size());
-		                contador++;
-		            }
-		        }
-
-		        if (carritosPagados.isEmpty()) {
-		            System.out.println("No hay carritos pagados.");
-		            return null;
-		        }
-
-		        
-		        System.out.print("Seleccione el número del carrito que desea consultar: ");
-		        int seleccion = escaner();
-
-		        return carritosPagados.get(seleccion - 1);
-		    }
-			
-		 public static void imprimirCarritosPagados(Tienda tienda) {
-			 System.out.println("estas son todas las facturas pagadas en su tienda");
-		        int contador = 1;
-		        for (Carrito carrito : tienda.getFacturas()) {
-		            if (carrito.isPagado()) {
-		                System.out.println(contador + ". Fecha: " + carrito.getFechaFacturacion() + ", Cliente: " + carrito.getCliente().getNombre());
-		                contador++;
-		            }
-		        }
-		    }		 		 
-		 
-		 public static Cliente seleccionRol(Persona persona) {
-			 System.out.println("ver facturas como:");
-             System.out.println("1. Cliente");
-             System.out.println("2. Dueño");
-             
-             int opcionUsuario = escaner();
-             
-             if(opcionUsuario == 1) {
-            	Cliente cliente = (Cliente) persona;  
-            	return cliente;
-             }  return  null;
-             
-		 }
-		 
-		 public static Tienda seleccionarTiendaCliente(ArrayList<Tienda> tiendasConCliente) {
-		        if (tiendasConCliente.isEmpty()) {
-		            System.out.println("No hay tiendas disponibles.");
-		            return null;
-		        }
-
-		        System.out.println("Estas son las tiendas disponibles:");
-		        for (int i = 0; i < tiendasConCliente.size(); i++) {
-		            System.out.println((i + 1) + ". " + tiendasConCliente.get(i).getNombre());
-		        }
-
-		        System.out.print("Seleccione el número de la tienda que desea consultar: ");
-		        int seleccion = escaner();
-
-		        return tiendasConCliente.get(seleccion - 1);
-		    }
-		 
-		 
-		  static public Tienda seleccionarTiendaDueno(Administrador persona) {
-		        if (persona.getTiendas().isEmpty()) {
-		            System.out.println("No es dueño de ninguna tienda.");
-		            return null;
-		        }
-
-		       
-		        System.out.println("Seleccione una tienda de la lista:");
-		        for (int i = 0; i < persona.getTiendas().size(); i++) {
-		            System.out.println((i + 1) + ". " + persona.getTiendas().get(i).getNombre());
-		        }
-
-		        int seleccion = escaner();
-		        if (seleccion < 1 || seleccion > persona.getTiendas().size()) {
-		            System.out.println("Selección inválida.");
-		            return null;
-		        }
-
-		        return persona.getTiendas().get(seleccion - 1);
-		    }  
-		 
-		 
-		 
-		  
-		  
-		 /// de aqui pa abajo es caca //
-		 
-		 
-		 
-		 
-		 public static void imprimirFacturasCliente(Cliente cliente, boolean pagadas) {
-		        ArrayList<Carrito> facturas = cliente.obtenerFacturas(pagadas);
-		        int numeroFactura = 1;
-		        for (Carrito carrito : facturas) {
-		            System.out.printf("%d. %s%n", numeroFactura, carrito.getFechaFacturacion());
-		            numeroFactura++;
-		        }
-		    }
-
-		    public static void imprimirFacturaDetalle(Carrito carrito) {
-		        System.out.println("Fecha de Facturación: " + carrito.getFechaFacturacion());
-		        System.out.println("Productos:");
-		        System.out.printf("%-20s %-20s %-10s %-10s %-10s%n", "Nombre", "Marca", "Tamaño", "Precio", "Cantidad");
-
-		        Map<String, Integer> contadorProductos = new HashMap<>();
-		        for (Producto producto : carrito.getProductos()) {
-		            String clave = producto.getNombre() + "\t" + producto.getMarca() + "\t" + producto.getTamaño() + "\t" + producto.getPrecio();
-		            contadorProductos.put(clave, contadorProductos.getOrDefault(clave, 0) + 1);
-		        }
-
-		        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-		            String[] partes = entry.getKey().split("\t");
-		            System.out.printf("%-20s %-20s %-10s %-10s %-10d%n", partes[0], partes[1], partes[2], partes[3], entry.getValue());
-		        }
-		    }
-
-		    public static void imprimirFacturasPersona(Administrador persona) {
-		        int numeroFactura = 1;
-		        for (Tienda tienda : persona.getTiendas()) {
-		            for (Carrito carrito : tienda.getFacturas()) {
-		                if (carrito.isPagado()) {
-		                    System.out.printf("%d. %s - %s%n", numeroFactura, carrito.getFechaFacturacion(), carrito.getCliente().getNombre());
-		                    numeroFactura++;
-		                }
-		            }
-		        }
-		    }
-		    
-		 //		 public static void administrarRecibos() {
-//			 System.out.println("------------------ Administrar recibos  -----------------");
-//			 System.out.println("Seleccione una opcion");
-//			 System.out.println("Administrar recibos de:");
-//			 System.out.println("1. Dueño ");
-//			 System.out.println("2. Cliente ");
-//			 
-//		     int opcion = escaner(2);
-//
-//		     switch (opcion) {
-//		            case 1:
-//		            	Tienda tiendaDueno=seleccionTienda();
-//		            	imprimirFacturasDueno(persona);
-//		                break;
-//		            case 2:
-//		            	obtenerContadorProductos((Cliente) persona);
-//		                break;
-//		            default:
-//		                System.out.println("Opción no válida. Por favor, seleccione 1 o 2.");
-//		                break;
-//		        }
-//
-//		 }
-		    
-		    
-		 
-		    
-	 
-		 public  static Tienda seleccionTienda() {
-		// seleccion de tiendas para comprar //  
-		    	
-				if(persona.getTiendas().size()==0) {
-					print("No tienes niguna tienda registrada "); 
-					print("Que desea hacer ");
-					print("1. Cambiar de usuario");
-					print("2. Volver al Menu principal");
-					
-					int valor= escaner();
-					switch (valor) {
-						case 1:
-							persona=null;
-							seleccionTienda();
-							break;
-						case 2:
-							Main.escogerFuncionalidad();
-							break;
-					}
-				}
-		    	
-		    	print("Tiendas disponibles: ");
-		    	
-		    	Tienda tienda=null;
-		    	int contT = 1;
-
-		    	for(Tienda i: persona.getTiendas()) {
-		    		print(contT+ ". "+i.getNombre());
-		    		contT++;
-		    	}
-		    	
-		    	contT--;
-		    	
-		    	print("Seleccione una tienda para administrar");
-		    	int decs = escaner(contT);
-		    		    	
-		    	for (int i = 0; i < contT; i++) {
-		           if(i+1 == decs ) {
-		        	   tienda = persona.getTiendas().get(i);
-		        	   break;
-		           }
-		        }	
-		    	return tienda;
-		    }
-		 
-//	public static void mostrarFacturas() {
-//	
-//		print("Este es el registro de sus facturas ");
-//		
-//		print("1. Ver las facturas de compras que he hecho");
-//		print("2. Ver las facturas de mis tiendas");
-//		int decision=escaner(2);
-//		switch(decision) {
-//		case 1:
-//			System.out.println("Nombre del Producto\tTamaño\tPrecio\tCantidad");
-//			System.out.println(persona.obtenerContadorProductos((Cliente)persona));
-//			break;
-//		case 2:
-//			System.out.println("Nombre del Producto\tTamaño\tPrecio\tCantidad");
-//			System.out.println(persona.obtenerContadorProductos(persona));
-//			break;
-//		}	
-		
-//	}
-	
-	// este metodo imprime la factura 
-	
-	//        fecha de facturacion 
-	//   Nombre   Tamaño   Precio   Cantidad
-		
-//		 public static void imprimirFacturasDueno(Persona cliente) {
-//		        System.out.println("Estas son las facturas en su tienda");
-//
-//		        int numeroFactura = 1;
-//		        for (Tienda tienda : cliente.getTiendas()) {
-//		            for (Carrito carrito : tienda.getCarritos()) {
-//		                System.out.println(numeroFactura + ". " + carrito.getFechaFacturacion() + " - " + carrito.getCliente().getNombre());
-//		                numeroFactura++;
-//		            }
-//		        }
-//		    }
-//	 
-//	
-//	public static void imprimirFactura(Cliente cliente) {
-//        System.out.println( cliente.getCarrito().getFechaFacturacion());
-//
-//        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
-//
-//        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
-//
-//        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-//            System.out.println(entry.getKey() + "\t" + entry.getValue());
-//        }
-//    }
-//	
-//	public static void imprimirFactura(Persona cliente) {
-//		
-//		System.out.println("Estas son las facturas en su tienda");	
-//		
-//        System.out.println("Fecha de Facturación: " + cliente.getCarrito().getFechaFacturacion());
-//        System.out.println("Productos:");
-//        System.out.println("Nombre\tTamaño\tPrecio\tCantidad");
-//
-//        Map<String, Integer> contadorProductos = cliente.obtenerContadorProductos(cliente);
-//
-//        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-//            System.out.println(entry.getKey() + "\t" + entry.getValue());
-//        }
-//    }
-	
-	public static void realizarDevolicion() {
-		Tienda tienda = seleccionTienda();
-		System.out.println("Realizar una devolucion");
-		System.out.println("Seleccione una de sus compras anteriores");
-		
-		System.out.println("Compras anteriores en la tienda:");
-	    int index = 1;
-	    for (Carrito carrito : tienda.getCarritos()) {
-	        System.out.println(index + ". " + carrito.getFechaFacturacion());
-	        index++;
-	    }
-	    
-	    System.out.print("Ingrese el número de la compra que desea seleccionar: ");
-	    int indiceCarrito = escaner(index) - 1;
-	    
-	    Carrito carritoSeleccionado = tienda.getCarritos().get(indiceCarrito);	                
-	 
-	    System.out.println("Productos en el carrito seleccionado:");
-	    index = 1;
-	    for (Producto producto : carritoSeleccionado.getProductos()) {
-	        System.out.println(index + ". " + producto);
-	        index++;
-	    }
-	
-	    System.out.print("Ingrese el número del producto que desea devolver: ");
-	    int indiceProducto = escaner() - 1;
-	
-	    Producto productoSeleccionado = carritoSeleccionado.getProductos().get(indiceProducto);
-	
-	    // Solicitar la razón de la devolución
-	    System.out.println("Razones de devolución:");
-	    for (RazonDevolucion razon : RazonDevolucion.values()) {
-	        System.out.println(razon.ordinal() + 1 + ". " + razon);
-	    }
-	    System.out.print("Ingrese el número de la razón de la devolución: ");
-	    int indiceRazon = escaner() - 1;
-	
-	    RazonDevolucion razonDevolucion = RazonDevolucion.values()[indiceRazon];
-	
-	    // Cambiar el estado del producto si es defectuoso
-	    if (razonDevolucion == RazonDevolucion.DEFECTUOSO) {
-	        productoSeleccionado.setEstado(EstadoProducto.DEFECTUOSO);
-	    }
-	
-	    // Agregar el producto seleccionado a la lista de productos devueltos
-	    tienda.getProductosDevueltos().add(productoSeleccionado);
-	
-	    // Imprimir productos devueltos
-	    System.out.println("Producto devuelto exitosamente");
-	    System.out.println("Seleccione una opcion");
-	    System.out.println("1.Seleccionar otra tienda");
-        System.out.println("2. Volver a menu principal");
-        System.out.println("3. Volver atras");        
-        
-        int opcionCase4 = escaner(3);
-        
-        switch(opcionCase4) {		                
-        	case 1:	                		
-        		seleccionTienda();
-        		break;
-        		
-        	case 2:                		
-        		Main.escogerFuncionalidad();
-				break;
-				
-        	case 3:	
-        		// opcion anterior a realizar devolucion //;
-        		break;
-        }
-	}
-	
-
-	public boolean tresEnRaya() {
+	public static boolean tresEnRaya() {
 		Scanner sc = new Scanner(System.in);
 
         // Juego de Tres en Raya
@@ -559,7 +198,7 @@ public class Funcionalidad3 extends Identidad {
         }
 	}
 	
-	public boolean juegoAhorcado() {
+	public static boolean juegoAhorcado() {
 		Juego juegoAhorcado = new Ahorcado("java");
         juegoAhorcado.iniciar();
         while (!juegoAhorcado.haGanado() && !juegoAhorcado.haPerdido()) {
@@ -580,55 +219,151 @@ public class Funcionalidad3 extends Identidad {
 	
 	
 	public static void seleccionarCaja(Cliente cliente, Carrito carrito) {
-	    Scanner sc = new Scanner(System.in);
-	    ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
-	    
-	    while (true) {
-	        if (cajas.isEmpty()) {
-	            System.out.println("No hay cajas disponibles.");
-	            System.out.println("1. Esperar a que una caja esté disponible.");
-	            System.out.println("2. No pagar y salir.");
-	            System.out.print("Seleccione una opción: ");
-	            int opcion = sc.nextInt();
-	            
-	            if (opcion == 1) {
-	                asignarEmpleado(); // Método para asignar un empleado a una caja
-	                continue; // Repetir el proceso después de asignar un empleado
-	            } else if (opcion == 2) {
-	                System.out.println("Ha decidido no pagar. Saliendo del proceso.");
-	                return; // Salir del método
-	            } else {
-	                System.out.println("Opción no válida. Inténtelo de nuevo.");
-	                continue;
-	            }
-	        }
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Caja> cajas = cliente.getTienda().cajasDisponibles();
+		Caja cajaSeleccionada = null;
+		while (true) {
+		    if (cajas.isEmpty()) {
+		        System.out.println("No hay cajas disponibles.");
+		        System.out.println("1. Esperar a que una caja esté disponible.");
+		        System.out.println("2. No pagar y salir.");
+		        System.out.print("Seleccione una opción: ");
+		        int opcion = sc.nextInt();
 
-	        System.out.println("Seleccione una caja para pagar:");
-	        for (int i = 0; i < cajas.size(); i++) {
-	            Caja caja = cajas.get(i);
-	            System.out.printf("%d. Caja: %s, Tipo: %s, Empleado: %s\n", 
-	                              i + 1, caja.getNombre(), caja.getTipo(), caja.getEmpleado().getNombre());
-	        }
-	        
-	        System.out.print("Seleccione el número de la caja: ");
-	        int seleccion = sc.nextInt();
-	        
-	        if (seleccion > 0 && seleccion <= cajas.size()) {
-	            Caja cajaSeleccionada = cajas.get(seleccion - 1);
+		        if (opcion == 1) {
+		            asignarEmpleado(); // Método para asignar un empleado a una caja
+		            continue; // Repetir el proceso después de asignar un empleado
+		        } else if (opcion == 2) {
+		            System.out.println("Ha decidido no pagar. Saliendo del proceso.");
+		            return; // Salir del método
+		        } else {
+		            System.out.println("Opción no válida. Inténtelo de nuevo.");
+		            continue;
+		        }
+		    }
 
-	            if (cajaSeleccionada.getTipo() == TipoCaja.RAPIDA && cliente.getCarrito().getProductos().size() > 5) {
-	                System.out.println("No puede usar la caja rápida porque tiene más de 5 productos.");
-	                System.out.println("Por favor, seleccione otra caja.");
-	                continue;
-	            }
+		    System.out.println("Seleccione una caja para pagar:");
+		    for (int i = 0; i < cajas.size(); i++) {
+		        Caja caja = cajas.get(i);
+		        System.out.printf("%d. Caja: %s, Tipo: %s, Empleado: %s\n", 
+		                          i + 1, caja.getNombre(), caja.getTipo(), caja.getCajero().getNombre());
+		    }
 
-	            System.out.println("Ha seleccionado la caja: " + cajaSeleccionada.getNombre());
-	            break; // Caja seleccionada correctamente, salir del bucle
-	        } else {
-	            System.out.println("Selección inválida. Inténtelo de nuevo.");
-	        }
-	    }  
+		    System.out.print("Seleccione el número de la caja: ");
+		    int seleccion = sc.nextInt();
+
+		    if (seleccion > 0 && seleccion <= cajas.size()) {
+		        cajaSeleccionada = cajas.get(seleccion - 1);
+
+		        if (cajaSeleccionada.getTipo() == TipoCaja.RAPIDA && cliente.getCarrito().getProductos().size() > 5) {
+		            System.out.println("No puede usar la caja rápida porque tiene más de 5 productos.");
+		            System.out.println("Por favor, seleccione otra caja.");
+		            continue;
+		        }
+
+		        System.out.println("Ha seleccionado la caja: " + cajaSeleccionada.getNombre());
+		        break; // Caja seleccionada correctamente, salir del bucle
+		    } else {
+		        System.out.println("Selección inválida. Inténtelo de nuevo.");
+		    }
+		}
+
+		cajaSeleccionada.setCliente(cliente);
+
+		// Aplicar descuento por membresía
+		double descuentoMembresia = cliente.calcularDescuentoPorMembresia();
+		double precioConDescuento = Carrito.calcularTotal(carrito.getProductos()) * (1 - descuentoMembresia);
+
+		// Imprimir factura con descuento por membresía
+		System.out.println(carrito.generarDetallesFactura(descuentoMembresia, false));
+
+		// Opción de borrar la factura antes de pagar
+		System.out.println("¿Desea borrar esta factura antes de pagar?");
+		System.out.println("1. Sí");
+		System.out.println("2. No");
+		int opcionBorrar = sc.nextInt();
+
+		if (opcionBorrar == 1) {
+		    carrito.eliminarCarrito();
+		    System.out.println("Factura eliminada y productos devueltos al inventario.");
+		    return;
+		}
+
+		// Opción de jugar para obtener más descuento
+		System.out.println("¿Desea intentar obtener un descuento adicional jugando?");
+		System.out.println("1. Sí");
+		System.out.println("2. No");
+		int opcionJuego = sc.nextInt();
+
+		boolean ganoJuego = false;
+		if (opcionJuego == 1) {
+		    boolean tieneMembresia = cliente.getMembresia()!=null;
+		    if (!tieneMembresia) {
+		        System.out.println("Debe pagar 10 mil para intentar jugar.");
+		        carrito.incrementarCosto(10000);
+		    }
+		    
+		    // Selección del juego
+		    System.out.println("Seleccione un juego:");
+		    System.out.println("1. Tres en Raya");
+		    System.out.println("2. Ahorcado");
+		    int seleccionJuego = sc.nextInt();
+		    
+		    if (seleccionJuego == 1) {
+		        ganoJuego = tresEnRaya();
+		    } else if (seleccionJuego == 2) {
+		        ganoJuego = juegoAhorcado();
+		    }
+		    
+		    if (ganoJuego) {
+		        System.out.println("¡Felicidades! Ha ganado un descuento adicional del 10%.");
+		        precioConDescuento *= 0.9;
+		    } else {
+		        System.out.println("Lo sentimos, no ha ganado el juego.");
+		    }
+
+		    // Imprimir factura con descuento adicional si ganó el juego
+		    System.out.println(carrito.generarDetallesFactura(descuentoMembresia, ganoJuego));
+		 // Confirmar si el cliente desea pagar la factura
+		    System.out.println("¿Desea pagar la factura?");
+		    System.out.println("1. Sí");
+		    System.out.println("2. No");
+		    int opcionPago = sc.nextInt();
+
+		    if (opcionPago == 2) {
+		        System.out.println("Ha decidido no pagar la factura. Regresando a la tienda...");
+		        // Aquí puedes devolver al cliente a la tienda
+		        return;
+		    } else if (opcionPago == 1) {
+		        // Marcar la factura como pagada
+		        carrito.setPagado(true);
+		        cliente.getFacturas().add(carrito); // Registrar la factura en las facturas del cliente
+		        cliente.getTienda().agregarFactura(carrito); // Registrar la factura en la tienda
+
+		        // Actualizar saldo de la tienda
+		        double precioFinal = carrito.getPrecioTotal();
+		        cliente.getTienda().actualizarSaldo(precioFinal);
+
+		        // Calcular y descontar el pago del cajero
+		        Caja cajaSeleccionada = carrito.getCaja();
+		        Empleado cajero = cajaSeleccionada.getEmpleado();
+		        double pagoCajero = 20000; // Pago inicial
+		        if (cajero.tienePrestacionSalud()) {
+		            pagoCajero += 5000;
+		        }
+		        if (cajero.tienePrestacionPension()) {
+		            pagoCajero += 5000;
+		        }
+		        cajero.descontarSaldo(pagoCajero);
+
+		        System.out.println("La factura ha sido pagada exitosamente.");
+		    }
+
+		}
+		sc.close();
+
 	}
+
 	
 	
 

@@ -9,6 +9,7 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.servicios.Carrito;
+import gestorAplicación.servicios.Enums;
 import gestorAplicación.servicios.Enums.Categoria;
 import gestorAplicación.servicios.Enums.EstadoProducto;
 import gestorAplicación.servicios.Enums.RazonDevolucion;
@@ -18,19 +19,15 @@ import gestorAplicación.sujetos.Persona;
 import static uiMain.Funcionalidad1.printTablaProductos;
 import static uiMain.Main.print;
 import static uiMain.Main.escaner;
-import gestorAplicación.sujetos.Cliente;
-import gestorAplicación.sujetos.Persona;
-import gestorAplicación.servicios.Producto;
-import gestorAplicación.servicios.Tienda;
-import gestorAplicación.servicios.Enums.Categoria;
+
+
 import java.util.HashSet;
 
 public class Funcionalidad4 extends Identidad implements Cloneable {
 	
 	static Scanner sc = new Scanner(System.in);
-	
-	
 	static Administrador usuario =(Administrador) identificarPersona();
+	
 	static Tienda tiendaSelecta = null;
 	    public  static void seleccionTienda() {
 	    	
@@ -232,11 +229,12 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 		                
 		                switch(opcionCase3) {	
 		                	case 1:		                		
-		                		tienda.getProductosDevueltos().clear();		                		
+		                		tienda.getProductosDevueltos().removeIf(producto -> producto.getEstado() == Enums.EstadoProducto.DEFECTUOSO);		                		
 		                		System.out.println("El dinero ya ha sido devuelto al cliente ");
 		                		System.out.println("prodcutos eliminados con exito");
 		                		break;
 		                	case 2:
+		                		System.out.println("prodcutos devueltos al pasillo con exito");
 		                		tienda.transferirProductos(productosDevueltos);
 		                		break;
 		                	case 3:	                		
@@ -310,13 +308,19 @@ public class Funcionalidad4 extends Identidad implements Cloneable {
 	                     
 	                     System.out.print("Ingrese la cantidad que desea pedir: ");
 	                     int cantidad = escaner();
-
-	                     for (int i = 0; i < cantidad; i++) {	                         
+	                     
+	                     if(productoSeleccionado1.getPrecio()*cantidad <= tienda.getSaldo()) {
+	                    	 for (int i = 0; i < cantidad; i++) {	                         
 	                          Producto productoClonado = (Producto) productoSeleccionado1.clone();
-	                          tienda.agregarProducto(productoClonado);                             	                         
-	                     }
+	                          tienda.agregarProducto(productoClonado); 
+	                          tienda.setSaldo(tienda.getSaldo()-productoSeleccionado1.getPrecio());
+	                    	 }
 
-	                     System.out.println("Productos agregados al pasillo correspondiente.");
+	                    	 System.out.println("Productos agregados al pasillo correspondiente."); 
+	                     }else {
+	                    	 System.out.println("saldo insuficiente"); 
+	                     }
+	                    
 	                 } else {
 	                     System.out.println("Selección inválida.");
 	                 }
