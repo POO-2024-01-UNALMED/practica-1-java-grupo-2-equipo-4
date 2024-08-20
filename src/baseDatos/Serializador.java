@@ -72,8 +72,7 @@ public class Serializador {
 	        );
 	        ArrayList<Tienda> t=new ArrayList<>();
 	        ArrayList<Producto> entrega=new ArrayList<>();
-	        entrega.add()
-	        new Proveedor("ProveeMax" entrega,Categoria.ALIMENTO,t);
+	     
 //		System.out.println(Proveedor.getSeisProveedores());
 //		serializar(Proveedor.getSeisProveedores(),"proveedores");
 	}
