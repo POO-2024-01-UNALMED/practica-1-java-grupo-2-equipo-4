@@ -129,8 +129,8 @@ public class Tienda implements Serializable{
 		return productosVencidos;
 	}
 
-	public void setProductosVencidos(ArrayList<Producto> productosVencidos) {
-		productosVencidos = productosVencidos;
+	public void setProductosVencidos(ArrayList<Producto> productosVenci) {
+		productosVencidos = productosVenci;
 	}
 	
 	public ArrayList <Carrito> getFacturas() {
@@ -172,7 +172,8 @@ public class Tienda implements Serializable{
 		tiendas.add(this);
 	}
 	
-	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado,ArrayList<Caja> caja, Carrito carrito) {	
+
+	public Tienda(String nit, Persona dueño, String nombre, double saldo, String estado,ArrayList<Caja> caja, Carrito carrito, ArrayList<Carrito> facturas, ArrayList<Proveedor> proveedores, ArrayList<Caja> cajas, ArrayList<Empleado> empleados, ArrayList<Pasillo> pasillos, ArrayList<Producto> productosVencidos, ArrayList<Producto> productosDevueltos) {	
 		this.nit = nit;
 		this.dueño = dueño;
 		this.nombre = nombre;
@@ -184,8 +185,8 @@ public class Tienda implements Serializable{
 		this.cajas=cajas;
 		this.empleados=empleados;
 		this.pasillos=pasillos;
-		this.productosVencidos = new ArrayList <Producto>();
-	//	private ArrayList <Producto> productosDevueltos = new ArrayList <Producto>();
+		this.productosVencidos = productosVencidos;
+		this.productosDevueltos = productosDevueltos;
 		Tienda.getTiendas().add(this);
 	}
 
@@ -194,6 +195,13 @@ public class Tienda implements Serializable{
 //Metodos-----------------------------------------------------------------------------------------------------
 	
 
+	public void subirSaldo(double cantidad) {
+		saldo+=cantidad;
+	}
+	
+	public void bajarSaldo(double cantidad) {
+		saldo-=cantidad;
+	}
 	
 	//Busca las tiendas que tienen pasillos con la categoria escogida por el cliente
 			public static boolean buscarTienda(Categoria categoria){
@@ -670,7 +678,6 @@ public class Tienda implements Serializable{
 	    }
 
 
-
 // ------------------------------------------------------------------------------------------------------------
 		public static String mostrarDesempleados() {
 			int m=1;
@@ -690,7 +697,14 @@ public class Tienda implements Serializable{
 			return this.getNombre(); 
 		}
 //------------------------------------------------------------------------------------------------------------
-
+		public static Cajero encontrarCajero(List<Empleado> empleados) {
+	        for (Empleado empleado : empleados) {
+	            if (empleado instanceof Cajero) {
+	                return (Cajero) empleado;
+	            }
+	        }
+	        return null; // Retorna null si no se encuentra ningún Cajero
+	    }
 
 		
 }

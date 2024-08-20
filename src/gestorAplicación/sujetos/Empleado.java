@@ -47,6 +47,38 @@ public abstract class Empleado extends Persona implements Serializable{
 		return tipo;
 	}
 
+	public double getLiquidacion() {
+		return liquidacion;
+	}
+
+	public void setLiquidacion(double liquidacion) {
+		this.liquidacion = liquidacion;
+	}
+
+	public boolean isPrestacionSalud() {
+		return prestacionSalud;
+	}
+
+	public void setPrestacionSalud(boolean prestacionSalud) {
+		this.prestacionSalud = prestacionSalud;
+	}
+
+	public boolean isPrestacionPension() {
+		return prestacionPension;
+	}
+
+	public void setPrestacionPension(boolean prestacionPension) {
+		this.prestacionPension = prestacionPension;
+	}
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
+	}
+
 	public void setTipo(TipoEmpleado tipo) {
 		this.tipo = tipo;
 	}

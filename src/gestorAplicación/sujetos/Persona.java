@@ -3,7 +3,6 @@ package gestorAplicación.sujetos;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import gestorAplicación.servicios.Carrito;
 import gestorAplicación.servicios.Enums.Genero;
