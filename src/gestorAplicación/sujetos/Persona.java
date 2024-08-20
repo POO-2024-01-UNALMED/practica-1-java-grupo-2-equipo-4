@@ -96,7 +96,7 @@ public abstract class Persona implements Serializable{
 
 //Metodos------------------------------------------------------------------------------------------------------
 	
-	public abstract ArrayList<Tienda> getTiendas();
+	public abstract ArrayList<Tienda> getTiendasConFactura();
 	
 	public boolean mayorEdad() {
 		int edadCliente = getEdad();

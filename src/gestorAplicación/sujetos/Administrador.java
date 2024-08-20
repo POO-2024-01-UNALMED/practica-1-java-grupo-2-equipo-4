@@ -16,11 +16,19 @@ public class Administrador extends Persona implements Serializable {
 	public Administrador(String nombre, int id, int edad, Genero genero) {
 		super(nombre,id,edad,genero);
 	}
+	
+	
 
 	public ArrayList<Tienda> getTiendas() {
+		return tiendas;
+	}
+
+
+
+	public ArrayList<Tienda> getTiendasConFactura() {
 		ArrayList<Tienda> tiendas=new ArrayList<Tienda>();
 		for(Tienda t:this.tiendas) {
-			for(Carrito c:t.getCarritos()) {
+			for(Carrito c:t.getFacturas()) {
 				tiendas.add(c.getTienda());
 			}
 		}

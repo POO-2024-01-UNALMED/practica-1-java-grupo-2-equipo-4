@@ -93,7 +93,7 @@ public class Carrito implements Serializable{
 	
 	
 	public Carrito(Tienda tienda) {
-		tienda.getCarritos().add(this);
+		tienda.getFacturas().add(this);
 	}
 	
 	
