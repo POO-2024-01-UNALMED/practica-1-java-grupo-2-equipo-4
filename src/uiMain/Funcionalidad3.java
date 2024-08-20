@@ -63,7 +63,24 @@ public class Funcionalidad3 extends Identidad {
 			 Cliente cliente = seleccionRol();			 
 			 if (cliente != null) {
 				 // logica para cliente //	//utilizar cliente 	//	
-				 seleccionCliente();
+				 ArrayList<Tienda> tiendasConCliente = Tienda.tiendasConCliente(cliente);
+				 Tienda tienda = seleccionarTiendaCliente(tiendasConCliente);
+				 System.out.println("Que desea consultar ");
+				 System.out.println("1. Facturas pagadas ");
+				 System.out.println("2. Facturas por pagar  ");
+				 
+				 int opcion = escaner(2);
+				 
+				 switch (opcion){
+				 	case 1:
+				 		Carrito carrito = seleccionarCarritoPagado(tienda);
+				 		imprimirFacturaCompleta(carrito);
+				 		System.out.println("Seleccione una opcion");
+				 		System.out.println("1.");
+				 		break;
+				 	case 2:
+				 		break;
+				 }
 				 
 			 } else {
 				 //logica para dueño

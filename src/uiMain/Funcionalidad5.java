@@ -6,6 +6,7 @@ import gestorAplicación.servicios.Producto;
 import gestorAplicación.servicios.Proveedor;
 import gestorAplicación.servicios.Tienda;
 import gestorAplicación.sujetos.Cliente;
+import gestorAplicación.sujetos.Empleado;
 import gestorAplicación.servicios.Enums.Categoria;
 
 import static uiMain.Main.print;
@@ -133,14 +134,14 @@ public class Funcionalidad5 {
       		lineas();
       		Proveedor prov=Proveedor.getSeisProveedores().get(k-1);
 			ArrayList<Producto> entrega =prov.getEntrega();
+			String s="";
 			for(Producto p:entrega) {
 				double diferencia=tien.getSaldo()-p.getPrecio();
 				if(diferencia>=0) {
 					tien.setSaldo(diferencia);
 					tien.agregarProducto(p);
 					print("Producto agregado");
-				} else {
-					if(clien.getDinero()>10000) {
+				} else if(clien.getDinero()>0) {
 						print("La tienda no tiene suficiente saldo");
 						print("Desea proporcionar transferir su dinero a su tienda?\n1.Sí\n2.No\n");
 						Boolean iter=true;
@@ -164,19 +165,25 @@ public class Funcionalidad5 {
 							}
 						
 					}
+					else {
+						s="Dinero insuficiente \nTerminando pedido";
+					}
 				}
-				
+				print(s);	
 			}
-				//Funcionalidad4.printTablaProductos(tien.llamarProveedor(k));
-				}
-				print("Pasillos reorganizados");
       	}
 
 	private static void contratar(Tienda tien) {
 		// TODO Auto-generated method stub
 		lineas();
 		int j=1;
-		while(true){
+		boolean iter=true;
+		while(iter){
+			
+			lineas();
+			print("Estos son los candidatos:");
+			print(Tienda.mostrarDesempleados());
+			lineas();
       		print("¿Qué tipo de empleado necesita que sea el empleado numero: "+j+"?");
       		String[] ems={"Domiciliario","Concerje","Cajero"};
       		int n=1;
@@ -189,10 +196,23 @@ public class Funcionalidad5 {
       		
       		System.out.println(tien.mostrarEmpleados());
       		j++;
-      		print("1.Continuar\n2.Terminar");
-      		int x6 = escaner();
-      		if(x6!=1) {
-      			break;
+      		boolean i=true;
+      		while(i) {
+      			lineas();
+      			print("1.Continuar\n2.Terminar");
+      			int x6 = escaner();
+      			switch(x6) {
+      				case 1:
+      					i=false;
+      					break;
+      				case 2:
+      					i=false;
+      					iter=false;
+      					break;
+      				default:
+      					print("Entrada inválida");
+      					break;
+      			}
       		}  	
 		}
 	}
